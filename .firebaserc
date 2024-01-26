@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "cdkz-ui-prod"
-  }
+    "default": "cdkz-ui-prod",
+    "staging": "cdkz-ui-staging"
+  },
+  "targets": {},
+  "etags": {}
 }
