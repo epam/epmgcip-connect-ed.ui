@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import "./app.styles.css";
 
 export const App = () => {
   const [count, setCount] = useState(0);
@@ -19,9 +19,6 @@ export const App = () => {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 };
