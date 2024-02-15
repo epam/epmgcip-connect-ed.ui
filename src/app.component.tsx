@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "@/components/button/button.tsx";
 import "./app.styles.css";
 
 export const App = () => {
@@ -12,9 +13,21 @@ export const App = () => {
     <>
       <h1>Vite + React</h1>
       <div className="card">
-        <button type="button" onClick={handleClick}>
+        <Button type="button" variant="primary" onClick={handleClick}>
           count is {count}
-        </button>
+        </Button>
+        <Button type="button" variant="outline" onClick={handleClick}>
+          count is {count}
+        </Button>
+        <Button type="button" variant="secondary" onClick={handleClick}>
+          count is {count}
+        </Button>
+        <Button type="button" variant="pale" onClick={handleClick}>
+          count is {count}
+        </Button>
+        <Button type="button" variant="nav" onClick={handleClick}>
+          count is {count}
+        </Button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
