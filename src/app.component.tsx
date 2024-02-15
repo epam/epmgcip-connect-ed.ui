@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/button/button.tsx";
-import "./app.styles.css";
+import "./app.styles.scss";
 
 export const App = () => {
   const [count, setCount] = useState(0);
