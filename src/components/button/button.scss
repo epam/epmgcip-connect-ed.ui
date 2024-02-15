@@ -1,0 +1,89 @@
+.button {
+    --_horizontal-padding: var(--horizontal-padding, 16px);
+    --_vertical-padding: var(--vertical-padding, 16px);
+    --_font-size: var(--font-size, 1rem);
+    --_font-weight: var(--font-weight, 500);
+    --_background-color: var(--background-color, transparent);
+    --_border-color: var(--border-color, var(--_background-color));
+    --_color: var(--color, var(--white));
+
+    font-family: Lato, sans-serif;
+    font-weight: var(--_font-weight);
+    font-size: var(--_font-size);
+    line-height: 24px;
+    border-radius: 8px;
+    border: 2px solid var(--_border-color);
+    padding: var(--_vertical-padding) var(--_horizontal-padding);
+    color: var(--_color);
+    background-color: var(--_background-color);
+    text-align: center;
+    transition: border-color ease-out 0.3s, background-color ease-out 0.3s, color ease-out 0.3s;
+
+    &:focus,
+    &:focus-visible {
+        outline: 2px solid -webkit-focus-ring-color;
+    }
+
+    &.primary {
+        --border-color: var(--white);
+
+        &:hover,
+        &:focus {
+            --color: var(--button-text);
+            --background-color: var(--white);
+            cursor: pointer;
+        }
+    }
+
+    &.secondary {
+        --background-color: var(--primary);
+
+        &:hover,
+        &:focus {
+            --background-color: var(--primary-dark-25);
+            cursor: pointer;
+        }
+    }
+
+    &.pale {
+        --color: var(--primary);
+        --background-color: var(--white);
+
+        &:hover,
+        &:focus {
+            --border-color: var(--primary-light-10);
+            --background-color: var(--primary-light-10);
+            cursor: pointer;
+        }
+    }
+
+    &.nav {
+        --font-size: 20px;
+        --font-weight: 600;
+        --background-color: var(--primary);
+        --horizontal-padding: 24px;
+        --vertical-padding: 18px;
+
+        &:hover,
+        &:focus {
+            --background-color: var(--primary-dark-25);
+            cursor: pointer;
+        }
+    }
+
+    &.outline {
+        --background-color: var(--white);
+        --border-color: var(--primary);
+        --color: var(--primary);
+
+        &:hover,
+        &:focus {
+            --background-color: var(--primary-light-25);
+            cursor: pointer;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
