@@ -42,7 +42,7 @@
 
 .secondary:hover,
 .secondary:focus {
-    --background-color: color-mix(in srgb, var(--primary) 100%, var(--black) 25%);
+    --background-color: var(--primary-dark-25);
     cursor: pointer;
 }
 
@@ -52,8 +52,8 @@
 }
 .pale:hover,
 .pale:focus {
-    --border-color: color-mix(in srgb, var(--white) 100%, var(--primary) 10%);
-    --background-color: color-mix(in srgb, var(--white) 100%, var(--primary) 10%);
+    --border-color: var(--primary-light-10);
+    --background-color: var(--primary-light-10);
     cursor: pointer;
 }
 
@@ -67,7 +67,7 @@
 
 .nav:hover,
 .nav:focus {
-    --background-color: color-mix(in srgb, var(--primary) 100%, var(--black) 25%);
+    --background-color: var(--primary-dark-25);
     cursor: pointer;
 }
 
@@ -79,7 +79,7 @@
 
 .outline:hover,
 .outline:focus {
-    --background-color: color-mix(in srgb, var(--white) 100%, var(--primary) 25%);
+    --background-color: var(--primary-light-25);
     cursor: pointer;
 }
 
