@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, forwardRef } from "react";
-import "./button.css";
+import cc from "classcat";
+import "./button.scss";
 
 export type ButtonVariant =
   | "primary"
@@ -13,16 +14,12 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ type, variant = "primary", className, ...delegatedProps }, ref) => {
-    const styleBase = `button ${variant}`; // TODO: change after css approach is defined (clsx)
-
-    return (
-      <button
-        {...delegatedProps}
-        type={type}
-        ref={ref}
-        className={className ? `${styleBase} ${className}` : styleBase}
-      />
-    );
-  },
+  ({ type, variant = "primary", className, ...delegatedProps }, ref) => (
+    <button
+      {...delegatedProps}
+      type={type}
+      ref={ref}
+      className={cc(["button", variant, className])}
+    />
+  ),
 );
