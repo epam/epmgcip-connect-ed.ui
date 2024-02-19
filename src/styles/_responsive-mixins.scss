@@ -2,14 +2,14 @@
 
 // Small devices
 @mixin md {
-  @media (max-width: #{breakpoints.$screen-sm-min}) {
+  @media (min-width: #{breakpoints.$screen-sm-min}) {
     @content;
   }
 }
 
 // Medium devices
 @mixin lg {
-  @media (max-width: #{breakpoints.$screen-md-min}) {
+  @media (min-width: #{breakpoints.$screen-md-min}) {
     @content;
   }
 }
