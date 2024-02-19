@@ -83,9 +83,17 @@
   font-family: "Open Sans", sans-serif;
   --white: #fff;
   --black: #000;
+  --night: #002F3F;
+  --background: #F8F5F1;
   --primary: #0E7C73;
-  --button-text: #002F3F;
-  --primary-dark-25: color-mix(in srgb, var(--primary) 100%, var(--black) 25%);
+  --secondary: #97CAEF;
+  --tertiary: #973CEF;
   --primary-light-10: color-mix(in srgb, var(--white) 100%, var(--primary) 10%);
+  --primary-light-20: color-mix(in srgb, var(--white) 100%, var(--primary) 20%);
   --primary-light-25: color-mix(in srgb, var(--white) 100%, var(--primary) 25%);
+  --primary-light-40: color-mix(in srgb, var(--white) 100%, var(--primary) 40%);
+  --primary-light-60: color-mix(in srgb, var(--white) 100%, var(--primary) 60%);
+  --primary-light-80: color-mix(in srgb, var(--white) 100%, var(--primary) 80%);
+  --primary-dark-25: color-mix(in srgb, var(--primary) 100%, var(--black) 25%);
+  --primary-dark-33: color-mix(in srgb, var(--primary) 100%, var(--black) 33%);
 }
