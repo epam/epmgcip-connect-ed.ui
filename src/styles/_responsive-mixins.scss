@@ -1,13 +1,11 @@
 @use '_breakpoints.scss';
 
-// Small devices
 @mixin md {
   @media (min-width: #{breakpoints.$screen-sm-min}) {
     @content;
   }
 }
 
-// Medium devices
 @mixin lg {
   @media (min-width: #{breakpoints.$screen-md-min}) {
     @content;
