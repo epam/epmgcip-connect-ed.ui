@@ -13,16 +13,16 @@ export const App = () => {
     <>
       <h1>Vite + React</h1>
       <div className="card">
-        <Button type="button" variant="primary" onClick={handleClick}>
+        <Button type="button" variant="main" onClick={handleClick}>
+          count is {count}
+        </Button>
+        <Button type="button" variant="inverted" onClick={handleClick}>
           count is {count}
         </Button>
         <Button type="button" variant="outline" onClick={handleClick}>
           count is {count}
         </Button>
-        <Button type="button" variant="secondary" onClick={handleClick}>
-          count is {count}
-        </Button>
-        <Button type="button" variant="pale" onClick={handleClick}>
+        <Button type="button" variant="form" onClick={handleClick}>
           count is {count}
         </Button>
         <Button type="button" variant="nav" onClick={handleClick}>

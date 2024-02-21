@@ -2,12 +2,7 @@ import { ButtonHTMLAttributes, forwardRef } from "react";
 import cc from "classcat";
 import "./button.scss";
 
-export type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "outline"
-  | "nav"
-  | "pale";
+export type ButtonVariant = "main" | "inverted" | "outline" | "nav" | "form";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
