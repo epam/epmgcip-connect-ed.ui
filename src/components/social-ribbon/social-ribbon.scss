@@ -1,0 +1,32 @@
+.social-ribbon {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  color: var(--white);
+
+  .select-locale {
+    border: none;
+    font-size: 1.5rem;
+    height: 2rem;
+    background-color: transparent;
+    color: inherit;
+  }
+
+  .social-links-list {
+    list-style: none;
+    margin: auto 0;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 0;
+  }
+
+  .social-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .social-icon {
+    display: block;
+  }
+}

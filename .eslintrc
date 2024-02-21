@@ -102,11 +102,16 @@
           },
           {
             "group": "external",
+            "pattern": "@/components/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
             "pattern": "./*.svg",
             "position": "after"
           },
           {
-            "pattern": "./*.css",
+            "pattern": "./*.scss",
             "group": "sibling",
             "position": "after"
           }

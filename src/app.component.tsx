@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/button/button.tsx";
 import { Footer } from "@/components/footer/footer.tsx";
+import { Navigation } from "@/components/navigation/navigation.tsx";
 import "./app.styles.scss";
 
 export const App = () => {
@@ -12,7 +13,7 @@ export const App = () => {
 
   return (
     <div className="page">
-      <h1>Vite + React</h1>
+      <Navigation />
       <main className="card">
         <Button type="button" variant="main" onClick={handleClick}>
           count is {count}
