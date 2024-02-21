@@ -96,4 +96,6 @@
   --primary-light-80: color-mix(in srgb, var(--white) 100%, var(--primary) 80%);
   --primary-dark-25: color-mix(in srgb, var(--primary) 100%, var(--black) 25%);
   --primary-dark-33: color-mix(in srgb, var(--primary) 100%, var(--black) 33%);
+  --night-transparent-10: color-mix(in srgb, var(--night) 10%, transparent 100%);
+  --backdrop: color-mix(in srgb, var(--black) 33%, transparent 100%);
 }
