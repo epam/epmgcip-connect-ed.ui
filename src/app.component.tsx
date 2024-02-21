@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/button/button.tsx";
+import { Footer } from "@/components/footer/footer.tsx";
 import "./app.styles.scss";
 
 export const App = () => {
@@ -10,9 +11,9 @@ export const App = () => {
   };
 
   return (
-    <>
+    <div className="page">
       <h1>Vite + React</h1>
-      <div className="card">
+      <main className="card">
         <Button type="button" variant="main" onClick={handleClick}>
           count is {count}
         </Button>
@@ -31,7 +32,8 @@ export const App = () => {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
-      </div>
-    </>
+      </main>
+      <Footer />
+    </div>
   );
 };
