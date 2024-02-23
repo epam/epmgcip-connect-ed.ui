@@ -1,4 +1,5 @@
 import { FormEvent } from "react";
+import { Button } from "@/components/button/button.tsx";
 import { Input } from "@/components/input/input.tsx";
 import "./sign-up.scss";
 
@@ -17,8 +18,9 @@ export const SignUp = () => {
         </p>
         <form className="sign-up-form" onSubmit={handleSubmit}>
           <Input name="email" placeholder="Email" />
-          {/*//TODO replace button with one from opened pull request*/}
-          <button type="submit">Sign up</button>
+          <Button type="submit" variant="form">
+            Sign up
+          </Button>
         </form>
       </div>
     </div>
