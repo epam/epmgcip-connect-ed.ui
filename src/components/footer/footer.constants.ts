@@ -1,6 +1,6 @@
-import Envelope from "@/assets/envelope.svg?react";
-import Linkedin from "@/assets/linkedin.svg?react";
-import Tiktok from "@/assets/tiktok.svg?react";
+import Envelope from "@/assets/icons/envelope.svg?react";
+import Linkedin from "@/assets/icons/linkedin.svg?react";
+import Tiktok from "@/assets/icons/tiktok.svg?react";
 
 // TODO: add correct icons after navigation merge
 export const socialLinks = [

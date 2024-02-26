@@ -1,4 +1,4 @@
-import EpamLogo from "@/assets/epam-logo.svg?react";
+import EpamLogo from "@/assets/icons/epam-logo.svg?react";
 import { socialLinks } from "@/components/footer/footer.constants.ts";
 import "./footer.scss";
 
