@@ -12,7 +12,7 @@ export interface HeroProps {
 }
 
 export const Hero = ({ title, body, bannerSource, variant }: HeroProps) => (
-  <div className="hero">
+  <section className="hero">
     <HeroArticle title={title} body={body} variant={variant} />
     <div className="hero-banner">
       <img
@@ -22,5 +22,5 @@ export const Hero = ({ title, body, bannerSource, variant }: HeroProps) => (
         role="presentation"
       />
     </div>
-  </div>
+  </section>
 );
