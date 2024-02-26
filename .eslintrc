@@ -203,6 +203,7 @@
     "no-void": "off",
     "no-continue": "off",
     "no-unused-vars": "off",
+    "no-case-declarations": "off",
     "no-restricted-imports": [
       "error",
       {

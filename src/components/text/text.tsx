@@ -1,15 +1,22 @@
 import { ReactNode } from "react";
 import cc from "classcat";
-import { Link } from "react-router-dom";
 import "./text.scss";
 
-export type TextVariant = "link" | "name" | "title" | "text" | "default";
+export type TextVariant = "link" | "title" | "paragraph" | "small" | "default";
+export type TextColor =
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "black"
+  | "white";
 
 export interface IProps {
-  variant: TextVariant;
-  className: string;
+  variant?: TextVariant;
+  className?: string;
   children: string | ReactNode;
-  link: string;
+  link?: string;
+  headingLevel?: keyof JSX.IntrinsicElements;
+  color?: TextColor;
 }
 
 export const Text = ({
@@ -17,25 +24,38 @@ export const Text = ({
   className,
   children,
   link,
+  headingLevel = "h2",
+  color = "black",
 }: IProps) => {
+  const commonProps = {
+    className: cc(["text", variant, headingLevel, className, color]),
+    children,
+  };
+
   switch (variant) {
     case "link":
-      return (
-        <Link to={link} className={cc(["text", variant, className])}>
-          {children}
-        </Link>
-      );
-    case "name":
-      return (
-        <span className={cc(["text", variant, className])}>{children}</span>
+      return link ? (
+        // eslint-disable-next-line jsx-a11y/anchor-has-content
+        <a href={link} {...commonProps} />
+      ) : (
+        <span {...commonProps} />
       );
     case "title":
-      return <h1 className={cc(["text", variant, className])}>{children}</h1>;
-    case "text":
-      return <p className={cc(["text", variant, className])}>{children}</p>;
+      const HeadingComponent: React.ElementType = headingLevel;
+      return (
+        <HeadingComponent
+          className={cc(["text", variant, headingLevel, color, className])}
+        >
+          <span>{children}</span>
+        </HeadingComponent>
+      );
+    case "paragraph":
+      return <p {...commonProps} />;
+    case "small":
+      return <p {...commonProps} />;
     case "default":
-      return <div className={cc(["text", variant, className])}>{children}</div>;
+      return <div {...commonProps} />;
     default:
-      return <div className={cc(["text", variant, className])}>{children}</div>;
+      return <div {...commonProps} />;
   }
 };
