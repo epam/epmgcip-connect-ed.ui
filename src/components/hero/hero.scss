@@ -1,0 +1,73 @@
+@use "@/styles/responsive-mixins";
+
+.hero {
+  position: relative;
+  isolation: isolate;
+
+  &-banner {
+    display: flex;
+    width: 100%;
+    min-height: 240px;
+
+    &-image {
+      width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+    }
+  }
+
+
+  @include responsive-mixins.md {
+    padding: 32px 24px 0;
+
+    &-article {
+      padding: 48px 48px 24px;
+      border-radius: 0 0 20px 0;
+
+      &-title {
+        font-size: 1.5rem;
+        line-height: 1.2;
+      }
+
+      &-body {
+        margin: 24px 0;
+      }
+
+      &-wave {
+        display: none;
+      }
+    }
+
+    &-banner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      min-height: auto;
+      margin-bottom: 24px;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    padding: 48px 48px 0;
+
+    &-article {
+      width: 590px;
+
+      &-title {
+        font-size: 2.5rem;
+      }
+
+      &-body {
+        margin: 24px 0 48px;
+        font-size: 1.25rem;
+      }
+    }
+
+    &-banner {
+      margin-bottom: 48px;
+    }
+  }
+}
