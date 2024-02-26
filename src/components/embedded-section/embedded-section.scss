@@ -1,0 +1,45 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins/partial-underline.mixin";
+
+.embedded-section {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  margin: 0 auto;
+  background-color: var(--white);
+  gap: 16px;
+
+  &-title {
+    @include partial-underline.partial-underline;
+    margin: auto;
+    font-family: Lato, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--night);
+  }
+
+  &-content > * {
+    width: 100%;
+  }
+
+  @include responsive-mixins.md {
+    padding: 24px 24px 0;
+    gap: 24px;
+
+    &-title {
+      font-size: 1.25rem;
+      line-height: 1.2;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    padding: 0 198px;
+    gap: 48px;
+
+    &-title {
+      font-size: 2rem;
+      line-height: 1.5;
+    }
+  }
+}

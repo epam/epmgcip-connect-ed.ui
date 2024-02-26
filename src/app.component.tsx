@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/button/button.tsx";
+import { EmbeddedSection } from "@/components/embedded-section/embedded-section.tsx";
 import { Footer } from "@/components/footer/footer.tsx";
 import { Hero } from "@/components/hero/hero.tsx";
+import { Iframe } from "@/components/iframe/iframe.tsx";
 import { Navigation } from "@/components/navigation/navigation.tsx";
 import bannerImage from "@/assets/images/banner.png";
 import "./app.styles.scss";
@@ -40,6 +42,14 @@ export const App = () => {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
+        <EmbeddedSection title="How we've helped">
+          <Iframe src="https://www.google.com/search?igu=1" />
+        </EmbeddedSection>
+        <EmbeddedSection title="Video">
+          <video controls aria-label="embedded video">
+            <source src="" />
+          </video>
+        </EmbeddedSection>
       </main>
       <Footer />
     </div>
