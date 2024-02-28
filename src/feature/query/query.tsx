@@ -1,16 +1,17 @@
 import { ReactNode } from "react";
 import { useQuery } from "@apollo/client";
 import { DocumentNode } from "graphql";
+import type { OperationVariables } from "@apollo/client";
 
 interface QueryProps<T> {
   children: (data: { data?: T | undefined }) => ReactNode;
   query: DocumentNode;
-  slug: string;
+  variables?: OperationVariables;
 }
 
-export const Query = <T,>({ children, query, slug }: QueryProps<T>) => {
+export const Query = <T,>({ children, query, variables }: QueryProps<T>) => {
   const { data, loading, error } = useQuery<T>(query, {
-    variables: { slug },
+    variables,
   });
 
   if (loading) {

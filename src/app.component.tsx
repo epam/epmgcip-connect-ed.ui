@@ -14,7 +14,7 @@ import "./app.styles.scss";
 
 export const App = () => (
   <ErrorBoundary>
-    <Query<GetLayoutDataQuery> query={GET_LAYOUT_DATA} slug="/">
+    <Query<GetLayoutDataQuery> query={GET_LAYOUT_DATA}>
       {({ data }) => (
         <div className="page">
           <header style={{ display: "flex", gap: 24 }}>
@@ -29,13 +29,13 @@ export const App = () => (
           </header>
           <main className="main">
             <Routes>
-              {data?.pages?.data.map(({ attributes }) => {
+              {data?.pages?.data.map(({ id, attributes }) => {
                 const slug = attributes?.slug ?? "";
                 return (
                   <Route
                     key={slug}
                     path={slug}
-                    element={<Page slug={slug} />}
+                    element={<Page slug={slug} id={id ?? ""} />}
                   />
                 );
               })}

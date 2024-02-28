@@ -1,13 +1,14 @@
+import { GetPageDataQuery } from "@/__generated__/graphql.ts";
 import { Query } from "@/feature/query/query";
-import { GET_LAYOUT_DATA } from "@/queries/get-layout-data.ts";
+import { GET_PAGE_DATA } from "@/queries/get-page.ts";
 
 export interface PageProps {
   slug: string;
+  id: string;
 }
 
-export const Page = ({ slug }: PageProps) => (
-  //TODO: here should be passed query for particular page
-  <Query slug={slug} query={GET_LAYOUT_DATA}>
+export const Page = ({ slug, id }: PageProps) => (
+  <Query<GetPageDataQuery> variables={{ id }} query={GET_PAGE_DATA}>
     {({ data }) => (
       <>
         {slug}

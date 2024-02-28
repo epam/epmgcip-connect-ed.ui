@@ -4,6 +4,7 @@ export const GET_LAYOUT_DATA = gql(`
   query GetLayoutData {
     pages {
       data {
+        id
         attributes {
           slug
         }
