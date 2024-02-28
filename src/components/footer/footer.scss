@@ -34,8 +34,16 @@
   .social-links {
     display: grid;
     grid-template-columns: repeat(3, 24px);
+    grid-template-rows: 24px;
     grid-gap: 12px 24px;
     margin: auto;
+  }
+
+  .social-icon {
+      aspect-ratio: 1/1;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
   }
 
   .contact-info {
@@ -98,6 +106,11 @@
       &-delimiter {
         display: inline;
       }
+    }
+
+    .social-links {
+      grid-template-columns: repeat(6, 32px);
+      grid-template-rows: 32px;
     }
 
     .designed-by {

@@ -1,7 +1,9 @@
 vite.config.ts
+codegen.ts
 node_modules/**
 coverage/**
 src/assets/**
+src/__generated__/**
 .eslintrc
 /dist
 
