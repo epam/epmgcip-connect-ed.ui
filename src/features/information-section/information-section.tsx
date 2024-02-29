@@ -34,7 +34,7 @@ export const InformationSection = ({
           >
             <InformationCard
               title="Provide"
-              description="Digital equipment to underprivileged children"
+              body="Digital equipment to underprivileged children"
               image={provideImage}
               action="Here we go"
             />
