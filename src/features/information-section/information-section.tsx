@@ -1,7 +1,7 @@
-import provideImage from "@/assets/images/provide.png";
 import { Button } from "@/components/button/button.tsx";
 import { InformationCard } from "@/components/information-card/information-card.tsx";
 import { WavyCard } from "@/components/wavy-card/wavy-card.tsx";
+import provideImage from "@/assets/images/provide.png";
 import "./information-section.scss";
 
 export interface InformationSectionProps {
