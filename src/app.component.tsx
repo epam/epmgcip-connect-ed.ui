@@ -5,13 +5,14 @@ import {
   ComponentSharedSocialIcon,
   GetLayoutDataQuery
 } from "@/__generated__/graphql.ts";
+import { InformationSection } from "@/features/information-section/information-section.tsx";
 import { Navigation } from "@/features/navigation/navigation.tsx";
+import { NewsSection } from "@/features/news-section/news-section.tsx";
 import { ProjectsSection } from "@/features/projects-section/projects-section.tsx";
 import { Query } from "@/features/query/query.tsx";
 import { NotFound } from "@/pages/not-found/not-found.tsx";
 import { Page } from "@/pages/page/page.tsx";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data.ts";
-import { InformationSection } from "@/features/information-section/information-section.tsx";
 import "./app.styles.scss";
 
 export const App = () => (
@@ -68,6 +69,7 @@ export const App = () => (
               action="Apply today"
               cards={[{}, {}, {}]}
             />
+            <NewsSection title="Latest news" cards={[{}, {}, {}, {}]} />
           </main>
           <Footer
             // TODO: check if shared social icon can be optional

@@ -1,0 +1,65 @@
+@use "@/styles/responsive-mixins";
+
+.news-section {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 48px 16px;
+
+  &-title {
+    font-family: Lato, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--night);
+  }
+
+  &-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  &-action {
+    width: 100%;
+  }
+
+  @include responsive-mixins.md {
+    padding: 36px 24px;
+    gap: 24px;
+
+    &-title {
+      font-family: Lato, sans-serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--night);
+    }
+
+    &-list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    &-action {
+      width: auto;
+      margin: auto;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    padding: 120px 0 64px;
+    gap: 24px;
+    // TODO: replace with value from constant
+    width: 83.3333333%;
+    margin: 0 auto;
+
+    &-title {
+      font-size: 2rem;
+    }
+
+    &-list {
+      gap: 24px;
+    }
+  }
+}
