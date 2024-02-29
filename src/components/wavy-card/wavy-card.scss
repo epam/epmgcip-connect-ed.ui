@@ -1,0 +1,55 @@
+.wavy-card {
+  --_main-color: var(--main-color, var(--primary));
+  --_main-color-transparent-10: color-mix(in srgb, var(--_main-color) 10%, transparent 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  color: var(--_main-color);
+
+  &[data-theme="secondary"] {
+    --main-color: var(--secondary);
+  }
+
+  &[data-theme="tertiary"] {
+    --main-color: var(--tertiary);
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    height: 26px;
+    width: calc(100% - 32px);
+    margin: 0 16px;
+    color: var(--_main-color);
+    background-color: currentColor;
+    mask-repeat: repeat-x;
+    mask-position: center;
+    mask-size: contain;
+    mask-image: url("@/assets/card-wave.svg");
+    -webkit-mask-repeat: repeat-x;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-image: url("@/assets/card-wave.svg");
+  }
+
+  &:before {
+    top: 0;
+  }
+
+  &:after {
+    bottom: 0;
+  }
+
+  &-content {
+    overflow: hidden;
+    margin: 13px 0;
+    height: 100%;
+    width: 100%;
+    border: 2px solid currentColor;
+    border-radius: 16px;
+    box-shadow: 4px 4px 12px 0 var(--_main-color-transparent-10);
+  }
+}

@@ -1,6 +1,10 @@
 @use "@/styles/responsive-mixins";
 
 .button {
+    --main-color: var(--primary);
+    --main-color-light-10: color-mix(in srgb, var(--white) 100%, var(--main-color) 10%);
+    --main-color-light-25: color-mix(in srgb, var(--white) 100%, var(--main-color) 25%);
+    --main-color-dark-25: color-mix(in srgb, var(--main-color) 100%, var(--black) 25%);
     --_horizontal-padding: var(--horizontal-padding, 10px);
     --_vertical-padding: var(--vertical-padding, 10px);
     --_font-size: var(--font-size, 0.875rem);
@@ -27,6 +31,14 @@
         outline: 2px solid -webkit-focus-ring-color;
     }
 
+    &[data-theme="secondary"] {
+        --main-color: var(--secondary);
+    }
+
+    &[data-theme="tertiary"] {
+        --main-color: var(--tertiary);
+    }
+
     &.form {
         --border-color: var(--white);
         --horizontal-padding: 14px;
@@ -41,48 +53,48 @@
     }
 
     &.main {
-        --background-color: var(--primary);
+        --background-color: var(--main-color);
 
         &:hover,
         &:focus {
-            --background-color: var(--primary-dark-25);
+            --background-color: var(--main-color-dark-25);
             cursor: pointer;
         }
     }
 
     &.inverted {
-        --color: var(--primary);
+        --color: var(--main-color);
         --background-color: var(--white);
 
         &:hover,
         &:focus {
-            --border-color: var(--primary-light-10);
-            --background-color: var(--primary-light-10);
+            --border-color: var(--main-color-light-10);
+            --background-color: var(--main-color-light-10);
             cursor: pointer;
         }
     }
 
     &.nav {
         --font-weight: 500;
-        --background-color: var(--primary);
+        --background-color: var(--main-color);
         --horizontal-padding: 14px;
         --vertical-padding: 10px;
 
         &:hover,
         &:focus {
-            --background-color: var(--primary-dark-25);
+            --background-color: var(--main-color-dark-25);
             cursor: pointer;
         }
     }
 
     &.outline {
         --background-color: var(--white);
-        --border-color: var(--primary);
-        --color: var(--primary);
+        --border-color: var(--main-color);
+        --color: var(--main-color);
 
         &:hover,
         &:focus {
-            --background-color: var(--primary-light-25);
+            --background-color: var(--main-color-light-25);
             cursor: pointer;
         }
     }

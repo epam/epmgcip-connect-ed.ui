@@ -3,7 +3,7 @@ import { ErrorBoundary } from "@/components/error-boundary/error-boundary.tsx";
 import { Footer } from "@/components/footer/footer.tsx";
 import {
   ComponentSharedSocialIcon,
-  GetLayoutDataQuery,
+  GetLayoutDataQuery
 } from "@/__generated__/graphql.ts";
 import { Navigation } from "@/features/navigation/navigation.tsx";
 import { ProjectsSection } from "@/features/projects-section/projects-section.tsx";
@@ -11,6 +11,7 @@ import { Query } from "@/features/query/query.tsx";
 import { NotFound } from "@/pages/not-found/not-found.tsx";
 import { Page } from "@/pages/page/page.tsx";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data.ts";
+import { InformationSection } from "@/features/information-section/information-section.tsx";
 import "./app.styles.scss";
 
 export const App = () => (
@@ -58,8 +59,14 @@ export const App = () => (
                 { title: "7", url: "" },
                 { title: "8", url: "" },
                 { title: "9", url: "" },
-                { title: "10", url: "" },
+                { title: "10", url: "" }
               ]}
+            />
+            <InformationSection
+              title="What we do"
+              description="To become a Connect-ed Ambassador and empower your community through digital literacy, individuals should meet a few essential requirements:"
+              action="Apply today"
+              cards={[{}, {}, {}]}
             />
           </main>
           <Footer
