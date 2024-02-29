@@ -1,0 +1,174 @@
+@use "@/styles/responsive-mixins";
+
+.carousel {
+  position: relative;
+
+  &-list {
+    padding: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 24px;
+    // position: absolute;
+    // width: fit-content;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    // animation: scroll 30s linear infinite;
+    // animation-delay: 20s;
+
+    /*&:hover {
+      animation-play-state: paused;
+    }*/
+
+    /*@keyframes scroll {
+      16% {
+        transform: translateX(0);
+      }
+
+      39% {
+        transform: translate(calc(-100% + 100vw))
+      }
+
+      66% {
+        transform: translate(calc(-100% + 100vw))
+      }
+
+      84% {
+        transform: translateX(0);
+      }
+    }*/
+  }
+
+
+  &-item {
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: calc(50vw - 12px);
+  }
+
+  &-navigation {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 0;
+    padding: 24px;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &[data-direction="left"] {
+      left: 0;
+    }
+
+    &[data-direction="right"] {
+      right: 0;
+
+      & > svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &-image {
+    display: block;
+    height: calc(50vw - 12px);
+    width: calc(50vw - 12px);
+    object-fit: contain;
+  }
+
+  @include responsive-mixins.lg {
+    &-list {
+      padding: 0;
+      display: flex;
+      gap: 48px;
+      // position: absolute;
+      // width: fit-content;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      // animation: scroll 30s linear infinite;
+      // animation-delay: 20s;
+
+      /*&:hover {
+        animation-play-state: paused;
+      }*/
+
+      /*@keyframes scroll {
+        16% {
+          transform: translateX(0);
+        }
+
+        39% {
+          transform: translate(calc(-100% + 100vw))
+        }
+
+        66% {
+          transform: translate(calc(-100% + 100vw))
+        }
+
+        84% {
+          transform: translateX(0);
+        }
+      }*/
+    }
+
+
+    &-item {
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 160px;
+    }
+
+    &-navigation {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      top: 0;
+      padding: 24px;
+      height: 100%;
+      border: none;
+      background-color: transparent;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &[data-direction="left"] {
+        left: 0;
+      }
+
+      &[data-direction="right"] {
+        right: 0
+      }
+    }
+
+    &-image {
+      display: block;
+      height: 160px;
+      width: 160px;
+      object-fit: contain;
+    }
+  }
+}

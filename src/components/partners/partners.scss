@@ -1,0 +1,58 @@
+@use "@/styles/responsive-mixins";
+
+.partners-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 64px 16px 24px;
+
+  &-title {
+    position: relative;
+    display: inline;
+    margin: auto;
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.5;
+
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      background-color: var(--primary);
+      width: 33%;
+    }
+  }
+
+  @include responsive-mixins.md {
+    padding: 48px 24px 36px;
+
+    &-title {
+      font-size: 1.25rem;
+    }
+
+    &-content {
+      padding: 0 16px;
+    }
+
+    &-button {
+      margin: auto;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    gap: 48px;
+    padding: 96px 0 24px;
+
+    &-title {
+      font-size: 2rem;
+    }
+
+    &-content {
+      padding: 0;
+    }
+  }
+}

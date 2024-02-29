@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/button/button.tsx";
 import { Footer } from "@/components/footer/footer.tsx";
 import { Navigation } from "@/components/navigation/navigation.tsx";
+import { Partners } from "@/components/partners/partners.tsx";
 import "./app.styles.scss";
 
 export const App = () => {
@@ -34,6 +35,7 @@ export const App = () => {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </main>
+      <Partners />
       <Footer />
     </div>
   );

@@ -1,5 +1,5 @@
-import EpamLogo from "@/assets/epam-logo.svg?react";
 import { socialLinks } from "@/components/footer/footer.constants.ts";
+import EpamLogo from "@/assets/epam-logo.svg?react";
 import "./footer.scss";
 
 export const Footer = () => {

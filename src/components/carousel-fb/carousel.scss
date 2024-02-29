@@ -1,0 +1,64 @@
+@use "@/styles/responsive-mixins";
+
+.carousel-fb-container {
+  &:has(.carousel-fb-checkbox:checked) {
+    .carousel-fb-list {
+      animation-play-state: paused;
+    }
+  }
+}
+
+.carousel-fb {
+  position: relative;
+  overflow: hidden;
+  height: 160px;
+
+  &-list {
+    padding: 0;
+    display: flex;
+    gap: 48px;
+    position: absolute;
+    width: fit-content;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    animation: scroll 30s linear infinite;
+    // animation-delay: 20s;
+
+    @keyframes scroll {
+      16% {
+        transform: translateX(0);
+      }
+
+      39% {
+        transform: translate(calc(-100% + 100vw))
+      }
+
+      66% {
+        transform: translate(calc(-100% + 100vw))
+      }
+
+      84% {
+        transform: translateX(0);
+      }
+    }
+  }
+
+
+  &-item {
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+  }
+
+  &-image {
+    display: block;
+    height: 160px;
+    width: 160px;
+    object-fit: contain;
+  }
+}
