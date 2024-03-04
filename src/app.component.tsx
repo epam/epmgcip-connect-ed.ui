@@ -1,12 +1,13 @@
 import { Link, Navigate, Route, Routes } from "react-router-dom";
 import { ErrorBoundary } from "@/components/error-boundary/error-boundary.tsx";
 import { Footer } from "@/components/footer/footer.tsx";
-import { Navigation } from "@/components/navigation/navigation.tsx";
 import {
   ComponentSharedSocialIcon,
   GetLayoutDataQuery,
 } from "@/__generated__/graphql.ts";
-import { Query } from "@/feature/query/query.tsx";
+import { Navigation } from "@/features/navigation/navigation.tsx";
+import { ProjectsSection } from "@/features/projects-section/projects-section.tsx";
+import { Query } from "@/features/query/query.tsx";
 import { NotFound } from "@/pages/not-found/not-found.tsx";
 import { Page } from "@/pages/page/page.tsx";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data.ts";
@@ -46,6 +47,20 @@ export const App = () => (
                 element={<NotFound title="404" description="Not found" />}
               />
             </Routes>
+            <ProjectsSection
+              projects={[
+                { title: "1", url: "img" },
+                { title: "2", url: "" },
+                { title: "3", url: "" },
+                { title: "4", url: "img" },
+                { title: "5", url: "" },
+                { title: "6", url: "" },
+                { title: "7", url: "" },
+                { title: "8", url: "" },
+                { title: "9", url: "" },
+                { title: "10", url: "" },
+              ]}
+            />
           </main>
           <Footer
             // TODO: check if shared social icon can be optional

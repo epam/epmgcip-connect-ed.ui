@@ -1,0 +1,108 @@
+@use "@/styles/responsive-mixins";
+
+.project-card {
+  --_text-color: var(--text-color, var(--night));
+  --_action-color: var(--action-color, var(--primary));
+  --_background-color: var(--background-color, var(--background));
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 8px;
+  background-color: var(--_background-color);
+
+  &[data-theme="primary"] {
+    --background-color: var(--primary);
+    --action-color: var(--white);
+    --text-color: var(--white);
+  }
+
+  &[data-theme="tertiary"] {
+    --background-color: var(--tertiary);
+    --action-color: var(--white);
+    --text-color: var(--white);
+  }
+
+  &[data-theme="secondary"] {
+    --background-color: var(--secondary);
+    --action-color: var(--night);
+  }
+
+  &-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--_text-color);
+  }
+
+  &-title {
+    flex-shrink: 0;
+    font-family: Lato, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.75;
+  }
+
+  &-body {
+    flex-grow: 1;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  &-action {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    font-family: Lato, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--_action-color);
+    margin-top: 16px;
+
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &-image-wrapper {
+    display: none;
+  }
+
+  @include responsive-mixins.md {
+    &-image-wrapper {
+      flex-shrink: 0;
+      display: block;
+      width: 100%;
+      max-width: min(calc(50% - 12px), 242px);
+      max-height: 175px;
+    }
+
+    &-image {
+      object-fit: cover;
+      border-radius: 8px;
+      height: 100%;
+      width: 100%;
+      max-width: initial;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    &-title {
+      font-size: 1.5rem;
+    }
+
+    &-body {
+      font-size: 1rem;
+    }
+
+    &-image-wrapper {
+      max-width: min(calc(50% - 12px), 242px);
+      max-height: min(100%, 224px);
+    }
+  }
+}

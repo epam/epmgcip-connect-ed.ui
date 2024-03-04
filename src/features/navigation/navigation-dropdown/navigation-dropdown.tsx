@@ -1,7 +1,7 @@
 import { ReactEventHandler } from "react";
-import { NavigationItem } from "@/components/navigation/navigation-menu/navigation-menu.types.ts";
-import { NavigationSection } from "@/components/navigation/navigation-section/navigation-section.tsx";
-import DropArrow from "@/assets/drop-arrow.svg?react";
+import DropArrow from "@/assets/icons/drop-arrow.svg?react";
+import { NavigationItem } from "@/features/navigation/navigation-menu/navigation-menu.types.ts";
+import { NavigationSection } from "@/features/navigation/navigation-section/navigation-section.tsx";
 import "./navigation-dropdown.scss";
 
 export interface NavigationDropdownProps {

@@ -1,10 +1,10 @@
 import { useCallback, useState } from "react";
 import { Button } from "@/components/button/button.tsx";
 import { Header } from "@/components/header/header.tsx";
-import { NavigationMenu } from "@/components/navigation/navigation-menu/navigation-menu.tsx";
-import { NavigationSidebar } from "@/components/navigation/navigation-sidebar/navigation-sidebar.tsx";
 import { SocialRibbon } from "@/components/social-ribbon/social-ribbon.tsx";
-import Burger from "@/assets/burger.svg?react";
+import Burger from "@/assets/icons/burger.svg?react";
+import { NavigationMenu } from "@/features/navigation/navigation-menu/navigation-menu.tsx";
+import { NavigationSidebar } from "@/features/navigation/navigation-sidebar/navigation-sidebar.tsx";
 import "./navigation.scss";
 
 const sidebarId = "navigation-sidebar";

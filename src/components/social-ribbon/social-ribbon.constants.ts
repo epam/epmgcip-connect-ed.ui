@@ -1,6 +1,6 @@
-import Facebook from "@/assets/facebook.svg?react";
-import Instagram from "@/assets/insta.svg?react";
-import Youtube from "@/assets/youtube.svg?react";
+import Facebook from "@/assets/icons/facebook.svg?react";
+import Instagram from "@/assets/icons/insta.svg?react";
+import Youtube from "@/assets/icons/youtube.svg?react";
 
 export const localesConfig = [
   {
