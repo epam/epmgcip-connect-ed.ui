@@ -10,7 +10,7 @@
   background-size: cover;
   background-position: center;
   gap: 24px;
-  background-image: url("../../assets/background-path-sm.svg");
+  background-image: url("@/assets/background-path-sm.svg");
 
   &-content {
     display: grid;
@@ -42,12 +42,12 @@
   }
 
   @include responsive-mixins.md {
-    background-image: url("../../assets/background-path-md.svg");
+    background-image: url("@/assets/background-path-md.svg");
   }
 
   @include responsive-mixins.lg {
     padding: 64px 142px;
-    background-image: url("../../assets/background-path-lg.svg");
+    background-image: url("@/assets/background-path-lg.svg");
 
     &-title {
       font-size: 2.5rem;

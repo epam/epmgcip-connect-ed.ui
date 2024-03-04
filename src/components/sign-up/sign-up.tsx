@@ -17,6 +17,7 @@ export const SignUp = () => {
           peoples lives by signing up for emails from Connect-Ed
         </p>
         <form className="sign-up-form" onSubmit={handleSubmit}>
+          <Input name="name" placeholder="Name" />
           <Input name="email" placeholder="Email" />
           <Button type="submit" variant="form">
             Sign up
