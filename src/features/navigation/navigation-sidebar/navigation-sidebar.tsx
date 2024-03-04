@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Button } from "@/components/button/button.tsx";
-import { NavigationMenu } from "@/components/navigation/navigation-menu/navigation-menu.tsx";
 import { SocialRibbon } from "@/components/social-ribbon/social-ribbon.tsx";
+import { NavigationMenu } from "@/features/navigation/navigation-menu/navigation-menu.tsx";
 import { useClickOutside } from "@/hooks/use-click-outside.tsx";
 import "./navigation-sidebar.scss";
 

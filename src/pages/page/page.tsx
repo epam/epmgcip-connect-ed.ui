@@ -1,5 +1,5 @@
 import { GetPageDataQuery } from "@/__generated__/graphql.ts";
-import { Query } from "@/feature/query/query";
+import { Query } from "@/features/query/query";
 import { GET_PAGE_DATA } from "@/queries/get-page.ts";
 
 export interface PageProps {

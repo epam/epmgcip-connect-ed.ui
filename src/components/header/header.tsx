@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Logo from "@/assets/logo.svg?react";
+import Logo from "@/assets/icons/logo.svg?react";
 import "./header.scss";
 
 export interface HeaderProps {

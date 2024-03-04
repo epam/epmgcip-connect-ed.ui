@@ -1,7 +1,7 @@
 import { SyntheticEvent, useCallback, useRef } from "react";
 import cc from "classcat";
-import { NavigationDropdown } from "@/components/navigation/navigation-dropdown/navigation-dropdown.tsx";
-import { menu } from "@/components/navigation/navigation-menu/navigation-menu.constants.ts";
+import { NavigationDropdown } from "@/features/navigation/navigation-dropdown/navigation-dropdown.tsx";
+import { menu } from "@/features/navigation/navigation-menu/navigation-menu.constants.ts";
 import { useClickOutside } from "@/hooks/use-click-outside.tsx";
 import "./navigation-menu.scss";
 

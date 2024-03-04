@@ -1,5 +1,5 @@
-import Wave from "@/assets/icons/wave.svg?react";
 import { Button } from "@/components/button/button.tsx";
+import Wave from "@/assets/icons/wave.svg?react";
 import "./hero-article.scss";
 
 export type HeroArticleVariant = "primary" | "secondary";

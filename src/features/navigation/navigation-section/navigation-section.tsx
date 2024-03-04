@@ -1,5 +1,5 @@
 import cc from "classcat";
-import { NavigationItem } from "@/components/navigation/navigation-menu/navigation-menu.types.ts";
+import { NavigationItem } from "@/features/navigation/navigation-menu/navigation-menu.types.ts";
 import "./navigation-section.scss";
 
 export interface NavigationSectionProps {

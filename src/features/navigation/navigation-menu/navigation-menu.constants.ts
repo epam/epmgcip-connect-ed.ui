@@ -1,4 +1,4 @@
-import { NavigationMenuItem } from "@/components/navigation/navigation-menu/navigation-menu.types.ts";
+import { NavigationMenuItem } from "@/features/navigation/navigation-menu/navigation-menu.types.ts";
 
 export const menu: NavigationMenuItem[] = [
   {
