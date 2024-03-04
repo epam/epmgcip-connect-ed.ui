@@ -1,11 +1,11 @@
 import { Link, Navigate, Route, Routes } from "react-router-dom";
+import { ErrorBoundary } from "@/components/error-boundary/error-boundary.tsx";
+import { Footer } from "@/components/footer/footer.tsx";
+import { Navigation } from "@/components/navigation/navigation.tsx";
 import {
   ComponentSharedSocialIcon,
   GetLayoutDataQuery,
 } from "@/__generated__/graphql.ts";
-import { ErrorBoundary } from "@/components/error-boundary/error-boundary.tsx";
-import { EmbeddedSection } from "@/components/embedded-section/embedded-section.tsx";
-import { Footer } from "@/components/footer/footer.tsx";
 import { Query } from "@/feature/query/query.tsx";
 import { NotFound } from "@/pages/not-found/not-found.tsx";
 import { Page } from "@/pages/page/page.tsx";
@@ -17,6 +17,7 @@ export const App = () => (
     <Query<GetLayoutDataQuery> query={GET_LAYOUT_DATA}>
       {({ data }) => (
         <div className="page">
+          <Navigation />
           <header style={{ display: "flex", gap: 24 }}>
             {data?.pages?.data.map(({ attributes }) => {
               const slug = attributes?.slug ?? "";
