@@ -1,4 +1,5 @@
 @use "@/styles/responsive-mixins";
+@use "@/styles/layout";
 
 .projects-section {
   padding: 32px 16px;
@@ -40,7 +41,7 @@
 
   @include responsive-mixins.lg {
     padding: 64px 0 120px;
-    width: 83.33333334%;
+    width: map-get(layout.$columns, "col-10");
     margin: auto;
 
     &-title {

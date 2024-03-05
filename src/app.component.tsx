@@ -2,11 +2,13 @@ import { Link, Navigate, Route, Routes } from "react-router-dom";
 import { ErrorBoundary } from "@/components/error-boundary/error-boundary.tsx";
 import { Footer } from "@/components/footer/footer.tsx";
 import { ImageBanner } from "@/components/image-banner/image-banner.tsx";
+import { WaveBanner } from "@/components/wave-banner/wave-banner.tsx";
 import {
   ComponentSharedSocialIcon,
   GetLayoutDataQuery,
 } from "@/__generated__/graphql.ts";
 import banner from "@/assets/images/banner.png";
+import ceoImage from "@/assets/images/ceo.png";
 import { InformationSection } from "@/features/information-section/information-section.tsx";
 import { Navigation } from "@/features/navigation/navigation.tsx";
 import { NewsSection } from "@/features/news-section/news-section.tsx";
@@ -94,6 +96,12 @@ export const App = () => (
             resources. Partnerships have expanded our reach, enabling us to
             bring digital literacy to more individuals, especially those in
             remote areas or with special educational needs."
+    />
+    <WaveBanner
+      imageSource={ceoImage}
+      title="What is the digital divide?"
+      body="The digital divide represents the stark disparity in access to technology and the internet. This inequality hinders their educational opportunities, limiting their ability to learn, explore, and succeed in an increasingly digital world, perpetuating social and economic disparities."
+      action="Find out more"
     />
   </ErrorBoundary>
 );
