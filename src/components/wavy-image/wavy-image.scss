@@ -1,0 +1,59 @@
+@use "@/styles/mixins";
+
+.wavy-image {
+  width: 330px;
+  height: 330px;
+
+  &-wrapper {
+    position: relative;
+    width: calc(100% - 13px);
+    height: calc(100% - 13px);
+    margin: 0 13px 13px 0;
+  }
+
+  &-cover {
+    border: none;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-vertical-wave,
+  &-vertical-wave-1,
+  &-vertical-wave-2 {
+    background-color: currentColor;
+    position: absolute;
+    width: 26px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    @include mixins.vertical-image-mask("@/assets/icons/vertical-wave.svg");
+  }
+
+  &-vertical-wave-1 {
+    transform: translateX(-10px);
+  }
+
+  &-vertical-wave-2 {
+    transform: translateX(10px);
+  }
+
+  &-horizontal-wave,
+  &-horizontal-wave-1,
+  &-horizontal-wave-2 {
+    background-color: currentColor;
+    position: absolute;
+    width: 100%;
+    height: 26px;
+    left: 0;
+    bottom: 0;
+    @include mixins.horizontal-image-mask("@/assets/icons/card-wave.svg");
+  }
+
+  &-horizontal-wave-1 {
+    transform: translateY(-10px);
+  }
+  &-horizontal-wave-2 {
+    transform: translateY(10px);
+  }
+}
