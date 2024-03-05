@@ -1,6 +1,6 @@
 import { ElementType, HTMLAttributes } from "react";
 import cc from "classcat";
-import ChevronRight from "@/assets/icons/chevron-right.svg?react";
+import { ActionLink } from "@/components/action-link/action-link.tsx";
 import projectCover from "@/assets/images/classroom.png";
 import "./project-card.scss";
 
@@ -28,10 +28,13 @@ export const ProjectCard = ({
           safely, and use computers for learning purposes. We will help parents
           master Office software and understand electronic government programs.
         </p>
-        <a href="/public" className="project-card-action">
-          <span>Start course</span>
-          <ChevronRight width="24" height="24" />
-        </a>
+        <ActionLink
+          className="project-card-action"
+          href="/public"
+          theme={theme}
+        >
+          Start course
+        </ActionLink>
       </div>
       {data?.url && (
         <div className={cc(["project-card-image-wrapper", coverClassName])}>

@@ -1,0 +1,47 @@
+@use "@/styles/responsive-mixins";
+
+.action-link {
+  --_action-color: var(--action-color, var(--primary));
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-family: Lato, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--_action-color);
+  text-decoration: none;
+  width: fit-content;
+
+  &[data-theme="primary"],
+  &[data-theme="tertiary"] {
+    --action-color: var(--white);
+  }
+
+  &[data-theme="secondary"] {
+    --action-color: var(--night);
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    transform: translateY(-50%);
+    width: 100%;
+    background-color: currentColor;
+    visibility: hidden;
+  }
+
+  &:hover,
+  &:focus {
+    &:after {
+      visibility: visible;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    font-size: 1.25rem;
+  }
+}
