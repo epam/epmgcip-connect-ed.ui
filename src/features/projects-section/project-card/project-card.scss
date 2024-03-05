@@ -17,15 +17,15 @@
     --text-color: var(--white);
   }
 
+  &[data-theme="secondary"] {
+    --background-color: var(--secondary);
+    --action-color: var(--night);
+  }
+
   &[data-theme="tertiary"] {
     --background-color: var(--tertiary);
     --action-color: var(--white);
     --text-color: var(--white);
-  }
-
-  &[data-theme="secondary"] {
-    --background-color: var(--secondary);
-    --action-color: var(--night);
   }
 
   &-info {
@@ -60,20 +60,8 @@
 
   &-action {
     flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    font-family: Lato, sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.5;
     color: var(--_action-color);
     margin-top: 16px;
-
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   &-image-wrapper {
