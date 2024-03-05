@@ -1,3 +1,5 @@
+@use "@/styles/mixins";
+
 .wavy-card {
   --_main-color: var(--main-color, var(--primary));
   --_main-color-transparent-10: color-mix(in srgb, var(--_main-color) 10%, transparent 100%);
@@ -25,14 +27,7 @@
     margin: 0 16px;
     color: var(--_main-color);
     background-color: currentColor;
-    mask-repeat: repeat-x;
-    mask-position: center;
-    mask-size: contain;
-    mask-image: url("@/assets/card-wave.svg");
-    -webkit-mask-repeat: repeat-x;
-    -webkit-mask-position: center;
-    -webkit-mask-size: contain;
-    -webkit-mask-image: url("@/assets/card-wave.svg");
+    @include mixins.horizontal-image-mask("@/assets/icons/card-wave.svg");
   }
 
   &:before {
