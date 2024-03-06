@@ -1,7 +1,3 @@
-import Facebook from "@/assets/icons/facebook.svg?react";
-import Instagram from "@/assets/icons/insta.svg?react";
-import Youtube from "@/assets/icons/youtube.svg?react";
-
 export const localesConfig = [
   {
     emoji: "🇰🇿",
@@ -17,23 +13,5 @@ export const localesConfig = [
     emoji: "🇺🇸",
     label: "english",
     value: "en-US",
-  },
-];
-
-export const socialLinksConfig = [
-  {
-    label: "facebook",
-    link: "https://www.facebook.com/connected.kz/",
-    icon: Facebook,
-  },
-  {
-    label: "instagram",
-    link: "https://www.instagram.com/connected_kz/",
-    icon: Instagram,
-  },
-  {
-    label: "youtube",
-    link: "https://www.youtube.com/channel/UC15TqnWrfHBpja_pFMW329A/playlists",
-    icon: Youtube,
   },
 ];
