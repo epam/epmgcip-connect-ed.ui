@@ -41,9 +41,9 @@
       transform: translateY(50%);
     }
 
-    &:link,
     &:hover,
-    &:focus {
+    &:focus,
+    &.active {
       color: var(--primary);
     }
   }

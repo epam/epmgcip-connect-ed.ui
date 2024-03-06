@@ -1,19 +1,30 @@
 import { ReactNode } from "react";
-import Logo from "@/assets/icons/logo.svg?react";
+import { Link } from "react-router-dom";
+import { ComponentSharedImage } from "@/__generated__/graphql.ts";
 import "./header.scss";
 
 export interface HeaderProps {
+  logo?: Omit<ComponentSharedImage, "id">;
   leftSlot: ReactNode;
   rightSlot: ReactNode;
 }
 
-export const Header = ({ leftSlot, rightSlot }: HeaderProps) => (
+export const Header = ({ logo, leftSlot, rightSlot }: HeaderProps) => (
   <header className="header">
     {leftSlot}
     <div className="logo">
-      <a href="/" className="logo-link" aria-label="logo">
-        <Logo className="logo-icon" />
-      </a>
+      <Link
+        to={logo?.url ?? "/"}
+        target={logo?.newTab ? "_blank" : undefined}
+        className="logo-link"
+        aria-label="logo"
+      >
+        <img
+          alt={logo?.altText ?? ""}
+          src={logo?.image?.data?.attributes?.url}
+          className="logo-icon"
+        />
+      </Link>
     </div>
     {rightSlot}
   </header>

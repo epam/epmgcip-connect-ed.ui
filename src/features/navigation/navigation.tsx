@@ -1,15 +1,34 @@
 import { useCallback, useState } from "react";
-import { Button } from "@/components/button/button.tsx";
+import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { Header } from "@/components/header/header.tsx";
 import { SocialRibbon } from "@/components/social-ribbon/social-ribbon.tsx";
+import {
+  CategoryEntity,
+  ComponentSharedButton,
+  ComponentSharedImage,
+  ComponentSharedSocialIcon,
+} from "@/__generated__/graphql.ts";
 import Burger from "@/assets/icons/burger.svg?react";
 import { NavigationMenu } from "@/features/navigation/navigation-menu/navigation-menu.tsx";
 import { NavigationSidebar } from "@/features/navigation/navigation-sidebar/navigation-sidebar.tsx";
+import { useLocationChange } from "@/hooks/use-location-change.ts";
 import "./navigation.scss";
 
 const sidebarId = "navigation-sidebar";
 
-export const Navigation = () => {
+export interface NavigationProps {
+  logo?: Omit<ComponentSharedImage, "id">;
+  navigation?: CategoryEntity[];
+  action?: Omit<ComponentSharedButton, "id">;
+  stripe?: ComponentSharedSocialIcon[];
+}
+
+export const Navigation = ({
+  navigation,
+  logo,
+  action,
+  stripe,
+}: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -20,13 +39,16 @@ export const Navigation = () => {
     setIsOpen(false);
   }, []);
 
+  useLocationChange(handleClose);
+
   return (
     <>
       <div className="composed-header">
         <div className="social-ribbon-wrapper">
-          <SocialRibbon className="social-ribbon" />
+          <SocialRibbon className="social-ribbon" socialLinks={stripe} />
         </div>
         <Header
+          logo={logo}
           leftSlot={
             <button
               type="button"
@@ -41,10 +63,20 @@ export const Navigation = () => {
           }
           rightSlot={
             <>
-              <NavigationMenu className="navigation-menu" isAutoClosable />
-              <Button variant="nav" className="donate-button">
-                Donate today
-              </Button>
+              <NavigationMenu
+                className="navigation-menu"
+                menu={navigation}
+                isAutoClosable
+              />
+              {action && (
+                <ButtonLink
+                  variant="nav"
+                  className="donate-button"
+                  to={action?.url ?? ""}
+                >
+                  {action?.label}
+                </ButtonLink>
+              )}
             </>
           }
         />
@@ -54,6 +86,9 @@ export const Navigation = () => {
         isOpen={isOpen}
         className="sidebar"
         onClose={handleClose}
+        navigation={navigation}
+        stripe={stripe}
+        action={action}
       />
     </>
   );

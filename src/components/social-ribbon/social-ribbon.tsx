@@ -1,15 +1,15 @@
 import cc from "classcat";
-import {
-  localesConfig,
-  socialLinksConfig,
-} from "@/components/social-ribbon/social-ribbon.constants.ts";
+import { Link } from "react-router-dom";
+import { localesConfig } from "@/components/social-ribbon/social-ribbon.constants.ts";
+import { ComponentSharedSocialIcon } from "@/__generated__/graphql.ts";
 import "./social-ribbon.scss";
 
 export interface SocialRibbonProps {
   className?: string;
+  socialLinks?: ComponentSharedSocialIcon[];
 }
 
-export const SocialRibbon = ({ className }: SocialRibbonProps) => (
+export const SocialRibbon = ({ className, socialLinks }: SocialRibbonProps) => (
   <div className={cc(["social-ribbon", className])}>
     <select className="select-locale">
       {localesConfig.map(({ value, emoji, label }) => (
@@ -19,17 +19,23 @@ export const SocialRibbon = ({ className }: SocialRibbonProps) => (
       ))}
     </select>
     <ul className="social-links-list">
-      {socialLinksConfig.map(({ label, link, icon: Icon }) => (
-        <li key={link}>
-          <a
+      {socialLinks?.map(({ url, title, newTab, icon }) => (
+        <li key={url}>
+          <Link
             className="social-link"
-            href={link}
-            aria-label={label}
-            target="_blank"
+            to={url ?? ""}
+            aria-label={title ?? ""}
+            target={newTab ? "_blank" : undefined}
             rel="noopener noreferrer"
           >
-            <Icon className="social-icon" />
-          </a>
+            <img
+              className="social-icon"
+              alt={icon?.data?.attributes?.alternativeText ?? ""}
+              width="24"
+              height="24"
+              src={icon?.data?.attributes?.url}
+            />
+          </Link>
         </li>
       ))}
     </ul>
