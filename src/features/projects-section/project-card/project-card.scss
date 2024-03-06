@@ -2,7 +2,7 @@
 @use "@/styles/mixins";
 
 .project-card {
-  --_text-color: var(--text-color, var(--night));
+  --_text-color: var(--text-color, var(--black));
   --_action-color: var(--action-color, var(--primary));
   --_background-color: var(--background-color, var(--background));
   display: flex;
@@ -19,7 +19,7 @@
 
   &[data-theme="secondary"] {
     --background-color: var(--secondary);
-    --action-color: var(--night);
+    --action-color: var(--black);
   }
 
   &[data-theme="tertiary"] {

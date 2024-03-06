@@ -81,9 +81,12 @@
 
 :root {
   font-family: "Open Sans", sans-serif;
+}
+
+#root {
   --white: #fff;
-  --black: #000;
-  --night: #002F3F;
+  --supernova: #000;
+  --black: #002F3F;
   --background: #F8F5F1;
   --primary: #0E7C73;
   --secondary: #97CAEF;
@@ -94,8 +97,8 @@
   --primary-light-40: color-mix(in srgb, var(--white) 100%, var(--primary) 40%);
   --primary-light-60: color-mix(in srgb, var(--white) 100%, var(--primary) 60%);
   --primary-light-80: color-mix(in srgb, var(--white) 100%, var(--primary) 80%);
-  --primary-dark-25: color-mix(in srgb, var(--primary) 100%, var(--black) 25%);
-  --primary-dark-33: color-mix(in srgb, var(--primary) 100%, var(--black) 33%);
-  --night-transparent-10: color-mix(in srgb, var(--night) 10%, transparent 100%);
-  --backdrop: color-mix(in srgb, var(--black) 33%, transparent 100%);
+  --primary-dark-25: color-mix(in srgb, var(--primary) 100%, var(--supernova) 25%);
+  --primary-dark-33: color-mix(in srgb, var(--primary) 100%, var(--supernova) 33%);
+  --night-transparent-10: color-mix(in srgb, var(--black) 10%, transparent 100%);
+  --backdrop: color-mix(in srgb, var(--supernova) 33%, transparent 100%);
 }
