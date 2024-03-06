@@ -1,0 +1,16 @@
+@use "@/styles/responsive-mixins";
+
+@mixin wavy-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url("@/assets/icons/background-path-sm.svg");
+
+  @include responsive-mixins.md {
+    background-image: url("@/assets/icons/background-path-md.svg");
+  }
+
+  @include responsive-mixins.lg {
+    background-image: url("@/assets/icons/background-path-lg.svg");
+  }
+}
