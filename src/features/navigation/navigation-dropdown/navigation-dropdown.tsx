@@ -1,12 +1,12 @@
 import { ReactEventHandler } from "react";
+import { PageEntity } from "@/__generated__/graphql.ts";
 import DropArrow from "@/assets/icons/drop-arrow.svg?react";
-import { NavigationItem } from "@/features/navigation/navigation-menu/navigation-menu.types.ts";
 import { NavigationSection } from "@/features/navigation/navigation-section/navigation-section.tsx";
 import "./navigation-dropdown.scss";
 
 export interface NavigationDropdownProps {
   label: string;
-  items: NavigationItem[];
+  items: PageEntity[];
   onToggle: ReactEventHandler<HTMLDetailsElement>;
 }
 

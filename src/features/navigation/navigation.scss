@@ -2,8 +2,9 @@
 
 .composed-header {
   --burger-button-size: 44px;
-  position: relative;
-  z-index: 1;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
 
   .social-ribbon-wrapper {
     display: none;
@@ -35,6 +36,8 @@
   }
 
   @include responsive-mixins.lg() {
+    position: relative;
+
     .social-ribbon-wrapper {
       display: flex;
       background-color: var(--primary);
@@ -61,6 +64,7 @@
 }
 
 .sidebar {
+  z-index: 1;
   @include responsive-mixins.lg() {
     display: none !important;
   }

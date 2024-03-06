@@ -1,8 +1,13 @@
 import { useRef } from "react";
-import { Button } from "@/components/button/button.tsx";
+import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { SocialRibbon } from "@/components/social-ribbon/social-ribbon.tsx";
+import {
+  CategoryEntity,
+  ComponentSharedButton,
+  ComponentSharedSocialIcon,
+} from "@/__generated__/graphql.ts";
 import { NavigationMenu } from "@/features/navigation/navigation-menu/navigation-menu.tsx";
-import { useClickOutside } from "@/hooks/use-click-outside.tsx";
+import { useClickOutside } from "@/hooks/use-click-outside.ts";
 import "./navigation-sidebar.scss";
 
 export interface NavigationSidebarProps {
@@ -10,6 +15,9 @@ export interface NavigationSidebarProps {
   id: string;
   className?: string;
   onClose: () => void;
+  navigation?: CategoryEntity[];
+  action?: Omit<ComponentSharedButton, "id">;
+  stripe?: ComponentSharedSocialIcon[];
 }
 
 export const NavigationSidebar = ({
@@ -17,6 +25,9 @@ export const NavigationSidebar = ({
   isOpen,
   className,
   onClose,
+  action,
+  navigation,
+  stripe,
 }: NavigationSidebarProps) => {
   const asideRef = useRef<HTMLElement>(null);
 
@@ -32,9 +43,13 @@ export const NavigationSidebar = ({
         role="menu"
         aria-hidden={!isOpen}
       >
-        <NavigationMenu className="navigation-menu" />
-        <Button variant="nav">Donate now</Button>
-        <SocialRibbon className="social-ribbon" />
+        <NavigationMenu className="navigation-menu" menu={navigation} />
+        {action && (
+          <ButtonLink variant="nav" to={action?.url ?? ""}>
+            {action?.label}
+          </ButtonLink>
+        )}
+        <SocialRibbon className="social-ribbon" socialLinks={stripe} />
       </aside>
     </div>
   );

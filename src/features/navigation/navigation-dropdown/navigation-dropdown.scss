@@ -3,6 +3,12 @@
 .navigation-dropdown {
   position: relative;
 
+  &:has(.active) {
+    .navigation-summary {
+      color: var(--primary);
+    }
+  }
+
   &:after {
     content: "";
     position: absolute;
@@ -42,6 +48,7 @@
     &-icon {
       flex-shrink: 0;
       display: block;
+      pointer-events: none;
       transition: transform ease-out 300ms;
 
       @media (prefers-reduced-motion: reduce) {
