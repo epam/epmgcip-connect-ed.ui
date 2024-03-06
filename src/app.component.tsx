@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer/footer.tsx";
 import { ImageBanner } from "@/components/image-banner/image-banner.tsx";
 import {
   ComponentSharedSocialIcon,
-  GetLayoutDataQuery
+  GetLayoutDataQuery,
 } from "@/__generated__/graphql.ts";
 import banner from "@/assets/images/banner.png";
 import { InformationSection } from "@/features/information-section/information-section.tsx";
@@ -62,7 +62,7 @@ export const App = () => (
                 { title: "7", url: "" },
                 { title: "8", url: "" },
                 { title: "9", url: "" },
-                { title: "10", url: "" }
+                { title: "10", url: "" },
               ]}
             />
             <InformationSection
