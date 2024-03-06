@@ -1,7 +1,7 @@
 @use "@/styles/responsive-mixins";
 
 .news-card {
-  --_text-color: var(--text-color, var(--night));
+  --_text-color: var(--text-color, var(--black));
   --_action-color: var(--action-color, var(--primary));
   --_content-color: var(--content-color, var(--white));
   display: flex;

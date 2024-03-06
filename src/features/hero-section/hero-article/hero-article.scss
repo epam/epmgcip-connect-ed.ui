@@ -34,7 +34,7 @@
 
   &[data-variant="secondary"] {
     --article-color: var(--secondary);
-    color: var(--night);
+    color: var(--black);
   }
 
   @include responsive-mixins.md {
