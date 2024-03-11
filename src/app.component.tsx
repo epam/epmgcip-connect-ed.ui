@@ -3,6 +3,7 @@ import { ErrorBoundary } from "@/components/error-boundary/error-boundary.tsx";
 import { Footer } from "@/components/footer/footer.tsx";
 import { ImageBanner } from "@/components/image-banner/image-banner.tsx";
 import { Palette } from "@/components/palette/palette.tsx";
+import { ScrollToTop } from "@/components/scroll-to-top/scroll-to-top.tsx";
 import { WaveBanner } from "@/components/wave-banner/wave-banner.tsx";
 import {
   ComponentSharedImage,
@@ -24,6 +25,7 @@ import "./app.styles.scss";
 
 export const App = () => (
   <ErrorBoundary>
+    <ScrollToTop />
     <Query<GetLayoutDataQuery> query={GET_LAYOUT_DATA}>
       {({ data }) => {
         const footer = data?.footer?.data?.attributes;
@@ -36,10 +38,10 @@ export const App = () => (
             <div className="page">
               <Navigation
                 navigation={header?.navigations?.data}
-                action={header?.CTA ?? undefined}
-                logo={header?.Logo as ComponentSharedImage}
+                action={header?.cta ?? undefined}
+                logo={header?.logo as ComponentSharedImage}
                 stripe={
-                  header?.topStripe?.socialMedia as ComponentSharedSocialIcon[]
+                  header?.stripe?.socialMedia as ComponentSharedSocialIcon[]
                 }
               />
               <main className="main">

@@ -16,7 +16,7 @@ query GetPageData($id: ID) {
                 }
               }
             }
-            CTA {
+            cta {
               label
               url
               type

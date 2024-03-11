@@ -1,10 +1,23 @@
 @use "@/styles/responsive-mixins";
+@use "@/styles/layers";
 
 .composed-header {
   --burger-button-size: 44px;
   position: fixed;
   width: 100%;
-  z-index: 2;
+  z-index: layers.$header;
+  transition: transform ease-out 0.3s;
+  transform: translateY(0);
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  &-hidden {
+    &:not(:has([aria-expanded="true"])) {
+      transform: translateY(-100%);
+    }
+  }
 
   .social-ribbon-wrapper {
     display: none;
@@ -36,7 +49,9 @@
   }
 
   @include responsive-mixins.lg() {
-    position: relative;
+    &-hidden {
+      transform: translateY(-100%);
+    }
 
     .social-ribbon-wrapper {
       display: flex;
@@ -64,7 +79,7 @@
 }
 
 .sidebar {
-  z-index: 1;
+  z-index: layers.$side-bar;
   @include responsive-mixins.lg() {
     display: none !important;
   }

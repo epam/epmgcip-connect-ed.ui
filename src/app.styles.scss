@@ -9,9 +9,9 @@
 
 .main {
   flex-grow: 1;
-  padding-top: constants.$header-height;
+  padding-top: constants.$header-height-md;
 
   @include responsive-mixins.lg {
-    padding-top: 0;
+    padding-top: constants.$header-height-lg;
   }
 }

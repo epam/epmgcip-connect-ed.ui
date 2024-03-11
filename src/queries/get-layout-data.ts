@@ -27,28 +27,28 @@ query GetLayoutData {
   header {
     data {
       attributes {
-        Logo {
+        logo {
           altText
           isIcon
-          roundedCorners
           url
           newTab
           image {
             data {
               attributes {
                 url
+                alternativeText
               }
             }
           }
         }
-        CTA {
+        cta {
           type
           url
           label
           color
           bgColor
         }
-        topStripe {
+        stripe {
           theme {
             color
             bgColor
@@ -60,8 +60,7 @@ query GetLayoutData {
             icon {
               data {
                 attributes {
-                  url,
-                  alternativeText
+                  url
                 }
               }
             }
@@ -90,16 +89,6 @@ query GetLayoutData {
   footer {
     data {
       attributes {
-        heading
-        tradeMark
-        navigation {
-          data {
-            attributes {
-              slug
-              label
-            }
-          }
-        }
         theme {
           color
           bgColor
@@ -117,6 +106,16 @@ query GetLayoutData {
                 height
                 width
               }
+            }
+          }
+        }
+        heading
+        tradeMark
+        navigation {
+          data {
+            attributes {
+              slug
+              label
             }
           }
         }
