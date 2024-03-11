@@ -18,6 +18,7 @@ import { Navigation } from "@/features/navigation/navigation.tsx";
 import { NewsSection } from "@/features/news-section/news-section.tsx";
 import { ProjectsSection } from "@/features/projects-section/projects-section.tsx";
 import { Query } from "@/features/query/query.tsx";
+import { SecondarySection } from "@/features/secondary-section/secondary-section.tsx";
 import { NotFound } from "@/pages/not-found/not-found.tsx";
 import { Page } from "@/pages/page/page.tsx";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data.ts";
@@ -44,7 +45,7 @@ export const App = () => (
                   header?.stripe?.socialMedia as ComponentSharedSocialIcon[]
                 }
               />
-              <main className="main">
+              <main className="main-content">
                 <Routes>
                   {data?.pages?.data.map(({ id, attributes }) => {
                     const slug = attributes?.slug ?? "";
@@ -100,6 +101,9 @@ export const App = () => (
                   title="What is the digital divide?"
                   body="The digital divide represents the stark disparity in access to technology and the internet. This inequality hinders their educational opportunities, limiting their ability to learn, explore, and succeed in an increasingly digital world, perpetuating social and economic disparities."
                   action="Find out more"
+                />
+                <SecondarySection
+                  items={[{ theme: "secondary" }, { theme: "primary" }]}
                 />
               </main>
               <Footer
