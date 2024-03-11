@@ -7,7 +7,7 @@
   width: 100%;
   height: 100%;
   top: 0;
-  padding: calc(#{constants.$header-height} + var(--sidebar-padding)) var(--sidebar-padding) var(--sidebar-padding);
+  padding: calc(#{constants.$header-height-md} + var(--sidebar-padding)) 0 0;
   background-color: var(--white);
   display: flex;
   flex-direction: column;
@@ -26,10 +26,16 @@
 
   .navigation-menu {
     margin: 0 0 auto;
+    padding: 0 var(--sidebar-padding);
+  }
+
+  .button-link {
+    margin: 0 var(--sidebar-padding);
   }
 
   .social-ribbon {
-    color: var(--black);
+    padding: var(--sidebar-padding);
+    background-color: var(--primary);
   }
 
   @include responsive-mixins.md() {
