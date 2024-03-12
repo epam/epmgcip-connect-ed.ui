@@ -1,27 +1,28 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import { NotFound } from "@/pages/not-found/not-found.tsx";
+import { Page } from "@/pages/page/page.tsx";
+import { InformationSection } from "@/features/information-section/information-section.tsx";
+import { Navigation } from "@/features/navigation/navigation.tsx";
+import { NewsSection } from "@/features/news-section/news-section.tsx";
+import { PartnersSection } from "@/features/partners-section/partners-section.tsx";
+import { ProjectsSection } from "@/features/projects-section/projects-section.tsx";
+import { Query } from "@/features/query/query.tsx";
+import { SecondarySection } from "@/features/secondary-section/secondary-section.tsx";
 import { ErrorBoundary } from "@/components/error-boundary/error-boundary.tsx";
 import { Footer } from "@/components/footer/footer.tsx";
 import { ImageBanner } from "@/components/image-banner/image-banner.tsx";
 import { Palette } from "@/components/palette/palette.tsx";
 import { ScrollToTop } from "@/components/scroll-to-top/scroll-to-top.tsx";
 import { WaveBanner } from "@/components/wave-banner/wave-banner.tsx";
+import { GET_LAYOUT_DATA } from "@/queries/get-layout-data.ts";
+import banner from "@/assets/images/banner.png";
+import ceoImage from "@/assets/images/ceo.png";
 import {
   ComponentSharedImage,
   ComponentSharedSocialIcon,
   GetLayoutDataQuery,
   PageEntity,
 } from "@/__generated__/graphql.ts";
-import banner from "@/assets/images/banner.png";
-import ceoImage from "@/assets/images/ceo.png";
-import { InformationSection } from "@/features/information-section/information-section.tsx";
-import { Navigation } from "@/features/navigation/navigation.tsx";
-import { NewsSection } from "@/features/news-section/news-section.tsx";
-import { ProjectsSection } from "@/features/projects-section/projects-section.tsx";
-import { Query } from "@/features/query/query.tsx";
-import { SecondarySection } from "@/features/secondary-section/secondary-section.tsx";
-import { NotFound } from "@/pages/not-found/not-found.tsx";
-import { Page } from "@/pages/page/page.tsx";
-import { GET_LAYOUT_DATA } from "@/queries/get-layout-data.ts";
 import "./app.styles.scss";
 
 export const App = () => (
@@ -106,6 +107,7 @@ export const App = () => (
                   items={[{ theme: "secondary" }, { theme: "primary" }]}
                 />
               </main>
+              <PartnersSection />
               <Footer
                 // TODO: check if shared social icon can be optional
                 socialLinks={footer?.socialMedia as ComponentSharedSocialIcon[]}

@@ -102,7 +102,32 @@
           },
           {
             "group": "external",
+            "pattern": "@/pages/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/features/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
             "pattern": "@/components/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/hooks/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/queries/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/assets/**",
             "position": "after"
           },
           {
