@@ -1,4 +1,6 @@
 import { Button } from "@/components/button/button.tsx";
+import { Title } from "@/components/title/title.tsx";
+import { Typography } from "@/components/typography/typography.tsx";
 import "./information-card.scss";
 
 export interface DescriptionCardProps {
@@ -19,8 +21,10 @@ export const InformationCard = ({
       <img className="" src={image} role="presentation" alt="" />
     </div>
     <div className="information-card-info">
-      <span className="information-card-title">{title}</span>
-      <p className="information-card-body">{body}</p>
+      <Title as="h4" className="information-card-title">
+        {title}
+      </Title>
+      <Typography className="information-card-body">{body}</Typography>
     </div>
     {action && (
       <Button className="information-card-action" variant="outline">

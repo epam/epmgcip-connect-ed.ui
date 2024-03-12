@@ -1,6 +1,8 @@
 import { ElementType, HTMLAttributes } from "react";
 import cc from "classcat";
 import { ActionLink } from "@/components/action-link/action-link.tsx";
+import { Title } from "@/components/title/title";
+import { Typography } from "@/components/typography/typography.tsx";
 import projectCover from "@/assets/images/classroom.png";
 import "./project-card.scss";
 
@@ -22,12 +24,14 @@ export const ProjectCard = ({
   return (
     <Tag className={cc(["project-card", className])} data-theme={theme}>
       <div className="project-card-info">
-        <span className="project-card-title">{data?.title}</span>
-        <p className="project-card-body">
+        <Title as="h4" className="project-card-title">
+          {data?.title}
+        </Title>
+        <Typography className="project-card-body">
           We will show how to create and edit content, exchange information
           safely, and use computers for learning purposes. We will help parents
           master Office software and understand electronic government programs.
-        </p>
+        </Typography>
         <ActionLink
           className="project-card-action"
           href="/public"

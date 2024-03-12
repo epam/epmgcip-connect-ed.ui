@@ -1,5 +1,6 @@
 import { Button } from "@/components/button/button.tsx";
 import { NewsCard } from "@/components/news-card/news-card.tsx";
+import { SectionBase } from "@/components/section-base/section-base.tsx";
 import cover from "@/assets/images/cover.png";
 import "./news-section.scss";
 
@@ -10,8 +11,10 @@ export interface NewsSectionProps {
 }
 
 export const NewsSection = ({ title, cards, action }: NewsSectionProps) => (
-  <section className="news-section">
-    <h2 className="news-section-title">{title}</h2>
+  <SectionBase className="news-section">
+    <SectionBase.Title className="news-section-title">
+      {title}
+    </SectionBase.Title>
     <ul className="news-section-list">
       {cards.map((_, index) => (
         <NewsCard
@@ -31,5 +34,5 @@ export const NewsSection = ({ title, cards, action }: NewsSectionProps) => (
         {action}
       </Button>
     )}
-  </section>
+  </SectionBase>
 );

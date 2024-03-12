@@ -1,22 +1,17 @@
 @use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+@use "@/styles/layout";
 
 .not-found {
   padding: 24px 16px;
   color: var(--black);
 
   &-title {
-    font-family: Lato, sans-serif;
-    font-size: 1.5rem;
-    font-weight: 500;
-    line-height: 1.5;
+    @include mixins.h3;
   }
 
   &-description {
     margin-top: 12px;
-    font-family: "Open Sans", sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
   }
 
   @include responsive-mixins.md {
@@ -24,15 +19,16 @@
   }
 
   @include responsive-mixins.lg {
-    padding: 120px 142px;
+    width: map-get(layout.$columns, "col-10");
+    margin: auto;
+    padding: 120px 0;
 
     &-title {
-      font-size: 2rem;
+      @include mixins.h2;
     }
 
     &-description {
       margin-top: 24px;
-      font-size: 1rem;
       width: 60%;
     }
   }

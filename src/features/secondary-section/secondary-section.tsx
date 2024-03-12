@@ -1,4 +1,5 @@
 import { SecondaryCard } from "@/components/secondary-card/secondary-card.tsx";
+import { SectionBase } from "@/components/section-base/section-base.tsx";
 import { WavyCard } from "@/components/wavy-card/wavy-card.tsx";
 import "./secondary-section.scss";
 
@@ -8,8 +9,10 @@ export interface SecondarySectionProps {
 
 export const SecondarySection = ({ items }: SecondarySectionProps) => {
   return (
-    <section className="secondary-section">
-      <h2 className="secondary-section-title">How we’re helping</h2>
+    <SectionBase className="secondary-section">
+      <SectionBase.Title className="secondary-section-title">
+        How we’re helping
+      </SectionBase.Title>
       <ul className="secondary-section-list">
         {items?.map((item, index) => (
           // TODO: use id or title instead of index
@@ -19,6 +22,6 @@ export const SecondarySection = ({ items }: SecondarySectionProps) => {
           </WavyCard>
         ))}
       </ul>
-    </section>
+    </SectionBase>
   );
 };

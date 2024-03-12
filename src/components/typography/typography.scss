@@ -1,0 +1,10 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+
+.typography {
+  @include mixins.paragraph-small;
+
+  @include responsive-mixins.lg {
+    @include mixins.paragraph;
+  }
+}

@@ -1,4 +1,5 @@
 @use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
 
 .hero-section {
   position: relative;
@@ -20,24 +21,6 @@
   @include responsive-mixins.md {
     padding: 32px 24px 0;
 
-    &-article {
-      padding: 48px 48px 24px;
-      border-radius: 0 0 20px 0;
-
-      &-title {
-        font-size: 1.5rem;
-        line-height: 1.2;
-      }
-
-      &-body {
-        margin: 24px 0;
-      }
-
-      &-wave {
-        display: none;
-      }
-    }
-
     &-banner {
       position: absolute;
       top: 0;
@@ -52,19 +35,6 @@
 
   @include responsive-mixins.lg {
     padding: 48px 48px 0;
-
-    &-article {
-      width: 590px;
-
-      &-title {
-        font-size: 2.5rem;
-      }
-
-      &-body {
-        margin: 24px 0 48px;
-        font-size: 1.25rem;
-      }
-    }
 
     &-banner {
       margin-bottom: 48px;

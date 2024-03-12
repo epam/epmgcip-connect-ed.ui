@@ -1,4 +1,5 @@
 @use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
 
 .footer {
   display: flex;
@@ -26,9 +27,8 @@
   }
 
   .social-title {
-    font-size: 1.25rem;
+    @include mixins.h4;
     font-weight: 600;
-    line-height: 1.5;
   }
 
   .social-links {
@@ -52,7 +52,6 @@
     font-family: "Open Sans", sans-serif;
     font-size: 0.75rem;
     font-weight: 600;
-    line-height: 1.5;
     gap: 12px;
   }
 
