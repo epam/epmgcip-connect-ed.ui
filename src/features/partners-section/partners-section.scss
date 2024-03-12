@@ -1,0 +1,51 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+
+.partners-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 64px 0 24px;
+
+  &-title {
+    margin: auto;
+    @include mixins.h3;
+  }
+
+  &-button {
+    margin: auto 16px;
+  }
+
+  @include responsive-mixins.md {
+    padding: 48px 0 36px;
+
+    &-title {
+      @include mixins.h4;
+    }
+
+    &-content {
+      padding: 0 16px;
+    }
+
+    &-button {
+      margin: auto;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    gap: 48px;
+    padding: 96px 0 24px;
+
+    &-title {
+      @include mixins.h2;
+    }
+
+    &-content {
+      padding: 0;
+    }
+
+    &-button {
+      margin: auto;
+    }
+  }
+}

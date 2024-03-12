@@ -1,13 +1,13 @@
 import { useRef } from "react";
+import { NavigationMenu } from "@/features/navigation/navigation-menu/navigation-menu.tsx";
 import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { SocialRibbon } from "@/components/social-ribbon/social-ribbon.tsx";
+import { useClickOutside } from "@/hooks/use-click-outside.ts";
 import {
   CategoryEntity,
   ComponentSharedButton,
   ComponentSharedSocialIcon,
 } from "@/__generated__/graphql.ts";
-import { NavigationMenu } from "@/features/navigation/navigation-menu/navigation-menu.tsx";
-import { useClickOutside } from "@/hooks/use-click-outside.ts";
 import "./navigation-sidebar.scss";
 
 export interface NavigationSidebarProps {

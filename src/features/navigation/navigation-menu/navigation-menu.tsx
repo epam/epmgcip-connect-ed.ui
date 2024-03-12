@@ -1,10 +1,10 @@
 import { SyntheticEvent, useCallback, useRef } from "react";
 import cc from "classcat";
 import { NavLink } from "react-router-dom";
-import { CategoryEntity } from "@/__generated__/graphql.ts";
 import { NavigationDropdown } from "@/features/navigation/navigation-dropdown/navigation-dropdown.tsx";
 import { useClickOutside } from "@/hooks/use-click-outside.ts";
 import { useLocationChange } from "@/hooks/use-location-change.ts";
+import { CategoryEntity } from "@/__generated__/graphql.ts";
 import "./navigation-menu.scss";
 
 interface NavigationMenuProps {

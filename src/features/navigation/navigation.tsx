@@ -1,17 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { NavigationMenu } from "@/features/navigation/navigation-menu/navigation-menu.tsx";
+import { NavigationSidebar } from "@/features/navigation/navigation-sidebar/navigation-sidebar.tsx";
 import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { Header } from "@/components/header/header.tsx";
 import { SocialRibbon } from "@/components/social-ribbon/social-ribbon.tsx";
+import { useLocationChange } from "@/hooks/use-location-change.ts";
+import Burger from "@/assets/icons/burger.svg?react";
 import {
   CategoryEntity,
   ComponentSharedButton,
   ComponentSharedImage,
   ComponentSharedSocialIcon,
 } from "@/__generated__/graphql.ts";
-import Burger from "@/assets/icons/burger.svg?react";
-import { NavigationMenu } from "@/features/navigation/navigation-menu/navigation-menu.tsx";
-import { NavigationSidebar } from "@/features/navigation/navigation-sidebar/navigation-sidebar.tsx";
-import { useLocationChange } from "@/hooks/use-location-change.ts";
 import "./navigation.scss";
 
 const sidebarId = "navigation-sidebar";

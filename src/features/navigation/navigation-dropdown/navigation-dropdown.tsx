@@ -1,7 +1,7 @@
 import { ReactEventHandler } from "react";
-import { PageEntity } from "@/__generated__/graphql.ts";
-import DropArrow from "@/assets/icons/drop-arrow.svg?react";
 import { NavigationSection } from "@/features/navigation/navigation-section/navigation-section.tsx";
+import DropArrow from "@/assets/icons/drop-arrow.svg?react";
+import { PageEntity } from "@/__generated__/graphql.ts";
 import "./navigation-dropdown.scss";
 
 export interface NavigationDropdownProps {

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { Title } from "@/components/title/title.tsx";
+import EpamLogo from "@/assets/icons/epam-logo.svg?react";
 import {
   ComponentSharedSocialIcon,
   PageEntity,
 } from "@/__generated__/graphql.ts";
-import EpamLogo from "@/assets/icons/epam-logo.svg?react";
 import "./footer.scss";
 
 export interface FooterProps {

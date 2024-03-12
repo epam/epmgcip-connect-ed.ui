@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import cc from "classcat";
-import { SectionBase } from "@/components/section-base/section-base.tsx";
 import { ProjectCard } from "@/features/projects-section/project-card/project-card.tsx";
 import { getIndexesToStretch } from "@/features/projects-section/utils.ts";
+import { SectionBase } from "@/components/section-base/section-base.tsx";
 import "./projects-section.scss";
 
 export interface ProjectsSectionProps {
