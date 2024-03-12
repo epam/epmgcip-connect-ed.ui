@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Title } from "@/components/title/title.tsx";
 import {
   ComponentSharedSocialIcon,
   PageEntity,
@@ -19,7 +20,11 @@ export const Footer = ({ socialLinks, heading, navigation }: FooterProps) => {
     <footer className="footer">
       {socialLinks && (
         <div className="social-info">
-          {heading && <h3 className="social-title">{heading}</h3>}
+          {heading && (
+            <Title as="h3" className="social-title">
+              {heading}
+            </Title>
+          )}
           <div className="social-links">
             {socialLinks.map(({ title, newTab, url, icon }) => {
               const iconData = icon?.data?.attributes;

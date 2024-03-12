@@ -1,15 +1,9 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/layout";
+@use "@/styles/mixins";
 
 .projects-section {
-  padding: 32px 16px;
-  background-color: var(--white);
-
   &-title {
-    font-family: Lato, sans-serif;
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.5;
     color: var(--black);
     margin-bottom: 32px;
   }
@@ -21,8 +15,6 @@
   }
 
   @include responsive-mixins.md {
-    padding: 32px 24px;
-
     &-title {
       margin-bottom: 24px;
     }
@@ -45,7 +37,6 @@
     margin: auto;
 
     &-title {
-      font-size: 2rem;
       margin-bottom: 60px;
     }
 

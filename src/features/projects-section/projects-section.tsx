@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import cc from "classcat";
+import { SectionBase } from "@/components/section-base/section-base.tsx";
 import { ProjectCard } from "@/features/projects-section/project-card/project-card.tsx";
 import { getIndexesToStretch } from "@/features/projects-section/utils.ts";
 import "./projects-section.scss";
@@ -32,8 +33,10 @@ export const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
   };
 
   return (
-    <section className="projects-section">
-      <h2 className="projects-section-title">Our projects</h2>
+    <SectionBase className="projects-section">
+      <SectionBase.Title className="projects-section-title">
+        Our projects
+      </SectionBase.Title>
       <div className="projects-section-content">
         {projects.map((item, index) => (
           <ProjectCard
@@ -48,6 +51,6 @@ export const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
           />
         ))}
       </div>
-    </section>
+    </SectionBase>
   );
 };

@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import { SectionBase } from "@/components/section-base/section-base.tsx";
 import "./embedded-section.scss";
 
 export interface EmbeddedSectionProps {
@@ -10,9 +11,11 @@ export const EmbeddedSection = ({
   children,
 }: PropsWithChildren<EmbeddedSectionProps>) => {
   return (
-    <section className="embedded-section">
-      <h2 className="embedded-section-title">{title}</h2>
+    <SectionBase className="embedded-section">
+      <SectionBase.Title className="embedded-section-title">
+        {title}
+      </SectionBase.Title>
       <div className="embedded-section-content">{children}</div>
-    </section>
+    </SectionBase>
   );
 };

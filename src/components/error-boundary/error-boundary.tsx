@@ -1,4 +1,6 @@
 import { Component, ErrorInfo, ReactNode } from "react";
+import { Title } from "@/components/title/title.tsx";
+import { Typography } from "@/components/typography/typography.tsx";
 
 interface Props {
   children?: ReactNode;
@@ -33,8 +35,8 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         // TODO: Ask designer about component
         <section>
-          <h1>Oops, something went wrong</h1>
-          <p>There are some issues while loading the page</p>
+          <Title as="h1">Oops, something went wrong</Title>
+          <Typography>There are some issues while loading the page</Typography>
         </section>
       );
     }

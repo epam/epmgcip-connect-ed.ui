@@ -1,14 +1,13 @@
 @use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
 
 .action-link {
   --_action-color: var(--action-color, var(--primary));
+  @include mixins.h5;
+  font-weight: 700;
   position: relative;
   display: inline-flex;
   align-items: center;
-  font-family: Lato, sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.5;
   color: var(--_action-color);
   text-decoration: none;
   width: fit-content;
@@ -42,6 +41,6 @@
   }
 
   @include responsive-mixins.lg {
-    font-size: 1.25rem;
+    @include mixins.h4;
   }
 }

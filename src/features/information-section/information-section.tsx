@@ -1,5 +1,7 @@
 import { Button } from "@/components/button/button.tsx";
 import { InformationCard } from "@/components/information-card/information-card.tsx";
+import { SectionBase } from "@/components/section-base/section-base.tsx";
+import { Typography } from "@/components/typography/typography.tsx";
 import { WavyCard } from "@/components/wavy-card/wavy-card.tsx";
 import provideImage from "@/assets/images/provide.png";
 import "./information-section.scss";
@@ -18,10 +20,16 @@ export const InformationSection = ({
   action,
 }: InformationSectionProps) => {
   return (
-    <section className="information-section">
-      {title && <h2 className="information-section-title">{title}</h2>}
+    <SectionBase className="information-section">
+      {title && (
+        <SectionBase.Title className="information-section-title">
+          {title}
+        </SectionBase.Title>
+      )}
       {description && (
-        <p className="information-section-description">{description}</p>
+        <Typography className="information-section-description">
+          {description}
+        </Typography>
       )}
       <ul className="information-section-list">
         {cards.map((_, index) => (
@@ -46,6 +54,6 @@ export const InformationSection = ({
           Bridging the digital divide
         </Button>
       )}
-    </section>
+    </SectionBase>
   );
 };

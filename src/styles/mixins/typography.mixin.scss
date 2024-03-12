@@ -1,0 +1,47 @@
+@mixin _typography {
+  font-family: Lato, sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+@mixin _paragraph {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@mixin h1 {
+  @include _typography;
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+@mixin h2 {
+  @include _typography;
+  font-size: 2rem;
+}
+
+@mixin h3 {
+  @include _typography;
+  font-size: 1.5rem;
+}
+
+@mixin h4 {
+  @include _typography;
+  font-size: 1.25rem;
+}
+
+@mixin h5 {
+  @include _typography;
+  font-size: 1rem;
+}
+
+@mixin paragraph {
+  @include _paragraph;
+  font-size: 1rem;
+}
+
+@mixin paragraph-small {
+  @include _paragraph;
+  font-size: 0.875rem;
+}

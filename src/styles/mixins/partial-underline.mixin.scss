@@ -1,6 +1,6 @@
 @mixin partial-underline {
   position: relative;
-  display: inline;
+  width: fit-content;
 
   &:after {
     content: "";

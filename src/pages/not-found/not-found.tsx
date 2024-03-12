@@ -1,3 +1,5 @@
+import { Title } from "@/components/title/title.tsx";
+import { Typography } from "@/components/typography/typography.tsx";
 import "./not-found.scss";
 
 export interface NotFoundProps {
@@ -7,7 +9,9 @@ export interface NotFoundProps {
 
 export const NotFound = ({ title, description }: NotFoundProps) => (
   <section className="not-found">
-    <h1 className="not-found-title">{title}</h1>
-    <p className="not-found-description">{description}</p>
+    <Title as="h1" className="not-found-title">
+      {title}
+    </Title>
+    <Typography className="not-found-description">{description}</Typography>
   </section>
 );

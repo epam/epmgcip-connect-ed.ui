@@ -38,9 +38,7 @@
 
   &-title {
     flex-shrink: 0;
-    font-family: Lato, sans-serif;
-    font-size: 1.25rem;
-    font-weight: 500;
+    @include mixins.h4;
     line-height: 1.75;
   }
 

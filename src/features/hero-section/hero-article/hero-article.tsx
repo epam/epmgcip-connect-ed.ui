@@ -1,4 +1,6 @@
 import { Button } from "@/components/button/button.tsx";
+import { Title } from "@/components/title/title";
+import { Typography } from "@/components/typography/typography.tsx";
 import Wave from "@/assets/icons/wave.svg?react";
 import "./hero-article.scss";
 
@@ -16,8 +18,8 @@ export const HeroArticle = ({
   variant = "primary",
 }: HeroArticleProps) => (
   <article className="hero-article" data-variant={variant}>
-    <h2 className="hero-article-title">{title}</h2>
-    <p className="hero-article-body">{body}</p>
+    <Title className="hero-article-title">{title}</Title>
+    <Typography className="hero-article-body">{body}</Typography>
     <Button variant="inverted">Donate today</Button>
     <Wave className="hero-article-wave" />
   </article>

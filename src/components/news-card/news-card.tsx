@@ -1,4 +1,6 @@
 import { ElementType, HTMLAttributes } from "react";
+import { Title } from "@/components/title/title.tsx";
+import { Typography } from "@/components/typography/typography.tsx";
 import "./news-card.scss";
 
 export type NewsCardTheme = "primary" | "secondary";
@@ -25,8 +27,10 @@ export const NewsCard = ({
       <img className="news-card-image" role="presentation" alt="" src={cover} />
     </div>
     <div className="news-card-content">
-      <span className="news-card-title">{title}</span>
-      <p className="news-card-body">{body}</p>
+      <Title as="h4" className="news-card-title">
+        {title}
+      </Title>
+      <Typography className="news-card-body">{body}</Typography>
       <a href="/" className="news-card-action">
         {action}
       </a>

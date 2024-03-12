@@ -1,4 +1,5 @@
 @use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
 
 .news-card {
   --_text-color: var(--text-color, var(--black));
@@ -44,26 +45,17 @@
 
   &-title {
     flex-shrink: 0;
-    font-family: Lato, sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.5;
+    @include mixins.h5;
   }
 
   &-body {
     flex-grow: 1;
-    font-family: "Open Sans", sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
   }
 
   &-action {
-    flex-shrink: 0;
-    font-family: Lato, sans-serif;
-    font-size: 1rem;
+    @include mixins.h5;
     font-weight: 600;
-    line-height: 1.5;
+    flex-shrink: 0;
     margin-top: 16px;
     text-decoration: none;
     color: var(--_action-color);
@@ -87,14 +79,6 @@
       padding: 16px 24px 24px;
     }
 
-    &-title {
-      font-weight: 600;
-    }
-
-    &-body {
-      font-size: 0.75rem;
-    }
-
     &-action {
       font-size: 0.875rem;
     }
@@ -110,12 +94,7 @@
     }
 
     &-title {
-      font-weight: 500;
-      font-size: 1.25rem;
-    }
-
-    &-body {
-      font-size: 1rem;
+      @include mixins.h4;
     }
 
     &-action {
