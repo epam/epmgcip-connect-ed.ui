@@ -3,12 +3,16 @@
 @use "@/styles/mixins";
 
 .projects-section {
+  --_section-background: var(--section-background, var(--white));
+  --_section-color: var(--section-color, var(--black));
+  background-color: var(--_section-background);
+
   &-title {
-    color: var(--black);
+    color: var(--_section-color);
     margin-bottom: 32px;
   }
 
-  &-content {
+  &-layout {
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
@@ -19,7 +23,7 @@
       margin-bottom: 24px;
     }
 
-    &-content {
+    &-layout {
       grid-template-columns: repeat(2, 1fr);
     }
 
@@ -33,14 +37,17 @@
 
   @include responsive-mixins.lg {
     padding: 64px 0 120px;
-    width: map-get(layout.$columns, "col-10");
-    margin: auto;
+
+    &-content {
+      width: map-get(layout.$columns, "col-10");
+      margin: auto;
+    }
 
     &-title {
       margin-bottom: 60px;
     }
 
-    &-content {
+    &-layout {
       grid-template-columns: repeat(6, 1fr);
       gap: 24px;
     }

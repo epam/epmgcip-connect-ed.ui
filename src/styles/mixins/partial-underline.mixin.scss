@@ -1,15 +1,28 @@
-@mixin partial-underline {
+@mixin partial-underline($className: false) {
   position: relative;
   width: fit-content;
 
-  &:after {
+  &::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: 0;
-    transform: translateY(100%);
+    transform-origin: left;
+    transform: translateY(100%) rotateY(70.725deg);
     height: 2px;
-    width: 33%;
+    width: 100%;
     background-color: var(--primary);
+  }
+
+  @if ($className) {
+    &::after {
+      transition: transform 1000ms ease-out;
+    }
+
+    &.#{$className} {
+      &::after {
+        transform: translateY(100%) rotateY(0);
+      }
+    }
   }
 }

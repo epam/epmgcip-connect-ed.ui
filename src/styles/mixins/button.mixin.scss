@@ -2,8 +2,8 @@
 
 @mixin button {
   --main-color: var(--primary);
-  --main-color-light-10: color-mix(in srgb, var(--white) 100%, var(--main-color) 10%);
-  --main-color-light-25: color-mix(in srgb, var(--white) 100%, var(--main-color) 25%);
+  --main-color-light-10: color-mix(in srgb, var(--light) 100%, var(--main-color) 10%);
+  --main-color-light-25: color-mix(in srgb, var(--light) 100%, var(--main-color) 25%);
   --main-color-dark-25: color-mix(in srgb, var(--main-color) 100%, var(--supernova) 25%);
   --_horizontal-padding: var(--horizontal-padding, 10px);
   --_vertical-padding: var(--vertical-padding, 10px);

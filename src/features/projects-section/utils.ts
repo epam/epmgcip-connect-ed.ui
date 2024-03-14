@@ -1,9 +1,15 @@
+import {
+  ComponentSharedColor,
+  ComponentSharedGridBlock,
+} from "@/__generated__/graphql.ts";
+import { getThemeStyle } from "@/utils/get-theme-style.ts";
+
 const isOdd = (value: number) => value % 2 === 1;
 
-export const getIndexesToStretch = (items: { url?: string }[]) => {
+export const getIndexesToStretch = (items: ComponentSharedGridBlock[]) => {
   const { startIndex, indexesToStretch } = items.reduce(
-    (accumulator, { url }, index) => {
-      if (url) {
+    (accumulator, { image }, index) => {
+      if (image?.data) {
         if (isOdd(index - 1 - accumulator.startIndex)) {
           accumulator.indexesToStretch.add(index - 1);
         }
@@ -24,3 +30,9 @@ export const getIndexesToStretch = (items: { url?: string }[]) => {
 
   return indexesToStretch;
 };
+
+export const getProjectsSectionTheme = (data?: ComponentSharedColor | null) =>
+  getThemeStyle([
+    ["--section-background", data?.bgColor],
+    ["--section-color", data?.color],
+  ]);

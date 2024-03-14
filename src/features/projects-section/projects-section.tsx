@@ -1,55 +1,55 @@
 import { useMemo } from "react";
 import cc from "classcat";
 import { ProjectCard } from "@/features/projects-section/project-card/project-card.tsx";
-import { getIndexesToStretch } from "@/features/projects-section/utils.ts";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
+import {
+  getIndexesToStretch,
+  getProjectsSectionTheme,
+} from "@/features/projects-section/utils.ts";
+import {
+  ComponentSharedColor,
+  ComponentSharedGridBlock,
+} from "@/__generated__/graphql.ts";
 import "./projects-section.scss";
 
 export interface ProjectsSectionProps {
-  projects: { title: string; url: string }[];
+  title?: string | null;
+  projects?: ComponentSharedGridBlock[] | null;
+  theme?: ComponentSharedColor | null;
 }
 
-export const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
+export const ProjectsSection = ({
+  projects,
+  title,
+  theme,
+}: ProjectsSectionProps) => {
   const indexesToStretch = useMemo(
-    () => getIndexesToStretch(projects),
+    () => getIndexesToStretch(projects ?? []),
     [projects],
   );
 
-  // TODO: remove after integration
-  const getCardTheme = (value: number) => {
-    if (value > 0 && value <= 0.25) {
-      return undefined;
-    }
-
-    if (value > 0.25 && value <= 0.5) {
-      return "primary";
-    }
-
-    if (value > 0.5 && value <= 0.75) {
-      return "secondary";
-    }
-
-    return "tertiary";
-  };
-
   return (
-    <SectionBase className="projects-section">
-      <SectionBase.Title className="projects-section-title">
-        Our projects
-      </SectionBase.Title>
+    <SectionBase
+      className="projects-section"
+      style={getProjectsSectionTheme(theme)}
+    >
       <div className="projects-section-content">
-        {projects.map((item, index) => (
-          <ProjectCard
-            key={item.title}
-            className={cc([
-              "projects-section-card",
-              indexesToStretch.has(index) ? "stretched-md" : undefined,
-            ])}
-            data={item}
-            theme={getCardTheme(Math.random())}
-            coverClassName="projects-section-card-cover"
-          />
-        ))}
+        <SectionBase.Title className="projects-section-title">
+          {title}
+        </SectionBase.Title>
+        <div className="projects-section-layout">
+          {projects?.map((item, index) => (
+            <ProjectCard
+              key={item?.id}
+              className={cc([
+                "projects-section-card",
+                indexesToStretch.has(index) ? "stretched-md" : undefined,
+              ])}
+              data={item}
+              coverClassName="projects-section-card-cover"
+            />
+          ))}
+        </div>
       </div>
     </SectionBase>
   );

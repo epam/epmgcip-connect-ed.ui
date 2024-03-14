@@ -1,16 +1,22 @@
-import { Button } from "@/components/button/button.tsx";
+import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { InformationCard } from "@/components/information-card/information-card.tsx";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
 import { WavyCard } from "@/components/wavy-card/wavy-card.tsx";
-import provideImage from "@/assets/images/provide.png";
+import { getInformationSectionTheme } from "@/features/information-section/utils.ts";
+import {
+  ComponentSharedButton,
+  ComponentSharedColor,
+  ComponentSharedNoodlesCard,
+} from "@/__generated__/graphql.ts";
 import "./information-section.scss";
 
 export interface InformationSectionProps {
-  title?: string;
-  description?: string;
-  cards: object[];
-  action: string;
+  title?: string | null;
+  description?: string | null;
+  cards?: ComponentSharedNoodlesCard[] | null;
+  action?: ComponentSharedButton | null;
+  theme?: ComponentSharedColor | null;
 }
 
 export const InformationSection = ({
@@ -18,9 +24,13 @@ export const InformationSection = ({
   description,
   cards,
   action,
-}: InformationSectionProps) => {
-  return (
-    <SectionBase className="information-section">
+  theme,
+}: InformationSectionProps) => (
+  <SectionBase
+    className="information-section"
+    style={getInformationSectionTheme(theme)}
+  >
+    <div className="information-section-content">
       {title && (
         <SectionBase.Title className="information-section-title">
           {title}
@@ -32,28 +42,28 @@ export const InformationSection = ({
         </Typography>
       )}
       <ul className="information-section-list">
-        {cards.map((_, index) => (
+        {cards?.map(item => (
           <WavyCard
-            // TODO: change to id or something unique during integration
-            /* eslint-disable-next-line react/no-array-index-key */
-            key={index}
+            key={item.id}
             as="li"
             className="information-section-list-item"
+            theme={item?.borderColor ?? undefined}
           >
-            <InformationCard
-              title="Provide"
-              body="Digital equipment to underprivileged children"
-              image={provideImage}
-              action="Here we go"
-            />
+            <InformationCard data={item} />
           </WavyCard>
         ))}
       </ul>
       {action && (
-        <Button className="information-section-action" variant="outline">
-          Bridging the digital divide
-        </Button>
+        <ButtonLink
+          to={action.url ?? ""}
+          className="information-section-action"
+          variant={action?.type ?? undefined}
+          // TODO: change to appropriate theming after clarification
+          // theme={action?.bgColor ?? undefined}
+        >
+          {action.label}
+        </ButtonLink>
       )}
-    </SectionBase>
-  );
-};
+    </div>
+  </SectionBase>
+);

@@ -2,24 +2,14 @@
 @use "@/styles/mixins";
 
 .action-link {
-  --_action-color: var(--action-color, var(--primary));
   @include mixins.h5;
   font-weight: 700;
   position: relative;
   display: inline-flex;
   align-items: center;
-  color: var(--_action-color);
   text-decoration: none;
   width: fit-content;
-
-  &[data-theme="primary"],
-  &[data-theme="tertiary"] {
-    --action-color: var(--white);
-  }
-
-  &[data-theme="secondary"] {
-    --action-color: var(--black);
-  }
+  color: var(--primary);
 
   &:after {
     content: "";

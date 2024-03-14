@@ -1,24 +1,23 @@
+import { HeroArticle } from "@/features/hero-section/hero-article/hero-article.tsx";
 import {
-  HeroArticle,
-  HeroArticleVariant,
-} from "@/features/hero-section/hero-article/hero-article.tsx";
+  ComponentSharedButton,
+  ComponentSharedOverlayBlock,
+} from "@/__generated__/graphql.ts";
 import "./hero-section.scss";
 
 export interface HeroSectionProps {
-  title: string;
-  body: string;
-  variant?: HeroArticleVariant;
-  bannerSource: string;
+  card?: ComponentSharedOverlayBlock | null;
+  action?: ComponentSharedButton | null;
+  bannerSource?: string;
 }
 
 export const HeroSection = ({
-  title,
-  body,
+  card,
+  action,
   bannerSource,
-  variant,
 }: HeroSectionProps) => (
   <section className="hero-section">
-    <HeroArticle title={title} body={body} variant={variant} />
+    <HeroArticle card={card} action={action} />
     <div className="hero-section-banner">
       <img
         className="hero-section-banner-image"
