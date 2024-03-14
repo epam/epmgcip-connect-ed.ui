@@ -9,14 +9,6 @@
   isolation: isolate;
   color: var(--_main-color);
 
-  &[data-theme="secondary"] {
-    --main-color: var(--secondary);
-  }
-
-  &[data-theme="tertiary"] {
-    --main-color: var(--tertiary);
-  }
-
   &:before,
   &:after {
     content: "";

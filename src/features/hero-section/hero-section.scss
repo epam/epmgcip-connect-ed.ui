@@ -1,11 +1,13 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/mixins";
+@use "@/styles/constants";
 
 .hero-section {
   position: relative;
   isolation: isolate;
 
   &-banner {
+    margin-top: -#{map-get(constants.$wave-polygon-inverted-md, "height")};
     display: flex;
     width: 100%;
     min-height: 240px;

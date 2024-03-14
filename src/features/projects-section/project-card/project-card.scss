@@ -11,22 +11,6 @@
   border-radius: 8px;
   background-color: var(--_background-color);
 
-  &[data-theme="primary"] {
-    --background-color: var(--primary);
-    --action-color: var(--white);
-    --text-color: var(--white);
-  }
-
-  &[data-theme="secondary"] {
-    --background-color: var(--secondary);
-    --action-color: var(--black);
-  }
-
-  &[data-theme="tertiary"] {
-    --background-color: var(--tertiary);
-    --action-color: var(--white);
-    --text-color: var(--white);
-  }
 
   &-info {
     flex-grow: 1;
@@ -39,7 +23,6 @@
   &-title {
     flex-shrink: 0;
     @include mixins.h4;
-    line-height: 1.75;
   }
 
   &-body {

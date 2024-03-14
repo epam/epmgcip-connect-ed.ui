@@ -1,24 +1,17 @@
-import { AnchorHTMLAttributes } from "react";
 import cc from "classcat";
+import { Link, type LinkProps } from "react-router-dom";
 import ChevronRight from "@/assets/icons/chevron-right.svg?react";
 import "./action-link.scss";
 
-export interface ActionLink extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  theme?: string;
-}
+export interface ActionLink extends LinkProps {}
 
 export const ActionLink = ({
   className,
   children,
-  theme = "default",
   ...delegatedProps
 }: ActionLink) => (
-  <a
-    {...delegatedProps}
-    className={cc(["action-link", className])}
-    data-theme={theme}
-  >
+  <Link {...delegatedProps} className={cc(["action-link", className])}>
     <span>{children}</span>
     <ChevronRight width="24" height="24" />
-  </a>
+  </Link>
 );

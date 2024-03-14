@@ -1,4 +1,4 @@
-import { ElementType, HTMLAttributes, ReactNode } from "react";
+import { ElementType, forwardRef, HTMLAttributes, ReactNode } from "react";
 import cc from "classcat";
 import "./title.scss";
 
@@ -14,13 +14,13 @@ export interface TitleProps {
   >;
 }
 
-export const Title = ({
-  className,
-  children,
-  theme = "inherit",
-  as: Tag = "h2",
-}: TitleProps) => (
-  <Tag className={cc(["title", className])} data-theme={theme}>
-    {children}
-  </Tag>
+export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
+  (
+    { className, children, theme = "inherit", as: Tag = "h2" }: TitleProps,
+    ref,
+  ) => (
+    <Tag ref={ref} className={cc(["title", className])} data-theme={theme}>
+      {children}
+    </Tag>
+  ),
 );

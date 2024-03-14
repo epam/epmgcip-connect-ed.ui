@@ -11,12 +11,14 @@ export const Palette = ({ palette }: PaletteProps) => {
     if (palette) {
       const root = getApplicationRoot();
       const styles = [
-        `--primary: ${palette.primary!};`,
-        `--secondary: ${palette.secondary!};`,
+        `--primary: ${palette.primary};`,
+        `--secondary: ${palette.secondary};`,
         `--tertiary: ${palette.tertiary};`,
-        `--background: ${palette.background!};`,
-        `--black: ${palette.black!};`,
-        `--white: ${palette.white!};`,
+        `--background: ${palette.background};`,
+        `--black: ${palette.black};`,
+        `--white: ${palette.white};`,
+        `--quaternary: ${palette.quaternary};`,
+        `--quinary: ${palette.quinary};`,
       ];
 
       root.setAttribute("style", styles.join(""));

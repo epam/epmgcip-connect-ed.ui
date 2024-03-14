@@ -1,26 +1,30 @@
-import { Button } from "@/components/button/button.tsx";
-import { Title } from "@/components/title/title";
+import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
-import Wave from "@/assets/icons/wave.svg?react";
+import { getHeroArticleTheme } from "@/features/hero-section/hero-article/utils.ts";
+import {
+  ComponentSharedButton,
+  ComponentSharedOverlayBlock,
+} from "@/__generated__/graphql.ts";
+import { Title } from "@/components/title/title";
 import "./hero-article.scss";
 
-export type HeroArticleVariant = "primary" | "secondary";
-
 export interface HeroArticleProps {
-  title: string;
-  body: string;
-  variant?: HeroArticleVariant;
+  card?: ComponentSharedOverlayBlock | null;
+  action?: ComponentSharedButton | null;
 }
 
-export const HeroArticle = ({
-  title,
-  body,
-  variant = "primary",
-}: HeroArticleProps) => (
-  <article className="hero-article" data-variant={variant}>
-    <Title className="hero-article-title">{title}</Title>
-    <Typography className="hero-article-body">{body}</Typography>
-    <Button variant="inverted">Donate today</Button>
-    <Wave className="hero-article-wave" />
+export const HeroArticle = ({ card, action }: HeroArticleProps) => (
+  <article className="hero-article" style={getHeroArticleTheme(card)}>
+    <Title className="hero-article-title">{card?.title}</Title>
+    <Typography className="hero-article-body">{card?.content}</Typography>
+    {action && (
+      <ButtonLink
+        to={`/${action?.url ?? ""}`}
+        variant={action?.type ?? undefined}
+        /*theme={action?.bgColor ?? undefined}*/
+      >
+        {action?.label}
+      </ButtonLink>
+    )}
   </article>
 );

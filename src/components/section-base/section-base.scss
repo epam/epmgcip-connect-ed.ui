@@ -5,8 +5,8 @@
   padding: 56px 16px;
 
   &-title {
-    @include mixins.partial-underline;
     @include mixins.h4;
+    @include mixins.partial-underline("section-base-full-underline");
   }
 
   @include responsive-mixins.md {

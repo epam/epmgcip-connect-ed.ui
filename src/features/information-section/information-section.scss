@@ -3,9 +3,16 @@
 @use "@/styles/mixins";
 
 .information-section {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  --_section-background: var(--section-background, var(--white));
+  --_section-color: var(--section-color, var(--black));
+  background-color: var(--_section-background);
+  color: var(--_section-color);
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
   &-title {
     margin-bottom: 12px;
@@ -26,7 +33,9 @@
   }
 
   @include responsive-mixins.md {
-    gap: 24px;
+    &-content {
+      gap: 24px;
+    }
 
     &-title {
       margin-bottom: 0;
@@ -52,9 +61,11 @@
   }
 
   @include responsive-mixins.lg {
-    gap: 36px;
-    width: map-get(layout.$columns, "col-10");
-    margin: auto;
+    &-content {
+      gap: 36px;
+      width: map-get(layout.$columns, "col-10");
+      margin: auto;
+    }
 
     &-description {
       margin-bottom: 16px;

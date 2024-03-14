@@ -1,8 +1,8 @@
 import { gql } from "@/__generated__";
 
 export const GET_LAYOUT_DATA = gql(`
-query GetLayoutData {
-  pages {
+query GetLayoutData($limit: Int) {
+  pages(pagination: { limit: $limit }) {
     data {
       id
       attributes {

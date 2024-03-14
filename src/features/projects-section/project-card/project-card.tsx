@@ -1,48 +1,52 @@
 import { ElementType, HTMLAttributes } from "react";
 import cc from "classcat";
 import { ActionLink } from "@/components/action-link/action-link.tsx";
-import { Title } from "@/components/title/title";
+import { Title } from "@/components/title/title.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
-import projectCover from "@/assets/images/classroom.png";
+import { getProjectCardTheme } from "@/features/projects-section/project-card/utils.ts";
+import { ComponentSharedGridBlock } from "@/__generated__/graphql.ts";
 import "./project-card.scss";
 
 export interface ProjectCardProps {
   className?: string;
   coverClassName?: string;
   as?: ElementType<HTMLAttributes<HTMLElement>>;
-  theme?: string;
-  data: { title: string; url: string };
+  data: ComponentSharedGridBlock;
 }
 
 export const ProjectCard = ({
   className,
   coverClassName,
   as: Tag = "article",
-  theme = "default",
   data,
 }: ProjectCardProps) => {
   return (
-    <Tag className={cc(["project-card", className])} data-theme={theme}>
+    <Tag
+      className={cc(["project-card", className])}
+      style={getProjectCardTheme(data)}
+    >
       <div className="project-card-info">
         <Title as="h4" className="project-card-title">
-          {data?.title}
+          {data?.heading}
         </Title>
         <Typography className="project-card-body">
-          We will show how to create and edit content, exchange information
-          safely, and use computers for learning purposes. We will help parents
-          master Office software and understand electronic government programs.
+          {data?.description}
         </Typography>
         <ActionLink
           className="project-card-action"
-          href="/public"
-          theme={theme}
+          to={`/${data?.linkUrl ?? ""}`}
+          target={data?.linkNewTab ? "_blank" : undefined}
         >
-          Start course
+          {data?.linkText}
         </ActionLink>
       </div>
-      {data?.url && (
+      {data?.image?.data && (
         <div className={cc(["project-card-image-wrapper", coverClassName])}>
-          <img className="project-card-image" src={projectCover} alt="" />
+          <img
+            className="project-card-image"
+            src={data.image.data.attributes?.url}
+            alt=""
+          />
         </div>
       )}
     </Tag>
