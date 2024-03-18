@@ -1,5 +1,5 @@
-import { ComponentSharedNoodlesCard } from "@/__generated__/graphql.ts";
 import { getThemeStyle } from "@/utils/get-theme-style.ts";
+import { ComponentSharedNoodlesCard } from "@/__generated__/graphql.ts";
 
 export const getInformationCardTheme = (data?: ComponentSharedNoodlesCard) =>
   getThemeStyle([

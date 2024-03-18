@@ -1,5 +1,5 @@
-import { ComponentSharedImageCard } from "@/__generated__/graphql.ts";
 import { getThemeStyle } from "@/utils/get-theme-style.ts";
+import { ComponentSharedImageCard } from "@/__generated__/graphql.ts";
 
 export const getImageBannerTheme = (data?: ComponentSharedImageCard | null) =>
   getThemeStyle([

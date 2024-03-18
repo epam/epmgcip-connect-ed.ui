@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react";
-import { ColorScheme } from "@/__generated__/graphql.ts";
 import { getApplicationRoot } from "@/utils/get-application-root.ts";
+import { ColorScheme } from "@/__generated__/graphql.ts";
 
 interface PaletteProps {
   palette?: ColorScheme;

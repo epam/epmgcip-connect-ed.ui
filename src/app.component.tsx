@@ -3,6 +3,7 @@ import { NotFound } from "@/pages/not-found/not-found.tsx";
 import { Page } from "@/pages/page/page.tsx";
 import { Navigation } from "@/features/navigation/navigation.tsx";
 import { Query } from "@/features/query/query.tsx";
+import { TimelineSection } from "@/features/timeline-section/timeline-section.tsx";
 import { ErrorBoundary } from "@/components/error-boundary/error-boundary.tsx";
 import { Footer } from "@/components/footer/footer.tsx";
 import { Palette } from "@/components/palette/palette.tsx";
@@ -70,5 +71,20 @@ export const App = () => (
         );
       }}
     </Query>
+    <TimelineSection
+      title="Timeline"
+      cards={[
+        {
+          title: "2023",
+          description:
+            "Connect-ed plays a crucial role in leveling the educational playing field by providing underprivileged students with donated electronic equipment, such as laptops. This support enables students to access essential educational resources, facilitating their learning and empowering them for a brighter future.",
+        },
+        {
+          title: "2023",
+          description:
+            "Connect-ed plays a crucial role in leveling the educational playing field by providing underprivileged students with donated electronic equipment, such as laptops. This support enables students to access essential educational resources, facilitating their learning and empowering them for a brighter future.",
+        },
+      ]}
+    />
   </ErrorBoundary>
 );

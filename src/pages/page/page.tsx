@@ -3,13 +3,13 @@ import { HeroSection } from "@/features/hero-section/hero-section.tsx";
 import { InformationSection } from "@/features/information-section/information-section.tsx";
 import { ProjectsSection } from "@/features/projects-section/projects-section.tsx";
 import { ImageBanner } from "@/components/image-banner/image-banner.tsx";
+import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import { GET_PAGE_DATA } from "@/queries/get-page.ts";
 import {
   GetPageDataQuery,
   PagePageSectionsDynamicZone,
 } from "@/__generated__/graphql.ts";
 import { Query } from "@/features/query/query";
-import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 
 export interface PageProps {
   slug: string;

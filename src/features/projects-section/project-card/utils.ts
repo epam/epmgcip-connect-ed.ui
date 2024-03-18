@@ -1,5 +1,5 @@
-import { ComponentSharedGridBlock } from "@/__generated__/graphql.ts";
 import { getThemeStyle } from "@/utils/get-theme-style.ts";
+import { ComponentSharedGridBlock } from "@/__generated__/graphql.ts";
 
 export const getProjectCardTheme = (data?: ComponentSharedGridBlock) =>
   getThemeStyle([
