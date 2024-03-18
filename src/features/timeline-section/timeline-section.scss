@@ -1,0 +1,44 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/layout";
+
+.timeline-section {
+  --_section-background: var(--section-background, var(--background));
+  --_section-color: var(--section-color, var(--black));
+  background-color: var(--_section-background);
+  color: var(--_section-color);
+
+  &-title {
+    margin: 0 auto 32px;
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  @include responsive-mixins.md {
+    &-title {
+      margin-bottom: 24px;
+    }
+
+    &-list {
+      gap: 24px;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    &-content {
+      width: map-get(layout.$columns, "col-8");
+      margin: auto;
+    }
+
+    &-title {
+      margin-bottom: 48px;
+    }
+
+    &-list {
+      gap: 48px;
+    }
+  }
+}

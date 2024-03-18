@@ -117,6 +117,11 @@
           },
           {
             "group": "external",
+            "pattern": "@/**/*.tsx",
+            "position": "after"
+          },
+          {
+            "group": "external",
             "pattern": "@/features/**/*.ts",
             "position": "after"
           },
@@ -132,6 +137,11 @@
           },
           {
             "group": "external",
+            "pattern": "@/utils/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
             "pattern": "@/queries/**",
             "position": "after"
           },
@@ -143,6 +153,11 @@
           {
             "group": "external",
             "pattern": "@/assets/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/__generated__/**",
             "position": "after"
           },
           {

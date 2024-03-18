@@ -1,8 +1,8 @@
+import { getThemeStyle } from "@/utils/get-theme-style.ts";
 import {
   ComponentSharedColor,
   ComponentSharedGridBlock,
 } from "@/__generated__/graphql.ts";
-import { getThemeStyle } from "@/utils/get-theme-style.ts";
 
 const isOdd = (value: number) => value % 2 === 1;
 
