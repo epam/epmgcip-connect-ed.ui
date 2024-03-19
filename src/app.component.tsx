@@ -3,12 +3,12 @@ import { NotFound } from "@/pages/not-found/not-found.tsx";
 import { Page } from "@/pages/page/page.tsx";
 import { Navigation } from "@/features/navigation/navigation.tsx";
 import { Query } from "@/features/query/query.tsx";
-import { TimelineSection } from "@/features/timeline-section/timeline-section.tsx";
 import { ErrorBoundary } from "@/components/error-boundary/error-boundary.tsx";
 import { Footer } from "@/components/footer/footer.tsx";
 import { Palette } from "@/components/palette/palette.tsx";
 import { ScrollToTop } from "@/components/scroll-to-top/scroll-to-top.tsx";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data.ts";
+import { LAYOUT_PAGES_VARIABLES } from "@/constants/query-variables.ts";
 import {
   ComponentSharedImage,
   ComponentSharedSocialIcon,
@@ -22,7 +22,7 @@ export const App = () => (
     <ScrollToTop />
     <Query<GetLayoutDataQuery>
       query={GET_LAYOUT_DATA}
-      variables={{ limit: 20 }}
+      variables={LAYOUT_PAGES_VARIABLES}
     >
       {({ data }) => {
         const footer = data?.footer?.data?.attributes;
@@ -71,20 +71,5 @@ export const App = () => (
         );
       }}
     </Query>
-    <TimelineSection
-      title="Timeline"
-      cards={[
-        {
-          title: "2023",
-          description:
-            "Connect-ed plays a crucial role in leveling the educational playing field by providing underprivileged students with donated electronic equipment, such as laptops. This support enables students to access essential educational resources, facilitating their learning and empowering them for a brighter future.",
-        },
-        {
-          title: "2023",
-          description:
-            "Connect-ed plays a crucial role in leveling the educational playing field by providing underprivileged students with donated electronic equipment, such as laptops. This support enables students to access essential educational resources, facilitating their learning and empowering them for a brighter future.",
-        },
-      ]}
-    />
   </ErrorBoundary>
 );

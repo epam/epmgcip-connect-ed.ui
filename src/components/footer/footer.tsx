@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SocialLinkList } from "@/components/social-link-list/social-link-list.tsx";
 import { Title } from "@/components/title/title.tsx";
 import EpamLogo from "@/assets/icons/epam-logo.svg?react";
 import {
@@ -25,29 +26,11 @@ export const Footer = ({ socialLinks, heading, navigation }: FooterProps) => {
               {heading}
             </Title>
           )}
-          <div className="social-links">
-            {socialLinks.map(({ title, newTab, url, icon }) => {
-              const iconData = icon?.data?.attributes;
-
-              return (
-                <a
-                  key={url}
-                  href={url ?? ""}
-                  className="contact-link"
-                  aria-label={title ?? ""}
-                  target={newTab ? "_blank" : "_self"}
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    className="social-icon"
-                    alt={iconData?.caption ?? ""}
-                    src={iconData?.url}
-                    role="presentation"
-                  />
-                </a>
-              );
-            })}
-          </div>
+          <SocialLinkList
+            items={socialLinks}
+            className="social-links"
+            iconClassName="social-icon"
+          />
         </div>
       )}
       <div className="contact-info">

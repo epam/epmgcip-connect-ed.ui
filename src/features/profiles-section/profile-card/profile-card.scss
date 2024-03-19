@@ -1,0 +1,41 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &-image {
+    object-fit: contain;
+    aspect-ratio: 1/1;
+    height: 100%;
+    max-height: 240px;
+    margin: auto;
+  }
+
+  &-title {
+    @include mixins.h5;
+  }
+
+  &-role {
+    margin-top: 8px;
+  }
+
+  &-social-link-list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  &-social-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  @include responsive-mixins.lg {
+    &-title {
+      @include mixins.h3;
+    }
+  }
+}
