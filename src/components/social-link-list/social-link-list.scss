@@ -1,0 +1,14 @@
+.social-link-list {
+  display: inline-flex;
+  gap: 12px;
+
+  &-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &-icon {
+    aspect-ratio: 1/1;
+    object-fit: contain;
+  }
+}

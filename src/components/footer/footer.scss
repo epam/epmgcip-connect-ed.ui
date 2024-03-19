@@ -40,10 +40,8 @@
   }
 
   .social-icon {
-      aspect-ratio: 1/1;
       width: 24px;
       height: 24px;
-      object-fit: contain;
   }
 
   .contact-info {
@@ -110,6 +108,11 @@
     .social-links {
       grid-template-columns: repeat(6, 32px);
       grid-template-rows: 32px;
+    }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
     }
 
     .designed-by {

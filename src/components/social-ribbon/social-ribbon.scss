@@ -4,7 +4,7 @@
   justify-content: space-between;
   color: var(--white);
 
-  .select-locale {
+  &-locale-select {
     border: none;
     font-size: 1.5rem;
     height: 2rem;
@@ -12,8 +12,7 @@
     color: inherit;
   }
 
-  .social-links-list {
-    list-style: none;
+  &-links-list {
     margin: auto 0;
     display: flex;
     gap: 16px;
@@ -21,12 +20,8 @@
     padding: 0;
   }
 
-  .social-link {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .social-icon {
-    display: block;
+  &-icon {
+    width: 24px;
+    height: 24px;
   }
 }
