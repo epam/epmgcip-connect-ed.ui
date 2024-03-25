@@ -1,5 +1,6 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/layers";
+@use "@/styles/layout";
 
 .composed-header {
   --burger-button-size: 44px;
@@ -19,7 +20,7 @@
     }
   }
 
-  .social-ribbon-wrapper {
+  .social-ribbon {
     display: none;
   }
 
@@ -53,12 +54,19 @@
       transform: translateY(-100%);
     }
 
-    .social-ribbon-wrapper {
+    .social-ribbon {
       display: flex;
       background-color: var(--primary);
-      padding: 8px 24px;
 
-      .social-ribbon {
+      &-wrapper {
+        display: flex;
+        padding: 8px 24px;
+        width: 100%;
+        max-width: layout.$max-content-width;;
+        margin: auto;
+      }
+
+      &-content {
         margin-left: auto;
       }
     }

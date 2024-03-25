@@ -1,5 +1,6 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/mixins";
+@use "@/styles/layout";
 
 .section-base {
   padding: 56px 16px;
@@ -15,6 +16,11 @@
 
   @include responsive-mixins.lg {
     padding: 64px 0;
+
+    &-content {
+      max-width: layout.$max-content-width;;
+      margin: auto;
+    }
 
     &-title {
       @include mixins.h2;

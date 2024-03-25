@@ -86,8 +86,13 @@ export const Navigation = ({
   return (
     <>
       <div className="composed-header" ref={ref}>
-        <div className="social-ribbon-wrapper">
-          <SocialRibbon className="social-ribbon" socialLinks={stripe} />
+        <div className="social-ribbon">
+          <div className="social-ribbon-wrapper">
+            <SocialRibbon
+              className="social-ribbon-content"
+              socialLinks={stripe}
+            />
+          </div>
         </div>
         <Header
           logo={logo}

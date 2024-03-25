@@ -42,13 +42,14 @@ const partnersArray = [
 
 export const PartnersSection = () => {
   return (
-    <SectionBase className="partners-section">
+    <SectionBase
+      className="partners-section"
+      contentClassName="partners-section-content"
+    >
       <SectionBase.Title className="partners-section-title">
         Our partners
       </SectionBase.Title>
-      <div className="partners-section-content">
-        <PartnersCarousel items={partnersArray} />
-      </div>
+      <PartnersCarousel items={partnersArray} />
       <Button className="partners-section-button" variant="main">
         Become a partner
       </Button>
