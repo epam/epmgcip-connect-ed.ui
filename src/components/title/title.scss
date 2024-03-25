@@ -1,0 +1,12 @@
+@use "@/styles/mixins";
+
+.title {
+
+  &[data-theme="white"] {
+    color: var(--white);
+  }
+
+  &[data-theme="black"] {
+    color: var(--black);
+  }
+}

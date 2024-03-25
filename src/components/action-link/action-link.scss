@@ -1,0 +1,36 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+
+.action-link {
+  @include mixins.h5;
+  font-weight: 700;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  width: fit-content;
+  color: var(--primary);
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    transform: translateY(-50%);
+    width: 100%;
+    background-color: currentColor;
+    visibility: hidden;
+  }
+
+  &:hover,
+  &:focus {
+    &:after {
+      visibility: visible;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    @include mixins.h4;
+  }
+}

@@ -1,0 +1,47 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/layout";
+@use "@/styles/mixins";
+
+.news-section {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  &-title {
+    color: var(--black);
+  }
+
+  &-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  &-action {
+    width: 100%;
+  }
+
+  @include responsive-mixins.md {
+    gap: 24px;
+
+    &-list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    &-action {
+      width: auto;
+      margin: auto;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    gap: 24px;
+    width: map-get(layout.$columns, "col-10");
+    margin: 0 auto;
+
+    &-list {
+      gap: 24px;
+    }
+  }
+}

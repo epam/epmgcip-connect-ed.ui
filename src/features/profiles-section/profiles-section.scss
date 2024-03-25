@@ -1,0 +1,32 @@
+@use "@/styles/responsive-mixins";
+
+.profiles-section {
+
+  &-title {
+    margin: auto;
+  }
+
+  &-list {
+    --_card-size: var(--card-size, 166px);
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--_card-size), 1fr));
+    gap: 24px;
+  }
+
+  @include responsive-mixins.md {
+
+    &-list {
+      --card-size: 172px;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    padding-left: 24px;
+    padding-right: 24px;
+
+    &-list {
+      --card-size: 296px;
+    }
+  }
+}

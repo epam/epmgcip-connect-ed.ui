@@ -1,0 +1,13 @@
+@use '_breakpoints.scss';
+
+@mixin md {
+  @media (min-width: #{breakpoints.$screen-sm-min}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{breakpoints.$screen-md-min}) {
+    @content;
+  }
+}

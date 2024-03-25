@@ -1,0 +1,7 @@
+@use "@/styles/mixins";
+
+.button-link {
+  display: inline-block;
+  text-decoration: none;
+  @include mixins.button;
+}

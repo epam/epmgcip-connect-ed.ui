@@ -1,0 +1,46 @@
+@use "sass:meta";
+
+$header-height-md: 56px;
+$header-height-lg: 172px;
+$_polygon-md-base: ((0% 18px), (2% 15.7px), (4% 13.5px), (6% 11.4px), (8% 9.3px), (10% 7.4px), (12% 5.7px), (14% 4.1px), (16% 2.8px), (18% 1.7px), (20% 0.9px), (22% 0.3px), (24% 0px), (26% 0px), (28% 0.3px), (30% 0.9px), (32% 1.7px), (34% 2.8px), (36% 4.1px), (38% 5.7px), (40% 7.4px), (42% 9.3px), (44% 11.4px), (46% 13.5px), (48% 15.7px), (50% 18px), (52% 20.3px), (54% 22.5px), (56% 24.6px), (58% 26.7px), (60% 28.6px), (62% 30.3px), (64% 31.9px), (66% 33.2px), (68% 34.3px), (70% 35.1px), (72% 35.7px), (74% 36px), (76% 36px), (78% 35.7px), (80% 35.1px), (82% 34.3px), (84% 33.2px), (86% 31.9px), (88% 30.3px), (90% 28.6px), (92% 26.7px), (94% 24.6px), (96% 22.5px), (98% 20.3px), (100% 18px));
+$_polygon-lg-base: ((0% 26.7px), (2% 23.3px), (4% 20.0px), (6% 16.9px), (8% 13.8px), (10% 11.0px), (12% 08.4px), (14% 06.1px), (16% 04.2px), (18% 02.5px), (20% 01.3px), (22% 00.5px), (24% 00.1px), (26% 00.1px), (28% 00.5px), (30% 01.3px), (32% 02.5px), (34% 04.2px), (36% 06.1px), (38% 08.4px), (40% 11.0px), (42% 13.8px), (44% 16.9px), (46% 20.0px), (48% 23.3px), (50% 26.7px), (52% 30.0px), (54% 33.3px), (56% 36.5px), (58% 39.5px), (60% 42.3px), (62% 44.9px), (64% 47.2px), (66% 49.2px), (68% 50.8px), (70% 52.0px), (72% 52.9px), (74% 53.3px), (76% 53.3px), (78% 52.9px), (80% 52.0px), (82% 50.8px), (84% 49.2px), (86% 47.2px), (88% 44.9px), (90% 42.3px), (92% 39.5px), (94% 36.5px), (96% 33.3px), (98% 30.0px), (100% 26.7px));
+
+@function _transformDirect($value) {
+  @return $value;
+}
+
+@function _transformInverted($value) {
+  @return "calc(100% - " + $value + ")";
+}
+
+@function _getPolygon($polygon, $transformer) {
+  $_polygon-inverted: "";
+  @for $i from 1 through length($polygon) {
+    $delimiter: "";
+    @if ($i != 1) {
+      $delimiter: ", "
+    }
+    $key: nth(nth($polygon, $i), 1);
+    $value: nth(nth($polygon, $i), 2);
+    $_polygon-inverted: $_polygon-inverted + $delimiter + $key + " " + meta.call($transformer, $value);
+  }
+
+  @return $_polygon-inverted;
+}
+
+$wave-polygon-md: (
+        height: 36px,
+        value: polygon(100% 100%, #{_getPolygon($_polygon-md-base, meta.get-function("_transformDirect"))}),
+);
+$wave-polygon-lg: (
+        height: 54px,
+        value: polygon(100% 100%, 0% 100%, #{_getPolygon($_polygon-lg-base, meta.get-function("_transformDirect"))}),
+);
+$wave-polygon-inverted-md: (
+        height: 36px,
+        value: polygon(100% 0%, 0% 0%, #{_getPolygon($_polygon-md-base, meta.get-function("_transformInverted"))}),
+);
+$wave-polygon-inverted-lg: (
+        height: 54px,
+        value: polygon(100% 0%, 0% 0%, #{_getPolygon($_polygon-lg-base, meta.get-function("_transformInverted"))}),
+);

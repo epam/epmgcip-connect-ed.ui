@@ -1,0 +1,80 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+@use "@/styles/layout";
+
+.image-banner {
+  --_background-color: var(--background-color, var(--background));
+  --_text-color: var(--text-color, var(--black));
+  --_action-color: var(--action-color, var(--primary));
+  position: relative;
+  display: flex;
+  justify-content: center;
+  isolation: isolate;
+  color: var(--_text-color);
+
+  &-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  &-content {
+    padding: 61px 16px;
+  }
+
+  &-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-card {
+    border-radius: 8px;
+    padding: 32px 16px;
+    background-color: var(--_background-color);
+  }
+
+  &-title {
+    @include mixins.h4;
+  }
+
+  &-body {
+    margin-top: 8px;
+  }
+
+  &-action {
+    margin-top: 24px;
+    color: var(--_action-color);
+  }
+
+  @include responsive-mixins.md {
+    &-content {
+      padding: 100px 24px;
+    }
+
+    &-card {
+      padding: 32px;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    &-content {
+      padding: 166px 0;
+      width: map-get(layout.$columns, "col-10");
+      margin: auto;
+    }
+
+    &-card {
+      padding: 32px;
+      width: 50%;
+      margin-right: auto;
+    }
+
+    &-title {
+      @include mixins.h3;
+    }
+  }
+}

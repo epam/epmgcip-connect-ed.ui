@@ -1,0 +1,28 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+
+.embedded-section {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  background-color: var(--white);
+  gap: 16px;
+
+  &-title {
+    color: var(--black);
+  }
+
+  &-content > * {
+    width: 100%;
+  }
+
+  @include responsive-mixins.md {
+    padding: 24px 24px 0;
+    gap: 24px;
+  }
+
+  @include responsive-mixins.lg {
+    padding: 0 198px;
+    gap: 48px;
+  }
+}

@@ -1,0 +1,97 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/layout";
+@use "@/styles/mixins";
+
+.projects-section {
+  --_section-background: var(--section-background, var(--white));
+  --_section-color: var(--section-color, var(--black));
+  background-color: var(--_section-background);
+
+  &-title {
+    color: var(--_section-color);
+    margin-bottom: 32px;
+  }
+
+  &-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @include responsive-mixins.md {
+    &-title {
+      margin-bottom: 24px;
+    }
+
+    &-layout {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &-card {
+      &:has(.projects-section-card-cover),
+      &.stretched-md {
+        grid-column: 1/-1;
+      }
+    }
+  }
+
+  @include responsive-mixins.lg {
+    padding: 64px 0 120px;
+
+    &-content {
+      width: map-get(layout.$columns, "col-10");
+      margin: auto;
+    }
+
+    &-title {
+      margin-bottom: 60px;
+    }
+
+    &-layout {
+      grid-template-columns: repeat(6, 1fr);
+      gap: 24px;
+    }
+
+    &-card:nth-child(odd) {
+      &:has(.projects-section-card-cover) {
+        grid-column: 1/5;
+      }
+
+      &:not(:has(.projects-section-card-cover)) {
+        grid-column: 1/4;
+      }
+
+      &:has(+ :not(.projects-section-card .projects-section-card-cover)) {
+        grid-column: 1/4;
+
+        & + .projects-section-card {
+          grid-column: 4/-1;
+        }
+
+        &:has(.projects-section-card-cover) {
+          grid-column: 1/5;
+
+          & + .projects-section-card {
+            grid-column: 5/-1;
+          }
+        }
+      }
+
+      &:has(+ .projects-section-card .projects-section-card-cover) {
+        grid-column: 1/3;
+
+        & + .projects-section-card {
+          grid-column: 3/-1;
+        }
+
+        &:has(.projects-section-card-cover) {
+          grid-column: 1/4;
+
+          & + .projects-section-card {
+            grid-column: 4/-1
+          }
+        }
+      }
+    }
+  }
+}

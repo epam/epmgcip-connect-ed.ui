@@ -1,0 +1,105 @@
+@use '_reset.scss';
+
+/* Set up for old browsers*/
+@supports not (font-variation-settings: normal) {
+  @font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/open-sans/OpenSans-Light.woff2") format("woff2");
+    font-weight: 300;
+  }
+
+  @font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/open-sans/OpenSans-Regular.woff2") format("woff2");
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/open-sans/OpenSans-Medium.woff2") format("woff2");
+    font-weight: 500;
+  }
+
+  @font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/open-sans/OpenSans-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+  }
+
+  @font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/open-sans/OpenSans-Bold.woff2") format("woff");
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/open-sans/OpenSans-ExtraBold.woff2") format("woff2");
+    font-weight: 800;
+  }
+}
+
+/* Set up for modern browsers, all weights */
+@supports (font-variation-settings: normal) {
+  @font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans/OpenSans-VariableFont.woff2') format('woff2 supports variations'),
+         url('../fonts/open-sans/OpenSans-VariableFont.woff2') format('woff2-variations');
+    font-weight: 300 800;
+  }
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/lato/Lato-Thin.woff2") format("wofff2");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/lato/Lato-Light.woff2") format("woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/lato/Lato-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/lato/Lato-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/lato/Lato-Black.woff2") format("woff2");
+  font-weight: 900;
+}
+
+:root {
+  font-family: "Open Sans", sans-serif;
+}
+
+#root {
+  --supernova: #000;
+  --light: #fff;
+  --white: #fff;
+  --black: #002F3F;
+  --background: #F8F5F1;
+  --primary: #0E7C73;
+  --secondary: #97CAEF;
+  --tertiary: #973CEF;
+  --primary-light-10: color-mix(in srgb, var(--light) 100%, var(--primary) 10%);
+  --primary-light-20: color-mix(in srgb, var(--light) 100%, var(--primary) 20%);
+  --primary-light-25: color-mix(in srgb, var(--light) 100%, var(--primary) 25%);
+  --primary-light-40: color-mix(in srgb, var(--light) 100%, var(--primary) 40%);
+  --primary-light-60: color-mix(in srgb, var(--light) 100%, var(--primary) 60%);
+  --primary-light-80: color-mix(in srgb, var(--light) 100%, var(--primary) 80%);
+  --primary-dark-25: color-mix(in srgb, var(--primary) 100%, var(--supernova) 25%);
+  --primary-dark-33: color-mix(in srgb, var(--primary) 100%, var(--supernova) 33%);
+  --night-transparent-10: color-mix(in srgb, var(--black) 10%, transparent 100%);
+  --backdrop: color-mix(in srgb, var(--supernova) 33%, transparent 100%);
+}

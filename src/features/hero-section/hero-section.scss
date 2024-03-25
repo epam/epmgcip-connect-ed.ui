@@ -1,0 +1,45 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+@use "@/styles/constants";
+
+.hero-section {
+  position: relative;
+  isolation: isolate;
+
+  &-banner {
+    margin-top: -#{map-get(constants.$wave-polygon-inverted-md, "height")};
+    display: flex;
+    width: 100%;
+    min-height: 240px;
+
+    &-image {
+      width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+    }
+  }
+
+
+  @include responsive-mixins.md {
+    padding: 32px 24px 0;
+
+    &-banner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      min-height: auto;
+      margin-bottom: 24px;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    padding: 48px 48px 0;
+
+    &-banner {
+      margin-bottom: 48px;
+    }
+  }
+}

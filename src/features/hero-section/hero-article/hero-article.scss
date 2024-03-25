@@ -1,0 +1,47 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+@use "@/styles/constants";
+
+.hero-article {
+  --_article-color: var(--article-color, var(--primary));
+  --_text-color: var(--text-color, var(--white));
+  position: relative;
+  padding: 24px 16px calc(12px + map-get(constants.$wave-polygon-inverted-md, "height"));
+  background-color: var(--_article-color);
+  color: var(--_text-color);
+  clip-path: map-get(constants.$wave-polygon-inverted-md, "value");
+
+  &-title {
+    @include mixins.h4;
+  }
+
+  &-body {
+    margin: 12px 0 24px;
+  }
+
+  @include responsive-mixins.md {
+    padding: 48px 48px 24px;
+    border-radius: 0 0 20px 0;
+    clip-path: none;
+
+    &-title {
+      @include mixins.h3;
+    }
+
+    &-body {
+      margin: 24px 0;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    width: 590px;
+
+    &-title {
+      @include mixins.h1;
+    }
+
+    &-body {
+      margin: 24px 0 48px;
+    }
+  }
+}

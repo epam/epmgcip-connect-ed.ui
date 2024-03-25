@@ -1,0 +1,23 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+
+.section-base {
+  padding: 56px 16px;
+
+  &-title {
+    @include mixins.h4;
+    @include mixins.partial-underline("section-base-full-underline");
+  }
+
+  @include responsive-mixins.md {
+    padding: 56px 24px;
+  }
+
+  @include responsive-mixins.lg {
+    padding: 64px 0;
+
+    &-title {
+      @include mixins.h2;
+    }
+  }
+}

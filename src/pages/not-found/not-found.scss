@@ -1,0 +1,35 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+@use "@/styles/layout";
+
+.not-found {
+  padding: 24px 16px;
+  color: var(--black);
+
+  &-title {
+    @include mixins.h3;
+  }
+
+  &-description {
+    margin-top: 12px;
+  }
+
+  @include responsive-mixins.md {
+    padding: 48px 24px 32px;
+  }
+
+  @include responsive-mixins.lg {
+    width: map-get(layout.$columns, "col-10");
+    margin: auto;
+    padding: 120px 0;
+
+    &-title {
+      @include mixins.h2;
+    }
+
+    &-description {
+      margin-top: 24px;
+      width: 60%;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/layout";
+
+.secondary-section {
+  background-color: var(--white);
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 36px;
+  }
+
+  @include responsive-mixins.md {
+    padding: 64px 24px;
+  }
+
+  @include responsive-mixins.lg {
+    padding: 120px 0;
+    width: map-get(layout.$columns, "col-8");
+    margin: auto;
+
+    &-list {
+      margin-top: 60px;
+    }
+  }
+}

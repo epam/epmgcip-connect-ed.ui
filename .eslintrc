@@ -102,12 +102,72 @@
           },
           {
             "group": "external",
+            "pattern": "@/pages/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/features/**/*.tsx",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/components/**/*.tsx",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/**/*.tsx",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/features/**/*.ts",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/components/**/*.ts",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/hooks/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/utils/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/queries/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/constants/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/assets/**",
+            "position": "after"
+          },
+          {
+            "group": "external",
+            "pattern": "@/__generated__/**",
+            "position": "after"
+          },
+          {
+            "group": "object",
             "pattern": "./*.svg",
             "position": "after"
           },
           {
-            "pattern": "./*.css",
-            "group": "sibling",
+            "pattern": "./*.scss",
+            "group": "object",
             "position": "after"
           }
         ],
@@ -170,7 +230,6 @@
     "react/destructuring-assignment": "warn",
     "react/forbid-prop-types": "error",
     "react/prop-types": "error",
-    "react/button-has-type": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
     "@typescript-eslint/no-var-requires": "warn",

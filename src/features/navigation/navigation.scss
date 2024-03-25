@@ -1,0 +1,86 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/layers";
+
+.composed-header {
+  --burger-button-size: 44px;
+  position: fixed;
+  width: 100%;
+  z-index: layers.$header;
+  transition: transform ease-out 0.3s;
+  transform: translateY(0);
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  &-hidden {
+    &:not(:has([aria-expanded="true"])) {
+      transform: translateY(-100%);
+    }
+  }
+
+  .social-ribbon-wrapper {
+    display: none;
+  }
+
+  .burger[type="button"] {
+    width: var(--burger-button-size);
+    height: var(--burger-button-size);
+    color: var(--black);
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    flex-shrink: 0;
+    cursor: pointer;
+
+    &[aria-expanded="true"] {
+      color: var(--primary);
+    }
+  }
+
+  .navigation-menu {
+    display: none;
+  }
+
+  .donate-button {
+    display: none;
+  }
+
+  @include responsive-mixins.lg() {
+    &-hidden {
+      transform: translateY(-100%);
+    }
+
+    .social-ribbon-wrapper {
+      display: flex;
+      background-color: var(--primary);
+      padding: 8px 24px;
+
+      .social-ribbon {
+        margin-left: auto;
+      }
+    }
+
+    .burger[type="button"] {
+      display: none;
+    }
+
+    .navigation-menu {
+      display: flex;
+    }
+
+    .donate-button {
+      display: block;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.sidebar {
+  z-index: layers.$side-bar;
+  @include responsive-mixins.lg() {
+    display: none !important;
+  }
+}
