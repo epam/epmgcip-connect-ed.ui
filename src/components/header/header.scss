@@ -1,13 +1,17 @@
 @use "@/styles/responsive-mixins";
+@use "@/styles/layout";
 
 .header {
   position: relative;
-  padding: 6px 14px;
-  gap: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   background-color: var(--white);
+
+  &-content {
+    padding: 6px 14px;
+    gap: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   &:after {
     content: "";
@@ -40,8 +44,11 @@
   }
 
   @include responsive-mixins.lg() {
-
-    padding: 0 24px;
+    &-content {
+      padding: 0 24px;
+      max-width: layout.$max-content-width;
+      margin: auto;
+    }
 
     &:after {
       content: none;

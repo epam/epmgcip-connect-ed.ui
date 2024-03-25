@@ -1,4 +1,5 @@
 import { HeroArticle } from "@/features/hero-section/hero-article/hero-article.tsx";
+import { SectionBase } from "@/components/section-base/section-base.tsx";
 import {
   ComponentSharedButton,
   ComponentSharedOverlayBlock,
@@ -16,7 +17,7 @@ export const HeroSection = ({
   action,
   bannerSource,
 }: HeroSectionProps) => (
-  <section className="hero-section">
+  <SectionBase className="hero-section" contentClassName="hero-section-content">
     <HeroArticle card={card} action={action} />
     <div className="hero-section-banner">
       <img
@@ -26,5 +27,5 @@ export const HeroSection = ({
         role="presentation"
       />
     </div>
-  </section>
+  </SectionBase>
 );

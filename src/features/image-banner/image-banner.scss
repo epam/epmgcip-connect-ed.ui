@@ -1,6 +1,7 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/mixins";
 @use "@/styles/layout";
+@use "@/styles/breakpoints";
 
 .image-banner {
   --_background-color: var(--background-color, var(--background));
@@ -63,6 +64,7 @@
   @include responsive-mixins.lg {
     &-content {
       padding: 166px 0;
+      max-width: layout.$max-content-width;;
       width: map-get(layout.$columns, "col-10");
       margin: auto;
     }

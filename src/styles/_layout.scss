@@ -1,3 +1,5 @@
+@use "@/styles/breakpoints";
+
 $columns: (
         col-1: 8.333333333333332%,
         col-2: 16.666666666666664%,
@@ -12,3 +14,4 @@ $columns: (
         col-11: 91.66666666666666%,
         col-12: 100%
 );
+$max-content-width: breakpoints.$screen-lg-min - 1;

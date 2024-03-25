@@ -5,6 +5,7 @@
 .hero-section {
   position: relative;
   isolation: isolate;
+  padding: 0;
 
   &-banner {
     margin-top: -#{map-get(constants.$wave-polygon-inverted-md, "height")};
@@ -21,7 +22,11 @@
 
 
   @include responsive-mixins.md {
-    padding: 32px 24px 0;
+    padding-top: 32px;
+
+    &-content {
+      padding: 0 24px;
+    }
 
     &-banner {
       position: absolute;
@@ -31,14 +36,20 @@
       left: 0;
       z-index: -1;
       min-height: auto;
+      margin-top: 0;
       margin-bottom: 24px;
     }
   }
 
   @include responsive-mixins.lg {
-    padding: 48px 48px 0;
+    padding-top: 48px;
+
+    &-content {
+      padding: 0 48px;
+    }
 
     &-banner {
+      margin-top: 0;
       margin-bottom: 48px;
     }
   }

@@ -1,7 +1,7 @@
 import { ActionLink } from "@/components/action-link/action-link.tsx";
 import { Title } from "@/components/title/title.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
-import { getImageBannerTheme } from "@/components/image-banner/utils.ts";
+import { getImageBannerTheme } from "@/features/image-banner/utils.ts";
 import { ComponentSharedImageCard } from "@/__generated__/graphql.ts";
 import "./image-banner.scss";
 

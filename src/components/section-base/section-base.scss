@@ -1,14 +1,9 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/mixins";
-@use "@/styles/breakpoints";
+@use "@/styles/layout";
 
 .section-base {
   padding: 56px 16px;
-
-  &-content {
-    max-width: #{breakpoints.$screen-lg-min - 1};
-    margin: auto;
-  }
 
   &-title {
     @include mixins.h4;
@@ -21,6 +16,11 @@
 
   @include responsive-mixins.lg {
     padding: 64px 0;
+
+    &-content {
+      max-width: layout.$max-content-width;;
+      margin: auto;
+    }
 
     &-title {
       @include mixins.h2;

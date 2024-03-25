@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, type OperationVariables } from "@apollo/client";
 import { DocumentNode } from "graphql";
-import type { OperationVariables } from "@apollo/client";
+import { Spinner } from "@/components/spinner/spinner.tsx";
+import "./query.scss";
 
 interface QueryProps<T> {
   children: (data: { data?: T | undefined }) => ReactNode;
@@ -15,8 +16,7 @@ export const Query = <T,>({ children, query, variables }: QueryProps<T>) => {
   });
 
   if (loading) {
-    //TODO: Ask designer about component
-    return <p>Loading...</p>;
+    return <Spinner className="query-spinner" />;
   }
 
   if (error) {
