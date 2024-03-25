@@ -28,42 +28,41 @@ export const InformationSection = ({
 }: InformationSectionProps) => (
   <SectionBase
     className="information-section"
+    contentClassName="information-section-content"
     style={getInformationSectionTheme(theme)}
   >
-    <div className="information-section-content">
-      {title && (
-        <SectionBase.Title className="information-section-title">
-          {title}
-        </SectionBase.Title>
-      )}
-      {description && (
-        <Typography className="information-section-description">
-          {description}
-        </Typography>
-      )}
-      <ul className="information-section-list">
-        {cards?.map(item => (
-          <WavyCard
-            key={item.id}
-            as="li"
-            className="information-section-list-item"
-            theme={item?.borderColor ?? undefined}
-          >
-            <InformationCard data={item} />
-          </WavyCard>
-        ))}
-      </ul>
-      {action && (
-        <ButtonLink
-          to={action.url ?? ""}
-          className="information-section-action"
-          variant={action?.type ?? undefined}
-          // TODO: change to appropriate theming after clarification
-          // theme={action?.bgColor ?? undefined}
+    {title && (
+      <SectionBase.Title className="information-section-title">
+        {title}
+      </SectionBase.Title>
+    )}
+    {description && (
+      <Typography className="information-section-description">
+        {description}
+      </Typography>
+    )}
+    <ul className="information-section-list">
+      {cards?.map(item => (
+        <WavyCard
+          key={item.id}
+          as="li"
+          className="information-section-list-item"
+          theme={item?.borderColor ?? undefined}
         >
-          {action.label}
-        </ButtonLink>
-      )}
-    </div>
+          <InformationCard data={item} />
+        </WavyCard>
+      ))}
+    </ul>
+    {action && (
+      <ButtonLink
+        to={action.url ?? ""}
+        className="information-section-action"
+        variant={action?.type ?? undefined}
+        // TODO: change to appropriate theming after clarification
+        // theme={action?.bgColor ?? undefined}
+      >
+        {action.label}
+      </ButtonLink>
+    )}
   </SectionBase>
 );

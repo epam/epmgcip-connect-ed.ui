@@ -1,0 +1,77 @@
+@use "@/styles/responsive-mixins";
+
+.testimonials-section {
+  --_section-background: var(--section-background, var(--white));
+  --_section-color: var(--section-color, var(--black));
+  padding-left: 0;
+  padding-right: 0;
+  background-color: var(--_section-background);
+  color: var(--_section-color);
+
+  &-title {
+    margin: 0 auto 48px;
+  }
+
+  &-item {
+    margin: 0 6px;
+    transform: scale(1, 0.9);
+    will-change: transform;
+    transition: transform ease-out 500ms;
+  }
+
+  &-carousel {
+    position: relative;
+    overflow: hidden;
+    padding: 0 10% 84px;
+
+    .slick-track {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      list-style: none;
+    }
+
+    .slick-slide {
+      background-color: transparent;
+    }
+
+    .slick-current {
+      .testimonials-section-item {
+        transform: none;
+      }
+    }
+
+    .slick-current ~ .slick-slide {
+      .testimonials-section-item {
+        transform-origin: left;
+      }
+    }
+
+    .slick-slide:has(~ .slick-current) {
+      .testimonials-section-item {
+        transform-origin: right;
+      }
+    }
+  }
+
+  @include responsive-mixins.md {
+    &-carousel {
+      padding: 0 25% 84px;
+    }
+
+    &-item {
+      margin: 0 8px;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    &-carousel {
+      padding: 0 25% 84px;
+    }
+
+    &-item {
+      margin: 0 12px;
+    }
+  }
+}

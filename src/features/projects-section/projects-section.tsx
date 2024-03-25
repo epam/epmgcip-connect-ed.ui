@@ -31,25 +31,24 @@ export const ProjectsSection = ({
   return (
     <SectionBase
       className="projects-section"
+      contentClassName="projects-section-content"
       style={getProjectsSectionTheme(theme)}
     >
-      <div className="projects-section-content">
-        <SectionBase.Title className="projects-section-title">
-          {title}
-        </SectionBase.Title>
-        <div className="projects-section-layout">
-          {projects?.map((item, index) => (
-            <ProjectCard
-              key={item?.id}
-              className={cc([
-                "projects-section-card",
-                indexesToStretch.has(index) ? "stretched-md" : undefined,
-              ])}
-              data={item}
-              coverClassName="projects-section-card-cover"
-            />
-          ))}
-        </div>
+      <SectionBase.Title className="projects-section-title">
+        {title}
+      </SectionBase.Title>
+      <div className="projects-section-layout">
+        {projects?.map((item, index) => (
+          <ProjectCard
+            key={item?.id}
+            className={cc([
+              "projects-section-card",
+              indexesToStretch.has(index) ? "stretched-md" : undefined,
+            ])}
+            data={item}
+            coverClassName="projects-section-card-cover"
+          />
+        ))}
       </div>
     </SectionBase>
   );

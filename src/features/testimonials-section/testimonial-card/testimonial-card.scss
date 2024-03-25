@@ -1,0 +1,40 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+
+.testimonial-card {
+  --_text-color: var(--text-color, var(--black));
+  --_background-color: var(--background-color, var(--background));
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-radius: 8px;
+  padding: 24px;
+  background-color: var(--_background-color);
+  color: var(--_text-color);
+
+  &-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  &-body {
+    white-space: pre-wrap;
+  }
+
+  &-author {
+    @include mixins.h5;
+  }
+
+  @include responsive-mixins.lg {
+    border-radius: 20px 20px 0 20px;
+
+    &-icon {
+      width: 60px;
+      height: 60px;
+    }
+
+    &-author {
+      @include mixins.h4;
+    }
+  }
+}

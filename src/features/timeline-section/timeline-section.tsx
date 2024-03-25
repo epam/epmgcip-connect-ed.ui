@@ -18,20 +18,19 @@ export const TimelineSection = ({
   return (
     <SectionBase
       className="timeline-section"
+      contentClassName="timeline-section-content"
       style={getTimelineSectionTheme(theme)}
     >
-      <div className="timeline-section-content">
-        <SectionBase.Title className="timeline-section-title">
-          {title}
-        </SectionBase.Title>
-        <ul className="timeline-section-list">
-          {cards?.map((item, index) => (
-            // TODO: replace index with id or title
-            // eslint-disable-next-line react/no-array-index-key
-            <TimelineCard key={index} as="li" data={item} />
-          ))}
-        </ul>
-      </div>
+      <SectionBase.Title className="timeline-section-title">
+        {title}
+      </SectionBase.Title>
+      <ul className="timeline-section-list">
+        {cards?.map((item, index) => (
+          // TODO: replace index with id or title
+          // eslint-disable-next-line react/no-array-index-key
+          <TimelineCard key={index} as="li" data={item} />
+        ))}
+      </ul>
     </SectionBase>
   );
 };
