@@ -5,15 +5,19 @@ import "./section-base.scss";
 
 export interface SectionBaseProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
+  contentClassName?: string;
 }
 
 const SectionBaseComponent = ({
   children,
   className,
+  contentClassName,
   ...delegatedProps
 }: SectionBaseProps) => (
   <section {...delegatedProps} className={cc(["section-base", className])}>
-    {children}
+    <div className={cc(["section-base-content", contentClassName])}>
+      {children}
+    </div>
   </section>
 );
 
