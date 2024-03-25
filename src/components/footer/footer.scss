@@ -1,15 +1,19 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/mixins";
+@use "@/styles/layout";
 
 .footer {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  gap: 36px;
   font-family: Lato, sans-serif;
-  padding: 24px 16px 32px;
   color: var(--black);
   background-color: var(--background);
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 36px;
+    padding: 24px 16px 32px;
+  }
 
   .contact-link {
     color: inherit;
@@ -82,7 +86,9 @@
   }
 
   @include responsive-mixins.md {
-    padding: 24px 24px 32px;
+    &-content {
+      padding: 24px 24px 32px;
+    }
 
     .social-links {
       grid-template-columns: repeat(6, 24px);
@@ -90,8 +96,12 @@
   }
 
   @include responsive-mixins.lg {
-    padding: 64px 24px 32px;
-    gap: 48px;
+    &-content {
+      padding: 64px 24px 32px;
+      gap: 48px;
+      max-width: layout.$max-content-width;;
+      margin: auto;
+    }
 
     .contact-info {
       gap: 24px;

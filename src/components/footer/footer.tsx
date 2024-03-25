@@ -19,40 +19,42 @@ export const Footer = ({ socialLinks, heading, navigation }: FooterProps) => {
 
   return (
     <footer className="footer">
-      {socialLinks && (
-        <div className="social-info">
-          {heading && (
-            <Title as="h3" className="social-title">
-              {heading}
-            </Title>
-          )}
-          <SocialLinkList
-            items={socialLinks}
-            className="social-links"
-            iconClassName="social-icon"
-          />
-        </div>
-      )}
-      <div className="contact-info">
-        <div className="contact-links">
-          {navigation?.map(({ attributes }) => {
-            const slug = attributes?.slug ?? "";
+      <div className="footer-content">
+        {socialLinks && (
+          <div className="social-info">
+            {heading && (
+              <Title as="h3" className="social-title">
+                {heading}
+              </Title>
+            )}
+            <SocialLinkList
+              items={socialLinks}
+              className="social-links"
+              iconClassName="social-icon"
+            />
+          </div>
+        )}
+        <div className="contact-info">
+          <div className="contact-links">
+            {navigation?.map(({ attributes }) => {
+              const slug = attributes?.slug ?? "";
 
-            return (
-              <Link key={slug} to={slug ?? ""} className="contact-link">
-                {attributes?.label}
-              </Link>
-            );
-          })}
-        </div>
-        <div className="copyright-info">
-          <span>© {currentYear} | Connect-Ed</span>
-          <span className="copyright-info-delimiter"> | </span>
-          <span>Все права защищены | info@connect-ed.kz</span>
-        </div>
-        <div className="designed-by">
-          <span>Designed by</span>
-          <EpamLogo className="designed-by-logo" />
+              return (
+                <Link key={slug} to={slug ?? ""} className="contact-link">
+                  {attributes?.label}
+                </Link>
+              );
+            })}
+          </div>
+          <div className="copyright-info">
+            <span>© {currentYear} | Connect-Ed</span>
+            <span className="copyright-info-delimiter"> | </span>
+            <span>Все права защищены | info@connect-ed.kz</span>
+          </div>
+          <div className="designed-by">
+            <span>Designed by</span>
+            <EpamLogo className="designed-by-logo" />
+          </div>
         </div>
       </div>
     </footer>

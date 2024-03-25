@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 import { HeroSection } from "@/features/hero-section/hero-section.tsx";
+import { ImageBanner } from "@/features/image-banner/image-banner.tsx";
 import { InformationSection } from "@/features/information-section/information-section.tsx";
 import { ProjectsSection } from "@/features/projects-section/projects-section.tsx";
 import { TestimonialsSection } from "@/features/testimonials-section/testimonials-section.tsx";
-import { ImageBanner } from "@/components/image-banner/image-banner.tsx";
 import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import { GET_PAGE_DATA } from "@/queries/get-page.ts";
 import {
