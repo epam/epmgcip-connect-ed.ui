@@ -1,37 +1,38 @@
 @use "@/styles/responsive-mixins";
+@use "@/styles/layout";
+@use "@/styles/mixins";
 
 .sign-up {
-  display: flex;
-  flex-direction: column;
-  padding: 32px 24px;
-  color: var(--white);
-  background-color: var(--primary);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  gap: 24px;
-  background-image: url("@/assets/background-path-sm.svg");
+  --_section-background: var(--section-background, var(--primary));
+  --_section-card-background: var(--section-card-background, var(--white));
+  --_section-color: var(--section-color, var(--black));
+
+  @include mixins.wavy-background;
+  background-color: var(--_section-background);
+  color: var(--_section-color);
+  padding: 16px;
 
   &-content {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--_section-card-background);
+    gap: 12px;
+    border-radius: 8px;
+    padding: 32px 24px;
+  }
+
+  &-layout {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
   }
 
-
   &-title {
-    font-family: Lato, sans-serif;
-    text-align: center;
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.5;
+    @include mixins.h4;
+    margin: auto;
   }
 
   &-info {
-    font-family: "Open Sans", sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
     text-align: start;
   }
 
@@ -41,24 +42,25 @@
     gap: 12px;
   }
 
-  @include responsive-mixins.md {
-    background-image: url("@/assets/background-path-md.svg");
+  &-action {
+    margin-top: 12px;
   }
 
   @include responsive-mixins.lg {
-    padding: 64px 142px;
-    background-image: url("@/assets/background-path-lg.svg");
-
-    &-title {
-      font-size: 2.5rem;
-    }
+    padding: 64px 0;
 
     &-content {
-      grid-template-columns: 112fr 171fr;
+      width: map-get(layout.$columns, "col-10");
+      gap: 24px;
+      margin: auto;
     }
 
-    &-info {
-      font-size: 1.25rem;
+    &-title {
+      @include mixins.h2;
+    }
+
+    &-layout {
+      grid-template-columns: 1fr 1fr;
     }
   }
 }
