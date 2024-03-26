@@ -1,0 +1,27 @@
+@use "@/styles/mixins";
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &-label {
+    @include mixins.paragraph;
+    position: relative;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &-text:has(+ input[required])::after {
+      content: "*";
+      color: var(--fire);
+    }
+  }
+
+
+  &-error {
+    color: var(--fire);
+    font-weight: 600;
+  }
+}
