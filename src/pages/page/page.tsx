@@ -3,6 +3,7 @@ import { HeroSection } from "@/features/hero-section/hero-section.tsx";
 import { InformationSection } from "@/features/information-section/information-section.tsx";
 import { ProjectsSection } from "@/features/projects-section/projects-section.tsx";
 import { ImageBanner } from "@/components/image-banner/image-banner.tsx";
+import { SignUp } from "@/components/sign-up/sign-up.tsx";
 import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import { GET_PAGE_DATA } from "@/queries/get-page.ts";
 import {
@@ -71,13 +72,18 @@ const renderSection = (section?: PagePageSectionsDynamicZone | null) => {
 
 export const Page = ({ id }: PageProps) => (
   <Query<GetPageDataQuery> variables={{ id }} query={GET_PAGE_DATA}>
-    {({ data }) =>
-      data?.page?.data?.attributes?.pageSections?.map(section => (
-        // eslint-disable-next-line no-underscore-dangle
-        <Fragment key={`${id}-${section?.__typename}`}>
-          {renderSection(section as PagePageSectionsDynamicZone)}
-        </Fragment>
-      ))
-    }
+    {({ data }) => {
+      return (
+        <>
+          {data?.page?.data?.attributes?.pageSections?.map(section => (
+            // eslint-disable-next-line no-underscore-dangle
+            <Fragment key={`${id}-${section?.__typename}`}>
+              {renderSection(section as PagePageSectionsDynamicZone)}
+            </Fragment>
+          ))}
+          <SignUp />
+        </>
+      );
+    }}
   </Query>
 );
