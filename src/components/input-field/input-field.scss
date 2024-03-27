@@ -1,10 +1,6 @@
 @use "@/styles/mixins";
 
 .input-field {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-
   &-label {
     @include mixins.paragraph;
     position: relative;
@@ -17,11 +13,5 @@
       content: "*";
       color: var(--fire);
     }
-  }
-
-
-  &-error {
-    color: var(--fire);
-    font-weight: 600;
   }
 }
