@@ -46,6 +46,10 @@
     margin-top: 12px;
   }
 
+  &-error {
+    color: var(--fire);
+  }
+
   @include responsive-mixins.lg {
     padding: 64px 0;
 
