@@ -235,6 +235,7 @@
     "@typescript-eslint/no-var-requires": "warn",
     "@typescript-eslint/no-duplicate-enum-values": "warn",
     "@typescript-eslint/no-empty-function": "warn",
+    "@typescript-eslint/no-shadow": "warn",
     // can be replaced by noop from lodash
     "@typescript-eslint/no-unused-vars": [
       "warn",
@@ -281,7 +282,7 @@
     "no-await-in-loop": "warn",
     "no-plusplus": "warn",
     "no-bitwise": "warn",
-    "no-shadow": "warn",
+    "no-shadow": "off",
     "no-restricted-syntax": "warn",
     "no-restricted-exports": "warn",
     "no-use-before-define": "warn",

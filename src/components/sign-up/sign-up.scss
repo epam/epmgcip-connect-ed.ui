@@ -1,0 +1,70 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/layout";
+@use "@/styles/mixins";
+
+.sign-up {
+  --_section-background: var(--section-background, var(--primary));
+  --_section-card-background: var(--section-card-background, var(--white));
+  --_section-color: var(--section-color, var(--black));
+
+  @include mixins.wavy-background;
+  background-color: var(--_section-background);
+  color: var(--_section-color);
+  padding: 16px;
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--_section-card-background);
+    gap: 12px;
+    border-radius: 8px;
+    padding: 32px 24px;
+  }
+
+  &-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  &-title {
+    @include mixins.h4;
+    margin: auto;
+  }
+
+  &-info {
+    text-align: start;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &-action {
+    margin-top: 12px;
+  }
+
+  &-error {
+    color: var(--fire);
+  }
+
+  @include responsive-mixins.lg {
+    padding: 64px 0;
+
+    &-content {
+      width: map-get(layout.$columns, "col-10");
+      gap: 24px;
+      margin: auto;
+    }
+
+    &-title {
+      @include mixins.h2;
+    }
+
+    &-layout {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
