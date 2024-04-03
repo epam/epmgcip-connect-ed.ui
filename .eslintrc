@@ -288,7 +288,14 @@
     "no-nested-ternary": "error",
     "no-param-reassign": "warn",
     "no-mixed-operators": "warn",
-    "no-underscore-dangle": "warn",
+    "no-underscore-dangle": [
+      "warn",
+      {
+        "allow": [
+          "__typename"
+        ]
+      }
+    ],
     "max-len": "off",
     "default-case": "off",
     "key-spacing": "off",

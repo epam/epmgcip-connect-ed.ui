@@ -1,7 +1,7 @@
 import { gql } from "@/__generated__";
 
 export const GET_PAGE_DATA = gql(`
-query GetPageData($id: ID) {
+query GetPageData($id: ID, $page: Int!, $pageSize: Int!) {
   page(id: $id) {
     data {
       attributes {
@@ -10,10 +10,12 @@ query GetPageData($id: ID) {
         pageSections {
           ... on ComponentSectionsRichText {
             __typename
+            id
             content
           }
           ... on ComponentSectionsHeroBanner {
             __typename
+            id
             coverImage {
               data {
                 attributes {
@@ -37,6 +39,7 @@ query GetPageData($id: ID) {
           }
           ... on ComponentSectionsInfoCardsTypeA {
             __typename
+            id
             theme {
               color
               bgColor
@@ -68,6 +71,7 @@ query GetPageData($id: ID) {
           }
           ... on ComponentSectionsImageBanner {
             __typename
+            id
             image {
               data {
                 attributes {
@@ -98,6 +102,7 @@ query GetPageData($id: ID) {
           }
           ... on ComponentSectionsBlocksGrid {
             __typename
+            id
             heading
             theme {
               color
@@ -129,6 +134,100 @@ query GetPageData($id: ID) {
               }
               linkColor
               linkBgColor
+            }
+          }
+          ... on ComponentSectionsColumns {
+            __typename
+            id
+            columnsHeading: heading {
+              text
+              position
+            }
+            theme {
+              color
+              bgColor
+            }
+            cta {
+              label
+              type
+              url
+              color
+              bgColor
+            }
+            cards {
+              cardColor: color
+              cardBgColor: bgColor
+              linkText
+              linkColor
+              article {
+                data {
+                  attributes {
+                    slug
+                    title
+                    excerpt
+                    featuredImage {
+                      data {
+                        attributes {
+                          url
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            showWave
+          }
+          ... on ComponentSectionsColumnsWithTabs {
+            __typename
+            id
+            tabTheme {
+              color
+              bgColor
+              borderColor
+              activeColor
+              activeBgColor
+              activeBorderColor
+            }
+            tabCardTheme {
+              color
+              bgColor
+              linkColor
+            }
+            maxCardsToDisplay
+            cta {
+              label
+              type
+              url
+              color
+              bgColor
+            }
+            tabs {
+              data {
+                id
+                attributes {
+                  slug
+                  label
+                  description
+                  articles(pagination: { page: $page, pageSize: $pageSize }) {
+                    data {
+                      id
+                      attributes {
+                        slug
+                        title
+                        excerpt
+                        featuredImage {
+                          data {
+                            attributes {
+                              url
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

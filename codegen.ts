@@ -8,8 +8,15 @@ const config: CodegenConfig = {
     "./src/__generated__/": {
       preset: "client",
       plugins: [],
+      config: {
+        enumsAsTypes: true,
+        extractAllFieldsToTypes: true,
+        preResolveTypes: true,
+        onlyOperationTypes: true
+      },
       presetConfig: {
         gqlTagName: "gql",
+
       },
     },
   },

@@ -16,7 +16,11 @@ export const Query = <T,>({ children, query, variables }: QueryProps<T>) => {
   });
 
   if (loading) {
-    return <Spinner className="query-spinner" />;
+    return (
+      <div className="query-spinner">
+        <Spinner />
+      </div>
+    );
   }
 
   if (error) {

@@ -30,7 +30,7 @@ $_polygon-lg-base: ((0% 26.7px), (2% 23.3px), (4% 20.0px), (6% 16.9px), (8% 13.8
 
 $wave-polygon-md: (
         height: 36px,
-        value: polygon(100% 100%, #{_getPolygon($_polygon-md-base, meta.get-function("_transformDirect"))}),
+        value: polygon(100% 100%, 0% 100%, #{_getPolygon($_polygon-md-base, meta.get-function("_transformDirect"))}),
 );
 $wave-polygon-lg: (
         height: 54px,

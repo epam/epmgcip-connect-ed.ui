@@ -25,6 +25,153 @@ export type Scalars = {
   Upload: { input: any; output: any; }
 };
 
+export type Article = {
+  __typename?: 'Article';
+  article_category?: Maybe<ArticleCategoryEntityResponse>;
+  content?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  excerpt?: Maybe<Scalars['String']['output']>;
+  featuredImage?: Maybe<UploadFileEntityResponse>;
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations?: Maybe<ArticleRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  slug: Scalars['String']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type ArticleLocalizationsArgs = {
+  filters?: InputMaybe<ArticleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ArticleCategory = {
+  __typename?: 'ArticleCategory';
+  articles?: Maybe<ArticleRelationResponseCollection>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations?: Maybe<ArticleCategoryRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  slug: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type ArticleCategoryArticlesArgs = {
+  filters?: InputMaybe<ArticleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type ArticleCategoryLocalizationsArgs = {
+  filters?: InputMaybe<ArticleCategoryFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ArticleCategoryEntity = {
+  __typename?: 'ArticleCategoryEntity';
+  attributes?: Maybe<ArticleCategory>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type ArticleCategoryEntityResponse = {
+  __typename?: 'ArticleCategoryEntityResponse';
+  data?: Maybe<ArticleCategoryEntity>;
+};
+
+export type ArticleCategoryEntityResponseCollection = {
+  __typename?: 'ArticleCategoryEntityResponseCollection';
+  data: Array<ArticleCategoryEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ArticleCategoryFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ArticleCategoryFiltersInput>>>;
+  articles?: InputMaybe<ArticleFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  label?: InputMaybe<StringFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<ArticleCategoryFiltersInput>;
+  not?: InputMaybe<ArticleCategoryFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ArticleCategoryFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type ArticleCategoryInput = {
+  articles?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ArticleCategoryRelationResponseCollection = {
+  __typename?: 'ArticleCategoryRelationResponseCollection';
+  data: Array<ArticleCategoryEntity>;
+};
+
+export type ArticleEntity = {
+  __typename?: 'ArticleEntity';
+  attributes?: Maybe<Article>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type ArticleEntityResponse = {
+  __typename?: 'ArticleEntityResponse';
+  data?: Maybe<ArticleEntity>;
+};
+
+export type ArticleEntityResponseCollection = {
+  __typename?: 'ArticleEntityResponseCollection';
+  data: Array<ArticleEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ArticleFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>;
+  article_category?: InputMaybe<ArticleCategoryFiltersInput>;
+  content?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  excerpt?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<ArticleFiltersInput>;
+  not?: InputMaybe<ArticleFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type ArticleInput = {
+  article_category?: InputMaybe<Scalars['ID']['input']>;
+  content?: InputMaybe<Scalars['String']['input']>;
+  excerpt?: InputMaybe<Scalars['String']['input']>;
+  featuredImage?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ArticleRelationResponseCollection = {
+  __typename?: 'ArticleRelationResponseCollection';
+  data: Array<ArticleEntity>;
+};
+
 export type BooleanFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
@@ -185,6 +332,41 @@ export type ComponentSectionsBlocksGridBlockArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type ComponentSectionsColumns = {
+  __typename?: 'ComponentSectionsColumns';
+  cards?: Maybe<Array<Maybe<ComponentSharedColumnCard>>>;
+  cta?: Maybe<ComponentSharedButton>;
+  heading?: Maybe<ComponentSharedHeading>;
+  id: Scalars['ID']['output'];
+  showWave?: Maybe<Scalars['Boolean']['output']>;
+  theme?: Maybe<ComponentSharedColor>;
+};
+
+
+export type ComponentSectionsColumnsCardsArgs = {
+  filters?: InputMaybe<ComponentSharedColumnCardFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentSectionsColumnsWithTabs = {
+  __typename?: 'ComponentSectionsColumnsWithTabs';
+  cta?: Maybe<ComponentSharedButton>;
+  id: Scalars['ID']['output'];
+  maxCardsToDisplay?: Maybe<Scalars['Int']['output']>;
+  tabCardTheme?: Maybe<ComponentSharedTabCardTheme>;
+  tabTheme?: Maybe<ComponentSharedArticleCategoryTab>;
+  tabs?: Maybe<ArticleCategoryRelationResponseCollection>;
+};
+
+
+export type ComponentSectionsColumnsWithTabsTabsArgs = {
+  filters?: InputMaybe<ArticleCategoryFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type ComponentSectionsHeroBanner = {
   __typename?: 'ComponentSectionsHeroBanner';
   coverImage?: Maybe<UploadFileEntityResponse>;
@@ -218,6 +400,12 @@ export type ComponentSectionsInfoCardsTypeACardsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type ComponentSectionsOverlayBlockTest = {
+  __typename?: 'ComponentSectionsOverlayBlockTest';
+  id: Scalars['ID']['output'];
+  theme?: Maybe<ComponentSharedColor>;
+};
+
 export type ComponentSectionsRichText = {
   __typename?: 'ComponentSectionsRichText';
   content?: Maybe<Scalars['String']['output']>;
@@ -242,6 +430,17 @@ export type ComponentSectionsTopStripeInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
   socialMedia?: InputMaybe<Array<InputMaybe<ComponentSharedSocialIconInput>>>;
   theme?: InputMaybe<ComponentSharedColorInput>;
+};
+
+export type ComponentSharedArticleCategoryTab = {
+  __typename?: 'ComponentSharedArticleCategoryTab';
+  activeBgColor?: Maybe<Enum_Componentsharedarticlecategorytab_Activebgcolor>;
+  activeBorderColor?: Maybe<Enum_Componentsharedarticlecategorytab_Activebordercolor>;
+  activeColor?: Maybe<Enum_Componentsharedarticlecategorytab_Activecolor>;
+  bgColor?: Maybe<Enum_Componentsharedarticlecategorytab_Bgcolor>;
+  borderColor?: Maybe<Enum_Componentsharedarticlecategorytab_Bordercolor>;
+  color?: Maybe<Enum_Componentsharedarticlecategorytab_Color>;
+  id: Scalars['ID']['output'];
 };
 
 export type ComponentSharedButton = {
@@ -274,6 +473,27 @@ export type ComponentSharedColorInput = {
   bgColor?: InputMaybe<Enum_Componentsharedcolor_Bgcolor>;
   color?: InputMaybe<Enum_Componentsharedcolor_Color>;
   id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type ComponentSharedColumnCard = {
+  __typename?: 'ComponentSharedColumnCard';
+  article?: Maybe<ArticleEntityResponse>;
+  bgColor?: Maybe<Enum_Componentsharedcolumncard_Bgcolor>;
+  color?: Maybe<Enum_Componentsharedcolumncard_Color>;
+  id: Scalars['ID']['output'];
+  linkColor?: Maybe<Enum_Componentsharedcolumncard_Linkcolor>;
+  linkText?: Maybe<Scalars['String']['output']>;
+};
+
+export type ComponentSharedColumnCardFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedColumnCardFiltersInput>>>;
+  article?: InputMaybe<ArticleFiltersInput>;
+  bgColor?: InputMaybe<StringFilterInput>;
+  color?: InputMaybe<StringFilterInput>;
+  linkColor?: InputMaybe<StringFilterInput>;
+  linkText?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSharedColumnCardFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedColumnCardFiltersInput>>>;
 };
 
 export type ComponentSharedGridBlock = {
@@ -309,6 +529,13 @@ export type ComponentSharedGridBlockFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<ComponentSharedGridBlockFiltersInput>>>;
 };
 
+export type ComponentSharedHeading = {
+  __typename?: 'ComponentSharedHeading';
+  id: Scalars['ID']['output'];
+  position?: Maybe<Enum_Componentsharedheading_Position>;
+  text?: Maybe<Scalars['String']['output']>;
+};
+
 export type ComponentSharedImage = {
   __typename?: 'ComponentSharedImage';
   altText?: Maybe<Scalars['String']['output']>;
@@ -342,6 +569,15 @@ export type ComponentSharedImageInput = {
   isIcon?: InputMaybe<Scalars['Boolean']['input']>;
   newTab?: InputMaybe<Scalars['Boolean']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ComponentSharedLink = {
+  __typename?: 'ComponentSharedLink';
+  color?: Maybe<Enum_Componentsharedlink_Color>;
+  icon?: Maybe<UploadFileEntityResponse>;
+  id: Scalars['ID']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
 };
 
 export type ComponentSharedMetaSocial = {
@@ -440,12 +676,27 @@ export type ComponentSharedSocialIconInput = {
   url?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ComponentSharedTabCardTheme = {
+  __typename?: 'ComponentSharedTabCardTheme';
+  bgColor?: Maybe<Enum_Componentsharedtabcardtheme_Bgcolor>;
+  color?: Maybe<Enum_Componentsharedtabcardtheme_Color>;
+  id: Scalars['ID']['output'];
+  linkColor?: Maybe<Enum_Componentsharedtabcardtheme_Linkcolor>;
+};
+
 export type ComponentSharedVideo = {
   __typename?: 'ComponentSharedVideo';
   altText?: Maybe<Scalars['String']['output']>;
   cover?: Maybe<UploadFileEntityResponse>;
   id: Scalars['ID']['output'];
   video?: Maybe<UploadFileEntityResponse>;
+};
+
+export type ComponentSharedWave = {
+  __typename?: 'ComponentSharedWave';
+  bgColor?: Maybe<Enum_Componentsharedwave_Bgcolor>;
+  id: Scalars['ID']['output'];
+  isVisible?: Maybe<Scalars['Boolean']['output']>;
 };
 
 export type DateTimeFilterInput = {
@@ -473,216 +724,340 @@ export type DateTimeFilterInput = {
   startsWith?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export enum Enum_Componentsectionsimagebanner_Bgcolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsectionsimagebanner_Bgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedbutton_Bgcolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedarticlecategorytab_Activebgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedbutton_Color {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedarticlecategorytab_Activebordercolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedbutton_Type {
-  Form = 'form',
-  Inverted = 'inverted',
-  Main = 'main',
-  Nav = 'nav',
-  Outline = 'outline'
-}
+export type Enum_Componentsharedarticlecategorytab_Activecolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedcolor_Bgcolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedarticlecategorytab_Bgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedcolor_Color {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedarticlecategorytab_Bordercolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedgridblock_Bgcolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedarticlecategorytab_Color =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedgridblock_Color {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedbutton_Bgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedgridblock_Linkbgcolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedbutton_Color =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedgridblock_Linkcolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedbutton_Type =
+  | 'form'
+  | 'inverted'
+  | 'main'
+  | 'nav'
+  | 'outline';
 
-export enum Enum_Componentsharedimagecard_Cardbgcolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedcolor_Bgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedimagecard_Cardcolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedcolor_Color =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedimagecard_Linkbgcolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedcolumncard_Bgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedimagecard_Linkcolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedcolumncard_Color =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedmetasocial_Socialnetwork {
-  Facebook = 'Facebook',
-  Twitter = 'Twitter'
-}
+export type Enum_Componentsharedcolumncard_Linkcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharednoodlescard_Bgcolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedgridblock_Bgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharednoodlescard_Bordercolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedgridblock_Color =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharednoodlescard_Color {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedgridblock_Linkbgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedoverlayblock_Bgcolor {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedgridblock_Linkcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
-export enum Enum_Componentsharedoverlayblock_Color {
-  Background = 'background',
-  Black = 'black',
-  Primary = 'primary',
-  Quaternary = 'quaternary',
-  Quinary = 'quinary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  White = 'white'
-}
+export type Enum_Componentsharedheading_Position =
+  | 'center'
+  | 'left';
+
+export type Enum_Componentsharedimagecard_Cardbgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharedimagecard_Cardcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharedimagecard_Linkbgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharedimagecard_Linkcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharedlink_Color =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharedmetasocial_Socialnetwork =
+  | 'Facebook'
+  | 'Twitter';
+
+export type Enum_Componentsharednoodlescard_Bgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharednoodlescard_Bordercolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharednoodlescard_Color =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharedoverlayblock_Bgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharedoverlayblock_Color =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharedtabcardtheme_Bgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharedtabcardtheme_Color =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharedtabcardtheme_Linkcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
+
+export type Enum_Componentsharedwave_Bgcolor =
+  | 'background'
+  | 'black'
+  | 'primary'
+  | 'quaternary'
+  | 'quinary'
+  | 'secondary'
+  | 'tertiary'
+  | 'white';
 
 export type Error = {
   __typename?: 'Error';
@@ -780,7 +1155,7 @@ export type FooterRelationResponseCollection = {
   data: Array<FooterEntity>;
 };
 
-export type GenericMorph = Category | ColorScheme | ComponentMetaMetadata | ComponentSectionsBlocksGrid | ComponentSectionsHeroBanner | ComponentSectionsImageBanner | ComponentSectionsInfoCardsTypeA | ComponentSectionsRichText | ComponentSectionsTopStripe | ComponentSharedButton | ComponentSharedColor | ComponentSharedGridBlock | ComponentSharedImage | ComponentSharedImageCard | ComponentSharedMetaSocial | ComponentSharedNoodlesCard | ComponentSharedOverlayBlock | ComponentSharedSeo | ComponentSharedSocialIcon | ComponentSharedVideo | Footer | Header | I18NLocale | Page | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Article | ArticleCategory | Category | ColorScheme | ComponentMetaMetadata | ComponentSectionsBlocksGrid | ComponentSectionsColumns | ComponentSectionsColumnsWithTabs | ComponentSectionsHeroBanner | ComponentSectionsImageBanner | ComponentSectionsInfoCardsTypeA | ComponentSectionsOverlayBlockTest | ComponentSectionsRichText | ComponentSectionsTopStripe | ComponentSharedArticleCategoryTab | ComponentSharedButton | ComponentSharedColor | ComponentSharedColumnCard | ComponentSharedGridBlock | ComponentSharedHeading | ComponentSharedImage | ComponentSharedImageCard | ComponentSharedLink | ComponentSharedMetaSocial | ComponentSharedNoodlesCard | ComponentSharedOverlayBlock | ComponentSharedSeo | ComponentSharedSocialIcon | ComponentSharedTabCardTheme | ComponentSharedVideo | ComponentSharedWave | Footer | Header | I18NLocale | Page | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Header = {
   __typename?: 'Header';
@@ -947,6 +1322,10 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createArticle?: Maybe<ArticleEntityResponse>;
+  createArticleCategory?: Maybe<ArticleCategoryEntityResponse>;
+  createArticleCategoryLocalization?: Maybe<ArticleCategoryEntityResponse>;
+  createArticleLocalization?: Maybe<ArticleEntityResponse>;
   createCategory?: Maybe<CategoryEntityResponse>;
   createCategoryLocalization?: Maybe<CategoryEntityResponse>;
   createFooterLocalization?: Maybe<FooterEntityResponse>;
@@ -959,6 +1338,8 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteArticle?: Maybe<ArticleEntityResponse>;
+  deleteArticleCategory?: Maybe<ArticleCategoryEntityResponse>;
   deleteCategory?: Maybe<CategoryEntityResponse>;
   deleteColorScheme?: Maybe<ColorSchemeEntityResponse>;
   deleteFooter?: Maybe<FooterEntityResponse>;
@@ -981,6 +1362,8 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateArticle?: Maybe<ArticleEntityResponse>;
+  updateArticleCategory?: Maybe<ArticleCategoryEntityResponse>;
   updateCategory?: Maybe<CategoryEntityResponse>;
   updateColorScheme?: Maybe<ColorSchemeEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
@@ -1001,6 +1384,32 @@ export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
+};
+
+
+export type MutationCreateArticleArgs = {
+  data: ArticleInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationCreateArticleCategoryArgs = {
+  data: ArticleCategoryInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationCreateArticleCategoryLocalizationArgs = {
+  data?: InputMaybe<ArticleCategoryInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationCreateArticleLocalizationArgs = {
+  data?: InputMaybe<ArticleInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
@@ -1061,6 +1470,18 @@ export type MutationCreateUsersPermissionsRoleArgs = {
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
+};
+
+
+export type MutationDeleteArticleArgs = {
+  id: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationDeleteArticleCategoryArgs = {
+  id: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
@@ -1143,6 +1564,20 @@ export type MutationResetPasswordArgs = {
   code: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateArticleArgs = {
+  data: ArticleInput;
+  id: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationUpdateArticleCategoryArgs = {
+  data: ArticleCategoryInput;
+  id: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
@@ -1276,7 +1711,7 @@ export type PageInput = {
   slug?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type PagePageSectionsDynamicZone = ComponentSectionsBlocksGrid | ComponentSectionsHeroBanner | ComponentSectionsImageBanner | ComponentSectionsInfoCardsTypeA | ComponentSectionsRichText | Error;
+export type PagePageSectionsDynamicZone = ComponentSectionsBlocksGrid | ComponentSectionsColumns | ComponentSectionsColumnsWithTabs | ComponentSectionsHeroBanner | ComponentSectionsImageBanner | ComponentSectionsInfoCardsTypeA | ComponentSectionsRichText | Error;
 
 export type PageRelationResponseCollection = {
   __typename?: 'PageRelationResponseCollection';
@@ -1298,13 +1733,16 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export enum PublicationState {
-  Live = 'LIVE',
-  Preview = 'PREVIEW'
-}
+export type PublicationState =
+  | 'LIVE'
+  | 'PREVIEW';
 
 export type Query = {
   __typename?: 'Query';
+  article?: Maybe<ArticleEntityResponse>;
+  articleCategories?: Maybe<ArticleCategoryEntityResponseCollection>;
+  articleCategory?: Maybe<ArticleCategoryEntityResponse>;
+  articles?: Maybe<ArticleEntityResponseCollection>;
   categories?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<CategoryEntityResponse>;
   colorScheme?: Maybe<ColorSchemeEntityResponse>;
@@ -1323,6 +1761,36 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+
+export type QueryArticleArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type QueryArticleCategoriesArgs = {
+  filters?: InputMaybe<ArticleCategoryFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryArticleCategoryArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type QueryArticlesArgs = {
+  filters?: InputMaybe<ArticleFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -1835,6 +2303,8 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type NewArticlesFragment = { __typename?: 'ArticleCategoryEntity', attributes?: { __typename?: 'ArticleCategory', articles?: { __typename?: 'ArticleRelationResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', slug: string, title?: string | null, excerpt?: string | null, featuredImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null } | null } & { ' $fragmentName'?: 'NewArticlesFragment' };
+
 export type GetLayoutDataQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
 }>;
@@ -1842,13 +2312,25 @@ export type GetLayoutDataQueryVariables = Exact<{
 
 export type GetLayoutDataQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', slug?: string | null } | null }> } | null, colorScheme?: { __typename?: 'ColorSchemeEntityResponse', data?: { __typename?: 'ColorSchemeEntity', attributes?: { __typename?: 'ColorScheme', white?: string | null, black?: string | null, background?: string | null, primary?: string | null, secondary?: string | null, tertiary?: string | null, quaternary?: string | null, quinary?: string | null } | null } | null } | null, header?: { __typename?: 'HeaderEntityResponse', data?: { __typename?: 'HeaderEntity', attributes?: { __typename?: 'Header', logo?: { __typename?: 'ComponentSharedImage', altText?: string | null, isIcon?: boolean | null, url?: string | null, newTab?: boolean | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null, cta?: { __typename?: 'ComponentSharedButton', type?: Enum_Componentsharedbutton_Type | null, url?: string | null, label?: string | null, color?: Enum_Componentsharedbutton_Color | null, bgColor?: Enum_Componentsharedbutton_Bgcolor | null } | null, stripe?: { __typename?: 'ComponentSectionsTopStripe', theme?: { __typename?: 'ComponentSharedColor', color?: Enum_Componentsharedcolor_Color | null, bgColor?: Enum_Componentsharedcolor_Bgcolor | null } | null, socialMedia?: Array<{ __typename?: 'ComponentSharedSocialIcon', title?: string | null, url?: string | null, newTab?: boolean | null, icon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null } | null, navigations?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', slug?: string | null, label?: string | null, description?: string | null, pages?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', slug?: string | null, label?: string | null } | null }> } | null } | null }> } | null } | null } | null } | null, footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', heading?: string | null, tradeMark?: string | null, theme?: { __typename?: 'ComponentSharedColor', color?: Enum_Componentsharedcolor_Color | null, bgColor?: Enum_Componentsharedcolor_Bgcolor | null } | null, socialMedia?: Array<{ __typename?: 'ComponentSharedSocialIcon', title?: string | null, url?: string | null, newTab?: boolean | null, icon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', caption?: string | null, url: string, previewUrl?: string | null, height?: number | null, width?: number | null } | null } | null } | null } | null> | null, navigation?: { __typename?: 'PageRelationResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', slug?: string | null, label?: string | null } | null }> } | null } | null } | null } | null };
 
-export type GetPageDataQueryVariables = Exact<{
-  id?: InputMaybe<Scalars['ID']['input']>;
+export type GetNewsByCategoryQueryVariables = Exact<{
+  category: Scalars['String']['input'];
+  page: Scalars['Int']['input'];
+  pageSize: Scalars['Int']['input'];
 }>;
 
 
-export type GetPageDataQuery = { __typename?: 'Query', page?: { __typename?: 'PageEntityResponse', data?: { __typename?: 'PageEntity', attributes?: { __typename?: 'Page', label?: string | null, slug?: string | null, pageSections?: Array<{ __typename: 'ComponentSectionsBlocksGrid', heading?: string | null, theme?: { __typename?: 'ComponentSharedColor', color?: Enum_Componentsharedcolor_Color | null, bgColor?: Enum_Componentsharedcolor_Bgcolor | null } | null, block?: Array<{ __typename?: 'ComponentSharedGridBlock', id: string, heading?: string | null, description?: string | null, color?: Enum_Componentsharedgridblock_Color | null, bgColor?: Enum_Componentsharedgridblock_Bgcolor | null, linkUrl?: string | null, linkText?: string | null, linkTitle?: string | null, linkNewTab?: boolean | null, linkColor?: Enum_Componentsharedgridblock_Linkcolor | null, linkBgColor?: Enum_Componentsharedgridblock_Linkbgcolor | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, linkIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null } | { __typename: 'ComponentSectionsHeroBanner', coverImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, cta?: { __typename?: 'ComponentSharedButton', label?: string | null, url?: string | null, type?: Enum_Componentsharedbutton_Type | null, color?: Enum_Componentsharedbutton_Color | null, bgColor?: Enum_Componentsharedbutton_Bgcolor | null } | null, overlayBlock?: { __typename?: 'ComponentSharedOverlayBlock', title?: string | null, content?: string | null, color?: Enum_Componentsharedoverlayblock_Color | null, bgColor?: Enum_Componentsharedoverlayblock_Bgcolor | null } | null } | { __typename: 'ComponentSectionsImageBanner', bgColor?: Enum_Componentsectionsimagebanner_Bgcolor | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, card?: { __typename?: 'ComponentSharedImageCard', cardHeading?: string | null, cardDescription?: string | null, cardColor?: Enum_Componentsharedimagecard_Cardcolor | null, cardBgColor?: Enum_Componentsharedimagecard_Cardbgcolor | null, linkColor?: Enum_Componentsharedimagecard_Linkcolor | null, linkBgColor?: Enum_Componentsharedimagecard_Linkbgcolor | null, linkText?: string | null, linkUrl?: string | null, linkTitle?: string | null, linkNewTab?: boolean | null, linkIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | { __typename: 'ComponentSectionsInfoCardsTypeA', heading?: string | null, description?: string | null, theme?: { __typename?: 'ComponentSharedColor', color?: Enum_Componentsharedcolor_Color | null, bgColor?: Enum_Componentsharedcolor_Bgcolor | null } | null, cta?: { __typename?: 'ComponentSharedButton', color?: Enum_Componentsharedbutton_Color | null, bgColor?: Enum_Componentsharedbutton_Bgcolor | null, url?: string | null, label?: string | null, type?: Enum_Componentsharedbutton_Type | null } | null, cards?: Array<{ __typename?: 'ComponentSharedNoodlesCard', id: string, heading?: string | null, description?: string | null, color?: Enum_Componentsharednoodlescard_Color | null, bgColor?: Enum_Componentsharednoodlescard_Bgcolor | null, borderColor?: Enum_Componentsharednoodlescard_Bordercolor | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null } | { __typename: 'ComponentSectionsRichText', content?: string | null } | { __typename?: 'Error' } | null> | null } | null } | null } | null };
+export type GetNewsByCategoryQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number } }, data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', slug: string, title?: string | null, excerpt?: string | null, featuredImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null };
+
+export type GetPageDataQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']['input']>;
+  page: Scalars['Int']['input'];
+  pageSize: Scalars['Int']['input'];
+}>;
 
 
+export type GetPageDataQuery = { __typename?: 'Query', page?: { __typename?: 'PageEntityResponse', data?: { __typename?: 'PageEntity', attributes?: { __typename?: 'Page', label?: string | null, slug?: string | null, pageSections?: Array<{ __typename: 'ComponentSectionsBlocksGrid', id: string, heading?: string | null, theme?: { __typename?: 'ComponentSharedColor', color?: Enum_Componentsharedcolor_Color | null, bgColor?: Enum_Componentsharedcolor_Bgcolor | null } | null, block?: Array<{ __typename?: 'ComponentSharedGridBlock', id: string, heading?: string | null, description?: string | null, color?: Enum_Componentsharedgridblock_Color | null, bgColor?: Enum_Componentsharedgridblock_Bgcolor | null, linkUrl?: string | null, linkText?: string | null, linkTitle?: string | null, linkNewTab?: boolean | null, linkColor?: Enum_Componentsharedgridblock_Linkcolor | null, linkBgColor?: Enum_Componentsharedgridblock_Linkbgcolor | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, linkIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null } | { __typename: 'ComponentSectionsColumns', id: string, showWave?: boolean | null, columnsHeading?: { __typename?: 'ComponentSharedHeading', text?: string | null, position?: Enum_Componentsharedheading_Position | null } | null, theme?: { __typename?: 'ComponentSharedColor', color?: Enum_Componentsharedcolor_Color | null, bgColor?: Enum_Componentsharedcolor_Bgcolor | null } | null, cta?: { __typename?: 'ComponentSharedButton', label?: string | null, type?: Enum_Componentsharedbutton_Type | null, url?: string | null, color?: Enum_Componentsharedbutton_Color | null, bgColor?: Enum_Componentsharedbutton_Bgcolor | null } | null, cards?: Array<{ __typename?: 'ComponentSharedColumnCard', linkText?: string | null, linkColor?: Enum_Componentsharedcolumncard_Linkcolor | null, cardColor?: Enum_Componentsharedcolumncard_Color | null, cardBgColor?: Enum_Componentsharedcolumncard_Bgcolor | null, article?: { __typename?: 'ArticleEntityResponse', data?: { __typename?: 'ArticleEntity', attributes?: { __typename?: 'Article', slug: string, title?: string | null, excerpt?: string | null, featuredImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null> | null } | { __typename: 'ComponentSectionsColumnsWithTabs', id: string, maxCardsToDisplay?: number | null, tabTheme?: { __typename?: 'ComponentSharedArticleCategoryTab', color?: Enum_Componentsharedarticlecategorytab_Color | null, bgColor?: Enum_Componentsharedarticlecategorytab_Bgcolor | null, borderColor?: Enum_Componentsharedarticlecategorytab_Bordercolor | null, activeColor?: Enum_Componentsharedarticlecategorytab_Activecolor | null, activeBgColor?: Enum_Componentsharedarticlecategorytab_Activebgcolor | null, activeBorderColor?: Enum_Componentsharedarticlecategorytab_Activebordercolor | null } | null, tabCardTheme?: { __typename?: 'ComponentSharedTabCardTheme', color?: Enum_Componentsharedtabcardtheme_Color | null, bgColor?: Enum_Componentsharedtabcardtheme_Bgcolor | null, linkColor?: Enum_Componentsharedtabcardtheme_Linkcolor | null } | null, cta?: { __typename?: 'ComponentSharedButton', label?: string | null, type?: Enum_Componentsharedbutton_Type | null, url?: string | null, color?: Enum_Componentsharedbutton_Color | null, bgColor?: Enum_Componentsharedbutton_Bgcolor | null } | null, tabs?: { __typename?: 'ArticleCategoryRelationResponseCollection', data: Array<{ __typename?: 'ArticleCategoryEntity', id?: string | null, attributes?: { __typename?: 'ArticleCategory', slug: string, label?: string | null, description?: string | null, articles?: { __typename?: 'ArticleRelationResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', slug: string, title?: string | null, excerpt?: string | null, featuredImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null } | null }> } | null } | { __typename: 'ComponentSectionsHeroBanner', id: string, coverImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, cta?: { __typename?: 'ComponentSharedButton', label?: string | null, url?: string | null, type?: Enum_Componentsharedbutton_Type | null, color?: Enum_Componentsharedbutton_Color | null, bgColor?: Enum_Componentsharedbutton_Bgcolor | null } | null, overlayBlock?: { __typename?: 'ComponentSharedOverlayBlock', title?: string | null, content?: string | null, color?: Enum_Componentsharedoverlayblock_Color | null, bgColor?: Enum_Componentsharedoverlayblock_Bgcolor | null } | null } | { __typename: 'ComponentSectionsImageBanner', id: string, bgColor?: Enum_Componentsectionsimagebanner_Bgcolor | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, card?: { __typename?: 'ComponentSharedImageCard', cardHeading?: string | null, cardDescription?: string | null, cardColor?: Enum_Componentsharedimagecard_Cardcolor | null, cardBgColor?: Enum_Componentsharedimagecard_Cardbgcolor | null, linkColor?: Enum_Componentsharedimagecard_Linkcolor | null, linkBgColor?: Enum_Componentsharedimagecard_Linkbgcolor | null, linkText?: string | null, linkUrl?: string | null, linkTitle?: string | null, linkNewTab?: boolean | null, linkIcon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | { __typename: 'ComponentSectionsInfoCardsTypeA', id: string, heading?: string | null, description?: string | null, theme?: { __typename?: 'ComponentSharedColor', color?: Enum_Componentsharedcolor_Color | null, bgColor?: Enum_Componentsharedcolor_Bgcolor | null } | null, cta?: { __typename?: 'ComponentSharedButton', color?: Enum_Componentsharedbutton_Color | null, bgColor?: Enum_Componentsharedbutton_Bgcolor | null, url?: string | null, label?: string | null, type?: Enum_Componentsharedbutton_Type | null } | null, cards?: Array<{ __typename?: 'ComponentSharedNoodlesCard', id: string, heading?: string | null, description?: string | null, color?: Enum_Componentsharednoodlescard_Color | null, bgColor?: Enum_Componentsharednoodlescard_Bgcolor | null, borderColor?: Enum_Componentsharednoodlescard_Bordercolor | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null> | null } | { __typename: 'ComponentSectionsRichText', id: string, content?: string | null } | { __typename?: 'Error' } | null> | null } | null } | null } | null };
+
+export const NewArticlesFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NewArticles"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ArticleCategoryEntity"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articles"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<NewArticlesFragment, unknown>;
 export const GetLayoutDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetLayoutData"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pages"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pagination"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"colorScheme"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"white"}},{"kind":"Field","name":{"kind":"Name","value":"black"}},{"kind":"Field","name":{"kind":"Name","value":"background"}},{"kind":"Field","name":{"kind":"Name","value":"primary"}},{"kind":"Field","name":{"kind":"Name","value":"secondary"}},{"kind":"Field","name":{"kind":"Name","value":"tertiary"}},{"kind":"Field","name":{"kind":"Name","value":"quaternary"}},{"kind":"Field","name":{"kind":"Name","value":"quinary"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"isIcon"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"newTab"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alternativeText"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"cta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"stripe"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"theme"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"socialMedia"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"newTab"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"navigations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"pages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"footer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"theme"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"socialMedia"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"newTab"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"previewUrl"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"tradeMark"}},{"kind":"Field","name":{"kind":"Name","value":"navigation"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetLayoutDataQuery, GetLayoutDataQueryVariables>;
-export const GetPageDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPageData"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"page"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"pageSections"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentSectionsRichText"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentSectionsHeroBanner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"cta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"overlayBlock"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentSectionsInfoCardsTypeA"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"theme"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"cta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}},{"kind":"Field","name":{"kind":"Name","value":"cards"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"borderColor"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentSectionsImageBanner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"card"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cardHeading"}},{"kind":"Field","name":{"kind":"Name","value":"cardDescription"}},{"kind":"Field","name":{"kind":"Name","value":"cardColor"}},{"kind":"Field","name":{"kind":"Name","value":"cardBgColor"}},{"kind":"Field","name":{"kind":"Name","value":"linkColor"}},{"kind":"Field","name":{"kind":"Name","value":"linkBgColor"}},{"kind":"Field","name":{"kind":"Name","value":"linkText"}},{"kind":"Field","name":{"kind":"Name","value":"linkUrl"}},{"kind":"Field","name":{"kind":"Name","value":"linkTitle"}},{"kind":"Field","name":{"kind":"Name","value":"linkNewTab"}},{"kind":"Field","name":{"kind":"Name","value":"linkIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentSectionsBlocksGrid"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"theme"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"block"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"linkUrl"}},{"kind":"Field","name":{"kind":"Name","value":"linkText"}},{"kind":"Field","name":{"kind":"Name","value":"linkTitle"}},{"kind":"Field","name":{"kind":"Name","value":"linkNewTab"}},{"kind":"Field","name":{"kind":"Name","value":"linkIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"linkColor"}},{"kind":"Field","name":{"kind":"Name","value":"linkBgColor"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetPageDataQuery, GetPageDataQueryVariables>;
+export const GetNewsByCategoryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetNewsByCategory"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"category"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pageSize"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articles"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"article_category"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"in"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"category"}}]}}]}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"pagination"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"pageSize"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pageSize"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"meta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pagination"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetNewsByCategoryQuery, GetNewsByCategoryQueryVariables>;
+export const GetPageDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPageData"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pageSize"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"page"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"pageSections"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentSectionsRichText"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentSectionsHeroBanner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"cta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"overlayBlock"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentSectionsInfoCardsTypeA"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"theme"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"cta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}},{"kind":"Field","name":{"kind":"Name","value":"cards"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"borderColor"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentSectionsImageBanner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"card"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cardHeading"}},{"kind":"Field","name":{"kind":"Name","value":"cardDescription"}},{"kind":"Field","name":{"kind":"Name","value":"cardColor"}},{"kind":"Field","name":{"kind":"Name","value":"cardBgColor"}},{"kind":"Field","name":{"kind":"Name","value":"linkColor"}},{"kind":"Field","name":{"kind":"Name","value":"linkBgColor"}},{"kind":"Field","name":{"kind":"Name","value":"linkText"}},{"kind":"Field","name":{"kind":"Name","value":"linkUrl"}},{"kind":"Field","name":{"kind":"Name","value":"linkTitle"}},{"kind":"Field","name":{"kind":"Name","value":"linkNewTab"}},{"kind":"Field","name":{"kind":"Name","value":"linkIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentSectionsBlocksGrid"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"theme"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"block"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"linkUrl"}},{"kind":"Field","name":{"kind":"Name","value":"linkText"}},{"kind":"Field","name":{"kind":"Name","value":"linkTitle"}},{"kind":"Field","name":{"kind":"Name","value":"linkNewTab"}},{"kind":"Field","name":{"kind":"Name","value":"linkIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"linkColor"}},{"kind":"Field","name":{"kind":"Name","value":"linkBgColor"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentSectionsColumns"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","alias":{"kind":"Name","value":"columnsHeading"},"name":{"kind":"Name","value":"heading"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"position"}}]}},{"kind":"Field","name":{"kind":"Name","value":"theme"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"cta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"cards"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"cardColor"},"name":{"kind":"Name","value":"color"}},{"kind":"Field","alias":{"kind":"Name","value":"cardBgColor"},"name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"linkText"}},{"kind":"Field","name":{"kind":"Name","value":"linkColor"}},{"kind":"Field","name":{"kind":"Name","value":"article"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"showWave"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentSectionsColumnsWithTabs"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"tabTheme"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"borderColor"}},{"kind":"Field","name":{"kind":"Name","value":"activeColor"}},{"kind":"Field","name":{"kind":"Name","value":"activeBgColor"}},{"kind":"Field","name":{"kind":"Name","value":"activeBorderColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tabCardTheme"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"linkColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"maxCardsToDisplay"}},{"kind":"Field","name":{"kind":"Name","value":"cta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tabs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"articles"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pagination"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"pageSize"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pageSize"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetPageDataQuery, GetPageDataQueryVariables>;

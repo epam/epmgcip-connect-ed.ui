@@ -1,11 +1,14 @@
 import { Fragment } from "react";
+import { CategorizedNews } from "@/features/categorized-news/categorized-news.tsx";
 import { HeroSection } from "@/features/hero-section/hero-section.tsx";
 import { ImageBanner } from "@/features/image-banner/image-banner.tsx";
 import { InformationSection } from "@/features/information-section/information-section.tsx";
+import { NewsSection } from "@/features/news-section/news-section.tsx";
 import { ProjectsSection } from "@/features/projects-section/projects-section.tsx";
 import { TestimonialsSection } from "@/features/testimonials-section/testimonials-section.tsx";
 import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import { GET_PAGE_DATA } from "@/queries/get-page.ts";
+import { PAGE_SIZE, START_PAGE } from "@/constants/query-variables.ts";
 import {
   GetPageDataQuery,
   PagePageSectionsDynamicZone,
@@ -18,7 +21,6 @@ export interface PageProps {
 }
 
 const renderSection = (section?: PagePageSectionsDynamicZone | null) => {
-  // eslint-disable-next-line no-underscore-dangle
   switch (section?.__typename) {
     case "ComponentSectionsHeroBanner": {
       return (
@@ -64,6 +66,21 @@ const renderSection = (section?: PagePageSectionsDynamicZone | null) => {
         />
       );
     }
+    case "ComponentSectionsColumns": {
+      return (
+        <NewsSection
+          // @ts-expect-error-next-line Problem is that in interface it's heading, but in request we rename it
+          heading={section?.columnsHeading}
+          cards={section?.cards?.filter(isNotNull)}
+          action={section?.cta}
+          theme={section?.theme}
+          hasWave={section?.showWave}
+        />
+      );
+    }
+    case "ComponentSectionsColumnsWithTabs": {
+      return <CategorizedNews data={section} />;
+    }
     default: {
       return null;
     }
@@ -71,13 +88,16 @@ const renderSection = (section?: PagePageSectionsDynamicZone | null) => {
 };
 
 export const Page = ({ id }: PageProps) => (
-  <Query<GetPageDataQuery> variables={{ id }} query={GET_PAGE_DATA}>
+  <Query<GetPageDataQuery>
+    variables={{ id, page: START_PAGE, pageSize: PAGE_SIZE }}
+    query={GET_PAGE_DATA}
+  >
     {({ data }) => {
       return (
         <>
           {data?.page?.data?.attributes?.pageSections?.map(section => (
-            // eslint-disable-next-line no-underscore-dangle
-            <Fragment key={`${id}-${section?.__typename}`}>
+            // @ts-expect-error Error section doesn't contain id
+            <Fragment key={`${id}-${section?.__typename}-${section?.id}`}>
               {renderSection(section as PagePageSectionsDynamicZone)}
             </Fragment>
           ))}

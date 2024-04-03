@@ -11,12 +11,6 @@
   overflow: hidden;
   color: var(--_text-color);
 
-  &[data-theme="secondary"] {
-    --text-color: var(--white);
-    --action-color: var(--white);
-    --content-color: var(--primary);
-  }
-
   &-image-wrapper {
     overflow: hidden;
     flex-shrink: 0;

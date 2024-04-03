@@ -2,7 +2,7 @@
 
 .wavy-card {
   --_main-color: var(--main-color, var(--primary));
-  --_main-color-transparent-10: color-mix(in srgb, var(--_main-color) 10%, transparent 100%);
+  --_main-color-transparent-10: mixins.manage-alpha(var(--_main-color));
   position: relative;
   display: flex;
   flex-direction: column;
