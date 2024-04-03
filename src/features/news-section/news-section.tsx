@@ -1,38 +1,74 @@
-import { Button } from "@/components/button/button.tsx";
+import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { NewsCard } from "@/components/news-card/news-card.tsx";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
-import cover from "@/assets/images/cover.png";
+import { getNewsSectionTheme } from "@/features/news-section/utils.ts";
+import {
+  ComponentSharedButton,
+  ComponentSharedColor,
+  ComponentSharedColumnCard,
+  ComponentSharedHeading,
+  Maybe,
+} from "@/__generated__/graphql.ts";
 import "./news-section.scss";
 
 export interface NewsSectionProps {
-  title: string;
-  cards: object[];
-  action?: string;
+  heading?: Maybe<ComponentSharedHeading>;
+  cards?: Maybe<ComponentSharedColumnCard[]>;
+  action?: Maybe<ComponentSharedButton>;
+  theme?: Maybe<ComponentSharedColor>;
+  hasWave?: Maybe<boolean>;
 }
 
-export const NewsSection = ({ title, cards, action }: NewsSectionProps) => (
-  <SectionBase className="news-section">
+export const NewsSection = ({
+  heading,
+  cards,
+  action,
+  theme,
+  hasWave,
+}: NewsSectionProps) => (
+  <SectionBase
+    className="news-section"
+    contentClassName="news-section-content"
+    style={getNewsSectionTheme(theme)}
+    hasWave={!!hasWave}
+  >
     <SectionBase.Title className="news-section-title">
-      {title}
+      {heading?.text}
     </SectionBase.Title>
     <ul className="news-section-list">
-      {cards.map((_, index) => (
-        <NewsCard
-          // TODO: change after integration
-          /* eslint-disable-next-line react/no-array-index-key */
-          key={index}
-          cover={cover}
-          as="li"
-          title="Bekzat, 7th grade"
-          body="My favourite subject is history. It seems to me that in history you also need to use a computer. You can find out a lot on the Internet, for example, about the Palaeolithic and ancient people."
-          action="Find out more"
-        />
-      ))}
+      {cards?.map(card => {
+        const news = card.article?.data?.attributes;
+
+        return (
+          <NewsCard
+            as="li"
+            key={card.id}
+            cover={news?.featuredImage?.data?.attributes?.url}
+            title={news?.title}
+            body={news?.excerpt}
+            action={{
+              text: card?.linkText,
+              color: card.linkColor,
+              slug: news?.slug,
+            }}
+            theme={{
+              // @ts-expect-error here is the error because in request used aliases and codegen doesn't support them
+              color: card.cardColor,
+              // @ts-expect-error here is the error because in request used aliases and codegen doesn't support them
+              bgColor: card.cardBgColor,
+            }}
+          />
+        );
+      })}
     </ul>
-    {action && (
-      <Button className="news-section-action" variant="outline">
-        {action}
-      </Button>
+    {action?.label && (
+      <ButtonLink
+        className="news-section-action"
+        to={`/${action.url ?? ""}`}
+        variant={action.type ?? undefined}
+      >
+        {action.label}
+      </ButtonLink>
     )}
   </SectionBase>
 );

@@ -7,6 +7,10 @@
   isolation: isolate;
   padding: 0;
 
+  & + * {
+    clip-path: none !important;
+  }
+
   &-banner {
     margin-top: -#{map-get(constants.$wave-polygon-inverted-md, "height")};
     display: flex;
@@ -23,6 +27,10 @@
 
   @include responsive-mixins.md {
     padding-top: 32px;
+
+    & + * {
+      margin-top: -24px !important;
+    }
 
     &-content {
       padding: 0 24px;
@@ -44,12 +52,15 @@
   @include responsive-mixins.lg {
     padding-top: 48px;
 
+    & + * {
+      margin-top: -48px !important;
+    }
+
     &-content {
       padding: 0 48px;
     }
 
     &-banner {
-      margin-top: 0;
       margin-bottom: 48px;
     }
   }
