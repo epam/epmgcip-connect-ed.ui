@@ -76,7 +76,7 @@ export const App = () => (
       title="Any title"
       body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed volutpat eros, in lobortis leo. Integer aliquet felis magna, vitae viverra mi imperdiet laoreet. Nunc aliquet molestie risus, a ultrices turpis dictum quis. Suspendisse commodo porta nisi, non molestie orci vulputate vitae. Duis feugiat massa nec lacus posuere, vitae cursus est gravida. Proin non feugiat augue, gravida porttitor nisi. Curabitur molestie magna ac urna ultricies, sit amet aliquam nunc malesuada. Quisque tincidunt risus orci, ac condimentum tortor laoreet ut. Sed at odio quam. Ut porta nec massa eget vehicula."
       imageSource="https://storage.googleapis.com/cdkz-admin-staging-storage-bucket/oldman_f542f8cc06/oldman_f542f8cc06.jpg"
-      imageDirection="left"
+      contentMode="ltr"
     />
   </ErrorBoundary>
 );

@@ -11,7 +11,7 @@ export interface WaveBannerProps {
   imageSource: string;
   title: string;
   body: string;
-  imageDirection?: string;
+  contentMode?: "ltr" | "rtl";
 }
 
 export const WaveBanner = ({
@@ -20,7 +20,7 @@ export const WaveBanner = ({
   title,
   body,
   action,
-  imageDirection,
+  contentMode = "ltr",
 }: WaveBannerProps) => (
   <SectionBase
     className="wave-banner"
@@ -29,7 +29,7 @@ export const WaveBanner = ({
   >
     <WavyImage className="wave-banner-image" source={imageSource} />
     <div className="wave-banner-info">
-      {(!imageDirection || imageDirection === "left") && (
+      {contentMode === "ltr" && (
         <WavyImage className="wave-banner-image" source={imageSource} />
       )}
       <Title className="wave-banner-title">{title}</Title>
@@ -43,7 +43,7 @@ export const WaveBanner = ({
           {action}
         </Button>
       )}
-      {imageDirection && imageDirection === "right" && (
+      {contentMode === "rtl" && (
         <WavyImage className="wave-banner-image" source={imageSource} />
       )}
     </div>
