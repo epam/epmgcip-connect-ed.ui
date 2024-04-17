@@ -26,6 +26,7 @@ export const WaveBanner = ({
     className="wave-banner"
     contentClassName="wave-banner-content"
     data-theme={theme}
+    hasWave
   >
     {contentMode === "ltr" && (
       <WavyImage className="wave-banner-image" source={imageSource} />

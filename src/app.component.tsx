@@ -15,7 +15,6 @@ import {
   GetLayoutDataQuery,
   PageEntity,
 } from "@/__generated__/graphql.ts";
-import { WaveBanner } from "./features/wave-banner/wave-banner";
 import "./app.styles.scss";
 
 export const App = () => (
