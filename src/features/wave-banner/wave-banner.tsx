@@ -27,11 +27,10 @@ export const WaveBanner = ({
     contentClassName="wave-banner-content"
     data-theme={theme}
   >
-    <WavyImage className="wave-banner-image" source={imageSource} />
+    {contentMode === "ltr" && (
+      <WavyImage className="wave-banner-image" source={imageSource} />
+    )}
     <div className="wave-banner-info">
-      {contentMode === "ltr" && (
-        <WavyImage className="wave-banner-image" source={imageSource} />
-      )}
       <Title className="wave-banner-title">{title}</Title>
       <Typography className="wave-banner-body">{body}</Typography>
       {action && (
@@ -43,9 +42,9 @@ export const WaveBanner = ({
           {action}
         </Button>
       )}
-      {contentMode === "rtl" && (
-        <WavyImage className="wave-banner-image" source={imageSource} />
-      )}
     </div>
+    {contentMode === "rtl" && (
+      <WavyImage className="wave-banner-image" source={imageSource} />
+    )}
   </SectionBase>
 );
