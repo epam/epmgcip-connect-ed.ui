@@ -1,15 +1,15 @@
-import { SyntheticEvent, useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useLazyQuery } from "@apollo/client";
-import { useSearchParams } from "react-router-dom";
 import { LoadingButton } from "@/components/loading-button/loading-button.tsx";
 import { NewsCard } from "@/components/news-card/news-card.tsx";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
+import { TabList } from "@/components/tab-list/tab-list.tsx";
 import { TAB_PARAM_NAME } from "@/features/categorized-news/constants.ts";
 import {
-  getCategorizedNewsTabsTheme,
   getCategorizedNewsTheme,
-  getTabsMap,
+  getCategorizedNewsTabsMap,
 } from "@/features/categorized-news/utils.ts";
+import { useTabsParams } from "@/hooks/use-tabs-params.ts";
 import { client } from "@/utils/apollo-client.ts";
 import { ARTICLE_CATEGORY_FRAGMENT } from "@/queries/article-category-fragment.ts";
 import { GET_NEWS_BY_CATEGORY } from "@/queries/get-news-by-category.ts";
@@ -24,27 +24,35 @@ export interface CategorizedNewsProps {
   data: ComponentSectionsColumnsWithTabs;
 }
 
+const initialTabs: ArticleCategoryEntity[] = [];
+
 export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
   const [page, setPage] = useState(START_PAGE + 1);
-  const [params, setParams] = useSearchParams();
 
-  const tabs = data.tabs?.data;
+  const tabs = data.tabs?.data ?? initialTabs;
   const firstSlug = tabs?.[0]?.attributes?.slug ?? "";
-  const tabsMap = useMemo(() => getTabsMap(tabs), [tabs]);
-  const tabValue = params.get(TAB_PARAM_NAME) ?? "";
-  const shouldChangeTab = !tabValue || (tabValue && !tabsMap?.has(tabValue));
-  const currentTab = shouldChangeTab ? firstSlug : tabValue;
+  const { tabsMap, isTabValueInList } = useMemo(() => {
+    const map = getCategorizedNewsTabsMap(tabs);
+
+    return {
+      tabsMap: map,
+      isTabValueInList: (tabValue: string) => !!map?.has(tabValue),
+    };
+  }, [tabs]);
+
+  const [currentTab, handleChange] = useTabsParams(
+    TAB_PARAM_NAME,
+    firstSlug,
+    isTabValueInList,
+  );
+
   const currentArticles = tabsMap?.get(currentTab);
   const canLoadMore = (currentArticles?.length ?? -1) % PAGE_SIZE === 0;
 
   const [getNews, { loading }] = useLazyQuery(GET_NEWS_BY_CATEGORY, {
     onCompleted: lazyData => {
       if (lazyData?.articles?.data?.length) {
-        const tabsData: ArticleCategoryEntity[] = tabs ?? [];
-
-        const activeTab = tabsData.find(
-          tab => tab.attributes?.slug === currentTab,
-        );
+        const activeTab = tabs.find(tab => tab.attributes?.slug === currentTab);
 
         if (activeTab) {
           client.writeFragment({
@@ -63,19 +71,6 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
     },
   });
 
-  useEffect(() => {
-    if (shouldChangeTab) {
-      setParams(
-        previousParams => {
-          const newParams = new URLSearchParams(previousParams);
-          newParams.set(TAB_PARAM_NAME, currentTab);
-          return newParams;
-        },
-        { replace: true },
-      );
-    }
-  }, [shouldChangeTab, currentTab, setParams]);
-
   const handleClick = () => {
     getNews({
       variables: {
@@ -88,17 +83,13 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
     });
   };
 
-  const handleChange = (event: SyntheticEvent<HTMLButtonElement>) => {
-    const target = event.target as HTMLButtonElement;
+  const getTabData = (tab: ArticleCategoryEntity) => {
+    const tabData = tab?.attributes;
 
-    setParams(
-      previousParams => {
-        const newParams = new URLSearchParams(previousParams);
-        newParams.set(TAB_PARAM_NAME, target.value);
-        return newParams;
-      },
-      { replace: true },
-    );
+    return {
+      value: tabData?.slug,
+      label: tabData?.label,
+    };
   };
 
   return (
@@ -107,30 +98,14 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
       contentClassName="categorized-news-content"
       style={getCategorizedNewsTheme()}
     >
-      <div
-        role="tablist"
-        className="categorized-news-tabs"
-        style={getCategorizedNewsTabsTheme(data?.tabTheme)}
-      >
-        {data.tabs?.data.map(tab => {
-          const tabData = tab.attributes;
-
-          return (
-            <button
-              key={tabData?.slug}
-              role="tab"
-              type="button"
-              className="categorized-news-tab"
-              aria-selected={currentTab === tabData?.slug}
-              value={tabData?.slug}
-              onClick={handleChange}
-            >
-              {tabData?.label}
-            </button>
-          );
-        })}
-      </div>
-      <div role="tabpanel" className="categorized-news-tab-panel">
+      <TabList
+        theme={data?.tabTheme}
+        tabs={tabs}
+        activeTab={currentTab}
+        getTabData={getTabData}
+        onChange={handleChange}
+      />
+      <TabList.Panel className="categorized-news-tab-panel">
         <ul className="categorized-news-list">
           {currentArticles?.map(tab => {
             const news = tab?.attributes;
@@ -166,7 +141,7 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
             {data?.cta?.label}
           </LoadingButton>
         )}
-      </div>
+      </TabList.Panel>
     </SectionBase>
   );
 };
