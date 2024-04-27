@@ -1,1 +1,1 @@
-export const TAB_PARAM_NAME = "tab";
+export const TAB_PARAM_NAME = "news-tab";
