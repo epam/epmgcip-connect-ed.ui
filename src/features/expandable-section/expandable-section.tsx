@@ -27,7 +27,7 @@ export const ExpandableSection = ({
       <SectionBase.Title className="expandable-section-title">
         {heading}
       </SectionBase.Title>
-      <ul className="timeline-section-list">
+      <ul className="expandable-section-list">
         {cards?.map(card => (
           // TODO: replace index with id or title
 

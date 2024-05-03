@@ -33,8 +33,7 @@
     }
 
     &-list {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      flex-direction: row;
     }
 
     &-action {
@@ -52,11 +51,5 @@
     &-list {
       gap: 24px;
     }
-  }
-  
-  .expandable-section-list {
-    gap: 24px;
-    display: grid;
-
   }
 }
