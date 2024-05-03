@@ -3,8 +3,6 @@ import { Title } from "@/components/title/title.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
 import { getExpandableCardTheme } from "@/components/expandable-card/utils.ts";
 import { Maybe } from "@/__generated__/graphql.ts";
-import { TextLink } from "@/components/text-link/text-link";
-import { Button } from "../button/button";
 import "./expandable-card.scss";
 
 export type ExpandableCardData = {
@@ -52,22 +50,20 @@ export const ExpandableCard = ({
           {isExpanded && data?.content}
         </Typography>
         {!isExpanded && data?.action?.expand?.text && (
-          <Button
+          <button
             onClick={() => setIsExpanded(true)}
-            className="expandable-button-link"
-            variant="outline"
+            className="expandable-card-action"
           >
             {data.action.expand.text}
-          </Button>
+          </button>
         )}
         {isExpanded && data?.action?.collapse?.text && (
-          <TextLink
+          <button
             onClick={() => setIsExpanded(false)}
-            to="#"
             className="expandable-card-action"
           >
             {data?.action.collapse.text}
-          </TextLink>
+          </button>
         )}
       </div>
     </Tag>
