@@ -47,6 +47,17 @@
     transform: scale(1.25);
   }
 
+  .expandable-button-link.outline {
+    padding: 0;
+    margin: 0 auto 0 0;
+    border: none;
+    background-color: var(--_content-color);
+
+    &:hover {
+      background-color: var(--_content-color);
+    }
+  }
+
   @include responsive-mixins.md {
     &-image {
       height: 130px;
