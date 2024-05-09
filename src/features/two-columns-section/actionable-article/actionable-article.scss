@@ -1,0 +1,20 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+
+.actionable-article {
+  &-title {
+    margin-bottom: 16px;
+    @include mixins.partial-underline;
+  }
+
+  &-body {
+
+  }
+
+  @include responsive-mixins.md {
+
+  }
+
+  @include responsive-mixins.lg {
+  }
+}
