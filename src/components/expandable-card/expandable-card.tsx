@@ -36,6 +36,14 @@ export const ExpandableCard = ({
 }: DescriptionCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const hasAction = data?.action?.expand?.text && data?.action?.collapse?.text;
+
+  const handleClick = hasAction
+    ? () => {
+        setIsExpanded(previous => !previous);
+      }
+    : undefined;
+
   return (
     <Tag
       className="expandable-card"
@@ -49,20 +57,11 @@ export const ExpandableCard = ({
           {data?.teaser}
           {isExpanded && data?.content}
         </Typography>
-        {!isExpanded && data?.action?.expand?.text && (
-          <button
-            onClick={() => setIsExpanded(true)}
-            className="expandable-card-action"
-          >
-            {data.action.expand.text}
-          </button>
-        )}
-        {isExpanded && data?.action?.collapse?.text && (
-          <button
-            onClick={() => setIsExpanded(false)}
-            className="expandable-card-action"
-          >
-            {data?.action.collapse.text}
+        {hasAction && (
+          <button onClick={handleClick} className="expandable-card-action">
+            {isExpanded
+              ? data?.action?.collapse?.text
+              : data?.action?.expand?.text}
           </button>
         )}
       </div>

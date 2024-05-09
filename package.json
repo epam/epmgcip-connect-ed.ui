@@ -17,7 +17,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@apollo/client": "^3.10.1",
+    "@apollo/client": "^3.10.3",
     "classcat": "^5.0.5",
     "graphql": "^16.8.1",
     "react": "^18.3.1",
@@ -31,14 +31,14 @@
     "@graphql-codegen/client-preset": "^4.2.5",
     "@graphql-typed-document-node/core": "^3.2.0",
     "@types/graphql": "^14.5.0",
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.11",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@types/react-slick": "^0.23.13",
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "dotenv-cli": "^7.4.1",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-alias": "~1.1.2",
@@ -52,9 +52,9 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
-    "sass": "^1.75.0",
+    "sass": "^1.77.0",
     "typescript": "^5.4.5",
-    "vite": "^5.2.10",
+    "vite": "^5.2.11",
     "vite-plugin-svgr": "^4.2.0"
   }
 }

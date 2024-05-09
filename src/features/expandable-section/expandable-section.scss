@@ -23,10 +23,6 @@
     gap: 24px;
   }
 
-  &-action {
-    width: 100%;
-  }
-
   @include responsive-mixins.md {
     &-content {
       gap: 24px;
@@ -34,11 +30,6 @@
 
     &-list {
       flex-direction: row;
-    }
-
-    &-action {
-      width: auto;
-      margin: auto;
     }
   }
 
