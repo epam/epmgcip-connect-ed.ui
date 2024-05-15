@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { CategorizedNews } from "@/features/categorized-news/categorized-news.tsx";
+import { EmbeddedSection } from "@/features/embedded-section/embedded-section.tsx";
 import { HeroSection } from "@/features/hero-section/hero-section.tsx";
 import { ImageBanner } from "@/features/image-banner/image-banner.tsx";
 import { InformationSection } from "@/features/information-section/information-section.tsx";
@@ -7,6 +8,7 @@ import { NewsSection } from "@/features/news-section/news-section.tsx";
 import { ProjectsSection } from "@/features/projects-section/projects-section.tsx";
 import { TestimonialsSection } from "@/features/testimonials-section/testimonials-section.tsx";
 import { TwoColumnsSection } from "@/features/two-columns-section/two-columns-section.tsx";
+import { Iframe } from "@/components/iframe/iframe.tsx";
 import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import { GET_PAGE_DATA } from "@/queries/get-page.ts";
 import { PAGE_SIZE, START_PAGE } from "@/constants/query-variables.ts";
@@ -192,6 +194,17 @@ export const Page = ({ id }: PageProps) => (
             title="Testimonials"
           />
           <TwoColumnsSection />
+          <EmbeddedSection title="Embedded">
+            <Iframe
+              width="100%"
+              height="100%"
+              src="https://lookerstudio.google.com/embed/reporting/9a1b8a14-681b-4f7e-9851-f854309945be/page/s26zD"
+              frameBorder="0"
+              style={{ border: 0 }}
+              allowFullScreen
+              sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+            />
+          </EmbeddedSection>
         </>
       );
     }}
