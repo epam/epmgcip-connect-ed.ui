@@ -30,6 +30,7 @@ type ColumnContent =
     }
   | {
       type: "graph";
+      url: string;
     };
 
 const renderColumn = (item: ColumnContent) => {
@@ -58,7 +59,7 @@ const renderColumn = (item: ColumnContent) => {
       );
     }
     case "graph": {
-      return <DataGraph />;
+      return <DataGraph url={item.url} />;
     }
     default: {
       return null;
@@ -79,7 +80,10 @@ export const TwoColumnsSection = () => {
     title: "Who is the course for",
     body: "The Digital Literacy for kids and youth course is open to all middle school children aged 11-15 (grades 5 to 9). This age range was selected in response to the distance learning challenges these children faced during the COVID-19 outbreak and the findings from the ICILS 2018 report on digital literacy among 8th graders in Kazakhstan. It revealed that 50% of 8th graders are at Level 1, 27% at Level 2, and 25% at Level 3 of digital literacy. None of them achieved Level 4. This underscores the importance of educating this specific age group in digital literacy. By offering this online course, we aim to empower young individuals with the skills they need to thrive in an increasingly digital world. Our course ensures that children from diverse backgrounds can participate, bridging the digital divide and opening more opportunities."
   }*/,
-      { type: "graph" },
+      {
+        type: "graph",
+        url: "https://lookerstudio.google.com/embed/reporting/9a1b8a14-681b-4f7e-9851-f854309945be/page/s26zD",
+      },
     ],
     [
       { type: "image" },
