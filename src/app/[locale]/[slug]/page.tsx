@@ -122,6 +122,7 @@ export default async function Home({
           {renderSection(section as PagePageSectionsDynamicZone)}
         </Fragment>
       ))}
+      {/* eslint-disable */}
       <div className="sp-form-outer sp-force-hide">
         <div
           id="sp-form-235327"
@@ -135,7 +136,7 @@ export default async function Home({
             <div className="sp-message">
               <div></div>
             </div>
-            <form noValidate="" className="sp-element-container ">
+            <form noValidate className="sp-element-container ">
               <div
                 className="sp-field "
                 sp-id="sp-5c47ba76-ed95-48e7-a86d-7e2a7860d63b"
@@ -152,6 +153,7 @@ export default async function Home({
                   placeholder="Ivan"
                   sp-tips="%7B%22required%22%3A%22Required%20field%22%7D"
                   autoComplete="on"
+                  // @ts-ignore
                   required="required"
                 />
               </div>
@@ -171,6 +173,7 @@ export default async function Home({
                   placeholder="username@gmail.com"
                   sp-tips="%7B%22required%22%3A%22Required%20field%22%2C%22wrong%22%3A%22Wrong%20email%22%7D"
                   autoComplete="on"
+                  // @ts-ignore
                   required="required"
                 />
               </div>
@@ -195,6 +198,7 @@ export default async function Home({
         async
         src="//web.webformscr.com/apps/fc3/build/default-handler.js?1714030486793"
       />
+      {/* eslint-enable */}
     </>
   );
 }
