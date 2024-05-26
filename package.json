@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "build:staging": "next build --mode staging",
+    "build:staging": "next build",
     "lint": "next lint . --ext ts,tsx --max-warnings 17",
     "lint-fix": "eslint . --ext ts,tsx --fix",
     "preview": "vite preview",
