@@ -1,5 +1,5 @@
 import { ElementType, HTMLAttributes } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Title } from "@/components/title/title.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
 import { getNewsCardTheme } from "@/components/news-card/utils.ts";
@@ -45,7 +45,7 @@ export const NewsCard = ({
       </Title>
       <Typography className="news-card-body">{body}</Typography>
       {action.text && (
-        <Link to={`/${action.slug ?? ""}`} className="news-card-action">
+        <Link href={`/${action.slug ?? ""}`} className="news-card-action">
           {action.text}
         </Link>
       )}

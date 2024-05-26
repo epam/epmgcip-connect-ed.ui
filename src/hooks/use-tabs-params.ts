@@ -1,12 +1,16 @@
+"use client";
+
 import { useCallback, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 export const useTabsParams = (
   tabParamName: string,
   initialTab: string,
   isTabValueInList: (tabValue: string) => boolean,
 ) => {
-  const [params, setParams] = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useSearchParams();
 
   const tabValue = params.get(tabParamName) ?? "";
   const shouldChangeTab =
@@ -15,16 +19,11 @@ export const useTabsParams = (
 
   const handleChange = useCallback(
     (value: string) => {
-      setParams(
-        previousParams => {
-          const newParams = new URLSearchParams(previousParams);
-          newParams.set(tabParamName, value);
-          return newParams;
-        },
-        { replace: true },
-      );
+      const newParams = new URLSearchParams(params);
+      newParams.set(tabParamName, value);
+      router.replace(`${pathname}?${newParams.toString()}`, { scroll: false });
     },
-    [tabParamName, setParams],
+    [tabParamName, router, pathname, params],
   );
 
   useEffect(() => {

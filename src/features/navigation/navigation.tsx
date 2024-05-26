@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import { NavigationMenu } from "@/features/navigation/navigation-menu/navigation-menu.tsx";
 import { NavigationSidebar } from "@/features/navigation/navigation-sidebar/navigation-sidebar.tsx";
@@ -119,7 +121,7 @@ export const Navigation = ({
                 <ButtonLink
                   variant="nav"
                   className="donate-button"
-                  to={action?.url ?? ""}
+                  href={action?.url ?? ""}
                 >
                   {action?.label}
                 </ButtonLink>

@@ -1,3 +1,5 @@
+"use client";
+
 import { useLayoutEffect } from "react";
 import { getApplicationRoot } from "@/utils/get-application-root.ts";
 import { ColorScheme } from "@/__generated__/graphql.ts";

@@ -19,7 +19,7 @@ export const HeroArticle = ({ card, action }: HeroArticleProps) => (
     <Typography className="hero-article-body">{card?.content}</Typography>
     {action && (
       <ButtonLink
-        to={`/${action?.url ?? ""}`}
+        href={`/${action?.url ?? ""}`}
         variant={action?.type ?? undefined}
         /*theme={action?.bgColor ?? undefined}*/
       >

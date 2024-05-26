@@ -5,6 +5,7 @@
     "es2020": true
   },
   "extends": [
+    "next/core-web-vitals",
     "eslint:recommended",
     "prettier",
     "plugin:react/recommended",

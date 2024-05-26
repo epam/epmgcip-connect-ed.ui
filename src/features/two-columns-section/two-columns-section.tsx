@@ -82,7 +82,7 @@ export const TwoColumnsSection = () => {
   }*/,
       {
         type: "graph",
-        url: "https://lookerstudio.google.com/embed/reporting/9a1b8a14-681b-4f7e-9851-f854309945be/page/s26zD",
+        url: "https://lookerstudio.google.com/embed/reporting/faa2353a-7923-4f35-a84d-1172a6a545e6/page/s26zD",
       },
     ],
     [

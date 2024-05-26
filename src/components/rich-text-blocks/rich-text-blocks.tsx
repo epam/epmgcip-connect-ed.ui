@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import { BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
 import cc from "classcat";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Title } from "@/components/title/title.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
 import {
@@ -52,7 +52,7 @@ const blocks: RichTextBlocksConfig = {
   ),
   link: ({ url, children }) => (
     <Link
-      to={url ?? ""}
+      href={url ?? ""}
       target="_blank"
       rel="noopener noreferrer"
       className="rich-text-link"

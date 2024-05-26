@@ -1,0 +1,13 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+@use "@/styles/layout";
+@use "@/styles/constants";
+
+.section-base-title {
+  @include mixins.h4;
+  @include mixins.partial-underline("section-base-full-underline");
+
+  @include responsive-mixins.lg {
+    @include mixins.h2;
+  }
+}

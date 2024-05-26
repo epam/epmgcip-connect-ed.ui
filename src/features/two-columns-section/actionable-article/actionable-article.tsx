@@ -22,7 +22,7 @@ export const ActionableArticle = ({
     <article className={cc(["actionable-article", className])}>
       <Title className="actionable-article-title">{title}</Title>
       <Typography className="actionable-article-body">{body}</Typography>
-      {!!action && <ButtonLink to="/">Go</ButtonLink>}
+      {!!action && <ButtonLink href="/">Go</ButtonLink>}
     </article>
   );
 };

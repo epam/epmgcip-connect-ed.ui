@@ -1,10 +1,10 @@
 import { ElementType, HTMLAttributes, JSX, PropsWithChildren } from "react";
 import cc from "classcat";
+import Link from "next/link";
 import Markdown, {
   type Components as MarkdownComponents,
   type ExtraProps,
 } from "react-markdown";
-import { Link } from "react-router-dom";
 import rehypeRaw from "rehype-raw";
 import reformGfm from "remark-gfm";
 import { Title } from "@/components/title/title.tsx";
@@ -42,7 +42,7 @@ const markdownConfig: MarkdownComponents = {
   p: ({ children }) => <Typography>{children}</Typography>,
   a: ({ href, children }) => (
     <Link
-      to={href ?? ""}
+      href={href ?? ""}
       target="_blank"
       rel="noopener noreferrer"
       className="rich-text-link"

@@ -10,6 +10,7 @@ import {
   ComponentSharedColor,
   ComponentSharedGridBlock,
 } from "@/__generated__/graphql.ts";
+import { SectionBaseTitle } from "@/components/section-base";
 import "./projects-section.scss";
 
 export interface ProjectsSectionProps {
@@ -34,9 +35,9 @@ export const ProjectsSection = ({
       contentClassName="projects-section-content"
       style={getProjectsSectionTheme(theme)}
     >
-      <SectionBase.Title className="projects-section-title">
+      <SectionBaseTitle className="projects-section-title">
         {title}
-      </SectionBase.Title>
+      </SectionBaseTitle>
       <div className="projects-section-layout">
         {projects?.map((item, index) => (
           <ProjectCard

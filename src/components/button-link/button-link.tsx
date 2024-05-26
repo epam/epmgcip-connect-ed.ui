@@ -1,6 +1,6 @@
 import { AnchorHTMLAttributes, forwardRef } from "react";
 import cc from "classcat";
-import { Link, type LinkProps } from "react-router-dom";
+import Link, { LinkProps } from "next/link";
 import "./button-link.scss";
 
 export type ButtonLinkVariant =

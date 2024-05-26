@@ -8,6 +8,7 @@ import {
   getTestimonialsSectionTheme,
 } from "@/features/testimonials-section/utils.ts";
 import { ComponentSharedColor } from "@/__generated__/graphql.ts";
+import { SectionBaseTitle } from "@/components/section-base";
 import "./testimonials-section.scss";
 
 export interface TestimonialsSectionProps {
@@ -32,9 +33,9 @@ export const TestimonialsSection = ({
     className="testimonials-section"
     style={getTestimonialsSectionTheme(theme)}
   >
-    <SectionBase.Title className="testimonials-section-title">
+    <SectionBaseTitle className="testimonials-section-title">
       {title}
-    </SectionBase.Title>
+    </SectionBaseTitle>
     <Carousel
       className="testimonials-section-carousel"
       centerMode

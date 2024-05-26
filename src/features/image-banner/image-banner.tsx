@@ -28,7 +28,7 @@ export const ImageBanner = ({ source, card }: ImageBannerProps) => (
           {card?.cardDescription}
         </Typography>
         <ActionLink
-          to={`/${card?.linkUrl}`}
+          href={`/${card?.linkUrl}`}
           className="image-banner-action"
           target={card?.linkNewTab ? "_blank" : undefined}
           // TODO: change after clarification regarding button theming

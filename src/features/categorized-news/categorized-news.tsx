@@ -1,5 +1,7 @@
+"use client";
+
 import { useMemo, useState } from "react";
-import { useLazyQuery } from "@apollo/client";
+import { useApolloClient, useLazyQuery } from "@apollo/client";
 import { LoadingButton } from "@/components/loading-button/loading-button.tsx";
 import { NewsCard } from "@/components/news-card/news-card.tsx";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
@@ -10,7 +12,6 @@ import {
   getCategorizedNewsTabsMap,
 } from "@/features/categorized-news/utils.ts";
 import { useTabsParams } from "@/hooks/use-tabs-params.ts";
-import { client } from "@/utils/apollo-client.ts";
 import { ARTICLE_CATEGORY_FRAGMENT } from "@/queries/article-category-fragment.ts";
 import { GET_NEWS_BY_CATEGORY } from "@/queries/get-news-by-category.ts";
 import { PAGE_SIZE, START_PAGE } from "@/constants/query-variables.ts";
@@ -28,6 +29,8 @@ const initialTabs: ArticleCategoryEntity[] = [];
 
 export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
   const [page, setPage] = useState(START_PAGE + 1);
+
+  const client = useApolloClient();
 
   const tabs = data.tabs?.data ?? initialTabs;
   const firstSlug = tabs?.[0]?.attributes?.slug ?? "";
@@ -113,7 +116,7 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
             return (
               <NewsCard
                 as="li"
-                key={tab.id}
+                key={`${tab.id}${news?.slug}`}
                 cover={news?.featuredImage?.data?.attributes?.url}
                 title={news?.title}
                 body={news?.excerpt}

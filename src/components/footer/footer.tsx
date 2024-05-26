@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { SocialLinkList } from "@/components/social-link-list/social-link-list.tsx";
 import { Title } from "@/components/title/title.tsx";
 import EpamLogo from "@/assets/icons/epam-logo.svg?react";
@@ -40,7 +40,7 @@ export const Footer = ({ socialLinks, heading, navigation }: FooterProps) => {
               const slug = attributes?.slug ?? "";
 
               return (
-                <Link key={slug} to={slug ?? ""} className="contact-link">
+                <Link key={slug} href={slug ?? ""} className="contact-link">
                   {attributes?.label}
                 </Link>
               );
