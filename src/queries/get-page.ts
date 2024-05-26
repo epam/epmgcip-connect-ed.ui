@@ -155,6 +155,7 @@ query GetPageData($id: ID, $page: Int!, $pageSize: Int!) {
               bgColor
             }
             cards {
+              id
               cardColor: color
               cardBgColor: bgColor
               linkText

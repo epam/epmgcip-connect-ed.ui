@@ -11,6 +11,7 @@ import {
 } from "@/features/ways-to-donate/utils.ts";
 import { useTabsParams } from "@/hooks/use-tabs-params.ts";
 import qrCode from "@/assets/images/qr-code.png";
+import { SectionBaseTitle } from "@/components/section-base";
 import "./ways-to-donate.scss";
 
 const tabsMock = [
@@ -99,7 +100,7 @@ export const WaysToDonate = ({ tabs = tabsMock }: WaysToDonateProps) => {
       contentClassName="ways-to-donate-content"
       style={getWaysToDonateTheme()}
     >
-      <SectionBase.Title>Ways to donate</SectionBase.Title>
+      <SectionBaseTitle>Ways to donate</SectionBaseTitle>
       <TabList
         tabs={tabs}
         theme={{}} // TODO: add when integration is ready
@@ -119,7 +120,7 @@ export const WaysToDonate = ({ tabs = tabsMock }: WaysToDonateProps) => {
               <img src={qrCode} width="200" height="200" alt="" />
             </div>
           )}
-          <ButtonLink to="/" target="_blank">
+          <ButtonLink href="/" target="_blank">
             Donate now
           </ButtonLink>
         </div>

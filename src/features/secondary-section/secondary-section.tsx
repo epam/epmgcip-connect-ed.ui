@@ -1,6 +1,7 @@
 import { SecondaryCard } from "@/components/secondary-card/secondary-card.tsx";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
 import { WavyCard } from "@/components/wavy-card/wavy-card.tsx";
+import { SectionBaseTitle } from "@/components/section-base";
 import "./secondary-section.scss";
 
 export interface SecondarySectionProps {
@@ -10,9 +11,9 @@ export interface SecondarySectionProps {
 export const SecondarySection = ({ items }: SecondarySectionProps) => {
   return (
     <SectionBase className="secondary-section">
-      <SectionBase.Title className="secondary-section-title">
+      <SectionBaseTitle className="secondary-section-title">
         How we’re helping
-      </SectionBase.Title>
+      </SectionBaseTitle>
       <ul className="secondary-section-list">
         {items?.map((item, index) => (
           // TODO: use id or title instead of index

@@ -1,6 +1,6 @@
 import { SyntheticEvent, useCallback, useRef } from "react";
 import cc from "classcat";
-import { NavLink } from "react-router-dom";
+import NavLink from "next/link";
 import { NavigationDropdown } from "@/features/navigation/navigation-dropdown/navigation-dropdown.tsx";
 import { useClickOutside } from "@/hooks/use-click-outside.ts";
 import { useLocationChange } from "@/hooks/use-location-change.ts";
@@ -68,7 +68,7 @@ export const NavigationMenu = ({
                   onToggle={handleToggle}
                 />
               ) : (
-                <NavLink to={slug ?? ""} className="navigation-link">
+                <NavLink href={slug ?? ""} className="navigation-link">
                   {label}
                 </NavLink>
               )}

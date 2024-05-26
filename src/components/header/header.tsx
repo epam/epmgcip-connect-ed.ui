@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ComponentSharedImage } from "@/__generated__/graphql.ts";
 import "./header.scss";
 
@@ -15,7 +15,7 @@ export const Header = ({ logo, leftSlot, rightSlot }: HeaderProps) => (
       {leftSlot}
       <div className="logo">
         <Link
-          to={logo?.url ?? "/"}
+          href={logo?.url ?? "/"}
           target={logo?.newTab ? "_blank" : undefined}
           className="logo-link"
           aria-label="logo"

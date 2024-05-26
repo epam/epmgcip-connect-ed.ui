@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router";
+import { usePathname } from "next/navigation";
 
 export const useLocationChange = (callback: () => void) => {
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     callback();
-  }, [location, callback]);
+  }, [pathname, callback]);
 };

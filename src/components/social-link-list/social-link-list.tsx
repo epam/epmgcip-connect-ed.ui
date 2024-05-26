@@ -1,5 +1,5 @@
 import cc from "classcat";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ComponentSharedSocialIcon } from "@/__generated__/graphql.ts";
 import "./social-link-list.scss";
 
@@ -25,7 +25,7 @@ export const SocialLinkList = ({
           <Link
             className="social-link-list-link"
             key={url}
-            to={url ?? ""}
+            href={url ?? ""}
             aria-label={title ?? ""}
             target={newTab ? "_blank" : "_self"}
             rel="noopener noreferrer"

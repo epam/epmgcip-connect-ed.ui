@@ -34,7 +34,7 @@ export const ProjectCard = ({
         </Typography>
         <ActionLink
           className="project-card-action"
-          to={`/${data?.linkUrl ?? ""}`}
+          href={`/${data?.linkUrl ?? ""}`}
           target={data?.linkNewTab ? "_blank" : undefined}
         >
           {data?.linkText}

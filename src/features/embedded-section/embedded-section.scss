@@ -1,28 +1,32 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/mixins";
+@use "@/styles/layout";
 
 .embedded-section {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
   background-color: var(--white);
-  gap: 16px;
 
-  &-title {
-    color: var(--black);
-  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 16px;
 
-  &-content > * {
-    width: 100%;
+    & > *:not(.embedded-section-title) {
+      width: 100%;
+    }
   }
 
   @include responsive-mixins.md {
-    padding: 24px 24px 0;
-    gap: 24px;
+    &-content {
+      padding: 24px 24px 0;
+      gap: 24px;
+    }
   }
 
   @include responsive-mixins.lg {
-    padding: 0 198px;
-    gap: 48px;
+    &-content {
+      width: map-get(layout.$columns, "col-10");
+      gap: 48px;
+    }
   }
 }

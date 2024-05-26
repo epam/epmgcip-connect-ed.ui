@@ -2,6 +2,7 @@ import { TimelineCard } from "@/features/timeline-section/timeline-card/timeline
 import { SectionBase } from "@/components/section-base/section-base.tsx";
 import { getTimelineSectionTheme } from "@/features/timeline-section/utils.ts";
 import { ComponentSharedColor } from "@/__generated__/graphql.ts";
+import { SectionBaseTitle } from "@/components/section-base";
 import "./timeline-section.scss";
 
 export interface TimelineSectionProps {
@@ -21,9 +22,9 @@ export const TimelineSection = ({
       contentClassName="timeline-section-content"
       style={getTimelineSectionTheme(theme)}
     >
-      <SectionBase.Title className="timeline-section-title">
+      <SectionBaseTitle className="timeline-section-title">
         {title}
-      </SectionBase.Title>
+      </SectionBaseTitle>
       <ul className="timeline-section-list">
         {cards?.map((item, index) => (
           // TODO: replace index with id or title

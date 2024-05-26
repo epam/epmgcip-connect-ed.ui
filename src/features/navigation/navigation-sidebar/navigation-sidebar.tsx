@@ -45,7 +45,7 @@ export const NavigationSidebar = ({
       >
         <NavigationMenu className="navigation-menu" menu={navigation} />
         {action && (
-          <ButtonLink variant="nav" to={action?.url ?? ""}>
+          <ButtonLink variant="nav" href={action?.url ?? ""}>
             {action?.label}
           </ButtonLink>
         )}

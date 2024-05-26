@@ -18,6 +18,7 @@ import image6 from "@/assets/images/partners/image_6.png";
 import image7 from "@/assets/images/partners/image_7.png";
 import image8 from "@/assets/images/partners/image_8.png";
 import image9 from "@/assets/images/partners/image_9.png";
+import { SectionBaseTitle } from "@/components/section-base";
 import "./partners-section.scss";
 
 const partnersArray = [
@@ -46,9 +47,9 @@ export const PartnersSection = () => {
       className="partners-section"
       contentClassName="partners-section-content"
     >
-      <SectionBase.Title className="partners-section-title">
+      <SectionBaseTitle className="partners-section-title">
         Our partners
-      </SectionBase.Title>
+      </SectionBaseTitle>
       <PartnersCarousel items={partnersArray} />
       <Button className="partners-section-button" variant="main">
         Become a partner

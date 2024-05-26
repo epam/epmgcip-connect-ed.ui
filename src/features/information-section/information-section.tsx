@@ -9,6 +9,7 @@ import {
   ComponentSharedColor,
   ComponentSharedNoodlesCard,
 } from "@/__generated__/graphql.ts";
+import { SectionBaseTitle } from "@/components/section-base";
 import "./information-section.scss";
 
 export interface InformationSectionProps {
@@ -32,9 +33,9 @@ export const InformationSection = ({
     style={getInformationSectionTheme(theme)}
   >
     {title && (
-      <SectionBase.Title className="information-section-title">
+      <SectionBaseTitle className="information-section-title">
         {title}
-      </SectionBase.Title>
+      </SectionBaseTitle>
     )}
     {description && (
       <Typography className="information-section-description">
@@ -55,7 +56,7 @@ export const InformationSection = ({
     </ul>
     {action && (
       <ButtonLink
-        to={action.url ?? ""}
+        href={action.url ?? ""}
         className="information-section-action"
         variant={action?.type ?? undefined}
         // TODO: change to appropriate theming after clarification

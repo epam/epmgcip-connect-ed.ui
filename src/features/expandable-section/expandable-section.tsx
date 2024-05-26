@@ -4,6 +4,7 @@ import {
   ExpandableCard,
   ExpandableCardData,
 } from "@/components/expandable-card/expandable-card";
+import { SectionBaseTitle } from "@/components/section-base";
 import { getExpandableSectionTheme } from "./utils";
 import "./expandable-section.scss";
 
@@ -24,9 +25,9 @@ export const ExpandableSection = ({
       contentClassName="expandable-section-content"
       style={getExpandableSectionTheme(theme)}
     >
-      <SectionBase.Title className="expandable-section-title">
+      <SectionBaseTitle className="expandable-section-title">
         {heading}
-      </SectionBase.Title>
+      </SectionBaseTitle>
       <ul className="expandable-section-list">
         {cards?.map(card => (
           // TODO: replace index with id or title

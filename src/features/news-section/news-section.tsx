@@ -9,6 +9,7 @@ import {
   ComponentSharedHeading,
   Maybe,
 } from "@/__generated__/graphql.ts";
+import { SectionBaseTitle } from "@/components/section-base";
 import "./news-section.scss";
 
 export interface NewsSectionProps {
@@ -32,9 +33,9 @@ export const NewsSection = ({
     style={getNewsSectionTheme(theme)}
     hasWave={!!hasWave}
   >
-    <SectionBase.Title className="news-section-title">
+    <SectionBaseTitle className="news-section-title">
       {heading?.text}
-    </SectionBase.Title>
+    </SectionBaseTitle>
     <ul className="news-section-list">
       {cards?.map(card => {
         const news = card.article?.data?.attributes;
@@ -64,7 +65,7 @@ export const NewsSection = ({
     {action?.label && (
       <ButtonLink
         className="news-section-action"
-        to={`/${action.url ?? ""}`}
+        href={`/${action.url ?? ""}`}
         variant={action.type ?? undefined}
       >
         {action.label}

@@ -1,5 +1,5 @@
 import cc from "classcat";
-import { NavLink } from "react-router-dom";
+import NavLink from "next/link";
 import { PageEntity } from "@/__generated__/graphql.ts";
 import "./navigation-section.scss";
 
@@ -22,7 +22,7 @@ export const NavigationSection = ({
 
         return (
           <li key={slug} className="navigation-section-list-item">
-            <NavLink to={slug} className="navigation-section-link">
+            <NavLink href={slug} className="navigation-section-link">
               {attributes?.label}
             </NavLink>
           </li>

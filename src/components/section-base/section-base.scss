@@ -11,11 +11,6 @@
     clip-path: map-get(constants.$wave-polygon-md, "value");
   }
 
-  &-title {
-    @include mixins.h4;
-    @include mixins.partial-underline("section-base-full-underline");
-  }
-
   @include responsive-mixins.md {
     padding: 56px 24px;
   }
