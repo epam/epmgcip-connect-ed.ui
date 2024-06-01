@@ -1,3 +1,5 @@
+"use client";
+
 import { BlocksContent } from "@strapi/blocks-react-renderer";
 import cc from "classcat";
 import { ActionableArticle } from "@/features/two-columns-section/actionable-article/actionable-article.tsx";

@@ -1,10 +1,9 @@
-const locales = ["en", "kz", "ru"];
-
 import createMiddleware from "next-intl/middleware";
+import { locales } from "@/i18n.ts";
 
 // eslint-disable-next-line import/no-default-export
 export default createMiddleware({
-  defaultLocale: "kz",
+  defaultLocale: locales[0],
   locales,
   localeDetection: true,
   localePrefix: "always",

@@ -1,8 +1,6 @@
-"use client";
+import { NotFoundSection as NotFoundFeature } from "@/features/not-found-section/not-found-section.tsx";
 
-import Error from "next/error";
+const NotFound = () => <NotFoundFeature title="404" description="Not found" />;
 
 // eslint-disable-next-line import/no-default-export,react/function-component-definition
-export default function NotFound() {
-  return <Error statusCode={404} />;
-}
+export default NotFound;
