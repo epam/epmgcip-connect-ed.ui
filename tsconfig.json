@@ -41,6 +41,8 @@
   },
   "include": [
     "src",
+    "svgr-declarations.d.ts",
+    "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
   "references": [

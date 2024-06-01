@@ -50,6 +50,7 @@ export const PartnersSection = () => {
       <SectionBaseTitle className="partners-section-title">
         Our partners
       </SectionBaseTitle>
+      {/* @ts-expect-error The error will disappear after the integration */}
       <PartnersCarousel items={partnersArray} />
       <Button className="partners-section-button" variant="main">
         Become a partner
