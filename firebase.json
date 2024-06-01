@@ -8,6 +8,24 @@
     ],
     "frameworksBackend": {
       "region": "us-central1"
-    }
+    },
+    "rewrites": [
+      {
+        "source": "**/**",
+        "function": "nextjsServer"
+      }
+    ]
+  },
+  "functions": {
+    "runtime": "nodejs18",
+    "source": ".",
+    "ignore": [
+      ".firebase/**",
+      ".firebaserc",
+      "firebase.json",
+      "**/node_modules/**",
+      "**/public/**",
+      "**/cache/**"
+    ]
   }
 }
