@@ -117,6 +117,7 @@ export const WaysToDonate = ({ tabs = tabsMock }: WaysToDonateProps) => {
         <div className="ways-to-donate-links">
           {currentDonateMechanism?.codeUrl && (
             <div className="ways-to-donate-image-wrapper">
+              {/* @ts-expect-error will be fixed after the integration */}
               <img src={qrCode} width="200" height="200" alt="" />
             </div>
           )}

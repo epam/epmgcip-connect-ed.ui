@@ -8,6 +8,6 @@
     "strict": true,
     "types": ["node"]
   },
-  "include": ["vite.config.ts"],
+  "include": [],
   "exclude": ["node_modules"]
 }

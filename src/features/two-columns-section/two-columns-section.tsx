@@ -47,6 +47,7 @@ const renderColumn = (item: ColumnContent) => {
       return <RichTextBlocks content={item?.body ?? []} />;
     }
     case "image": {
+      // @ts-expect-error Will be fixed after the integration
       return <img className="two-columns-section-image" src={banner} alt="" />;
     }
     case "video": {

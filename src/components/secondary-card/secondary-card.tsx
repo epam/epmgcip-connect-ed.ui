@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Button } from "@/components/button/button.tsx";
 import { Title } from "@/components/title/title.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
@@ -30,7 +31,7 @@ export const SecondaryCard = ({ theme = "primary" }: SecondaryCardProps) => {
         </div>
       </div>
       <div className="secondary-card-image-wrapper">
-        <img alt="" src={coverImage} className="secondary-card-image" />
+        <Image alt="" fill src={coverImage} className="secondary-card-image" />
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ import { ImageBanner } from "@/features/image-banner/image-banner";
 import { InformationSection } from "@/features/information-section/information-section";
 import { NewsSection } from "@/features/news-section/news-section";
 import { ProjectsSection } from "@/features/projects-section/projects-section";
-import { TwoColumnsSection } from "@/features/two-columns-section/two-columns-section.tsx";
+import { TwoColumnsSection } from "@/features/two-columns-section/two-columns-section";
 
 const renderSection = (section?: PagePageSectionsDynamicZone | null) => {
   switch (section?.__typename) {
