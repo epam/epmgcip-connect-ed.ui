@@ -10,11 +10,13 @@ import {
 } from "@/__generated__/graphql";
 import { Footer } from "@/components/footer/footer";
 import { Palette } from "@/components/palette/palette";
+import { HtmlLang } from "@/features/html-lang/html-lang";
 import { Navigation } from "@/features/navigation/navigation";
 import "./layout.scss";
 
 // eslint-disable-next-line import/no-default-export,react/function-component-definition
 export default async function LocaleLayout({
+  params: { locale },
   children,
 }: PropsWithChildren<{
   params: { locale: string };
@@ -31,6 +33,7 @@ export default async function LocaleLayout({
 
   return (
     <>
+      <HtmlLang lang={locale} />
       <Palette palette={palette ?? undefined} />
       <div className="page">
         <Navigation
