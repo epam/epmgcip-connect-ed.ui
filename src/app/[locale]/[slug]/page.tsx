@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getClient } from "@/utils/apollo-client";
 import { isNotNull } from "@/utils/type-guards/is-not-null";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data";
-import { GET_PAGE1_DATA } from "@/queries/get-page1-data";
+import { GET_PAGES_DATA } from "@/queries/get-pages-data.ts";
 import {
   LAYOUT_PAGES_VARIABLES,
   PAGE_SIZE,
@@ -102,7 +102,7 @@ export default async function Home({
   });
 
   const { data } = await client.query({
-    query: GET_PAGE1_DATA,
+    query: GET_PAGES_DATA,
     variables: {
       slug: { startsWith: slug },
       page: START_PAGE,

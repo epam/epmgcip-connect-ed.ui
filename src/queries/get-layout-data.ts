@@ -1,8 +1,8 @@
 import { gql } from "@/__generated__";
 
 export const GET_LAYOUT_DATA = gql(`
-query GetLayoutData($limit: Int) {
-  pages(pagination: { limit: $limit }) {
+query GetLayoutData($limit: Int, $locale: I18NLocaleCode) {
+  pages(pagination: { limit: $limit }, locale: $locale) {
     data {
       id
       attributes {
@@ -24,7 +24,7 @@ query GetLayoutData($limit: Int) {
       }
     }
   }
-  header {
+  header(locale: $locale) {
     data {
       attributes {
         logo {
@@ -86,7 +86,7 @@ query GetLayoutData($limit: Int) {
       }
     }
   }
-  footer {
+  footer(locale: $locale) {
     data {
       attributes {
         theme {
@@ -111,6 +111,7 @@ query GetLayoutData($limit: Int) {
         }
         heading
         tradeMark
+        rights
         navigation {
           data {
             attributes {

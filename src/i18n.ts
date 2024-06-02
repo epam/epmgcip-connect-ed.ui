@@ -7,7 +7,7 @@ export const localesConfig = [
   {
     emoji: "🇰🇿",
     label: "kazakh",
-    value: "kz",
+    value: "kk",
   },
   {
     emoji: "🇷🇺",

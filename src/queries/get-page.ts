@@ -1,8 +1,8 @@
 import { gql } from "@/__generated__";
 
 export const GET_PAGE_DATA = gql(`
-query GetPageData($id: ID, $page: Int!, $pageSize: Int!) {
-  page(id: $id) {
+query GetPageData($id: ID, $page: Int!, $pageSize: Int!, $locale: I18NLocaleCode) {
+  page(id: $id, locale: $locale) {
     data {
       attributes {
         label
@@ -232,6 +232,7 @@ query GetPageData($id: ID, $page: Int!, $pageSize: Int!) {
             }
           }
         }
+        locale
       }
     }
   }

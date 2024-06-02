@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 export const HtmlLang = ({ lang }: { lang: string }) => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.setAttribute("lang", lang);
   }, [lang]);
 

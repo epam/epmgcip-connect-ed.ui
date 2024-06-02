@@ -24,7 +24,7 @@ export default async function LocaleLayout({
   const client = getClient();
   const { data } = await client.query<GetLayoutDataQuery>({
     query: GET_LAYOUT_DATA,
-    variables: LAYOUT_PAGES_VARIABLES,
+    variables: { ...LAYOUT_PAGES_VARIABLES, locale },
   });
 
   const footer = data?.footer?.data?.attributes;
@@ -44,10 +44,11 @@ export default async function LocaleLayout({
         />
         <main className="main-content">{children}</main>
         <Footer
-          // TODO: check if shared social icon can be optional
           socialLinks={footer?.socialMedia as ComponentSharedSocialIcon[]}
           navigation={footer?.navigation?.data as PageEntity[]}
           heading={footer?.heading ?? ""}
+          tradeMark={footer?.tradeMark ?? ""}
+          rights={footer?.rights ?? ""}
         />
       </div>
     </>

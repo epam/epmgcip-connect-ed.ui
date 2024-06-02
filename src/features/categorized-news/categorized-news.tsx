@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useApolloClient, useLazyQuery } from "@apollo/client";
+import { useParams } from "next/navigation";
 import { LoadingButton } from "@/components/loading-button/loading-button.tsx";
 import { NewsCard } from "@/components/news-card/news-card.tsx";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
@@ -28,6 +29,7 @@ export interface CategorizedNewsProps {
 const initialTabs: ArticleCategoryEntity[] = [];
 
 export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
+  const { locale } = useParams();
   const [page, setPage] = useState(START_PAGE + 1);
 
   const client = useApolloClient();
@@ -80,6 +82,7 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
         category: currentTab,
         page: page,
         pageSize: PAGE_SIZE,
+        locale,
       },
     }).then(() => {
       setPage(prevState => prevState + 1);

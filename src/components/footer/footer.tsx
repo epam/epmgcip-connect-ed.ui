@@ -12,11 +12,17 @@ export interface FooterProps {
   socialLinks?: ComponentSharedSocialIcon[];
   navigation?: PageEntity[];
   heading?: string;
+  tradeMark?: string;
+  rights?: string;
 }
 
-export const Footer = ({ socialLinks, heading, navigation }: FooterProps) => {
-  const currentYear = new Date().getFullYear();
-
+export const Footer = ({
+  socialLinks,
+  heading,
+  navigation,
+  tradeMark,
+  rights,
+}: FooterProps) => {
   return (
     <footer className="footer">
       <div className="footer-content">
@@ -47,9 +53,9 @@ export const Footer = ({ socialLinks, heading, navigation }: FooterProps) => {
             })}
           </div>
           <div className="copyright-info">
-            <span>© {currentYear} | Connect-Ed</span>
+            {tradeMark && <span>{tradeMark}</span>}
             <span className="copyright-info-delimiter"> | </span>
-            <span>Все права защищены | info@connect-ed.kz</span>
+            {rights && <span>{rights}</span>}
           </div>
           <div className="designed-by">
             <span>Designed by</span>
