@@ -5,7 +5,7 @@ import "@/styles/index.scss";
 // eslint-disable-next-line import/no-default-export,react/function-component-definition
 export default function RootLayout({ children }: PropsWithChildren<unknown>) {
   return (
-    <html lang="kz">
+    <html lang="kk">
       <head>
         <meta charSet="UTF-8" />
         <link rel="icon" type="image/png" href="/assets/favicon.png" />

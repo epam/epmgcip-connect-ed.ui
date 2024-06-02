@@ -71,6 +71,10 @@
 
     &-delimiter {
       display: none;
+
+      &:only-child {
+        display: none;
+      }
     }
   }
 
