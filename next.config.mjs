@@ -8,6 +8,7 @@ const withNextIntl = createNextIntlPlugin();
 const __dirname = path.resolve();
 
 const nextConfig = {
+  output: "standalone",
   webpack: (config) => {
     config.resolve.alias['@/styles'] = 'src/styles';
 
