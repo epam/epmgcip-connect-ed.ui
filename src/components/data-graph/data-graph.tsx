@@ -16,7 +16,7 @@ export const DataGraph = ({ url, className }: DataGraphProps) => {
         src={url}
         frameBorder="0"
         style={{ border: 0 }}
-        scrolling="no"
+        // scrolling="no"
         allowFullScreen
         sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
       />
