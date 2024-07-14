@@ -125,81 +125,76 @@ export default async function Home({
       ))}
       <TwoColumnsSection />
       {/* eslint-disable */}
-      <div className="sp-form-outer sp-force-hide">
-        <div
-          id="sp-form-235327"
-          sp-id="235327"
-          sp-hash="fd0f7b239e8ffdf19982b91d5c1dd448838b3dc5011e70a3fad1d8740e4347fb"
-          sp-lang="en"
-          className="sp-form sp-form-regular sp-form-embed"
-          sp-show-options="%7B%22satellite%22%3Afalse%2C%22maDomain%22%3A%22login.sendpulse.com%22%2C%22formsDomain%22%3A%22forms.sendpulse.com%22%2C%22condition%22%3A%22onEnter%22%2C%22scrollTo%22%3A25%2C%22delay%22%3A10%2C%22repeat%22%3A3%2C%22background%22%3A%22rgba(0%2C%200%2C%200%2C%200.5)%22%2C%22position%22%3A%22bottom-right%22%2C%22animation%22%3A%22%22%2C%22hideOnMobile%22%3Afalse%2C%22submitRedirectUrl%22%3A%22%22%2C%22urlFilter%22%3Afalse%2C%22urlFilterConditions%22%3A%5B%7B%22force%22%3A%22hide%22%2C%22clause%22%3A%22contains%22%2C%22token%22%3A%22%22%7D%5D%2C%22analytics%22%3A%7B%22ga%22%3A%7B%22eventLabel%22%3A%22Subscription_form_My_emails%22%2C%22send%22%3Afalse%7D%7D%2C%22utmEnable%22%3Afalse%7D"
-        >
-          <div className="sp-form-fields-wrapper">
-            <div className="sp-message">
-              <div></div>
-            </div>
-            <form noValidate className="sp-element-container ">
-              <div
-                className="sp-field "
-                sp-id="sp-5c47ba76-ed95-48e7-a86d-7e2a7860d63b"
-              >
-                <label className="sp-control-label">
-                  <span>Name</span>
-                  <strong>*</strong>
-                </label>
-                <input
-                  type="text"
-                  sp-type="input"
-                  name="sform[TmFtZQ==]"
-                  className="sp-form-control "
-                  placeholder="Ivan"
-                  sp-tips="%7B%22required%22%3A%22Required%20field%22%7D"
-                  autoComplete="on"
-                  // @ts-ignore
-                  required="required"
-                />
+      <script src="//web.webformscr.com/apps/fc3/build/loader.js" async
+              sp-form-id="f0b5112252f71903bdbe8d1e4c23ba1c4dccb7e87efcab3049b3b8881cf6808f" />
+      {/* eslint-enable */}
+      {/* eslint-disable */}
+      <>
+        <div className="sp-form-outer sp-force-hide">
+          <div
+            id="sp-form-236081"
+            sp-id="236081"
+            sp-hash="f0b5112252f71903bdbe8d1e4c23ba1c4dccb7e87efcab3049b3b8881cf6808f"
+            sp-lang="en"
+            className="sp-form sp-form-regular sp-form-embed"
+            sp-show-options="%7B%22satellite%22%3Afalse%2C%22maDomain%22%3A%22login.sendpulse.com%22%2C%22formsDomain%22%3A%22forms.sendpulse.com%22%2C%22condition%22%3A%22onEnter%22%2C%22scrollTo%22%3A25%2C%22delay%22%3A10%2C%22repeat%22%3A3%2C%22background%22%3A%22rgba(0%2C%200%2C%200%2C%200.5)%22%2C%22position%22%3A%22bottom-right%22%2C%22animation%22%3A%22%22%2C%22hideOnMobile%22%3Afalse%2C%22submitRedirectUrl%22%3A%22%22%2C%22urlFilter%22%3Afalse%2C%22urlFilterConditions%22%3A%5B%7B%22force%22%3A%22hide%22%2C%22clause%22%3A%22contains%22%2C%22token%22%3A%22%22%7D%5D%2C%22analytics%22%3A%7B%22ga%22%3A%7B%22eventLabel%22%3A%22Subscription_form_My_emails%22%2C%22send%22%3Afalse%7D%7D%2C%22utmEnable%22%3Afalse%7D"
+          >
+            <div className="sp-form-fields-wrapper">
+              <div className="sp-message">
+                <div></div>
               </div>
-              <div
-                className="sp-field "
-                sp-id="sp-e726059f-cd34-4f2e-a0c1-afc0e3ea1827"
-              >
-                <label className="sp-control-label">
-                  <span>Email</span>
-                  <strong>*</strong>
-                </label>
-                <input
-                  type="email"
-                  sp-type="email"
-                  name="sform[email]"
-                  className="sp-form-control "
-                  placeholder="username@gmail.com"
-                  sp-tips="%7B%22required%22%3A%22Required%20field%22%2C%22wrong%22%3A%22Wrong%20email%22%7D"
-                  autoComplete="on"
-                  // @ts-ignore
-                  required="required"
-                />
-              </div>
-              <div
-                className="sp-field sp-button-container "
-                sp-id="sp-4a76d52d-1c3f-41a0-98a6-857f2a89b579"
-              >
-                <button
-                  id="sp-4a76d52d-1c3f-41a0-98a6-857f2a89b579"
-                  className="sp-button"
+              {/*@ts-ignore */}
+              <form noValidate="" className="sp-element-container ">
+                <div
+                  className="sp-field sp-field-full-width"
+                  sp-id="sp-bc42c109-9c31-46d2-bb7b-24d85bf22545"
                 >
-                  Subscribe
-                </button>
-              </div>
-            </form>
-            <div className="sp-link-wrapper sp-brandname__left "></div>
+                  <div style={{ fontFamily: "inherit", lineHeight: 1.2 }}>
+                    Once a week we send a digest with our most popular articles.
+                  </div>
+                </div>
+                <div
+                  className="sp-field "
+                  sp-id="sp-700636e9-f4d6-42ce-b96c-39950aca9c4f"
+                >
+                  <label className="sp-control-label">
+                    <span>Email</span>
+                    <strong>*</strong>
+                  </label>
+                  <input
+                    type="email"
+                    sp-type="email"
+                    name="sform[email]"
+                    className="sp-form-control "
+                    placeholder="username@gmail.com"
+                    sp-tips="%7B%22required%22%3A%22Required%20field%22%2C%22wrong%22%3A%22Wrong%20email%22%7D"
+                    /*@ts-ignore */
+                    autoComplete="on"
+                    required
+                  />
+                </div>
+                <div
+                  className="sp-field sp-button-container "
+                  sp-id="sp-dd673f1c-7fe5-4dd4-87cd-db2aaffeb3a3"
+                >
+                  <button
+                    id="sp-dd673f1c-7fe5-4dd4-87cd-db2aaffeb3a3"
+                    className="sp-button"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+              </form>
+              <div className="sp-link-wrapper sp-brandname__left "></div>
+            </div>
           </div>
         </div>
-      </div>
-      <script
-        type="text/javascript"
-        async
-        src="//web.webformscr.com/apps/fc3/build/default-handler.js?1714030486793"
-      />
+        <script
+          type="text/javascript"
+          async
+          src="//web.webformscr.com/apps/fc3/build/default-handler.js?1714030486793"
+        ></script>
+      </>
       {/* eslint-enable */}
     </>
   );

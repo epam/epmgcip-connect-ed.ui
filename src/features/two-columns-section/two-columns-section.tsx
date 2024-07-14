@@ -47,7 +47,7 @@ const renderColumn = (item: ColumnContent) => {
       return <RichTextBlocks content={item?.body ?? []} />;
     }
     case "image": {
-      // @ts-expect-error Will be fixed after the integration
+      // @ts-expect-error Will be fixed after the integration eslint-ignore-next-line
       return <img className="two-columns-section-image" src={banner} alt="" />;
     }
     case "video": {
@@ -85,7 +85,7 @@ export const TwoColumnsSection = () => {
   }*/,
       {
         type: "graph",
-        url: "https://lookerstudio.google.com/embed/reporting/faa2353a-7923-4f35-a84d-1172a6a545e6/page/s26zD",
+        url: "https://app.powerbi.com/view?r=eyJrIjoiY2NjMzE4ZWEtNDRhMC00OTI0LTk3OWItMjVlYzhiYmI5MTNhIiwidCI6IjBjNDRjNjY1LWU1NjQtNGQyZS1iZjFiLWU4OWYwZDI2NGQxZiIsImMiOjl9",
       },
     ],
     [
