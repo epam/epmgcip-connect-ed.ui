@@ -1,27 +1,24 @@
 import { SecondaryCard } from "@/components/secondary-card/secondary-card.tsx";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
 import { WavyCard } from "@/components/wavy-card/wavy-card.tsx";
+import { ComponentSectionsSecondaryBanner } from "@/__generated__/graphql.ts";
 import { SectionBaseTitle } from "@/components/section-base";
 import "./secondary-section.scss";
 
 export interface SecondarySectionProps {
-  items?: { theme?: "primary" | "secondary" | "tertiary" }[];
+  data: ComponentSectionsSecondaryBanner;
 }
 
-export const SecondarySection = ({ items }: SecondarySectionProps) => {
+export const SecondarySection = ({ data }: SecondarySectionProps) => {
   return (
     <SectionBase className="secondary-section">
       <SectionBaseTitle className="secondary-section-title">
-        How we’re helping
+        {data?.title?.text}
       </SectionBaseTitle>
       <ul className="secondary-section-list">
-        {items?.map((item, index) => (
-          // TODO: use id or title instead of index
-          // eslint-disable-next-line react/no-array-index-key
-          <WavyCard key={index} as="li" theme={item.theme}>
-            <SecondaryCard theme={item.theme} />
-          </WavyCard>
-        ))}
+        <WavyCard as="li" theme={data.backgroundColor}>
+          <SecondaryCard data={data} />
+        </WavyCard>
       </ul>
     </SectionBase>
   );
