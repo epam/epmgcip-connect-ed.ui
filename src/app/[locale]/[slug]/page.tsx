@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { notFound } from "next/navigation";
+import { SecondarySection } from "@/features/secondary-section/secondary-section.tsx";
 import { getClient } from "@/utils/apollo-client";
 import { isNotNull } from "@/utils/type-guards/is-not-null";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data";
@@ -78,6 +79,9 @@ const renderSection = (section?: PagePageSectionsDynamicZone | null) => {
           hasWave={section?.showWave}
         />
       );
+    }
+    case "ComponentSectionsSecondaryBanner": {
+      return <SecondarySection data={section} />;
     }
     case "ComponentSectionsColumnsWithTabs": {
       return <CategorizedNews data={section} />;
