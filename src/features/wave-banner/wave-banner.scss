@@ -13,11 +13,6 @@
   color: var(--_color);
   background-color: var(--_background-color);
 
-  &[data-theme="secondary"] {
-    --background-color: var(--secondary);
-    --color: var(--black);
-  }
-
   &-image {
     display: none;
   }
@@ -63,6 +58,11 @@
       width: 330px;
       height: 330px;
       color: var(--_decoration-color);
+
+      &--large {
+        width: 448px;
+        height: 448px;
+      }
     }
 
     &-info {

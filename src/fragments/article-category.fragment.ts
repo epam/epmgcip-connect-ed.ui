@@ -1,6 +1,6 @@
 import { gql } from "@/__generated__";
 
-export const ARTICLE_CATEGORY_FRAGMENT = gql(`
+export const articleCategoryFragment = gql(`
 fragment NewArticles on ArticleCategoryEntity {
   attributes {
     articles {
