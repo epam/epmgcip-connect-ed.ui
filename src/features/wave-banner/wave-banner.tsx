@@ -1,51 +1,61 @@
-import { Button, ButtonTheme } from "@/components/button/button.tsx";
+import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
 import { Title } from "@/components/title/title.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
 import { WavyImage } from "@/components/wavy-image/wavy-image.tsx";
+import { getWaveBannerTheme } from "@/features/wave-banner/utils.ts";
+import { ComponentSectionsWaveBanner } from "@/__generated__/graphql.ts";
 import "./wave-banner.scss";
 
 export interface WaveBannerProps {
-  theme?: string;
-  action?: string;
-  imageSource: string;
-  title: string;
-  body: string;
-  contentMode?: "ltr" | "rtl";
+  data?: ComponentSectionsWaveBanner;
 }
 
-export const WaveBanner = ({
-  theme,
-  imageSource,
-  title,
-  body,
-  action,
-  contentMode = "ltr",
-}: WaveBannerProps) => (
-  <SectionBase
-    className="wave-banner"
-    contentClassName="wave-banner-content"
-    data-theme={theme}
-    hasWave
-  >
-    {contentMode === "ltr" && (
-      <WavyImage className="wave-banner-image" source={imageSource} />
-    )}
-    <div className="wave-banner-info">
-      <Title className="wave-banner-title">{title}</Title>
-      <Typography className="wave-banner-body">{body}</Typography>
-      {action && (
-        <Button
-          variant="outline"
-          className="wave-banner-action"
-          theme={theme as ButtonTheme}
-        >
-          {action}
-        </Button>
+export const WaveBanner = ({ data }: WaveBannerProps) => {
+  const {
+    image,
+    text,
+    title,
+    cta: action,
+    isLargeImage, // TODO: add sizes from the design
+    // isTextBox, // TODO: understand the usage
+    backgroundColor, // TODO: change to proper theme with bgColor and color for text
+  } = data ?? {};
+
+  const contentMode: "ltr" | "rtl" = "ltr"; // TODO: implement placement from BE side
+  const imageClassName = isLargeImage
+    ? "wave-banner-image--large"
+    : "wave-banner-image";
+  const imageSource = image?.image?.data?.attributes?.url ?? "";
+
+  return (
+    <SectionBase
+      className="wave-banner"
+      contentClassName="wave-banner-content"
+      style={getWaveBannerTheme(backgroundColor)}
+      hasWave
+    >
+      {contentMode === "ltr" && (
+        <WavyImage className={imageClassName} source={imageSource} />
       )}
-    </div>
-    {contentMode === "rtl" && (
-      <WavyImage className="wave-banner-image" source={imageSource} />
-    )}
-  </SectionBase>
-);
+      <div className="wave-banner-info">
+        {title && <Title className="wave-banner-title">{title.text}</Title>}
+        <Typography className="wave-banner-body">{text}</Typography>
+        {action && (
+          <ButtonLink
+            href={action.url ?? ""}
+            className="wave-banner-action"
+            variant={action.type ?? undefined}
+            // @ts-expect-error it should be changed to button theme
+            theme={action.bgColor ?? undefined}
+          >
+            {action.label}
+          </ButtonLink>
+        )}
+      </div>
+      {/*{contentMode === "rtl" && (*/}
+      {/*  <WavyImage className={imageClassName} source={imageSource} />*/}
+      {/*)}*/}
+    </SectionBase>
+  );
+};

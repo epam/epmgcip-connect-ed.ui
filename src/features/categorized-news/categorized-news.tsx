@@ -13,13 +13,13 @@ import {
   getCategorizedNewsTabsMap,
 } from "@/features/categorized-news/utils.ts";
 import { useTabsParams } from "@/hooks/use-tabs-params.ts";
-import { ARTICLE_CATEGORY_FRAGMENT } from "@/queries/article-category-fragment.ts";
 import { GET_NEWS_BY_CATEGORY } from "@/queries/get-news-by-category.ts";
 import { PAGE_SIZE, START_PAGE } from "@/constants/query-variables.ts";
 import {
   ArticleCategoryEntity,
   ComponentSectionsColumnsWithTabs,
 } from "@/__generated__/graphql.ts";
+import { articleCategoryFragment } from "@/fragments/article-category.fragment.ts";
 import "./categorized-news.scss";
 
 export interface CategorizedNewsProps {
@@ -62,7 +62,7 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
         if (activeTab) {
           client.writeFragment({
             id: `${activeTab.__typename}:${activeTab.id}`,
-            fragment: ARTICLE_CATEGORY_FRAGMENT,
+            fragment: articleCategoryFragment,
             data: {
               attributes: {
                 articles: {
