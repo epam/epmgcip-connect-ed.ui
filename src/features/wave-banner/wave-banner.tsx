@@ -17,8 +17,8 @@ export const WaveBanner = ({ data }: WaveBannerProps) => {
     text,
     title,
     cta: action,
-    isLargeImage, // TODO: add sizes from the design
-    // isTextBox, // TODO: understand the usage
+    isLargeImage,
+    isTextBox,
     backgroundColor, // TODO: change to proper theme with bgColor and color for text
   } = data ?? {};
 
@@ -26,6 +26,9 @@ export const WaveBanner = ({ data }: WaveBannerProps) => {
   const imageClassName = isLargeImage
     ? "wave-banner-image--large"
     : "wave-banner-image";
+  const infoClassName = isTextBox
+    ? "wave-banner-info"
+    : "wave-banner-info--card";
   const imageSource = image?.image?.data?.attributes?.url ?? "";
 
   return (
@@ -38,7 +41,7 @@ export const WaveBanner = ({ data }: WaveBannerProps) => {
       {contentMode === "ltr" && (
         <WavyImage className={imageClassName} source={imageSource} />
       )}
-      <div className="wave-banner-info">
+      <div className={infoClassName}>
         {title && <Title className="wave-banner-title">{title.text}</Title>}
         <Typography className="wave-banner-body">{text}</Typography>
         {action && (
