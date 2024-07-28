@@ -19,6 +19,8 @@ query GetPage1Data(
           ...ImageBannerFragment
           ...ProjectsSectionFragment
           ...NewsSectionFragment
+          ...SecondaryBannerFragment
+          ...WaveBannerFragment
           ...CategorizedNewsFragment
         }
       }

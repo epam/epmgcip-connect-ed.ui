@@ -1,5 +1,5 @@
 import { getThemeStyle } from "@/utils/get-theme-style.ts";
-import { ComponentSectionsSecondaryBanner } from "@/__generated__/graphql.ts";
+import { SecondaryBannerFragmentFragment } from "@/__generated__/graphql.ts";
 
-export const getWavyCardTheme = (data?: ComponentSectionsSecondaryBanner) =>
-  getThemeStyle([["--background-color", data?.backgroundColor]]);
+export const getWavyCardTheme = (data?: SecondaryBannerFragmentFragment) =>
+  getThemeStyle([["--background-color", data?.secondaryBannerBackgroundColor]]);

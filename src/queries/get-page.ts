@@ -15,6 +15,8 @@ query GetPageData($id: ID, $page: Int!, $pageSize: Int!, $locale: I18NLocaleCode
           ...ImageBannerFragment
           ...ProjectsSectionFragment
           ...NewsSectionFragment
+          ...SecondaryBannerFragment
+          ...WaveBannerFragment
           ...CategorizedNewsFragment
         }
       }
