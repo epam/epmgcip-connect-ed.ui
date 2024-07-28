@@ -2,11 +2,11 @@ import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { Title } from "@/components/title/title.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
 import { getWavyCardTheme } from "@/components/secondary-card/utils.ts";
-import { ComponentSectionsSecondaryBanner } from "@/__generated__/graphql.ts";
+import { SecondaryBannerFragmentFragment } from "@/__generated__/graphql.ts";
 import "./secondary-card.scss";
 
 export interface SecondaryCardProps {
-  data: ComponentSectionsSecondaryBanner;
+  data: SecondaryBannerFragmentFragment;
 }
 
 export const SecondaryCard = ({ data }: SecondaryCardProps) => {
@@ -40,8 +40,10 @@ export const SecondaryCard = ({ data }: SecondaryCardProps) => {
       </div>
       <div className="secondary-card-image-wrapper">
         <img
-          alt={data?.image.altText ?? ""}
-          src={data.image.image?.data?.attributes?.url ?? undefined}
+          alt={data?.secondaryBannerCover.altText ?? ""}
+          src={
+            data.secondaryBannerCover.image?.data?.attributes?.url ?? undefined
+          }
           className="secondary-card-image"
         />
       </div>

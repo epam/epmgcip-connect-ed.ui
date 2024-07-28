@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { notFound } from "next/navigation";
-import { WaveBanner } from "@/features/wave-banner/wave-banner.tsx";
 import { SecondarySection } from "@/features/secondary-section/secondary-section.tsx";
+import { WaveBanner } from "@/features/wave-banner/wave-banner.tsx";
 import { getClient } from "@/utils/apollo-client";
 import { isNotNull } from "@/utils/type-guards/is-not-null";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data";
@@ -14,6 +14,7 @@ import {
 import {
   GetLayoutDataQuery,
   PagePageSectionsDynamicZone,
+  SecondaryBannerFragmentFragment,
 } from "@/__generated__/graphql";
 import { CategorizedNews } from "@/features/categorized-news/categorized-news";
 import { HeroSection } from "@/features/hero-section/hero-section";
@@ -82,7 +83,11 @@ const renderSection = (section?: PagePageSectionsDynamicZone | null) => {
       );
     }
     case "ComponentSectionsSecondaryBanner": {
-      return <SecondarySection data={section} />;
+      return (
+        <SecondarySection
+          data={section as unknown as SecondaryBannerFragmentFragment}
+        />
+      );
     }
     case "ComponentSectionsWaveBanner": {
       return <WaveBanner data={section} />;
