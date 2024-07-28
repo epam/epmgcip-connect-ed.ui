@@ -1,4 +1,4 @@
-@use "@/styles/responsive-mixins";
+@use "src/styles/responsive-mixins";
 
 @mixin button {
   --main-color: var(--primary);

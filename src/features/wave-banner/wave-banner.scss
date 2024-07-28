@@ -14,11 +14,26 @@
   background-color: var(--_background-color);
 
   &-image {
+    aspect-ratio: 1/1;
     display: none;
+
+    &--large {
+      aspect-ratio: 1/1;
+      display: none;
+    }
   }
 
   &-info {
     padding: 24px;
+    width: 100%;
+
+    &--card {
+      width: 100%;
+      padding: 16px;
+      border-radius: 8px 8px 20px 8px;
+      color: var(--_color);
+      background-color: var(--_decoration-color);
+    }
   }
 
   &-title {
@@ -50,6 +65,16 @@
       gap: 48px;
       margin: auto;
       width: map-get(layout.$columns, "col-8");
+
+      &:has(.wave-banner-image--large) {
+        padding: 0 24px;
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    &-title {
+      @include mixins.h2;
     }
 
     &-image {
@@ -62,12 +87,23 @@
       &--large {
         width: 448px;
         height: 448px;
+        display: block;
+        flex-shrink: 0;
+        color: var(--_decoration-color);
       }
     }
 
     &-info {
       padding: 32px 0 32px 32px;
       flex-grow: 1;
+
+      &--card {
+        padding: 24px;
+        border-radius: 8px 8px 20px 8px;
+        margin: auto 0;
+        color: var(--_color);
+        background-color: var(--_decoration-color);
+      }
     }
   }
 }

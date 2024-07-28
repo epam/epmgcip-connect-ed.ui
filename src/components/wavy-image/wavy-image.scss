@@ -27,7 +27,7 @@
     height: 100%;
     top: 0;
     right: 0;
-    @include mixins.vertical-image-mask("@/assets/icons/vertical-wave.svg");
+    @include mixins.vertical-image-mask("../../../public/assets/icons/vertical-wave.svg");
   }
 
   &-vertical-wave-1 {
@@ -47,7 +47,7 @@
     height: 26px;
     left: 0;
     bottom: 0;
-    @include mixins.horizontal-image-mask("@/assets/icons/card-wave.svg");
+    @include mixins.horizontal-image-mask("../../../public/assets/icons/card-wave.svg");
   }
 
   &-horizontal-wave-1 {
