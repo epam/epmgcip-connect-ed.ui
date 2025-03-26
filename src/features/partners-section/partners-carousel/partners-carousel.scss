@@ -4,11 +4,13 @@
   position: relative;
   overflow: hidden;
   height: 160px;
+
   --_animation-speed: var(--animation-speed, 40s);
 
   &-list {
     --gap: 48px;
     --shift: calc(-50% - (var(--gap) / 2));
+
     padding: 0;
     display: flex;
     gap: var(--gap);

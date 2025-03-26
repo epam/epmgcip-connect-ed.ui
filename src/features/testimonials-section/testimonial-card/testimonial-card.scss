@@ -4,6 +4,7 @@
 .testimonial-card {
   --_text-color: var(--text-color, var(--black));
   --_background-color: var(--background-color, var(--background));
+
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -26,7 +27,7 @@
   }
 
   @include responsive-mixins.lg {
-    border-radius: 20px 20px 0 20px;
+    border-radius: 20px 20px 0;
 
     &-icon {
       width: 60px;

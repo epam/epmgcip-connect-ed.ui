@@ -40,6 +40,7 @@
     &:focus {
       --color: var(--black);
       --background-color: var(--white);
+
       cursor: pointer;
     }
   }
@@ -50,6 +51,7 @@
     &:hover,
     &:focus {
       --background-color: var(--main-color-dark-25);
+
       cursor: pointer;
     }
   }
@@ -62,6 +64,7 @@
     &:focus {
       --border-color: var(--main-color-light-10);
       --background-color: var(--main-color-light-10);
+
       cursor: pointer;
     }
   }
@@ -75,6 +78,7 @@
     &:hover,
     &:focus {
       --background-color: var(--main-color-dark-25);
+
       cursor: pointer;
     }
   }
@@ -87,6 +91,7 @@
     &:hover,
     &:focus {
       --background-color: var(--main-color-light-25);
+
       cursor: pointer;
     }
   }

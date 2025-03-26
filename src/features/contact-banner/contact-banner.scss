@@ -5,9 +5,12 @@
 @use "sass:map";
 
 .contact-banner {
+@include mixins.wavy-background;
+
   --_background-color: var(--background-color, var(--primary));
   --_text-color: var(--text-color, var(--black));
-  @include mixins.wavy-background;
+
+
   color: var(--_text-color);
   background-color: var(--_background-color);
 
@@ -38,6 +41,7 @@
 
     &-body {
       @include mixins.paragraph;
+
       font-weight: 600;
     }
   }
@@ -45,6 +49,7 @@
   &-socials {
     &-label {
       @include mixins.paragraph;
+
       margin-top: auto;
       font-weight: 600;
     }

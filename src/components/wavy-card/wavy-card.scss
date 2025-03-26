@@ -3,14 +3,15 @@
 .wavy-card {
   --_main-color: var(--main-color, var(--primary));
   --_main-color-transparent-10: color-mix(in srgb, var(--_main-color) 10%, transparent 100%);
+
   position: relative;
   display: flex;
   flex-direction: column;
   isolation: isolate;
   color: var(--_main-color);
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: "";
     position: absolute;
     z-index: -1;
@@ -18,22 +19,18 @@
     width: calc(100% - 32px);
     margin: 0 16px;
     color: var(--_main-color);
-    background-color: currentColor;
+    background-color: currentcolor;
     mask-repeat: repeat-x;
     mask-position: center;
     mask-size: contain;
-    mask-image: url(/assets/icons/card-wave.svg);
-    -webkit-mask-repeat: repeat-x;
-    -webkit-mask-position: center;
-    -webkit-mask-size: contain;
-    -webkit-mask-image: url(/assets/icons/card-wave.svg);
+    mask-image: url("../../../public/assets/icons/card-wave.svg");
   }
 
-  &:before {
+  &::before {
     top: 0;
   }
 
-  &:after {
+  &::after {
     bottom: 0;
   }
 
@@ -44,6 +41,7 @@
     width: 100%;
     border: 2px solid currentColor;
     border-radius: 16px;
+
     // box-shadow: 4px 4px 12px 0 var(--_main-color-transparent-10);
   }
 }

@@ -5,6 +5,7 @@
   --_text-color: var(--text-color, var(--black));
   --_action-color: var(--action-color, var(--primary));
   --_background-color: var(--background-color, var(--background));
+
   display: flex;
   gap: 24px;
   padding: 24px;
@@ -26,10 +27,13 @@
   }
 
   &-body {
+  @include mixins.multiline-text-ellipsis(var(--visible-lines));
+
     --_font-size: var(--font-size, 0.875rem);
     --visible-lines: 5;
     --line-height: 1.5;
-    @include mixins.multiline-text-ellipsis(var(--visible-lines));
+
+
     max-height: calc(var(--_font-size) * var(--line-height) * var(--visible-lines));
     flex-grow: 1;
     font-family: "Open Sans", sans-serif;

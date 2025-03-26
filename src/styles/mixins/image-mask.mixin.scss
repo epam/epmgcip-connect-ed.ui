@@ -3,10 +3,6 @@
   mask-position: center;
   mask-size: contain;
   mask-image: url($url);
-  -webkit-mask-repeat: repeat-x;
-  -webkit-mask-position: center;
-  -webkit-mask-size: contain;
-  -webkit-mask-image: url($url);
 }
 
 @mixin vertical-image-mask($url) {
@@ -14,8 +10,4 @@
   mask-position: top;
   mask-size: contain;
   mask-image: url($url);
-  -webkit-mask-repeat: repeat-y;
-  -webkit-mask-position: top;
-  -webkit-mask-size: contain;
-  -webkit-mask-image: url($url);
 }

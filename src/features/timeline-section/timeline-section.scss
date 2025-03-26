@@ -5,6 +5,7 @@
 .timeline-section {
   --_section-background: var(--section-background, var(--background));
   --_section-color: var(--section-color, var(--black));
+
   background-color: var(--_section-background);
   color: var(--_section-color);
 

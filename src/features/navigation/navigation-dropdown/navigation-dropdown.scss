@@ -9,7 +9,7 @@
     }
   }
 
-  &:after {
+  &::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -71,11 +71,11 @@
     width: 100%;
   }
 
-  @include responsive-mixins.lg() {
+  @include responsive-mixins.lg {
     & {
       position: static;
 
-      &:after {
+      &::after {
         content: none;
       }
     }
@@ -85,7 +85,7 @@
       font-size: 1.25rem;
       padding: 44px 0 50px;
 
-      &:after {
+      &::after {
         content: none;
       }
     }

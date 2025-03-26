@@ -7,6 +7,7 @@
   --_active-tab-background: var(--active-tab-background, var(--primary));
   --_active-tab-border: var(--active-tab-border, var(--primary));
   --_active-tab-text: var(--active-tab-text, var(--white));
+
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -41,13 +42,8 @@
     }
   }
 
-  &-panel {
-
-  }
-
   @include responsive-mixins.md {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
 
     &-tab {
       padding: 10px;
