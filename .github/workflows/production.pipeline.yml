@@ -48,9 +48,12 @@ jobs:
           npm run lint &
           wait # Wait for both commands to finish
 
-          if [ $? -ne 0 ]; then
+          NEXT_LINT_EXIT_CODE=$?
+          TSC_EXIT_CODE=$?
+
+          if [ $NEXT_LINT_EXIT_CODE -ne 0 ] || [ $TSC_EXIT_CODE -ne 0 ]; then
             echo "Linting or Type checking failed"
-            exit 1 # Fail the step
+            exit 1
           fi
 
       - name: Run build
