@@ -1,4 +1,5 @@
 @use "sass:meta";
+@use "sass:list";
 
 $header-height-md: 56px;
 $header-height-lg: 172px;
@@ -15,13 +16,13 @@ $_polygon-lg-base: ((0% 26.7px), (2% 23.3px), (4% 20.0px), (6% 16.9px), (8% 13.8
 
 @function _getPolygon($polygon, $transformer) {
   $_polygon-inverted: "";
-  @for $i from 1 through length($polygon) {
+  @for $i from 1 through list.length($polygon) {
     $delimiter: "";
     @if ($i != 1) {
       $delimiter: ", "
     }
-    $key: nth(nth($polygon, $i), 1);
-    $value: nth(nth($polygon, $i), 2);
+    $key: list.nth(list.nth($polygon, $i), 1);
+    $value: list.nth(list.nth($polygon, $i), 2);
     $_polygon-inverted: $_polygon-inverted + $delimiter + $key + " " + meta.call($transformer, $value);
   }
 

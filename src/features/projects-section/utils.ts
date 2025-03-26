@@ -1,15 +1,16 @@
 import { getThemeStyle } from "@/utils/get-theme-style.ts";
 import {
-  ComponentSharedColor,
   ComponentSharedGridBlock,
+  Maybe,
+  Theme,
 } from "@/__generated__/graphql.ts";
 
 const isOdd = (value: number) => value % 2 === 1;
 
 export const getIndexesToStretch = (items: ComponentSharedGridBlock[]) => {
   const { startIndex, indexesToStretch } = items.reduce(
-    (accumulator, { image }, index) => {
-      if (image?.data) {
+    (accumulator, { Image }, index) => {
+      if (Image?.data) {
         if (isOdd(index - 1 - accumulator.startIndex)) {
           accumulator.indexesToStretch.add(index - 1);
         }
@@ -31,7 +32,7 @@ export const getIndexesToStretch = (items: ComponentSharedGridBlock[]) => {
   return indexesToStretch;
 };
 
-export const getProjectsSectionTheme = (data?: ComponentSharedColor | null) =>
+export const getProjectsSectionTheme = (data?: Maybe<Theme>) =>
   getThemeStyle([
     ["--section-background", data?.bgColor],
     ["--section-color", data?.color],

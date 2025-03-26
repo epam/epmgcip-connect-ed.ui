@@ -1,20 +1,26 @@
 import { getThemeStyle } from "@/utils/get-theme-style.ts";
 import {
-  ArticleCategoryEntity,
-  ArticleEntity,
+  ComponentSharedTabCardTheme,
+  ComponentSharedTabs,
+  Maybe,
 } from "@/__generated__/graphql.ts";
 
-export const getCategorizedNewsTabsMap = (tabs?: ArticleCategoryEntity[]) =>
-  tabs?.reduce<Map<string, ArticleEntity[]>>((accumulator, tab) => {
-    const slug = tab?.attributes?.slug as string;
+export const getCategorizedNewsTabsMap = (
+  tabs?: Maybe<ComponentSharedTabs[]>,
+) =>
+  tabs?.reduce<Map<string, ComponentSharedTabs>>((accumulator, tab) => {
+    const slug = tab?.id;
     if (slug) {
-      accumulator.set(slug, tab?.attributes?.articles?.data ?? []);
+      accumulator.set(slug, tab);
     }
 
     return accumulator;
   }, new Map());
 
-export const getCategorizedNewsTheme = () =>
+export const getCategorizedNewsTheme = (
+  theme?: Maybe<ComponentSharedTabCardTheme>,
+) =>
   getThemeStyle([
-    // TODO: Add theme when it's added from the BE side
+    ["--section-background", theme?.BgColor],
+    ["--section-color", theme?.Color],
   ]);

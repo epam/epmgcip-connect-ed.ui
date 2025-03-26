@@ -1,0 +1,53 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/layout";
+@use "@/styles/mixins";
+@use "sass:map";
+
+.get-in-touch-section {
+  --_section-background: var(--section-background, var(--white));
+  --_section-color: var(--section-color, var(--black));
+  background-color: var(--_section-background);
+  color: var(--_section-color);
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  &-title {
+    color: var(--_section-color);
+  }
+
+  &-description {
+    @include mixins.paragraph;
+    color: var(--_section-color);
+    margin: 24px 0 0;
+
+    &:not(:last-child) {
+      margin: 24px 0 48px;
+    }
+  }
+
+  @include responsive-mixins.md {
+    &-content {
+      gap: 24px;
+    }
+
+    &-description {
+      color: var(--_section-color);
+      margin: 16px 0 0;
+
+      &:not(:last-child) {
+        margin: 16px 0 32px;
+      }
+    }
+  }
+
+  @include responsive-mixins.lg {
+    &-content {
+      gap: 24px;
+      width: map.get(layout.$columns, "col-6");
+    }
+  }
+}

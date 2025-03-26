@@ -1,6 +1,7 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/layout";
 @use "@/styles/mixins";
+@use "sass:map";
 
 .ways-to-donate {
   &-tabs {
@@ -46,7 +47,7 @@
   @include responsive-mixins.lg {
     &-content{
       gap: 24px;
-      width: map-get(layout.$columns, "col-10");
+      width: map.get(layout.$columns, "col-10");
     }
 
     &-tabs {

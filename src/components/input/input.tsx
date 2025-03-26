@@ -2,7 +2,7 @@ import { ForwardedRef, forwardRef, InputHTMLAttributes } from "react";
 import cc from "classcat";
 import "./input.scss";
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
+export type InputProps = InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = forwardRef(
   (

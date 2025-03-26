@@ -1,40 +1,18 @@
 "use client";
 
-import { ElementType, HTMLAttributes, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import cc from "classcat";
-import { Title, TitleProps } from "@/components/title/title";
+import { Title, TitleProps, TitleLevel } from "@/components/title/title";
 import "./section-base-title.scss";
 
 type SectionBaseTitleProps = Omit<TitleProps, "as"> & {
-  level?: number;
-};
-
-const getTitleTag = (
-  level: number,
-): ElementType<
-  HTMLAttributes<HTMLHeadingElement>,
-  "h1" | "h2" | "h3" | "h4" | "h5"
-> => {
-  switch (level) {
-    case 1:
-      return "h1";
-    case 2:
-      return "h2";
-    case 3:
-      return "h3";
-    case 4:
-      return "h4";
-    case 5:
-      return "h5";
-    default:
-      return "h3";
-  }
+  level?: TitleLevel | null;
 };
 
 export const SectionBaseTitle = ({
   className,
   children,
-  level = 3,
+  align,
   ...delegatedProps
 }: SectionBaseTitleProps) => {
   const ref = useRef<HTMLHeadingElement>(null);
@@ -66,8 +44,12 @@ export const SectionBaseTitle = ({
     <Title
       ref={ref}
       {...delegatedProps}
-      as={getTitleTag(level)}
-      className={cc(["section-base-title", className])}
+      align={align}
+      className={cc([
+        "section-base-title",
+        align === "center" && "section-base-title-center",
+        className,
+      ])}
     >
       {children}
     </Title>

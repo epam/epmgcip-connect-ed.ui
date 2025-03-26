@@ -4,42 +4,58 @@ export const newsSectionFragment = gql(`
 fragment NewsSectionFragment on ComponentSectionsColumns {
   __typename
   id
-  columnsHeading: heading {
-    text
-    position
-  }
-  theme {
-    color
-    bgColor
-  }
-  cta {
-    label
-    type
-    url
-    color
-    bgColor
-  }
-  cards {
-    cardColor: color
-    cardBgColor: bgColor
-    linkText
-    linkColor
-    article {
+  Heading {
+    id
+    Alignment
+    Level
+    Title {
       data {
         attributes {
-          slug
-          title
-          excerpt
-          featuredImage {
-            data {
-              attributes {
-                url
-              }
+          Title
+          HeadingLevel
+        }
+      }
+    }
+  }
+  CTA {
+    Label
+    Type
+    URL
+    ButtonTheme {
+      data {
+        attributes {
+          BackgrondColor
+          OutlineColor
+          FontColor
+        }
+      }
+    }
+  }
+  Articles {
+    data {
+      attributes {
+        slug
+        title
+        excerpt
+        content
+        featuredImage {
+          data {
+            attributes {
+              url
             }
           }
         }
       }
     }
   }
-  showWave
+  Theme {
+    data {
+      attributes {
+        color
+        bgColor
+        title
+      }
+    }
+  }
+  ShowWave
 }`);

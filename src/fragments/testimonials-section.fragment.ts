@@ -3,23 +3,37 @@ import { gql } from "@/__generated__";
 export const testimonialsSectionFragment = gql(`
 fragment TestimonialsSectionFragment on ComponentSectionsTestimonials {
   id
-  title
-  card {
-    id
-    text
-    title
-    icon {
-     data {
+  Title {
+    data {
       attributes {
-        alternativeText
-        name
-        caption
-        url
+        Title
+        HeadingLevel
       }
-    } 
     }
-    author
-    theme {
+  }
+  Card {
+    id
+    Text
+    Title {
+      data {
+        attributes {
+          Title
+          HeadingLevel
+        }
+      }
+    }
+    Icon {
+      data {
+        attributes {
+          alternativeText
+          name
+          caption
+          url
+        }
+      } 
+    }
+    Author
+    Theme {
       data {
         attributes {
           color
@@ -28,7 +42,7 @@ fragment TestimonialsSectionFragment on ComponentSectionsTestimonials {
       }
     }
   }
-  theme {
+  Theme {
     data {
       attributes {
         color
@@ -36,5 +50,5 @@ fragment TestimonialsSectionFragment on ComponentSectionsTestimonials {
       }
     }
   }
-  showWave
+  ShowWave
 }`);

@@ -43,7 +43,7 @@
     }
   }
 
-  @include responsive-mixins.lg() {
+  @include responsive-mixins.lg {
     &-content {
       padding: 0 24px;
       max-width: layout.$max-content-width;

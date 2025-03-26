@@ -5,18 +5,28 @@ query GetPageData($id: ID, $page: Int!, $pageSize: Int!, $locale: I18NLocaleCode
   page(id: $id, locale: $locale) {
     data {
       attributes {
-        label
-        slug
+        Slug
+        Title
         locale
-        pageSections {
+        PageSections {
           ...RichTextFragment
+          ...DataGraphFragment
           ...HeroBannerFragment
           ...InfoSectionFragment
           ...ImageBannerFragment
           ...ProjectsSectionFragment
+          ...PartnersSectionFragment
+          ...PersonelSectionFragment
           ...NewsSectionFragment
           ...SecondaryBannerFragment
           ...WaveBannerFragment
+          ...TimelineSectionFragment
+          ...TestimonialsSectionFragment
+          ...TwoColumnsFragment
+          ...ExpandableSectionFragment
+          ...ContactBannerFragment
+          ...SubscriptionFormFragment
+          ...GetInTouchFragment
           ...CategorizedNewsFragment
         }
       }

@@ -1,6 +1,7 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/layout";
 @use "@/styles/mixins";
+@use "sass:map";
 
 .information-section {
   --_section-background: var(--section-background, var(--white));
@@ -63,7 +64,7 @@
   @include responsive-mixins.lg {
     &-content {
       gap: 36px;
-      width: map-get(layout.$columns, "col-10");
+      width: map.get(layout.$columns, "col-10");
       margin: auto;
     }
 

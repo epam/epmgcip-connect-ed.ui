@@ -3,6 +3,6 @@ import { ComponentSharedNoodlesCard } from "@/__generated__/graphql.ts";
 
 export const getInformationCardTheme = (data?: ComponentSharedNoodlesCard) =>
   getThemeStyle([
-    ["--background-color", data?.bgColor],
-    ["--text-color", data?.color],
+    ["--background-color", data?.Theme?.data?.attributes?.bgColor],
+    ["--text-color", data?.Theme?.data?.attributes?.color],
   ]);

@@ -15,14 +15,14 @@ export const Header = ({ logo, leftSlot, rightSlot }: HeaderProps) => (
       {leftSlot}
       <div className="logo">
         <Link
-          href={logo?.url ?? "/"}
-          target={logo?.newTab ? "_blank" : undefined}
+          href={logo?.URL ?? "/"}
+          target={logo?.Open ? "_blank" : undefined}
           className="logo-link"
           aria-label="logo"
         >
           <img
-            alt={logo?.altText ?? ""}
-            src={logo?.image?.data?.attributes?.url}
+            alt={logo?.AltText ?? ""}
+            src={logo?.Image?.data?.attributes?.url}
             className="logo-icon"
           />
         </Link>

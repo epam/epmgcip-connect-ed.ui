@@ -1,6 +1,7 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/mixins";
 @use "@/styles/layout";
+@use "sass:map";
 
 .embedded-section {
   background-color: var(--white);
@@ -25,7 +26,7 @@
 
   @include responsive-mixins.lg {
     &-content {
-      width: map-get(layout.$columns, "col-10");
+      width: map.get(layout.$columns, "col-10");
       gap: 48px;
     }
   }

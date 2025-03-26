@@ -2,7 +2,7 @@ import { IframeHTMLAttributes, useEffect, useRef } from "react";
 import cc from "classcat";
 import "./iframe.scss";
 
-export interface IframeProps extends IframeHTMLAttributes<HTMLIFrameElement> {}
+export type IframeProps = IframeHTMLAttributes<HTMLIFrameElement>;
 
 export const Iframe = ({ className, ...delegatedProps }: IframeProps) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);

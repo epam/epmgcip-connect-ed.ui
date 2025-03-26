@@ -1,60 +1,45 @@
 import { PartnersCarousel } from "@/features/partners-section/partners-carousel/partners-carousel.tsx";
-import { Button } from "@/components/button/button.tsx";
+import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
-import image1 from "@/assets/images/partners/image_1.png";
-import image10 from "@/assets/images/partners/image_10.png";
-import image11 from "@/assets/images/partners/image_11.png";
-import image12 from "@/assets/images/partners/image_12.png";
-import image13 from "@/assets/images/partners/image_13.png";
-import image14 from "@/assets/images/partners/image_14.png";
-import image15 from "@/assets/images/partners/image_15.png";
-import image16 from "@/assets/images/partners/image_16.png";
-import image17 from "@/assets/images/partners/image_17.png";
-import image2 from "@/assets/images/partners/image_2.png";
-import image3 from "@/assets/images/partners/image_3.png";
-import image4 from "@/assets/images/partners/image_4.png";
-import image5 from "@/assets/images/partners/image_5.png";
-import image6 from "@/assets/images/partners/image_6.png";
-import image7 from "@/assets/images/partners/image_7.png";
-import image8 from "@/assets/images/partners/image_8.png";
-import image9 from "@/assets/images/partners/image_9.png";
+import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
+import {
+  ComponentSharedImage,
+  PartnersSectionFragmentFragment,
+} from "@/__generated__/graphql.ts";
 import { SectionBaseTitle } from "@/components/section-base";
+import { TitleLevel } from "@/components/title/title";
 import "./partners-section.scss";
 
-const partnersArray = [
-  image1,
-  image2,
-  image3,
-  image4,
-  image5,
-  image6,
-  image7,
-  image8,
-  image9,
-  image10,
-  image11,
-  image12,
-  image13,
-  image14,
-  image15,
-  image16,
-  image17,
-];
+export interface PartnersSectionProps {
+  data: PartnersSectionFragmentFragment;
+}
 
-export const PartnersSection = () => {
+// eslint-disable-next-line complexity
+export const PartnersSection = ({ data }: PartnersSectionProps) => {
   return (
     <SectionBase
       className="partners-section"
       contentClassName="partners-section-content"
     >
-      <SectionBaseTitle className="partners-section-title">
-        Our partners
+      <SectionBaseTitle
+        className="partners-section-title"
+        level={(data?.heading?.Level as TitleLevel) ?? undefined}
+      >
+        {data?.heading?.Title?.data?.attributes?.Title}
       </SectionBaseTitle>
-      {/* @ts-expect-error The error will disappear after the integration */}
-      <PartnersCarousel items={partnersArray} />
-      <Button className="partners-section-button" variant="main">
-        Become a partner
-      </Button>
+      <PartnersCarousel
+        items={data?.Elements?.filter(isNotNull) as ComponentSharedImage[]}
+      />
+      {data?.CTA && (
+        <ButtonLink
+          href={data.CTA.URL ?? ""}
+          className="partners-section-button"
+          variant={data.CTA.Type ?? undefined}
+          theme={data.CTA.ButtonTheme?.data?.attributes}
+        >
+          {data.CTA.Label}
+        </ButtonLink>
+      )}
     </SectionBase>
   );
 };

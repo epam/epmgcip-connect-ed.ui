@@ -1,5 +1,5 @@
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
-import { registerApolloClient } from "@apollo/experimental-nextjs-app-support/rsc";
+import { registerApolloClient } from "@apollo/experimental-nextjs-app-support";
 
 export const { getClient } = registerApolloClient(
   () =>
@@ -17,6 +17,7 @@ export const { getClient } = registerApolloClient(
             fields: {
               attributes: {
                 keyArgs: false,
+                //TODO: check merge after the integration
                 merge(existingAttributes, incomingAttributes) {
                   return {
                     ...existingAttributes,
@@ -36,13 +37,7 @@ export const { getClient } = registerApolloClient(
         },
       }),
       link: new HttpLink({
-        uri: "https://cdkz-admin-staging-service-g7ihm2zefq-uc.a.run.app/graphql",
+        uri: `${process.env.REACT_APP_BACKEND_URL}/graphql`,
       }),
     }),
 );
-
-/*export const client = new ApolloClient({
-  cache,
-  //TODO: replace with env file
-  uri: "https://cdkz-admin-staging-service-g7ihm2zefq-uc.a.run.app/graphql", // `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/graphql`,
-});*/

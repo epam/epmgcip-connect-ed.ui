@@ -1,23 +1,8 @@
 "use client"; // Error components must be Client Components
 
+import { ErrorSection } from "@/features/error-section/error-section.tsx";
+
 // eslint-disable-next-line import/no-default-export,react/function-component-definition
-export default function Error({
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
-  return (
-    <div>
-      <h2>Something went wrong!</h2>
-      <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
-        Try again
-      </button>
-    </div>
-  );
+export default function Error() {
+  return <ErrorSection />;
 }

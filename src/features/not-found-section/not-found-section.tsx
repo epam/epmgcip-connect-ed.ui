@@ -12,7 +12,7 @@ export const NotFoundSection = ({
   description,
 }: NotFoundSectionProps) => (
   <section className="not-found-section">
-    <Title as="h1" className="not-found-section-title">
+    <Title level="h1" className="not-found-section-title">
       {title}
     </Title>
     <Typography className="not-found-section-description">

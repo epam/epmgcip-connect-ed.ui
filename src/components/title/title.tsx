@@ -1,26 +1,57 @@
 import { ElementType, forwardRef, HTMLAttributes, ReactNode } from "react";
 import cc from "classcat";
+import { Enum_Title_Headinglevel } from "@/__generated__/graphql.ts";
 import "./title.scss";
 
 export type TitleTheme = "inherit" | "black" | "white";
+export type TitleLevel = Enum_Title_Headinglevel | null | undefined;
 
 export interface TitleProps {
   theme?: TitleTheme;
   className?: string;
   children: ReactNode;
-  as?: ElementType<
-    HTMLAttributes<HTMLHeadingElement>,
-    "h1" | "h2" | "h3" | "h4" | "h5"
-  >;
+  level?: TitleLevel;
+  align?: "left" | "center";
 }
+
+const getTitleTag = (
+  level?: TitleLevel,
+): ElementType<
+  HTMLAttributes<HTMLHeadingElement>,
+  "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+> => {
+  switch (level) {
+    case "h1":
+    case "h2":
+    case "h3":
+    case "h4":
+    case "h5":
+    case "h6":
+      return level;
+    default:
+      return "h3";
+  }
+};
 
 export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
   (
-    { className, children, theme = "inherit", as: Tag = "h2" }: TitleProps,
+    { className, children, theme = "inherit", level = "h3", align }: TitleProps,
     ref,
-  ) => (
-    <Tag ref={ref} className={cc(["title", className])} data-theme={theme}>
-      {children}
-    </Tag>
-  ),
+  ) => {
+    const Tag = getTitleTag(level);
+
+    return (
+      <Tag
+        ref={ref}
+        className={cc([
+          "title",
+          align === "center" && "title-center",
+          className,
+        ])}
+        data-theme={theme}
+      >
+        {children}
+      </Tag>
+    );
+  },
 );

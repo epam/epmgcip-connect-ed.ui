@@ -5,14 +5,16 @@ import { PropsWithChildren } from "react";
 import { ApolloLink, HttpLink } from "@apollo/client";
 import {
   ApolloNextAppProvider,
+  SSRMultipartLink,
+} from "@apollo/experimental-nextjs-app-support";
+import {
   NextSSRApolloClient,
   NextSSRInMemoryCache,
-  SSRMultipartLink,
 } from "@apollo/experimental-nextjs-app-support/ssr";
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: "https://cdkz-admin-staging-service-g7ihm2zefq-uc.a.run.app/graphql",
+    uri: `${process.env.REACT_APP_BACKEND_URL}/graphql`,
   });
 
   return new NextSSRApolloClient({
@@ -29,6 +31,7 @@ function makeClient() {
           fields: {
             attributes: {
               keyArgs: false,
+              // TODO: check merge after the integration
               merge(existingAttributes, incomingAttributes) {
                 return {
                   ...existingAttributes,

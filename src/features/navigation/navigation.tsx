@@ -12,7 +12,7 @@ import {
   CategoryEntity,
   ComponentSharedButton,
   ComponentSharedImage,
-  ComponentSharedSocialIcon,
+  SocialMediaEntity,
 } from "@/__generated__/graphql.ts";
 import "./navigation.scss";
 
@@ -22,7 +22,7 @@ export interface NavigationProps {
   logo?: Omit<ComponentSharedImage, "id">;
   navigation?: CategoryEntity[];
   action?: Omit<ComponentSharedButton, "id">;
-  stripe?: ComponentSharedSocialIcon[];
+  stripe?: SocialMediaEntity[];
 }
 
 export const Navigation = ({
@@ -119,11 +119,11 @@ export const Navigation = ({
               />
               {action && (
                 <ButtonLink
-                  variant="nav"
+                  variant={action.Type ?? "nav"}
                   className="donate-button"
-                  href={action?.url ?? ""}
+                  href={action?.URL ?? ""}
                 >
-                  {action?.label}
+                  {action?.Label}
                 </ButtonLink>
               )}
             </>

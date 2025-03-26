@@ -4,66 +4,67 @@ import { SectionBase } from "@/components/section-base/section-base.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
 import { WavyCard } from "@/components/wavy-card/wavy-card.tsx";
 import { getInformationSectionTheme } from "@/features/information-section/utils.ts";
+import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import {
-  ComponentSharedButton,
-  ComponentSharedColor,
   ComponentSharedNoodlesCard,
+  InfoSectionFragmentFragment,
 } from "@/__generated__/graphql.ts";
 import { SectionBaseTitle } from "@/components/section-base";
 import "./information-section.scss";
 
 export interface InformationSectionProps {
-  title?: string | null;
-  description?: string | null;
-  cards?: ComponentSharedNoodlesCard[] | null;
-  action?: ComponentSharedButton | null;
-  theme?: ComponentSharedColor | null;
+  data: InfoSectionFragmentFragment;
 }
 
+// eslint-disable-next-line complexity
 export const InformationSection = ({
-  title,
-  description,
-  cards,
-  action,
-  theme,
-}: InformationSectionProps) => (
-  <SectionBase
-    className="information-section"
-    contentClassName="information-section-content"
-    style={getInformationSectionTheme(theme)}
-  >
-    {title && (
-      <SectionBaseTitle className="information-section-title">
-        {title}
-      </SectionBaseTitle>
-    )}
-    {description && (
-      <Typography className="information-section-description">
-        {description}
-      </Typography>
-    )}
-    <ul className="information-section-list">
-      {cards?.map(item => (
-        <WavyCard
-          key={item.id}
-          as="li"
-          className="information-section-list-item"
-          theme={item?.borderColor ?? undefined}
+  data: {
+    Title: title,
+    Text: description,
+    Theme: theme,
+    infoCard: cards,
+    Button: action,
+  },
+}: InformationSectionProps) => {
+  const cardsData = cards?.filter(isNotNull);
+  return (
+    <SectionBase
+      className="information-section"
+      contentClassName="information-section-content"
+      style={getInformationSectionTheme(theme?.data?.attributes)}
+    >
+      {title && (
+        <SectionBaseTitle className="information-section-title">
+          {title.data?.attributes?.Title}
+        </SectionBaseTitle>
+      )}
+      {description && (
+        <Typography className="information-section-description">
+          {description}
+        </Typography>
+      )}
+      <ul className="information-section-list">
+        {cardsData?.map(item => (
+          <WavyCard
+            key={item.id}
+            as="li"
+            className="information-section-list-item"
+            theme={item?.Theme?.data?.attributes ?? undefined}
+          >
+            <InformationCard data={item as ComponentSharedNoodlesCard} />
+          </WavyCard>
+        ))}
+      </ul>
+      {action && (
+        <ButtonLink
+          href={action.URL ?? ""}
+          className="information-section-action"
+          variant={action?.Type ?? undefined}
+          theme={action?.ButtonTheme?.data?.attributes}
         >
-          <InformationCard data={item} />
-        </WavyCard>
-      ))}
-    </ul>
-    {action && (
-      <ButtonLink
-        href={action.url ?? ""}
-        className="information-section-action"
-        variant={action?.type ?? undefined}
-        // TODO: change to appropriate theming after clarification
-        // theme={action?.bgColor ?? undefined}
-      >
-        {action.label}
-      </ButtonLink>
-    )}
-  </SectionBase>
-);
+          {action.Label}
+        </ButtonLink>
+      )}
+    </SectionBase>
+  );
+};

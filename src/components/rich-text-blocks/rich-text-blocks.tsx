@@ -1,5 +1,8 @@
 import { PropsWithChildren } from "react";
-import { BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
+import {
+  type BlocksContent,
+  BlocksRenderer,
+} from "@strapi/blocks-react-renderer";
 import cc from "classcat";
 import Link from "next/link";
 import { Title } from "@/components/title/title.tsx";
@@ -28,7 +31,7 @@ const getTitleTag = (level?: 1 | 2 | 3 | 4 | 5 | 6) => {
     case 5:
       return "h5";
     case 6:
-      return "h5";
+      return "h6";
     default: {
       return "h3";
     }
@@ -46,7 +49,7 @@ const blocks: RichTextBlocksConfig = {
     </pre>
   ),
   heading: ({ level, children }) => (
-    <Title as={getTitleTag(level)} className="rich-text-blocks-title">
+    <Title level={getTitleTag(level)} className="rich-text-blocks-title">
       {children}
     </Title>
   ),

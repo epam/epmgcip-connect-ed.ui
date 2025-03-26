@@ -4,30 +4,80 @@ export const infoSectionFragment = gql(`
 fragment InfoSectionFragment on ComponentSectionsInfoCardsTypeA {
   __typename
   id
-  theme {
-    color
-    bgColor
+  Text
+  Theme {
+    data {
+      attributes {
+        color
+        bgColor
+        title
+      }
+    }
   }
-  heading
-  description
-  cta {
-    color
-    bgColor
-    url
-    label
-    type
+  Title {
+    data {
+      attributes {
+        Title
+        HeadingLevel
+      }
+    }
   }
-  cards {
+  infoCard: Card {
     id
-    heading
-    description
-    color
-    bgColor
-    borderColor
-    image {
+    Text
+    Image {
       data {
         attributes {
           url
+        }
+      }
+    }
+    Title {
+      data {
+        attributes {
+          Title
+          HeadingLevel
+        }
+      }
+    }
+    Theme {
+      data {
+        attributes {
+          color
+          bgColor
+          title
+        }
+      }
+    }
+    CTA {
+      data {
+        attributes {
+          label
+          type
+          url
+          buttonTheme {
+            data {
+              attributes {
+                BackgrondColor
+                FontColor
+                OutlineColor
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  Button {
+    Label
+    Type
+    URL
+    ButtonTheme {
+      data {
+        attributes {
+          BackgrondColor
+          OutlineColor
+          FontColor
         }
       }
     }

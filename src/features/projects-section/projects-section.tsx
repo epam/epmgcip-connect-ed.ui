@@ -6,40 +6,42 @@ import {
   getIndexesToStretch,
   getProjectsSectionTheme,
 } from "@/features/projects-section/utils.ts";
+import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import {
-  ComponentSharedColor,
   ComponentSharedGridBlock,
+  ProjectsSectionFragmentFragment,
 } from "@/__generated__/graphql.ts";
 import { SectionBaseTitle } from "@/components/section-base";
 import "./projects-section.scss";
 
 export interface ProjectsSectionProps {
-  title?: string | null;
-  projects?: ComponentSharedGridBlock[] | null;
-  theme?: ComponentSharedColor | null;
+  data: ProjectsSectionFragmentFragment;
 }
 
+const initialProjects: ComponentSharedGridBlock[] = [];
+
 export const ProjectsSection = ({
-  projects,
-  title,
-  theme,
+  data: { Block: projects, Theme: theme, blockHeading },
 }: ProjectsSectionProps) => {
+  const projectsData = (projects?.filter(isNotNull) ??
+    initialProjects) as ComponentSharedGridBlock[];
+
   const indexesToStretch = useMemo(
-    () => getIndexesToStretch(projects ?? []),
-    [projects],
+    () => getIndexesToStretch(projectsData ?? []),
+    [projectsData],
   );
 
   return (
     <SectionBase
       className="projects-section"
       contentClassName="projects-section-content"
-      style={getProjectsSectionTheme(theme)}
+      style={getProjectsSectionTheme(theme?.data?.attributes)}
     >
       <SectionBaseTitle className="projects-section-title">
-        {title}
+        {blockHeading}
       </SectionBaseTitle>
       <div className="projects-section-layout">
-        {projects?.map((item, index) => (
+        {projectsData.map((item, index) => (
           <ProjectCard
             key={item?.id}
             className={cc([

@@ -14,23 +14,24 @@ export const InformationCard = ({ data }: DescriptionCardProps) => {
 
   return (
     <article className="information-card" style={getInformationCardTheme(data)}>
-      {data?.image?.data && (
+      {data?.Image?.data && (
         <div className="information-card-image-wrapper">
           <img
             className=""
-            src={data.image.data.attributes?.url}
+            src={data.Image.data.attributes?.url}
             role="presentation"
             alt=""
           />
         </div>
       )}
       <div className="information-card-info">
-        <Title as="h4" className="information-card-title">
-          {data?.heading}
+        <Title
+          level={data?.Title?.data?.attributes?.HeadingLevel}
+          className="information-card-title"
+        >
+          {data?.Title?.data?.attributes?.Title}
         </Title>
-        <Typography className="information-card-body">
-          {data?.description}
-        </Typography>
+        <Typography className="information-card-body">{data?.Text}</Typography>
       </div>
       {action && (
         <Button className="information-card-action" variant="outline">

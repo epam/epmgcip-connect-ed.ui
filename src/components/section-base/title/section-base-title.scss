@@ -7,6 +7,10 @@
   @include mixins.h4;
   @include mixins.partial-underline("section-base-full-underline");
 
+  &-center {
+    margin: 0 auto;
+  }
+
   @include responsive-mixins.lg {
     @include mixins.h2;
   }

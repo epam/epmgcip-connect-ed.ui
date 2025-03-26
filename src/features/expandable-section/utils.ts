@@ -5,6 +5,6 @@ export const getExpandableSectionTheme = (
   theme?: Maybe<ComponentSharedColor>,
 ) =>
   getThemeStyle([
-    ["--section-background", theme?.bgColor],
-    ["--section-color", theme?.color],
+    ["--section-background", theme?.BgColor],
+    ["--section-color", theme?.Color],
   ]);

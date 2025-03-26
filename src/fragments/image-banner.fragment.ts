@@ -4,30 +4,36 @@ export const imageBannerFragment = gql(`
 fragment ImageBannerFragment on ComponentSectionsImageBanner {
   __typename
   id
-  image {
+  imageCard: Card {
+    id
+    Text
+    Label
+    URL
+    LinkTitle
+    Open
+    Title {
+      data {
+        id
+        attributes {
+          Title
+          HeadingLevel
+        }
+      }
+    }
+  }
+  Image {
     data {
+      id
       attributes {
         url
       }
     }
   }
-  bgColor
-  card {
-    cardHeading
-    cardDescription
-    cardColor
-    cardBgColor
-    linkColor
-    linkBgColor
-    linkText
-    linkUrl
-    linkTitle
-    linkNewTab
-    linkIcon {
-      data {
-        attributes {
-          url
-        }
+  Theme {
+    data {
+      attributes {
+        color
+        bgColor
       }
     }
   }

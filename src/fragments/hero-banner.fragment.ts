@@ -4,24 +4,47 @@ export const heroBannerFragment = gql(`
 fragment HeroBannerFragment on ComponentSectionsHeroBanner {
   __typename
   id
-  coverImage {
+  Image {
     data {
       attributes {
         url
       }
     }
   }
-  cta {
-    label
-    url
-    type
-    color
-    bgColor
+  CTA {
+   id
+    Label
+    URL
+    Type
+    ButtonTheme {
+      data {
+        attributes {
+          BackgrondColor
+          OutlineColor
+          FontColor
+        }
+      }
+    }
   }
-  overlayBlock {
-    title
-    content
-    color
-    bgColor
+  OverlayBlock {
+    id
+    Text
+    Title {
+      data {
+        attributes {
+          Title
+          HeadingLevel
+        }
+      }
+    }
+    Theme {
+      data {
+        attributes {
+          color
+          bgColor
+          title
+        }
+      }
+    }
   }
 }`);

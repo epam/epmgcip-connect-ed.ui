@@ -4,45 +4,59 @@ export const categorizedNewsFragment = gql(`
 fragment CategorizedNewsFragment on ComponentSectionsColumnsWithTabs {
   __typename
   id
-  tabTheme {
-    color
-    bgColor
-    borderColor
-    activeColor
-    activeBgColor
-    activeBorderColor
-  }
-  tabCardTheme {
-    color
-    bgColor
-    linkColor
-  }
-  maxCardsToDisplay
-  cta {
-    label
-    type
-    url
-    color
-    bgColor
-  }
-  tabs {
+  Tabs {
     data {
       id
       attributes {
-        slug
-        label
-        description
-        articles(pagination: { page: $page, pageSize: $pageSize }) {
+        TabTheme {
+          Color
+#          BgColor
+#          BorderColor
+#          ActiveColor
+#          ActiveBgColor
+#          ActiveBorderColor
+        }
+        TabCardTheme {
+          Color
+          BgColor
+          LinkColor
+          id
+        }
+        CTA {
           data {
-            id
+            id  
             attributes {
-              slug
-              title
-              excerpt
-              featuredImage {
+              label
+              type
+              url
+              buttonTheme {
                 data {
                   attributes {
-                    url
+                    BackgrondColor
+                    OutlineColor
+                    FontColor
+                  }
+                }
+              }
+            }
+          }
+        }
+        Tabs {
+          id
+          Label
+          Description
+          Articles(pagination: { page: $page, pageSize: $pageSize }) {
+            data {
+              id
+              attributes {
+                slug
+                title
+                excerpt
+                featuredImage {
+                  data {
+                    attributes {
+                      url
+                    }
                   }
                 }
               }
@@ -52,4 +66,5 @@ fragment CategorizedNewsFragment on ComponentSectionsColumnsWithTabs {
       }
     }
   }
+  MaxCardsToDisplay
 }`);

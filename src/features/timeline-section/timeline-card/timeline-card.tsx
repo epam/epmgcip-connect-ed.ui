@@ -3,21 +3,16 @@ import cc from "classcat";
 import { Title } from "@/components/title/title.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
 import { getTimelineCardTheme } from "@/features/timeline-section/timeline-card/utils.ts";
-import { ComponentSharedColor } from "@/__generated__/graphql.ts";
+import { ComponentSharedTimelineCard } from "@/__generated__/graphql.ts";
 import "./timeline-card.scss";
 
 export interface TimelineCardProps {
   className?: string;
   as?: ElementType<HTMLAttributes<HTMLElement>>;
-  data?: {
-    title?: string;
-    description?: string;
-    url?: string;
-    bgColor?: string;
-    color?: string;
-  };
+  data?: ComponentSharedTimelineCard;
 }
 
+// eslint-disable-next-line complexity
 export const TimelineCard = ({
   as: Tag = "div",
   className,
@@ -25,17 +20,22 @@ export const TimelineCard = ({
 }: TimelineCardProps) => (
   <Tag
     className={cc(["timeline-card", className])}
-    style={getTimelineCardTheme(data as ComponentSharedColor)}
+    style={getTimelineCardTheme(data?.Theme?.data?.attributes)}
   >
     <article>
-      <Title className="timeline-card-title">{data?.title}</Title>
-      <Typography>{data?.description}</Typography>
+      <Title
+        level={data?.Title?.data?.attributes?.HeadingLevel}
+        className="timeline-card-title"
+      >
+        {data?.Title?.data?.attributes?.Title}
+      </Title>
+      <Typography>{data?.Text}</Typography>
     </article>
     <div className="timeline-card-image-wrapper">
       <img
         className="timeline-card-image"
         alt=""
-        src={data?.url}
+        src={data?.Image?.data?.attributes?.url ?? ""}
         role="presentation"
       />
     </div>

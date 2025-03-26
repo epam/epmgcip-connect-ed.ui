@@ -3,17 +3,31 @@ import { gql } from "@/__generated__";
 export const timelineSectionFragment = gql(`
 fragment TimelineSectionFragment on ComponentSectionsTimeline {
   id
-  heading {
+  Heading {
     id
-    level
-    text
-    position
+    Level
+    Alignment
+    Title {
+      data {
+        attributes {
+          Title
+          HeadingLevel
+        }
+      }
+    }
   }
-  card {
+  timelineCard: Card {
     id
-    text
-    title
-    image {
+    Text
+    Title {
+      data {
+        attributes {
+          Title
+          HeadingLevel
+        }
+      }
+    }
+    Image {
       data {
         attributes {
           image {
@@ -32,7 +46,7 @@ fragment TimelineSectionFragment on ComponentSectionsTimeline {
         }
       }
     }
-    theme {
+    Theme {
       data {
         attributes {
           color
@@ -41,5 +55,13 @@ fragment TimelineSectionFragment on ComponentSectionsTimeline {
       }
     }
   }
-  showWave
+  Theme {
+    data {
+      attributes {
+        color
+        bgColor
+      }
+    }
+  }
+  ShowWave
 }`);

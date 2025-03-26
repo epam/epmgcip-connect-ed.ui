@@ -1,0 +1,56 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/layout";
+@use "@/styles/mixins";
+@use "sass:map";
+
+.error-section {
+  --_section-background: var(--section-background, var(--white));
+  --_section-color: var(--section-color, var(--black));
+  background-color: var(--_section-background);
+  color: var(--_section-color);
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &-title {
+    @include mixins.h3;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  &-action {
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  @include responsive-mixins.md {
+    &-content {
+      gap: 24px;
+    }
+
+    &-title {
+      @include mixins.h2;
+      margin-bottom: 0;
+    }
+
+    &-action {
+      margin: 12px auto 0;
+      width: auto;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    &-content {
+      gap: 36px;
+      width: map.get(layout.$columns, "col-10");
+      margin: auto;
+    }
+
+    &-title {
+      @include mixins.h1;
+    }
+  }
+}

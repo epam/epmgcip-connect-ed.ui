@@ -1,10 +1,10 @@
 import cc from "classcat";
 import Link from "next/link";
-import { ComponentSharedSocialIcon } from "@/__generated__/graphql.ts";
+import { SocialMediaEntity } from "@/__generated__/graphql.ts";
 import "./social-link-list.scss";
 
 export interface SocialLinksProps {
-  items?: ComponentSharedSocialIcon[];
+  items?: SocialMediaEntity[] | undefined;
   className?: string;
   iconClassName?: string;
 }
@@ -18,22 +18,21 @@ export const SocialLinkList = ({
 
   return (
     <div className={cc(["social-link-list", className])}>
-      {items?.map(({ title, newTab, url, icon }) => {
-        const iconData = icon?.data?.attributes;
-
+      {items?.map(item => {
+        const currentItem = item.attributes;
         return (
           <Link
             className="social-link-list-link"
-            key={url}
-            href={url ?? ""}
-            aria-label={title ?? ""}
-            target={newTab ? "_blank" : "_self"}
+            key={currentItem?.url}
+            href={currentItem?.url ?? ""}
+            aria-label={currentItem?.title ?? ""}
+            target="_blank"
             rel="noopener noreferrer"
           >
             <img
               className={linkIconClassName}
-              alt={iconData?.caption ?? ""}
-              src={iconData?.url}
+              alt={currentItem?.text ?? ""}
+              src={currentItem?.url ?? ""}
               role="presentation"
             />
           </Link>

@@ -4,55 +4,62 @@ import { Title } from "@/components/title/title.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
 import { WavyImage } from "@/components/wavy-image/wavy-image.tsx";
 import { getWaveBannerTheme } from "@/features/wave-banner/utils.ts";
-import { ComponentSectionsWaveBanner } from "@/__generated__/graphql.ts";
+import { WaveBannerFragmentFragment } from "@/__generated__/graphql.ts";
 import "./wave-banner.scss";
 
 export interface WaveBannerProps {
-  data?: ComponentSectionsWaveBanner;
+  data?: WaveBannerFragmentFragment;
 }
 
+// eslint-disable-next-line complexity
 export const WaveBanner = ({ data }: WaveBannerProps) => {
   const {
-    image,
-    text,
-    title,
-    cta: action,
-    isLargeImage,
-    isTextBox,
-    backgroundColor, // TODO: change to proper theme with bgColor and color for text
+    CTA: action,
+    Image,
+    IsLargeImage,
+    IsTextBox,
+    Text,
+    BackgroundColor,
+    Heading: title, // TODO: change to proper theme with bgColor and color for text
   } = data ?? {};
 
   const contentMode: "ltr" | "rtl" = "ltr"; // TODO: implement placement from BE side
-  const imageClassName = isLargeImage
+  const imageClassName = IsLargeImage
     ? "wave-banner-image--large"
     : "wave-banner-image";
-  const infoClassName = isTextBox
+  const infoClassName = IsTextBox
     ? "wave-banner-info"
     : "wave-banner-info--card";
-  const imageSource = image?.image?.data?.attributes?.url ?? "";
+  const imageSource = Image?.URL ?? "";
 
   return (
     <SectionBase
       className="wave-banner"
       contentClassName="wave-banner-content"
-      style={getWaveBannerTheme(backgroundColor)}
+      style={getWaveBannerTheme(BackgroundColor)}
       hasWave
     >
       {contentMode === "ltr" && (
         <WavyImage className={imageClassName} source={imageSource} />
       )}
       <div className={infoClassName}>
-        {title && <Title className="wave-banner-title">{title.text}</Title>}
-        <Typography className="wave-banner-body">{text}</Typography>
+        {title && (
+          <Title
+            level={title?.Title?.data?.attributes?.HeadingLevel}
+            className="wave-banner-title"
+          >
+            {title?.Title?.data?.attributes?.Title}
+          </Title>
+        )}
+        <Typography className="wave-banner-body">{Text}</Typography>
         {action && (
           <ButtonLink
-            href={action.url ?? ""}
+            href={action.URL ?? ""}
             className="wave-banner-action"
-            variant={action.type ?? undefined}
-            // @ts-expect-error it should be changed to button theme
-            theme={action.bgColor ?? undefined}
+            variant={action.Type ?? undefined}
+            theme={action.ButtonTheme?.data?.attributes}
           >
-            {action.label}
+            {action.Label}
           </ButtonLink>
         )}
       </div>
