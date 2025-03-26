@@ -3,6 +3,7 @@
 .input-field {
   &-label {
     @include mixins.paragraph;
+
     position: relative;
     font-weight: 600;
     display: flex;

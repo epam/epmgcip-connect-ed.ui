@@ -4,6 +4,7 @@
 
 .composed-header {
   --burger-button-size: 44px;
+
   position: fixed;
   width: 100%;
   z-index: layers.$header;
@@ -49,7 +50,7 @@
     display: none;
   }
 
-  @include responsive-mixins.lg() {
+  @include responsive-mixins.lg {
     &-hidden {
       transform: translateY(-100%);
     }
@@ -88,7 +89,7 @@
 
 .sidebar {
   z-index: layers.$side-bar;
-  @include responsive-mixins.lg() {
+  @include responsive-mixins.lg {
     display: none !important;
   }
 }

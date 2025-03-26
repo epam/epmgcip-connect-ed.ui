@@ -38,13 +38,13 @@
     }
   }
 
-  @include responsive-mixins.lg() {
+  @include responsive-mixins.lg {
     position: relative;
     padding: 36px 24px;
     gap: 24px;
     background-color: var(--white);
 
-    &:before {
+    &::before {
       content: "";
       position: absolute;
       top: 0;

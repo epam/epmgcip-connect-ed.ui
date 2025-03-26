@@ -14,7 +14,7 @@
     background-color: var(--primary);
   }
 
-  @if ($className) {
+  @if $className {
     &::after {
       transition: transform 1000ms ease-out;
     }

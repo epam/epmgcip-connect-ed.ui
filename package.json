@@ -13,6 +13,7 @@
     "compile": "dotenv -- graphql-codegen",
     "watch": "graphql-codegen -w",
     "lint:types": "tsc",
+    "lint:scss": "stylelint '**/*.scss' --fix",
     "lint:staged": "lint-staged -r -v",
     "prepare": "husky"
   },
@@ -62,6 +63,9 @@
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
     "sass": "1.86.0",
+    "stylelint": "^16.17.0",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-standard-scss": "^14.0.0",
     "typescript": "^5.8.2"
   }
 }

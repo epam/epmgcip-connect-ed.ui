@@ -4,11 +4,14 @@
 @use "sass:map";
 
 .sign-up {
+    @include mixins.wavy-background;
+
   --_section-background: var(--section-background, var(--primary));
   --_section-card-background: var(--section-card-background, var(--white));
   --_section-color: var(--section-color, var(--black));
 
-  @include mixins.wavy-background;
+
+
   background-color: var(--_section-background);
   color: var(--_section-color);
   padding: 16px;
@@ -30,6 +33,7 @@
 
   &-title {
     @include mixins.h4;
+
     margin: auto;
   }
 

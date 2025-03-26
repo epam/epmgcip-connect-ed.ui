@@ -6,6 +6,7 @@
 .get-in-touch-section {
   --_section-background: var(--section-background, var(--white));
   --_section-color: var(--section-color, var(--black));
+
   background-color: var(--_section-background);
   color: var(--_section-color);
 
@@ -21,6 +22,7 @@
 
   &-description {
     @include mixins.paragraph;
+
     color: var(--_section-color);
     margin: 24px 0 0;
 

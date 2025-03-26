@@ -5,6 +5,7 @@
   --_text-color: var(--text-color, var(--black));
   --_action-color: var(--action-color, var(--primary));
   --_content-color: var(--content-color, var(--white));
+
   display: flex;
   flex-direction: column;
   border-radius: 8px;
@@ -48,6 +49,7 @@
 
   &-action {
     @include mixins.h5;
+
     font-weight: 600;
     flex-shrink: 0;
     margin-top: 16px;

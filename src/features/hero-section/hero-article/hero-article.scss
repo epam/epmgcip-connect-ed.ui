@@ -6,6 +6,7 @@
 .hero-article {
   --_article-color: var(--article-color, var(--primary));
   --_text-color: var(--text-color, var(--white));
+
   position: relative;
   padding: 24px 16px calc(12px + map.get(constants.$wave-polygon-inverted-md, "height"));
   background-color: var(--_article-color);
@@ -22,7 +23,7 @@
 
   @include responsive-mixins.md {
     padding: 48px 48px 24px;
-    border-radius: 0 0 20px 0;
+    border-radius: 0 0 20px;
     clip-path: none;
 
     &-title {
