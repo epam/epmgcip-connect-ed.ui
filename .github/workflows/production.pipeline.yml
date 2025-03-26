@@ -23,16 +23,16 @@ jobs:
     environment: production
     steps:
       - name: Set Google Spreadsheet Credentials
-        run: echo "GOOGLE_SPREADSHEET_CREDENTIALS_JSON='${{ secrets.GOOGLE_SPREADSHEET_CREDENTIALS_JSON }}'" >> $GITHUB_ENV
+        run: echo "GOOGLE_SPREADSHEET_CREDENTIALS_JSON=${{ secrets.GOOGLE_SPREADSHEET_CREDENTIALS_JSON }}" >> $GITHUB_ENV
 
       - name: Set Google Spreadsheet id
-        run: echo "GOOGLE_SPREADSHEET_ID='${{ secrets.GOOGLE_SPREADSHEET_ID }}'" >> $GITHUB_ENV
+        run: echo "GOOGLE_SPREADSHEET_ID=${{ secrets.GOOGLE_SPREADSHEET_ID }}" >> $GITHUB_ENV
 
       - name: Set Google Spreadsheet tab name
-        run: echo "GOOGLE_SPREADSHEET_TAB_NAME='${{ secrets.GOOGLE_SPREADSHEET_TAB_NAME }}'" >> $GITHUB_ENV
+        run: echo "GOOGLE_SPREADSHEET_TAB_NAME=${{ secrets.GOOGLE_SPREADSHEET_TAB_NAME }}" >> $GITHUB_ENV
 
       - name: Set Google Spreadsheet scope
-        run: echo "GOOGLE_SPREADSHEET_SCOPES='${{ secrets.GOOGLE_SPREADSHEET_SCOPES }}'" >> $GITHUB_ENV
+        run: echo "GOOGLE_SPREADSHEET_SCOPES=${{ secrets.GOOGLE_SPREADSHEET_SCOPES }}" >> $GITHUB_ENV
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -45,12 +45,17 @@ jobs:
       - name: Run checks
         run: |
           npm run lint:types &
+          TSC_PID=$!
+          
           npm run lint &
-          wait # Wait for both commands to finish
-
-          NEXT_LINT_EXIT_CODE=$?
+          NEXT_LINT_PID=$!
+          
+          wait $TSC_PID
           TSC_EXIT_CODE=$?
-
+          
+          wait $NEXT_LINT_PID
+          NEXT_LINT_EXIT_CODE=$?
+          
           if [ $NEXT_LINT_EXIT_CODE -ne 0 ] || [ $TSC_EXIT_CODE -ne 0 ]; then
             echo "Linting or Type checking failed"
             exit 1
