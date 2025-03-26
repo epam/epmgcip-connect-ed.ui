@@ -1,9 +1,10 @@
 import { getThemeStyle } from "@/utils/get-theme-style.ts";
-import { ComponentSharedImageCard } from "@/__generated__/graphql.ts";
+import { Maybe, Theme } from "@/__generated__/graphql.ts";
 
-export const getImageBannerTheme = (data?: ComponentSharedImageCard | null) =>
+export const getImageBannerTheme = (data?: Maybe<Theme>) =>
   getThemeStyle([
-    ["--background-color", data?.cardBgColor],
-    ["--text-color", data?.cardColor],
-    ["--action-color", data?.linkColor],
+    ["--background-color", data?.bgColor],
+    ["--text-color", data?.color],
+    // TODO: decide how we display links
+    // ["--action-color", data?.linkColor],
   ]);

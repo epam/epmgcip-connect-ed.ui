@@ -1,0 +1,85 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+@use "@/styles/layout";
+@use "@/styles/breakpoints";
+@use "sass:map";
+
+.contact-banner {
+  --_background-color: var(--background-color, var(--primary));
+  --_text-color: var(--text-color, var(--black));
+  @include mixins.wavy-background;
+  color: var(--_text-color);
+  background-color: var(--_background-color);
+
+  &-content {
+    margin: auto;
+  }
+
+  &-list {
+    padding: 16px 0;
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 32px;
+
+    &-item {
+      display: grid;
+      gap: 24px;
+    }
+  }
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &-title {
+      @include mixins.h4;
+    }
+
+    &-body {
+      @include mixins.paragraph;
+      font-weight: 600;
+    }
+  }
+
+  &-socials {
+    &-label {
+      @include mixins.paragraph;
+      margin-top: auto;
+      font-weight: 600;
+    }
+  }
+
+  @include responsive-mixins.md {
+    &-list {
+      padding: 24px 0;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto auto;
+      grid-gap: 24px;
+
+      &-item {
+        grid-template-rows: subgrid;
+        grid-row: span 2;
+      }
+    }
+  }
+
+  @include responsive-mixins.lg {
+    &-content {
+      max-width: layout.$max-content-width;
+      width: map.get(layout.$columns, "col-8");
+      margin: auto;
+    }
+
+    &-list {
+      padding: 48px 0;
+      grid-gap: 48px;
+    }
+
+    &-info {
+      &-title {
+        @include mixins.h2;
+      }
+    }
+  }
+}

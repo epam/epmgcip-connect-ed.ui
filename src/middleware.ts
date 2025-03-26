@@ -1,5 +1,5 @@
 import createMiddleware from "next-intl/middleware";
-import { locales } from "@/i18n.ts";
+import { locales } from "../i18n/request.ts";
 
 // eslint-disable-next-line import/no-default-export
 export default createMiddleware({

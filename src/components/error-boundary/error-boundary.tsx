@@ -33,9 +33,8 @@ export class ErrorBoundary extends Component<Props, State> {
 
     if (hasError) {
       return (
-        // TODO: Ask designer about component
         <section>
-          <Title as="h1">Oops, something went wrong</Title>
+          <Title level="h1">Oops, something went wrong</Title>
           <Typography>There are some issues while loading the page</Typography>
         </section>
       );

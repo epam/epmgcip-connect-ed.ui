@@ -9,41 +9,41 @@ export interface SecondaryCardProps {
   data: SecondaryBannerFragmentFragment;
 }
 
+// eslint-disable-next-line complexity
 export const SecondaryCard = ({ data }: SecondaryCardProps) => {
   return (
-    <div className="secondary-card" style={getWavyCardTheme(data)}>
+    <div
+      className="secondary-card"
+      style={getWavyCardTheme(data.Theme?.data?.attributes)}
+    >
       <div className="secondary-card-info">
-        <Title className="secondary-card-title">{data.name}</Title>
-        <Typography className="secondary-card-body">{data.text}</Typography>
+        <Title className="secondary-card-title">{data.Name}</Title>
+        <Typography className="secondary-card-body">{data.Text}</Typography>
         <div className="secondary-card-actions">
-          {data.cta1 && (
+          {data.CTA1 && (
             <ButtonLink
-              variant={data.cta1.type ?? undefined}
-              href={data.cta1.url ?? ""}
-              // @ts-expect-error - theme should be changed for the button
-              theme={data?.backgroundColor}
+              variant={data.CTA1.Type ?? undefined}
+              href={data.CTA1.URL ?? ""}
+              theme={data?.CTA1.ButtonTheme?.data?.attributes}
             >
-              {data.cta1.label}
+              {data.CTA1.Label}
             </ButtonLink>
           )}
-          {data.cta2 && (
+          {data.CTA2 && (
             <ButtonLink
-              variant={data.cta2.type ?? undefined}
-              href={data.cta2.url ?? ""}
-              // @ts-expect-error - theme should be changed for the button
-              theme={data?.backgroundColor}
+              variant={data.CTA2.Type ?? undefined}
+              href={data.CTA2.URL ?? ""}
+              theme={data?.CTA2.ButtonTheme?.data?.attributes}
             >
-              {data.cta2.label}
+              {data.CTA2.Label}
             </ButtonLink>
           )}
         </div>
       </div>
       <div className="secondary-card-image-wrapper">
         <img
-          alt={data?.secondaryBannerCover.altText ?? ""}
-          src={
-            data.secondaryBannerCover.image?.data?.attributes?.url ?? undefined
-          }
+          alt={data?.bannerImage.AltText ?? ""}
+          src={data.bannerImage.URL ?? undefined}
           className="secondary-card-image"
         />
       </div>

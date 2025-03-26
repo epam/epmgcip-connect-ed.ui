@@ -6,7 +6,7 @@ query GetLayoutData($limit: Int, $locale: I18NLocaleCode) {
     data {
       id
       attributes {
-        slug
+        Slug
       }
     }
   }
@@ -28,11 +28,11 @@ query GetLayoutData($limit: Int, $locale: I18NLocaleCode) {
     data {
       attributes {
         logo {
-          altText
-          isIcon
-          url
-          newTab
-          image {
+          AltText
+          IsIcon
+          URL
+          Open
+          Image {
             data {
               attributes {
                 url
@@ -42,26 +42,43 @@ query GetLayoutData($limit: Int, $locale: I18NLocaleCode) {
           }
         }
         cta {
-          type
-          url
-          label
-          color
-          bgColor
+          Type
+          URL
+          Label
+          ButtonTheme {
+            data {
+              attributes {
+                FontColor
+                BackgrondColor
+                OutlineColor
+              }
+            }
+          }
         }
         stripe {
-          theme {
-            color
-            bgColor
-          }
-          socialMedia {
-            title
-            url
-            newTab
-            icon {
-              data {
-                attributes {
-                  url
+          SocialMedia {
+            data {
+              attributes {
+                title
+                text
+                type
+                url
+                theme {
+                  data {
+                    attributes {
+                      color
+                      bgColor
+                    }
+                  }
                 }
+              }
+            }
+          }
+          Theme {
+            data {
+              attributes {
+                bgColor
+                color
               }
             }
           }
@@ -75,8 +92,8 @@ query GetLayoutData($limit: Int, $locale: I18NLocaleCode) {
               pages {
                 data {
                   attributes {
-                    slug
-                    label
+                    Slug
+                    Title
                   }
                 }
               }
@@ -90,21 +107,23 @@ query GetLayoutData($limit: Int, $locale: I18NLocaleCode) {
     data {
       attributes {
         theme {
-          color
-          bgColor
+          Color
+          BgColor
         }
-        socialMedia {
-          title
-          url
-          newTab
-          icon {
-            data {
-              attributes {
-                caption
-                url
-                previewUrl
-                height
-                width
+        socialMedias {
+          data {
+            attributes {
+              text
+              title
+              type
+              url
+              theme {
+                data {
+                  attributes {
+                    color
+                    bgColor
+                  }
+                }
               }
             }
           }
@@ -115,8 +134,8 @@ query GetLayoutData($limit: Int, $locale: I18NLocaleCode) {
         navigation {
           data {
             attributes {
-              slug
-              label
+              Slug
+              Title
             }
           }
         }

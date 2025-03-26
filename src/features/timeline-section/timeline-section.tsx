@@ -1,35 +1,41 @@
 import { TimelineCard } from "@/features/timeline-section/timeline-card/timeline-card.tsx";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
+import { TitleLevel } from "@/components/title/title.tsx";
 import { getTimelineSectionTheme } from "@/features/timeline-section/utils.ts";
-import { ComponentSharedColor } from "@/__generated__/graphql.ts";
+import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
+import {
+  ComponentSharedTimelineCard,
+  TimelineSectionFragmentFragment,
+} from "@/__generated__/graphql.ts";
 import { SectionBaseTitle } from "@/components/section-base";
 import "./timeline-section.scss";
 
 export interface TimelineSectionProps {
-  title?: string;
-  theme?: ComponentSharedColor;
-  cards?: object[] | null;
+  data: TimelineSectionFragmentFragment;
 }
 
-export const TimelineSection = ({
-  title,
-  theme,
-  cards,
-}: TimelineSectionProps) => {
+export const TimelineSection = ({ data }: TimelineSectionProps) => {
+  const timelineCards = data.timelineCard?.filter(isNotNull) ?? [];
+
   return (
     <SectionBase
       className="timeline-section"
       contentClassName="timeline-section-content"
-      style={getTimelineSectionTheme(theme)}
+      style={getTimelineSectionTheme(data.Theme?.data?.attributes)}
     >
-      <SectionBaseTitle className="timeline-section-title">
-        {title}
+      <SectionBaseTitle
+        className="timeline-section-title"
+        level={data.Heading?.Level as TitleLevel}
+      >
+        {data.Heading?.Title?.data?.attributes?.Title}
       </SectionBaseTitle>
       <ul className="timeline-section-list">
-        {cards?.map((item, index) => (
-          // TODO: replace index with id or title
-          // eslint-disable-next-line react/no-array-index-key
-          <TimelineCard key={index} as="li" data={item} />
+        {timelineCards.map(item => (
+          <TimelineCard
+            key={item.id}
+            as="li"
+            data={item as ComponentSharedTimelineCard}
+          />
         ))}
       </ul>
     </SectionBase>

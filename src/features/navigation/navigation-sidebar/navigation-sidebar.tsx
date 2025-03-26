@@ -6,7 +6,7 @@ import { useClickOutside } from "@/hooks/use-click-outside.ts";
 import {
   CategoryEntity,
   ComponentSharedButton,
-  ComponentSharedSocialIcon,
+  SocialMediaEntity,
 } from "@/__generated__/graphql.ts";
 import "./navigation-sidebar.scss";
 
@@ -17,7 +17,7 @@ export interface NavigationSidebarProps {
   onClose: () => void;
   navigation?: CategoryEntity[];
   action?: Omit<ComponentSharedButton, "id">;
-  stripe?: ComponentSharedSocialIcon[];
+  stripe?: SocialMediaEntity[];
 }
 
 export const NavigationSidebar = ({
@@ -45,8 +45,8 @@ export const NavigationSidebar = ({
       >
         <NavigationMenu className="navigation-menu" menu={navigation} />
         {action && (
-          <ButtonLink variant="nav" href={action?.url ?? ""}>
-            {action?.label}
+          <ButtonLink variant="nav" href={action?.URL ?? ""}>
+            {action?.Label}
           </ButtonLink>
         )}
         <SocialRibbon className="social-ribbon" socialLinks={stripe} />

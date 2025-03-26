@@ -1,12 +1,13 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/mixins";
 @use "@/styles/layout";
+@use "sass:map";
 
 .wave-banner {
-  @include mixins.wavy-background;
   --_background-color: var(--background-color, var(--primary));
   --_color: var(--color, var(--white));
   --_decoration-color: var(--decoration-color, var(--white));
+  @include mixins.wavy-background;
   position: relative;
   isolation: isolate;
   padding: 56px 16px;
@@ -64,7 +65,7 @@
       align-items: flex-start;
       gap: 48px;
       margin: auto;
-      width: map-get(layout.$columns, "col-8");
+      width: map.get(layout.$columns, "col-8");
 
       &:has(.wave-banner-image--large) {
         padding: 0 24px;

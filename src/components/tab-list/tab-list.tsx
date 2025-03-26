@@ -8,7 +8,7 @@ import {
 import "./tab-list.scss";
 
 export interface TabListProps<T> {
-  theme?: unknown;
+  theme?: ComponentSharedArticleCategoryTab;
   tabs: T[];
   activeTab: string;
   className?: string;
@@ -34,7 +34,7 @@ const TabListComponent = <T,>({
     <div
       role="tablist"
       className={cc(["tab-list", className])}
-      style={getTabsListTheme(theme as ComponentSharedArticleCategoryTab)}
+      style={getTabsListTheme(theme)}
     >
       {tabs.map(tab => {
         const { value, label } = getTabData(tab);

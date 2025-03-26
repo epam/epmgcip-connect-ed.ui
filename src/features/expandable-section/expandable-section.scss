@@ -1,6 +1,7 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/layout";
 @use "@/styles/mixins";
+@use "sass:map";
 
 .expandable-section{
   --_section-background: var(--section-background, var(--white));
@@ -36,7 +37,7 @@
   @include responsive-mixins.lg {
     &-content {
       gap: 24px;
-      width: map-get(layout.$columns, "col-10");
+      width: map.get(layout.$columns, "col-10");
     }
 
     &-list {

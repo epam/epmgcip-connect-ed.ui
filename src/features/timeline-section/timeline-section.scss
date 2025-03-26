@@ -1,5 +1,6 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/layout";
+@use "sass:map";
 
 .timeline-section {
   --_section-background: var(--section-background, var(--background));
@@ -29,7 +30,7 @@
 
   @include responsive-mixins.lg {
     &-content {
-      width: map-get(layout.$columns, "col-8");
+      width: map.get(layout.$columns, "col-8");
       margin: auto;
     }
 

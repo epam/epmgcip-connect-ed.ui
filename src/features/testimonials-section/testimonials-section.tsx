@@ -1,3 +1,5 @@
+"use client";
+
 import Carousel from "react-slick";
 import { CarouselAction } from "@/features/testimonials-section/carousel-action/carousel-action.tsx";
 import { TestimonialCard } from "@/features/testimonials-section/testimonial-card/testimonial-card.tsx";
@@ -7,53 +9,49 @@ import {
   getPrevDisabled,
   getTestimonialsSectionTheme,
 } from "@/features/testimonials-section/utils.ts";
-import { ComponentSharedColor } from "@/__generated__/graphql.ts";
+import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
+import {
+  ComponentSharedTestimonialsCard,
+  TestimonialsSectionFragmentFragment,
+} from "@/__generated__/graphql.ts";
 import { SectionBaseTitle } from "@/components/section-base";
 import "./testimonials-section.scss";
 
 export interface TestimonialsSectionProps {
-  theme?: ComponentSharedColor | null;
-  title?: string | null;
-  items?: {
-    id: string;
-    item?: {
-      body?: string;
-      author?: string;
-      theme?: ComponentSharedColor;
-    };
-  }[];
+  data?: TestimonialsSectionFragmentFragment;
 }
 
-export const TestimonialsSection = ({
-  theme,
-  items,
-  title,
-}: TestimonialsSectionProps) => (
-  <SectionBase
-    className="testimonials-section"
-    style={getTestimonialsSectionTheme(theme)}
-  >
-    <SectionBaseTitle className="testimonials-section-title">
-      {title}
-    </SectionBaseTitle>
-    <Carousel
-      className="testimonials-section-carousel"
-      centerMode
-      infinite={false}
-      centerPadding="0"
-      slidesToShow={1}
-      speed={500}
-      adaptiveHeight
-      nextArrow={<CarouselAction getIsDisabled={getNextDisabled} />}
-      prevArrow={<CarouselAction getIsDisabled={getPrevDisabled} />}
+export const TestimonialsSection = ({ data }: TestimonialsSectionProps) => {
+  const slides = data?.Card?.filter(isNotNull) ?? [];
+
+  return (
+    <SectionBase
+      className="testimonials-section"
+      style={getTestimonialsSectionTheme(data?.Theme?.data?.attributes)}
+      hasWave={data?.ShowWave}
     >
-      {items?.map(({ id, item }) => (
-        <TestimonialCard
-          key={id}
-          data={item}
-          className="testimonials-section-item"
-        />
-      ))}
-    </Carousel>
-  </SectionBase>
-);
+      <SectionBaseTitle className="testimonials-section-title">
+        {data?.Title?.data?.attributes?.Title}
+      </SectionBaseTitle>
+      <Carousel
+        className="testimonials-section-carousel"
+        centerMode
+        infinite={false}
+        centerPadding="0"
+        slidesToShow={1}
+        speed={500}
+        adaptiveHeight
+        nextArrow={<CarouselAction getIsDisabled={getNextDisabled} />}
+        prevArrow={<CarouselAction getIsDisabled={getPrevDisabled} />}
+      >
+        {slides.map(card => (
+          <TestimonialCard
+            key={card.id}
+            data={card as ComponentSharedTestimonialsCard}
+            className="testimonials-section-item"
+          />
+        ))}
+      </Carousel>
+    </SectionBase>
+  );
+};

@@ -58,13 +58,14 @@ export const RichTextMarkdown = ({
   className,
   children,
 }: PropsWithChildren<MarkdownRichTextProps>) => (
-  <Markdown
-    skipHtml
-    className={cc(["rich-text-markdown", className])}
-    remarkPlugins={remarkPlugins}
-    rehypePlugins={rehypePlugins}
-    components={markdownConfig}
-  >
-    {children}
-  </Markdown>
+  <div className={cc(["rich-text-markdown", className])}>
+    <Markdown
+      skipHtml
+      remarkPlugins={remarkPlugins}
+      rehypePlugins={rehypePlugins}
+      components={markdownConfig}
+    >
+      {children}
+    </Markdown>
+  </div>
 );

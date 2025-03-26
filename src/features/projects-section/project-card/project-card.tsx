@@ -14,6 +14,7 @@ export interface ProjectCardProps {
   data: ComponentSharedGridBlock;
 }
 
+// eslint-disable-next-line complexity
 export const ProjectCard = ({
   className,
   coverClassName,
@@ -23,28 +24,29 @@ export const ProjectCard = ({
   return (
     <Tag
       className={cc(["project-card", className])}
-      style={getProjectCardTheme(data)}
+      style={getProjectCardTheme(data.Theme?.data?.attributes)}
     >
       <div className="project-card-info">
-        <Title as="h4" className="project-card-title">
-          {data?.heading}
+        <Title
+          level={data?.Title?.data?.attributes?.HeadingLevel}
+          className="project-card-title"
+        >
+          {data?.Title?.data?.attributes?.Title}
         </Title>
-        <Typography className="project-card-body">
-          {data?.description}
-        </Typography>
+        <Typography className="project-card-body">{data?.Text}</Typography>
         <ActionLink
           className="project-card-action"
-          href={`/${data?.linkUrl ?? ""}`}
-          target={data?.linkNewTab ? "_blank" : undefined}
+          href={`/${data?.URL ?? ""}`}
+          target={data?.Open ? "_blank" : undefined}
         >
-          {data?.linkText}
+          {data?.Label}
         </ActionLink>
       </div>
-      {data?.image?.data && (
+      {data?.Image?.data?.attributes && (
         <div className={cc(["project-card-image-wrapper", coverClassName])}>
           <img
             className="project-card-image"
-            src={data.image.data.attributes?.url}
+            src={data.Image.data.attributes.url}
             alt=""
           />
         </div>

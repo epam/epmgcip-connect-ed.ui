@@ -31,16 +31,8 @@
     outline: 2px solid -webkit-focus-ring-color;
   }
 
-  &[data-theme="secondary"] {
-    --main-color: var(--secondary);
-  }
-
-  &[data-theme="tertiary"] {
-    --main-color: var(--tertiary);
-  }
-
   &.form {
-    --border-color: var(--white);
+    --background-color: var(--main-color);
     --horizontal-padding: 14px;
     --vertical-padding: 10px;
 

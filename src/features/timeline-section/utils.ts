@@ -1,7 +1,7 @@
 import { getThemeStyle } from "@/utils/get-theme-style.ts";
-import { ComponentSharedColor } from "@/__generated__/graphql.ts";
+import { Maybe, Theme } from "@/__generated__/graphql.ts";
 
-export const getTimelineSectionTheme = (theme?: ComponentSharedColor) =>
+export const getTimelineSectionTheme = (theme?: Maybe<Theme>) =>
   getThemeStyle([
     ["--section-background", theme?.bgColor],
     ["--section-color", theme?.color],

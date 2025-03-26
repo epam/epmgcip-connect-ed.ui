@@ -1,8 +1,9 @@
 import { CSSProperties } from "react";
+import { ComponentSharedImage } from "@/__generated__/graphql.ts";
 import "./partners-carousel.scss";
 
 interface PartnersCarouselProps {
-  items: string[];
+  items: ComponentSharedImage[];
   speed?: string;
 }
 
@@ -16,28 +17,28 @@ export const PartnersCarousel = ({ items, speed }: PartnersCarouselProps) => {
   return (
     <div className="partners-carousel" style={styles}>
       <ul className="partners-carousel-list">
-        {items.map(url => (
-          <li key={url} className="partners-carousel-item">
-            <a href="/public">
+        {items.map(item => (
+          <li key={item.id} className="partners-carousel-item">
+            <a href={item.URL ?? ""}>
               <img
-                src={url}
+                src={item.Image?.data?.attributes?.url ?? ""}
                 className="partners-carousel-image"
-                alt="partner"
+                alt={item.AltText ?? ""}
               />
             </a>
           </li>
         ))}
-        {items.map(url => (
+        {items.map(item => (
           <li
-            key={`${url}-copy`}
+            key={`${item.id}-copy`}
             className="partners-carousel-item"
             aria-hidden
           >
-            <a href="/public">
+            <a href={item.URL ?? ""}>
               <img
-                src={url}
+                src={item.Image?.data?.attributes?.url ?? ""}
                 className="partners-carousel-image"
-                alt="partner"
+                alt={item.AltText ?? ""}
               />
             </a>
           </li>

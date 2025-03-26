@@ -5,10 +5,10 @@ export const getTabsListTheme = (
   theme?: ComponentSharedArticleCategoryTab | null,
 ) =>
   getThemeStyle([
-    ["--active-tab-background", theme?.activeBgColor],
-    ["--active-tab-border", theme?.activeBorderColor],
-    ["--active-tab-text", theme?.activeColor],
-    ["--tab-background", theme?.bgColor],
-    ["--tab-border", theme?.borderColor],
-    ["--tab-text", theme?.color],
+    ["--active-tab-background", theme?.ActiveBgColor],
+    ["--active-tab-border", theme?.ActiveBorderColor],
+    ["--active-tab-text", theme?.ActiveColor],
+    ["--tab-background", theme?.BgColor],
+    ["--tab-border", theme?.BorderColor],
+    ["--tab-text", theme?.Color],
   ]);

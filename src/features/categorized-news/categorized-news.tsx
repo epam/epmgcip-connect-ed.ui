@@ -9,33 +9,40 @@ import { SectionBase } from "@/components/section-base/section-base.tsx";
 import { TabList } from "@/components/tab-list/tab-list.tsx";
 import { TAB_PARAM_NAME } from "@/features/categorized-news/constants.ts";
 import {
-  getCategorizedNewsTheme,
   getCategorizedNewsTabsMap,
+  getCategorizedNewsTheme,
 } from "@/features/categorized-news/utils.ts";
 import { useTabsParams } from "@/hooks/use-tabs-params.ts";
 import { GET_NEWS_BY_CATEGORY } from "@/queries/get-news-by-category.ts";
 import { PAGE_SIZE, START_PAGE } from "@/constants/query-variables.ts";
 import {
-  ArticleCategoryEntity,
-  ComponentSectionsColumnsWithTabs,
+  CategorizedNewsFragmentFragment,
+  ComponentSharedTabs,
 } from "@/__generated__/graphql.ts";
 import { articleCategoryFragment } from "@/fragments/article-category.fragment.ts";
 import "./categorized-news.scss";
 
 export interface CategorizedNewsProps {
-  data: ComponentSectionsColumnsWithTabs;
+  data: CategorizedNewsFragmentFragment;
 }
 
-const initialTabs: ArticleCategoryEntity[] = [];
+const initialTabs: ComponentSharedTabs[] = [];
 
+const getTabData = (tab: ComponentSharedTabs) => ({
+  value: tab?.id,
+  label: tab?.Label,
+});
+
+// eslint-disable-next-line complexity
 export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
   const { locale } = useParams();
   const [page, setPage] = useState(START_PAGE + 1);
 
   const client = useApolloClient();
+  const sectionInfo = data.Tabs?.data?.[0].attributes;
 
-  const tabs = data.tabs?.data ?? initialTabs;
-  const firstSlug = tabs?.[0]?.attributes?.slug ?? "";
+  const tabs = (sectionInfo?.Tabs as ComponentSharedTabs[]) ?? initialTabs;
+  const firstTabId = tabs?.[0]?.id ?? "";
   const { tabsMap, isTabValueInList } = useMemo(() => {
     const map = getCategorizedNewsTabsMap(tabs);
 
@@ -45,29 +52,28 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
     };
   }, [tabs]);
 
-  const [currentTab, handleChange] = useTabsParams(
+  const [activeTab, handleChange] = useTabsParams(
     TAB_PARAM_NAME,
-    firstSlug,
+    firstTabId,
     isTabValueInList,
   );
 
-  const currentArticles = tabsMap?.get(currentTab);
+  const currentTab = tabsMap?.get(activeTab);
+  const currentArticles = currentTab?.Articles?.data;
   const canLoadMore = (currentArticles?.length ?? -1) % PAGE_SIZE === 0;
 
   const [getNews, { loading }] = useLazyQuery(GET_NEWS_BY_CATEGORY, {
     onCompleted: lazyData => {
       if (lazyData?.articles?.data?.length) {
-        const activeTab = tabs.find(tab => tab.attributes?.slug === currentTab);
+        const activeSharedTab = tabs.find(tab => tab.id === activeTab);
 
-        if (activeTab) {
+        if (activeSharedTab) {
           client.writeFragment({
-            id: `${activeTab.__typename}:${activeTab.id}`,
+            id: `${activeSharedTab.__typename}:${activeSharedTab.id}`,
             fragment: articleCategoryFragment,
             data: {
-              attributes: {
-                articles: {
-                  data: lazyData?.articles?.data,
-                },
+              articles: {
+                data: lazyData?.articles?.data,
               },
             },
           });
@@ -79,7 +85,7 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
   const handleClick = () => {
     getNews({
       variables: {
-        category: currentTab,
+        category: activeTab,
         page: page,
         pageSize: PAGE_SIZE,
         locale,
@@ -89,25 +95,16 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
     });
   };
 
-  const getTabData = (tab: ArticleCategoryEntity) => {
-    const tabData = tab?.attributes;
-
-    return {
-      value: tabData?.slug,
-      label: tabData?.label,
-    };
-  };
-
   return (
     <SectionBase
       className="categorized-news"
       contentClassName="categorized-news-content"
-      style={getCategorizedNewsTheme()}
+      style={getCategorizedNewsTheme(sectionInfo?.TabCardTheme)}
     >
       <TabList
-        theme={data?.tabTheme}
+        theme={sectionInfo?.TabTheme}
         tabs={tabs}
-        activeTab={currentTab}
+        activeTab={activeTab}
         getTabData={getTabData}
         onChange={handleChange}
       />
@@ -124,27 +121,25 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
                 title={news?.title}
                 body={news?.excerpt}
                 action={{
-                  // @ts-expect-error TODO:// add linkText field on BE
-                  text: news?.linkText,
-                  color: data?.tabCardTheme?.linkColor,
+                  text: news?.title,
                   slug: news?.slug,
                 }}
-                theme={{
-                  color: data.tabCardTheme?.color,
-                  bgColor: data?.tabCardTheme?.bgColor,
-                }}
+                theme={news?.theme?.data?.attributes}
               />
             );
           })}
         </ul>
-        {data?.cta && canLoadMore && (
+        {sectionInfo?.CTA && canLoadMore && (
           <LoadingButton
             className="categorized-news-action"
-            variant={data?.cta?.type ?? undefined}
+            variant={sectionInfo?.CTA?.data?.attributes?.type ?? undefined}
             onClick={handleClick}
             isLoading={loading}
+            theme={
+              sectionInfo?.CTA?.data?.attributes?.buttonTheme?.data?.attributes
+            }
           >
-            {data?.cta?.label}
+            {sectionInfo?.CTA?.data?.attributes?.label}
           </LoadingButton>
         )}
       </TabList.Panel>

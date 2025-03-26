@@ -1,12 +1,21 @@
 import { getThemeStyle } from "@/utils/get-theme-style.ts";
-import { Maybe } from "@/__generated__/graphql.ts";
+import { ButtonTheme, Maybe, Theme } from "@/__generated__/graphql.ts";
 
 export const getExpandableCardTheme = (
-  theme?: { cardColor?: Maybe<string>; cardBgColor?: Maybe<string> },
-  action?: { color?: Maybe<string> },
+  theme?: Maybe<Theme>,
+  collapseLink?: Maybe<Theme>,
+  expandLink?: Maybe<Theme>,
 ) =>
   getThemeStyle([
-    ["--content-color", theme?.cardBgColor],
-    ["--text-color", theme?.cardColor],
-    ["--action-color", action?.color],
+    ["--content-color", theme?.color],
+    ["--text-color", theme?.bgColor],
+    ["--action-color", collapseLink?.color ?? expandLink?.color],
   ]);
+
+export const convertThemeToButtonTheme = (
+  theme?: Maybe<Theme>,
+): ButtonTheme => ({
+  BackgrondColor: theme?.bgColor,
+  OutlineColor: theme?.bgColor,
+  FontColor: theme?.color,
+});

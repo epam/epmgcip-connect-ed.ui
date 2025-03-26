@@ -18,12 +18,12 @@ export const NavigationSection = ({
     <span className="navigation-section-title">{name}</span>
     <ul className="navigation-section-list">
       {items.map(({ attributes }) => {
-        const slug = attributes?.slug ?? "";
+        const slug = attributes?.Slug ?? "";
 
         return (
           <li key={slug} className="navigation-section-list-item">
             <NavLink href={slug} className="navigation-section-link">
-              {attributes?.label}
+              {attributes?.Title}
             </NavLink>
           </li>
         );

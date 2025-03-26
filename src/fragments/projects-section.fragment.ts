@@ -4,36 +4,45 @@ export const projectsSectionFragment = gql(`
 fragment ProjectsSectionFragment on ComponentSectionsBlocksGrid {
   __typename
   id
-  heading
-  theme {
-    color
-    bgColor
+  blockHeading: Title
+  Theme {
+    data {
+      id
+      attributes {
+        color
+        bgColor
+      }
+    }
   }
-  block {
+  Block {
     id
-    heading
-    description
-    color
-    bgColor
-    image {
+    Text
+    Label
+    URL
+    Open
+    Image {
       data {
         attributes {
           url
         }
       }
     }
-    linkUrl
-    linkText
-    linkTitle
-    linkNewTab
-    linkIcon {
+    Title {
       data {
         attributes {
-          url
+          Title
+          HeadingLevel
         }
       }
     }
-    linkColor
-    linkBgColor
+    Theme {
+      data {
+        attributes {
+          color
+          bgColor
+          title
+        }
+      }
+    }
   }
 }`);

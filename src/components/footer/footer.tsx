@@ -2,14 +2,11 @@ import Link from "next/link";
 import { SocialLinkList } from "@/components/social-link-list/social-link-list.tsx";
 import { Title } from "@/components/title/title.tsx";
 import EpamLogo from "@/assets/icons/epam-logo.svg?react";
-import {
-  ComponentSharedSocialIcon,
-  PageEntity,
-} from "@/__generated__/graphql.ts";
+import { PageEntity, SocialMediaEntity } from "@/__generated__/graphql.ts";
 import "./footer.scss";
 
 export interface FooterProps {
-  socialLinks?: ComponentSharedSocialIcon[];
+  socialLinks?: SocialMediaEntity[];
   navigation?: PageEntity[];
   heading?: string;
   tradeMark?: string;
@@ -29,7 +26,7 @@ export const Footer = ({
         {socialLinks && (
           <div className="social-info">
             {heading && (
-              <Title as="h3" className="social-title">
+              <Title level="h3" className="social-title">
                 {heading}
               </Title>
             )}
@@ -43,11 +40,11 @@ export const Footer = ({
         <div className="contact-info">
           <div className="contact-links">
             {navigation?.map(({ attributes }) => {
-              const slug = attributes?.slug ?? "";
+              const slug = attributes?.Slug ?? "";
 
               return (
-                <Link key={slug} href={slug ?? ""} className="contact-link">
-                  {attributes?.label}
+                <Link key={slug} href={slug} className="contact-link">
+                  {attributes?.Title}
                 </Link>
               );
             })}

@@ -2,5 +2,5 @@ import { NotFoundSection as NotFoundFeature } from "@/features/not-found-section
 
 const NotFound = () => <NotFoundFeature title="404" description="Not found" />;
 
-// eslint-disable-next-line import/no-default-export,react/function-component-definition
+// eslint-disable-next-line import/no-default-export
 export default NotFound;

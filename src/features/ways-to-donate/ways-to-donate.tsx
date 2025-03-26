@@ -11,6 +11,7 @@ import {
 } from "@/features/ways-to-donate/utils.ts";
 import { useTabsParams } from "@/hooks/use-tabs-params.ts";
 import qrCode from "@/assets/images/qr-code.png";
+import { WaysToDonateFragmentFragment } from "@/__generated__/graphql.ts";
 import { SectionBaseTitle } from "@/components/section-base";
 import "./ways-to-donate.scss";
 
@@ -63,10 +64,21 @@ const tabsMock = [
 ];
 
 export interface WaysToDonateProps {
+  data?: WaysToDonateFragmentFragment;
   tabs?: typeof tabsMock; // TODO: change type after integration
 }
 
-export const WaysToDonate = ({ tabs = tabsMock }: WaysToDonateProps) => {
+// @ts-expect-error // TODO: add type during integration
+const getTabData = tab => {
+  const tabData = tab?.attributes;
+
+  return {
+    value: tabData.slug,
+    label: tabData.label,
+  };
+};
+
+export const WaysToDonate = ({ tabs = tabsMock, data }: WaysToDonateProps) => {
   const { tabsMap, isTabValueInList } = useMemo(() => {
     const map = getWaysToDonateTabsMap(tabs);
 
@@ -83,16 +95,6 @@ export const WaysToDonate = ({ tabs = tabsMock }: WaysToDonateProps) => {
     isTabValueInList,
   );
   const currentDonateMechanism = tabsMap?.get(currentTab);
-
-  // @ts-expect-error // TODO: add type during integration
-  const getTabData = tab => {
-    const tabData = tab?.attributes;
-
-    return {
-      value: tabData.slug,
-      label: tabData.label,
-    };
-  };
 
   return (
     <SectionBase

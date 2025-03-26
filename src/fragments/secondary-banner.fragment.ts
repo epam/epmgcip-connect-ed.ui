@@ -2,39 +2,65 @@ import { gql } from "@/__generated__";
 
 export const secondaryBannerFragment = gql(`
 fragment SecondaryBannerFragment on ComponentSectionsSecondaryBanner {
-  name
-  title {
-    text
-    position
-    level
-  }
-  text
-  secondaryBannerBackgroundColor: backgroundColor
-  secondaryBannerCover: image {
-    image {
+  Name
+  heading: Title {
+    id
+    Level
+    Alignment
+    Title {
       data {
         attributes {
-          url
+          Title
+          HeadingLevel
         }
       }
     }
-    altText
-    url
-    isIcon
-    newTab
   }
-  cta1 {
-    label
-    type
-      url
-    color
-    bgColor
+  Text
+  Theme {
+    data {
+      attributes {
+        color
+        bgColor
+      }
+    }
   }
-  cta2 {
-    label
-    type
-      url
-    color
-    bgColor
+  bannerImage: Image {
+    id
+    Name
+    AltText
+    IsIcon
+    URL
+    Open
+  }
+  CTA1 {
+    id
+    Label
+    Type
+    URL
+    ButtonTheme {
+      data {
+        attributes {
+          BackgrondColor
+          OutlineColor
+          FontColor
+        }
+      }
+    }
+  }
+  CTA2 {
+    id
+    Label
+    Type
+    URL
+    ButtonTheme {
+      data {
+        attributes {
+          BackgrondColor
+          OutlineColor
+          FontColor
+        }
+      }
+    }
   }
 }`);

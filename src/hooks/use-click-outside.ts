@@ -1,7 +1,7 @@
 import { RefObject, useEffect } from "react";
 import { getApplicationRoot } from "@/utils/get-application-root.ts";
 
-export function useClickOutside<T extends HTMLElement>(
+export function useClickOutside<T extends HTMLElement | null>(
   ref: RefObject<T>,
   callback: (event: Event) => void,
   isInTheDOM?: boolean,

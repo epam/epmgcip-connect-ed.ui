@@ -13,17 +13,26 @@ export interface HeroArticleProps {
   action?: ComponentSharedButton | null;
 }
 
+// eslint-disable-next-line complexity
 export const HeroArticle = ({ card, action }: HeroArticleProps) => (
-  <article className="hero-article" style={getHeroArticleTheme(card)}>
-    <Title className="hero-article-title">{card?.title}</Title>
-    <Typography className="hero-article-body">{card?.content}</Typography>
+  <article
+    className="hero-article"
+    style={getHeroArticleTheme(card?.Theme?.data?.attributes)}
+  >
+    <Title
+      level={card?.Title?.data?.attributes?.HeadingLevel}
+      className="hero-article-title"
+    >
+      {card?.Title?.data?.attributes?.Title}
+    </Title>
+    <Typography className="hero-article-body">{card?.Text}</Typography>
     {action && (
       <ButtonLink
-        href={`/${action?.url ?? ""}`}
-        variant={action?.type ?? undefined}
-        /*theme={action?.bgColor ?? undefined}*/
+        href={`/${action?.URL ?? ""}`}
+        variant={action?.Type ?? undefined}
+        theme={action?.ButtonTheme?.data?.attributes}
       >
-        {action?.label}
+        {action?.Label}
       </ButtonLink>
     )}
   </article>

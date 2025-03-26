@@ -1,6 +1,8 @@
 import { AnchorHTMLAttributes, forwardRef } from "react";
 import cc from "classcat";
 import Link, { LinkProps } from "next/link";
+import { getThemeStyle } from "@/utils/get-theme-style.ts";
+import { ButtonTheme, Maybe } from "@/__generated__/graphql.ts";
 import "./button-link.scss";
 
 export type ButtonLinkVariant =
@@ -9,24 +11,27 @@ export type ButtonLinkVariant =
   | "outline"
   | "nav"
   | "form";
-export type ButtonLinkTheme = "primary" | "secondary" | "tertiary";
 
 interface LinkElementProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: ButtonLinkVariant;
-  theme?: ButtonLinkTheme;
+  theme?: Maybe<ButtonTheme>;
 }
 
 export type ButtonLinkProps = LinkProps & LinkElementProps;
 
+const getPalette = (theme?: Maybe<ButtonTheme>) =>
+  getThemeStyle([
+    ["--main-color", theme?.BackgrondColor ?? "primary"],
+    ["--border-color", theme?.OutlineColor ?? "primary"],
+    ["--color", theme?.FontColor ?? "white"],
+  ]);
+
 export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
-  (
-    { variant = "main", className, theme = "primary", ...delegatedProps },
-    ref,
-  ) => (
+  ({ variant = "main", className, theme, ...delegatedProps }, ref) => (
     <Link
       {...delegatedProps}
       ref={ref}
-      data-theme={theme}
+      style={getPalette(theme)}
       className={cc(["button-link", variant, className])}
     />
   ),

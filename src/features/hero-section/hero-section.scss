@@ -1,6 +1,7 @@
 @use "@/styles/responsive-mixins";
 @use "@/styles/mixins";
 @use "@/styles/constants";
+@use "sass:map";
 
 .hero-section {
   position: relative;
@@ -12,7 +13,7 @@
   }
 
   &-banner {
-    margin-top: -#{map-get(constants.$wave-polygon-inverted-md, "height")};
+    margin-top: -#{map.get(constants.$wave-polygon-inverted-md, "height")};
     display: flex;
     width: 100%;
     min-height: 240px;

@@ -4,6 +4,6 @@ export const richTextFragment = gql(`
 fragment RichTextFragment on ComponentSectionsRichText {
   __typename
   id
-  content
+  Content
 }
 `);

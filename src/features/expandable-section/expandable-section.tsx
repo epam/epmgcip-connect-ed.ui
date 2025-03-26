@@ -1,38 +1,47 @@
 import { SectionBase } from "@/components/section-base/section-base.tsx";
-import { ComponentSharedColor } from "@/__generated__/graphql.ts";
+import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import {
-  ExpandableCard,
-  ExpandableCardData,
-} from "@/components/expandable-card/expandable-card";
+  ComponentSharedAccordionItem,
+  ExpandableSectionFragmentFragment,
+} from "@/__generated__/graphql.ts";
+import { ExpandableCard } from "@/components/expandable-card/expandable-card";
 import { SectionBaseTitle } from "@/components/section-base";
+import { TitleLevel } from "@/components/title/title";
 import { getExpandableSectionTheme } from "./utils";
 import "./expandable-section.scss";
 
 export interface ExpandableSectionProps {
-  heading?: string;
-  theme?: ComponentSharedColor;
-  cards?: ExpandableCardData[] | null;
+  data: ExpandableSectionFragmentFragment;
 }
 
-export const ExpandableSection = ({
-  heading,
-  theme,
-  cards,
-}: ExpandableSectionProps) => {
+// eslint-disable-next-line complexity
+export const ExpandableSection = ({ data }: ExpandableSectionProps) => {
+  const cards = data?.Item?.filter(isNotNull) as ComponentSharedAccordionItem[];
+
+  const expandLink = data?.ExpandLink?.data?.attributes;
+  const collapseLink = data?.CollapseLink?.data?.attributes;
+
   return (
     <SectionBase
       className="expandable-section"
       contentClassName="expandable-section-content"
-      style={getExpandableSectionTheme(theme)}
+      style={getExpandableSectionTheme()}
     >
-      <SectionBaseTitle className="expandable-section-title">
-        {heading}
+      <SectionBaseTitle
+        className="expandable-section-title"
+        level={data?.heading?.Level as TitleLevel}
+      >
+        {data?.heading?.Title?.data?.attributes?.Title}
       </SectionBaseTitle>
       <ul className="expandable-section-list">
         {cards?.map(card => (
-          // TODO: replace index with id or title
-
-          <ExpandableCard as="li" key={card.id} data={card} />
+          <ExpandableCard
+            as="li"
+            key={card.id}
+            data={card}
+            expandLink={expandLink}
+            collapseLink={collapseLink}
+          />
         ))}
       </ul>
     </SectionBase>
