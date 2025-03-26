@@ -41,13 +41,16 @@ jobs:
       - name: Install dependencies
         run: npm install # Or your package manager
 
-      # Add tests here
-      - name: Run tests
+      # Add checks here
+      - name: Run checks
         run: |
-          npm run lint:types & npm run lint & wait
+          npm run lint:types &
+          npm run lint &
+          wait # Wait for both commands to finish
+
           if [ $? -ne 0 ]; then
             echo "Linting or Type checking failed"
-            exit 1
+            exit 1 # Fail the step
           fi
 
       - name: Run build
