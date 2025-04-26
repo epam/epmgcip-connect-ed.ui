@@ -14,7 +14,7 @@ export const getExpandableCardTheme = (
 
 export const convertThemeToButtonTheme = (
   theme?: Maybe<Theme>,
-): ButtonTheme => ({
+): Omit<ButtonTheme, "documentId"> => ({
   BackgrondColor: theme?.bgColor,
   OutlineColor: theme?.bgColor,
   FontColor: theme?.color,

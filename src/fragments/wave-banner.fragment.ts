@@ -1,46 +1,40 @@
 import { gql } from "@/__generated__";
 
 export const waveBannerFragment = gql(`
-fragment WaveBannerFragment on ComponentSectionsWaveBanner {
-  Name
-  Image {
-    id
-    Name
-    AltText
-    IsIcon
-    URL
-    Open
-  }
-  IsLargeImage
-  Heading: Title {
-    id
-    Level
-    Alignment
-    Title {
-      data {
-        attributes {
-          Title
-          HeadingLevel
+    fragment WaveBannerFragment on ComponentSectionsWaveBanner {
+        Name
+        Image {
+            id
+            Name
+            AltText
+            IsIcon
+            URL
+            Open
         }
-      }
-    }
-  }
-  Text
-  CTA {
-    id
-    Label
-    Type
-    URL
-    ButtonTheme {
-      data {
-      attributes {
-        BackgrondColor
-        OutlineColor
-        FontColor
+        IsLargeImage
+        Heading: Title {
+            id
+            Level
+            Alignment
+            Title {
+                documentId
+                Title
+                HeadingLevel
+            }
         }
-      }
-    }
-  }
-  BackgroundColor
-  IsTextBox
-}`);
+        Text
+        CTA {
+            id
+            Label
+            Type
+            URL
+            ButtonTheme {
+                documentId
+                BackgrondColor
+                OutlineColor
+                FontColor
+            }
+        }
+        BackgroundColor
+        IsTextBox
+    }`);

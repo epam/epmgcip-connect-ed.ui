@@ -7,22 +7,24 @@ import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { Header } from "@/components/header/header.tsx";
 import { SocialRibbon } from "@/components/social-ribbon/social-ribbon.tsx";
 import { useLocationChange } from "@/hooks/use-location-change.ts";
+import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import Burger from "@/assets/icons/burger.svg?react";
 import {
-  CategoryEntity,
+  Category,
   ComponentSharedButton,
   ComponentSharedImage,
-  SocialMediaEntity,
+  Maybe,
+  SocialMedia,
 } from "@/__generated__/graphql.ts";
 import "./navigation.scss";
 
 const sidebarId = "navigation-sidebar";
 
 export interface NavigationProps {
-  logo?: Omit<ComponentSharedImage, "id">;
-  navigation?: CategoryEntity[];
+  logo?: Omit<ComponentSharedImage, "documentId">;
+  navigation?: Maybe<Category>[];
   action?: Omit<ComponentSharedButton, "id">;
-  stripe?: SocialMediaEntity[];
+  stripe?: Maybe<SocialMedia>[];
 }
 
 export const Navigation = ({
@@ -92,7 +94,7 @@ export const Navigation = ({
           <div className="social-ribbon-wrapper">
             <SocialRibbon
               className="social-ribbon-content"
-              socialLinks={stripe}
+              socialLinks={stripe?.filter(isNotNull)}
             />
           </div>
         </div>
@@ -114,7 +116,7 @@ export const Navigation = ({
             <>
               <NavigationMenu
                 className="navigation-menu"
-                menu={navigation}
+                menu={navigation?.filter(isNotNull)}
                 isAutoClosable
               />
               {action && (
@@ -135,8 +137,8 @@ export const Navigation = ({
         isOpen={isOpen}
         className="sidebar"
         onClose={handleClose}
-        navigation={navigation}
-        stripe={stripe}
+        navigation={navigation?.filter(isNotNull)}
+        stripe={stripe?.filter(isNotNull)}
         action={action}
       />
     </>

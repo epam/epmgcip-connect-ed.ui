@@ -20,20 +20,20 @@ export const NewsSection = ({
     ShowWave: hasWave,
   },
 }: NewsSectionProps) => {
-  const cardsData = cards?.data.filter(isNotNull);
+  const cardsData = cards?.filter(isNotNull);
   return (
     <SectionBase
       className="news-section"
       contentClassName="news-section-content"
-      style={getNewsSectionTheme(theme?.data?.attributes)}
+      style={getNewsSectionTheme(theme)}
       hasWave={!!hasWave}
     >
       <SectionBaseTitle className="news-section-title">
-        {heading?.Title?.data?.attributes?.Title}
+        {heading?.Title?.Title}
       </SectionBaseTitle>
       <ul className="news-section-list">
         {cardsData?.map(card => {
-          const news = card.attributes;
+          const news = card;
           /**
            *   Image?: Maybe<ImageEntityResponse>;
            *   LinkText?: Maybe<Scalars['String']['output']>;
@@ -47,7 +47,7 @@ export const NewsSection = ({
             <NewsCard
               as="li"
               key={card.__typename}
-              cover={news?.featuredImage?.data?.attributes?.url ?? undefined}
+              cover={news?.featuredImage?.url ?? undefined}
               title={news?.title}
               body={news?.excerpt}
               action={{
@@ -67,7 +67,7 @@ export const NewsSection = ({
           className="news-section-action"
           href={`/${action.URL ?? ""}`}
           variant={action.Type ?? undefined}
-          theme={action.ButtonTheme?.data?.attributes}
+          theme={action.ButtonTheme}
         >
           {action.Label}
         </ButtonLink>

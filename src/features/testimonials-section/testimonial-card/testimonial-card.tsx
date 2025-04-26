@@ -12,12 +12,12 @@ export interface TestimonialCardProps {
 }
 
 export const TestimonialCard = ({ className, data }: TestimonialCardProps) => {
-  const icon = data?.Icon?.data[0]?.attributes;
+  const icon = data?.Icon?.[0];
 
   return (
     <article
       className={cc(["testimonial-card", className])}
-      style={getTestimonialCardTheme(data?.Theme?.data?.attributes)}
+      style={getTestimonialCardTheme(data?.Theme)}
     >
       {icon?.url ? (
         <img

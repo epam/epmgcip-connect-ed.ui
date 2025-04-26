@@ -2,12 +2,12 @@ import Link from "next/link";
 import { SocialLinkList } from "@/components/social-link-list/social-link-list.tsx";
 import { Title } from "@/components/title/title.tsx";
 import EpamLogo from "@/assets/icons/epam-logo.svg?react";
-import { PageEntity, SocialMediaEntity } from "@/__generated__/graphql.ts";
+import { Page, SocialMedia } from "@/__generated__/graphql.ts";
 import "./footer.scss";
 
 export interface FooterProps {
-  socialLinks?: SocialMediaEntity[];
-  navigation?: PageEntity[];
+  socialLinks?: SocialMedia[];
+  navigation?: Page[];
   heading?: string;
   tradeMark?: string;
   rights?: string;
@@ -39,12 +39,12 @@ export const Footer = ({
         )}
         <div className="contact-info">
           <div className="contact-links">
-            {navigation?.map(({ attributes }) => {
-              const slug = attributes?.Slug ?? "";
+            {navigation?.map(({ Slug, Title }) => {
+              const slug = Slug ?? "";
 
               return (
                 <Link key={slug} href={slug} className="contact-link">
-                  {attributes?.Title}
+                  {Title}
                 </Link>
               );
             })}

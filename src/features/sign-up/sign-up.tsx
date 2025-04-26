@@ -14,10 +14,10 @@ export const SignUp = ({ data }: SignUpProps) => {
     <SectionBase className="sign-up">
       <div className="sign-up-content">
         <Title
-          level={data?.Title?.data?.attributes?.HeadingLevel}
+          level={data?.Title?.HeadingLevel}
           className="sign-up-title"
         >
-          {data?.Title?.data?.attributes?.Title}
+          {data?.Title?.Title}
         </Title>
         <div className="sign-up-layout">
           <Typography className="sign-up-info">{data?.Text}</Typography>

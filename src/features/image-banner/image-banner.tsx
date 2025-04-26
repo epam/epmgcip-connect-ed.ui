@@ -13,25 +13,22 @@ export interface ImageBannerProps {
 export const ImageBanner = ({ data }: ImageBannerProps) => {
   const card = data?.imageCard;
   return (
-    <section
-      className="image-banner"
-      style={getImageBannerTheme(data.Theme?.data?.attributes)}
-    >
+    <section className="image-banner" style={getImageBannerTheme(data.Theme)}>
       <div className="image-banner-background">
         <img
           role="presentation"
           alt=""
-          src={data?.Image?.data?.attributes?.url ?? ""}
+          src={data?.Image?.url ?? ""}
           className="image-banner-image"
         />
       </div>
       <div className="image-banner-content">
         <div className="image-banner-card">
           <Title
-            level={card?.Title?.data?.attributes?.HeadingLevel}
+            level={card?.Title?.HeadingLevel}
             className="image-banner-title"
           >
-            {card?.Title?.data?.attributes?.Title}
+            {card?.Title?.Title}
           </Title>
           <Typography className="image-banner-body">{card?.Text}</Typography>
           <ActionLink

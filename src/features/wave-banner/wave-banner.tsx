@@ -45,10 +45,10 @@ export const WaveBanner = ({ data }: WaveBannerProps) => {
       <div className={infoClassName}>
         {title && (
           <Title
-            level={title?.Title?.data?.attributes?.HeadingLevel}
+            level={title?.Title?.HeadingLevel}
             className="wave-banner-title"
           >
-            {title?.Title?.data?.attributes?.Title}
+            {title?.Title?.Title}
           </Title>
         )}
         <Typography className="wave-banner-body">{Text}</Typography>
@@ -57,7 +57,7 @@ export const WaveBanner = ({ data }: WaveBannerProps) => {
             href={action.URL ?? ""}
             className="wave-banner-action"
             variant={action.Type ?? undefined}
-            theme={action.ButtonTheme?.data?.attributes}
+            theme={action.ButtonTheme}
           >
             {action.Label}
           </ButtonLink>

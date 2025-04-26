@@ -14,12 +14,12 @@ export type ButtonLinkVariant =
 
 interface LinkElementProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: ButtonLinkVariant;
-  theme?: Maybe<ButtonTheme>;
+  theme?: Maybe<Omit<ButtonTheme, "documentId">>;
 }
 
 export type ButtonLinkProps = LinkProps & LinkElementProps;
 
-const getPalette = (theme?: Maybe<ButtonTheme>) =>
+const getPalette = (theme?: Maybe<Omit<ButtonTheme, "documentId">>) =>
   getThemeStyle([
     ["--main-color", theme?.BackgrondColor ?? "primary"],
     ["--border-color", theme?.OutlineColor ?? "primary"],

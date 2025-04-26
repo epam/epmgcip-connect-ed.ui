@@ -4,11 +4,11 @@ export const getWaysToDonateTabsMap = (tabs: unknown[]) =>
   tabs?.reduce<Map<string, { title: string; body: string; codeUrl?: string }>>(
     (accumulator, tab) => {
       // @ts-expect-error // TODO: fix after integration
-      const slug = tab?.attributes?.slug as string;
+      const slug = tab?.slug as string;
 
       if (slug) {
         // @ts-expect-error // TODO: fix after integration
-        accumulator.set(slug, tab?.attributes?.data?.attributes);
+        accumulator.set(slug, tab);
       }
 
       return accumulator;

@@ -14,22 +14,17 @@ export const InformationCard = ({ data }: DescriptionCardProps) => {
 
   return (
     <article className="information-card" style={getInformationCardTheme(data)}>
-      {data?.Image?.data && (
+      {data?.Image && (
         <div className="information-card-image-wrapper">
-          <img
-            className=""
-            src={data.Image.data.attributes?.url}
-            role="presentation"
-            alt=""
-          />
+          <img className="" src={data.Image.url} role="presentation" alt="" />
         </div>
       )}
       <div className="information-card-info">
         <Title
-          level={data?.Title?.data?.attributes?.HeadingLevel}
+          level={data?.Title?.HeadingLevel}
           className="information-card-title"
         >
-          {data?.Title?.data?.attributes?.Title}
+          {data?.Title?.Title}
         </Title>
         <Typography className="information-card-body">{data?.Text}</Typography>
       </div>

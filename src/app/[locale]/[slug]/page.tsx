@@ -26,7 +26,6 @@ import {
 import {
   CategorizedNewsFragmentFragment,
   ContactBannerFragmentFragment,
-  GetInTouchFragmentFragment,
   GetLayoutDataQuery,
   HeroBannerFragmentFragment,
   ImageBannerFragmentFragment,
@@ -129,7 +128,7 @@ const renderSection = (section?: PagePageSectionsDynamicZone | null) => {
   }
 };
 
-// eslint-disable-next-line import/no-default-export,react/function-component-definition
+// eslint-disable-next-line import/no-default-export
 export default async function Home({
   params,
 }: {
@@ -153,13 +152,12 @@ export default async function Home({
     },
   });
 
-  if (!page.pages?.data.some(value => value.attributes?.Slug === slug)) {
+  if (!page.pages?.some(value => value?.Slug === slug)) {
     notFound();
   }
 
-  const sections = (data.pages?.data?.[0]?.attributes?.PageSections?.filter(
-    isNotNull,
-  ) ?? []) as PagePageSectionsDynamicZone[];
+  const sections = (data.pages?.filter(isNotNull) ??
+    []) as PagePageSectionsDynamicZone[];
 
   // const mockContactBannerFragment: ContactBannerFragmentFragment = {
   //   __typename: "ComponentSectionsContactBanner",
@@ -194,27 +192,27 @@ export default async function Home({
   //   <ContactBanner data={mockContactBannerFragment} />
   // )
 
-  const mockGetInTouchFragment: GetInTouchFragmentFragment = {
-    __typename: "ComponentSectionsGetInTouchForm",
-    id: "1",
-    Title: {
-      data: {
-        attributes: {
-          Title: "Get in Touch",
-          HeadingLevel: "h3",
-        },
-      },
-    },
-    Text: "We would love to hear from you. Please fill out the form below to get in touch with us.",
-    ShowWave: true,
-    FormId: "contact-form-123",
-  };
+  // const mockGetInTouchFragment: GetInTouchFragmentFragment = {
+  //   __typename: "ComponentSectionsGetInTouchForm",
+  //   id: "1",
+  //   Title: {
+  //     data: {
+  //       attributes: {
+  //         Title: "Get in Touch",
+  //         HeadingLevel: "h3",
+  //       },
+  //     },
+  //   },
+  //   Text: "We would love to hear from you. Please fill out the form below to get in touch with us.",
+  //   ShowWave: true,
+  //   FormId: "contact-form-123",
+  // };
 
-  return <ClientGraph />;
+  // return <ClientGraph />;
 
   return sections?.map(section => (
     // @ts-expect-error temp fix
-    <Fragment key={`${slug}-${section?.__typename}-${section?.id}`}>
+    <Fragment key={`${slug}-${section?.__typename}-${section?.Slug}`}>
       {renderSection(section)}
     </Fragment>
   ));

@@ -18,8 +18,8 @@ export interface ExpandableSectionProps {
 export const ExpandableSection = ({ data }: ExpandableSectionProps) => {
   const cards = data?.Item?.filter(isNotNull) as ComponentSharedAccordionItem[];
 
-  const expandLink = data?.ExpandLink?.data?.attributes;
-  const collapseLink = data?.CollapseLink?.data?.attributes;
+  const expandLink = data?.ExpandLink;
+  const collapseLink = data?.CollapseLink;
 
   return (
     <SectionBase
@@ -31,7 +31,7 @@ export const ExpandableSection = ({ data }: ExpandableSectionProps) => {
         className="expandable-section-title"
         level={data?.heading?.Level as TitleLevel}
       >
-        {data?.heading?.Title?.data?.attributes?.Title}
+        {data?.heading?.Title?.Title}
       </SectionBaseTitle>
       <ul className="expandable-section-list">
         {cards?.map(card => (

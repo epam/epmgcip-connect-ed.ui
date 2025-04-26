@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import { getClient } from "@/utils/apollo-client";
+import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data";
 import { LAYOUT_PAGES_VARIABLES } from "@/constants/query-variables";
 import {
@@ -21,14 +22,15 @@ export default async function LocaleLayout({
 }>) {
   const { locale } = await params;
   const client = getClient();
+
   const { data } = await client.query<GetLayoutDataQuery>({
     query: GET_LAYOUT_DATA,
     variables: { ...LAYOUT_PAGES_VARIABLES, locale },
   });
 
-  const footer = data?.footer?.data?.attributes;
-  const header = data?.header?.data?.attributes;
-  const palette = data?.colorScheme?.data?.attributes;
+  const footer = data?.footer;
+  const header = data?.header;
+  const palette = data?.colorScheme;
 
   return (
     <>
@@ -36,15 +38,15 @@ export default async function LocaleLayout({
       <Palette palette={palette ?? undefined} />
       <div className="page">
         <Navigation
-          navigation={header?.navigations?.data}
+          navigation={header?.navigations}
           action={header?.cta ?? undefined}
           logo={header?.logo as ComponentSharedImage}
-          stripe={header?.stripe?.SocialMedia?.data ?? undefined}
+          stripe={header?.stripe?.SocialMedia ?? undefined}
         />
         <main className="main-content">{children}</main>
         <Footer
-          socialLinks={footer?.socialMedias?.data}
-          navigation={footer?.navigation?.data}
+          socialLinks={footer?.socialMedias.filter(isNotNull)}
+          navigation={footer?.navigation.filter(isNotNull)}
           heading={footer?.heading ?? ""}
           tradeMark={footer?.tradeMark ?? ""}
           rights={footer?.rights ?? ""}

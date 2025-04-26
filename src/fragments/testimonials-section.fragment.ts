@@ -1,54 +1,38 @@
 import { gql } from "@/__generated__";
 
 export const testimonialsSectionFragment = gql(`
-fragment TestimonialsSectionFragment on ComponentSectionsTestimonials {
-  id
-  Title {
-    data {
-      attributes {
-        Title
-        HeadingLevel
-      }
-    }
-  }
-  Card {
-    id
-    Text
-    Title {
-      data {
-        attributes {
-          Title
-          HeadingLevel
+    fragment TestimonialsSectionFragment on ComponentSectionsTestimonials {
+        id
+        Title {
+            documentId
+            Title
+            HeadingLevel
         }
-      }
-    }
-    Icon {
-      data {
-        attributes {
-          alternativeText
-          name
-          caption
-          url
+        Card {
+            id
+            Text
+            Title {
+                documentId
+                Title
+                HeadingLevel
+            }
+            Icon {
+                alternativeText
+                name
+                caption
+                url
+            }
+            Author
+            Theme {
+                documentId
+                color
+                bgColor
+            }
         }
-      } 
-    }
-    Author
-    Theme {
-      data {
-        attributes {
-          color
-          bgColor
+        Theme {
+            documentId
+            color
+            bgColor
         }
-      }
-    }
-  }
-  Theme {
-    data {
-      attributes {
-        color
-        bgColor
-      }
-    }
-  }
-  ShowWave
-}`);
+        ShowWave
+    }`);

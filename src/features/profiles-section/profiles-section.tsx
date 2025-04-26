@@ -23,7 +23,7 @@ export const ProfilesSection = ({ data }: ProfilesSectionProps) => {
         className="profiles-section-title"
         level={data.heading?.Level as TitleLevel}
       >
-        {data.heading?.Title?.data?.attributes?.Title}
+        {data.heading?.Title?.Title}
       </SectionBaseTitle>
       <ul className="profiles-section-list">
         {profiles?.map(profile => (

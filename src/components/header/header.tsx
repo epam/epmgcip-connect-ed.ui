@@ -22,7 +22,7 @@ export const Header = ({ logo, leftSlot, rightSlot }: HeaderProps) => (
         >
           <img
             alt={logo?.AltText ?? ""}
-            src={logo?.Image?.data?.attributes?.url}
+            src={logo?.Image?.url}
             className="logo-icon"
           />
         </Link>

@@ -28,7 +28,7 @@ export const ExpandableCard = ({
   const [isExpanded, setIsExpanded] = useState(false);
 
   const hasAction = collapseLink?.title && expandLink?.title;
-  const buttonLink = data?.Button?.data?.attributes;
+  const buttonLink = data?.Button;
 
   const handleClick = hasAction
     ? () => {
@@ -41,8 +41,8 @@ export const ExpandableCard = ({
       className="expandable-card"
       // style={getExpandableCardTheme(
       //   data?.theme,
-      //   collapseLink?.theme?.data?.attributes,
-      //   expandLink?.theme?.data?.attributes,
+      //   collapseLink?.theme,
+      //   expandLink?.theme,
       // )}
     >
       <div className="expandable-card-content">
@@ -58,7 +58,7 @@ export const ExpandableCard = ({
                 <ButtonLink
                   href={buttonLink?.url ?? ""}
                   variant={buttonLink?.type ?? undefined}
-                  theme={buttonLink?.buttonTheme?.data?.attributes}
+                  theme={buttonLink?.buttonTheme}
                 >
                   {buttonLink?.label}
                 </ButtonLink>

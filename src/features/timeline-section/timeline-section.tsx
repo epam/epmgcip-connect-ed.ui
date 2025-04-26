@@ -21,13 +21,13 @@ export const TimelineSection = ({ data }: TimelineSectionProps) => {
     <SectionBase
       className="timeline-section"
       contentClassName="timeline-section-content"
-      style={getTimelineSectionTheme(data.Theme?.data?.attributes)}
+      style={getTimelineSectionTheme(data.Theme)}
     >
       <SectionBaseTitle
         className="timeline-section-title"
         level={data.Heading?.Level as TitleLevel}
       >
-        {data.Heading?.Title?.data?.attributes?.Title}
+        {data.Heading?.Title?.Title}
       </SectionBaseTitle>
       <ul className="timeline-section-list">
         {timelineCards.map(item => (

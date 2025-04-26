@@ -6,19 +6,17 @@ import { ApolloLink, HttpLink } from "@apollo/client";
 import {
   ApolloNextAppProvider,
   SSRMultipartLink,
-} from "@apollo/experimental-nextjs-app-support";
-import {
-  NextSSRApolloClient,
-  NextSSRInMemoryCache,
-} from "@apollo/experimental-nextjs-app-support/ssr";
+  ApolloClient,
+  InMemoryCache,
+} from "@apollo/client-integration-nextjs";
 
 function makeClient() {
   const httpLink = new HttpLink({
     uri: `${process.env.REACT_APP_BACKEND_URL}/graphql`,
   });
 
-  return new NextSSRApolloClient({
-    cache: new NextSSRInMemoryCache({
+  return new ApolloClient({
+    cache: new InMemoryCache({
       typePolicies: {
         ArticleCategory: {
           fields: {
@@ -36,13 +34,10 @@ function makeClient() {
                 return {
                   ...existingAttributes,
                   ...incomingAttributes,
-                  articles: {
-                    ...existingAttributes?.articles,
-                    data: [
-                      ...(existingAttributes?.articles?.data ?? []),
-                      ...(incomingAttributes?.articles?.data ?? []),
-                    ],
-                  },
+                  articles: [
+                    ...(existingAttributes?.articles ?? []),
+                    ...(incomingAttributes?.articles ?? []),
+                  ],
                 };
               },
             },

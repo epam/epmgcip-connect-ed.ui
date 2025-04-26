@@ -4,6 +4,7 @@ import { SocialLinkList } from "@/components/social-link-list/social-link-list.t
 import { Title } from "@/components/title/title.tsx";
 import { Typography } from "@/components/typography/typography.tsx";
 import { getProfileCardTheme } from "@/features/profiles-section/profile-card/utils.ts";
+import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import { ComponentSharedPersonellcard } from "@/__generated__/graphql.ts";
 import "./profile-card.scss";
 
@@ -13,17 +14,16 @@ export interface ProfileCardProps {
   data?: ComponentSharedPersonellcard;
 }
 
-// eslint-disable-next-line complexity
 export const ProfileCard = ({
   as: Tag = "div",
   className,
   data,
 }: ProfileCardProps) => {
-  const image = data?.Image?.data?.attributes;
+  const image = data?.Image;
   return (
     <Tag
       className={cc(["profile-card", className])}
-      style={getProfileCardTheme(data?.Theme?.data?.attributes)}
+      style={getProfileCardTheme(data?.Theme)}
     >
       <div className="profile-card-image-wrapper">
         <img
@@ -37,11 +37,13 @@ export const ProfileCard = ({
         <Title className="profile-card-title">{data?.Title}</Title>
         <Typography className="profile-card-role">{data?.Text}</Typography>
       </article>
-      <SocialLinkList
-        items={data?.SocialMedias?.data}
-        className="profile-card-social-link-list"
-        iconClassName="profile-card-social-icon"
-      />
+      {data?.SocialMedias && (
+        <SocialLinkList
+          items={data.SocialMedias.filter(isNotNull)}
+          className="profile-card-social-link-list"
+          iconClassName="profile-card-social-icon"
+        />
+      )}
     </Tag>
   );
 };

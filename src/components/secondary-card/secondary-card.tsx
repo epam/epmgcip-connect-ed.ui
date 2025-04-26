@@ -9,13 +9,9 @@ export interface SecondaryCardProps {
   data: SecondaryBannerFragmentFragment;
 }
 
-// eslint-disable-next-line complexity
 export const SecondaryCard = ({ data }: SecondaryCardProps) => {
   return (
-    <div
-      className="secondary-card"
-      style={getWavyCardTheme(data.Theme?.data?.attributes)}
-    >
+    <div className="secondary-card" style={getWavyCardTheme(data.Theme)}>
       <div className="secondary-card-info">
         <Title className="secondary-card-title">{data.Name}</Title>
         <Typography className="secondary-card-body">{data.Text}</Typography>
@@ -24,7 +20,7 @@ export const SecondaryCard = ({ data }: SecondaryCardProps) => {
             <ButtonLink
               variant={data.CTA1.Type ?? undefined}
               href={data.CTA1.URL ?? ""}
-              theme={data?.CTA1.ButtonTheme?.data?.attributes}
+              theme={data?.CTA1.ButtonTheme}
             >
               {data.CTA1.Label}
             </ButtonLink>
@@ -33,7 +29,7 @@ export const SecondaryCard = ({ data }: SecondaryCardProps) => {
             <ButtonLink
               variant={data.CTA2.Type ?? undefined}
               href={data.CTA2.URL ?? ""}
-              theme={data?.CTA2.ButtonTheme?.data?.attributes}
+              theme={data?.CTA2.ButtonTheme}
             >
               {data.CTA2.Label}
             </ButtonLink>
