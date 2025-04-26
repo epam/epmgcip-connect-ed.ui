@@ -17,10 +17,10 @@ export const SecondarySection = ({ data }: SecondarySectionProps) => {
         className="secondary-section-title"
         level={data.heading?.Level as TitleLevel}
       >
-        {data?.heading?.Title?.data?.attributes?.Title}
+        {data?.heading?.Title?.Title}
       </SectionBaseTitle>
       <ul className="secondary-section-list">
-        <WavyCard as="li" theme={data?.Theme?.data?.attributes}>
+        <WavyCard as="li" theme={data?.Theme}>
           <SecondaryCard data={data} />
         </WavyCard>
       </ul>

@@ -11,9 +11,12 @@ const config: CodegenConfig = {
       config: {
         enumsAsTypes: true,
         extractAllFieldsToTypes: true,
+        inlineFragmentTypes: 'combine',
         preResolveTypes: true,
         // onlyOperationTypes: true,
         noSchemaStitching: true,
+        dedupeTypes: true,
+        referenceFragmentTypes: 'same-file'
       },
       presetConfig: {
         gqlTagName: "gql",

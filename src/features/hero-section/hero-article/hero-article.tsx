@@ -17,20 +17,20 @@ export interface HeroArticleProps {
 export const HeroArticle = ({ card, action }: HeroArticleProps) => (
   <article
     className="hero-article"
-    style={getHeroArticleTheme(card?.Theme?.data?.attributes)}
+    style={getHeroArticleTheme(card?.Theme)}
   >
     <Title
-      level={card?.Title?.data?.attributes?.HeadingLevel}
+      level={card?.Title?.HeadingLevel}
       className="hero-article-title"
     >
-      {card?.Title?.data?.attributes?.Title}
+      {card?.Title?.Title}
     </Title>
     <Typography className="hero-article-body">{card?.Text}</Typography>
     {action && (
       <ButtonLink
         href={`/${action?.URL ?? ""}`}
         variant={action?.Type ?? undefined}
-        theme={action?.ButtonTheme?.data?.attributes}
+        theme={action?.ButtonTheme}
       >
         {action?.Label}
       </ButtonLink>

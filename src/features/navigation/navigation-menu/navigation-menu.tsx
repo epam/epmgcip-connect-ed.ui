@@ -4,13 +4,14 @@ import NavLink from "next/link";
 import { NavigationDropdown } from "@/features/navigation/navigation-dropdown/navigation-dropdown.tsx";
 import { useClickOutside } from "@/hooks/use-click-outside.ts";
 import { useLocationChange } from "@/hooks/use-location-change.ts";
-import { CategoryEntity } from "@/__generated__/graphql.ts";
+import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
+import { Category } from "@/__generated__/graphql.ts";
 import "./navigation-menu.scss";
 
 interface NavigationMenuProps {
   className?: string;
   isAutoClosable?: boolean;
-  menu?: CategoryEntity[];
+  menu?: Category[];
 }
 
 export const NavigationMenu = ({
@@ -54,17 +55,13 @@ export const NavigationMenu = ({
   return (
     <nav className={cc(["navigation-menu", className])} ref={navRef}>
       <ul className="navigation-list">
-        {menu?.map(({ attributes }) => {
-          const slug = attributes?.slug ?? "";
-          const label = attributes?.label;
-          const pages = attributes?.pages;
-
+        {menu?.map(({ slug, label, pages }) => {
           return (
             <li key={label} className="navigation-item">
-              {!!pages?.data && !!pages.data.length ? (
+              {!!pages && !!pages.length ? (
                 <NavigationDropdown
                   label={label ?? ""}
-                  items={pages.data}
+                  items={pages.filter(isNotNull)}
                   onToggle={handleToggle}
                 />
               ) : (

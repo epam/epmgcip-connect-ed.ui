@@ -18,10 +18,10 @@ export const ContactBanner = ({ data }: ContactBannerProps) => {
           <li key={column?.id} className="contact-banner-list-item">
             <div className="contact-banner-info">
               <Title
-                level={column?.Title?.data?.attributes?.HeadingLevel}
+                level={column?.Title?.HeadingLevel}
                 className="contact-banner-info-title"
               >
-                {column?.Title?.data?.attributes?.Title}
+                {column?.Title?.Title}
               </Title>
               <p className="contact-banner-info-body">{column?.Text}</p>
             </div>

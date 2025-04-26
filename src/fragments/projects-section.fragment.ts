@@ -1,48 +1,34 @@
 import { gql } from "@/__generated__";
 
 export const projectsSectionFragment = gql(`
-fragment ProjectsSectionFragment on ComponentSectionsBlocksGrid {
-  __typename
-  id
-  blockHeading: Title
-  Theme {
-    data {
-      id
-      attributes {
-        color
-        bgColor
-      }
-    }
-  }
-  Block {
-    id
-    Text
-    Label
-    URL
-    Open
-    Image {
-      data {
-        attributes {
-          url
+    fragment ProjectsSectionFragment on ComponentSectionsBlocksGrid {
+        __typename
+        id
+        blockHeading: Title
+        Theme {
+            documentId
+            color
+            bgColor
         }
-      }
-    }
-    Title {
-      data {
-        attributes {
-          Title
-          HeadingLevel
+        Block {
+            id
+            Text
+            Label
+            URL
+            Open
+            Image {
+                url
+            }
+            Title {
+                documentId
+                Title
+                HeadingLevel
+            }
+            Theme {
+                documentId
+                color
+                bgColor
+                title
+            }
         }
-      }
-    }
-    Theme {
-      data {
-        attributes {
-          color
-          bgColor
-          title
-        }
-      }
-    }
-  }
-}`);
+    }`);

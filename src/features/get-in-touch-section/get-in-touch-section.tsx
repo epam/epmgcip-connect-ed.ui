@@ -8,7 +8,7 @@ interface GetInTouchSectionProps {
 }
 
 export const GetInTouchSection = ({ data }: GetInTouchSectionProps) => {
-  const titleData = data?.Title?.data?.attributes;
+  const titleData = data?.Title;
 
   return (
     <SectionBase

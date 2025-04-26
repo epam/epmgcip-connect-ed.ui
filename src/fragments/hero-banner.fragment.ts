@@ -1,50 +1,37 @@
 import { gql } from "@/__generated__";
 
 export const heroBannerFragment = gql(`
-fragment HeroBannerFragment on ComponentSectionsHeroBanner {
-  __typename
-  id
-  Image {
-    data {
-      attributes {
-        url
-      }
-    }
-  }
-  CTA {
-   id
-    Label
-    URL
-    Type
-    ButtonTheme {
-      data {
-        attributes {
-          BackgrondColor
-          OutlineColor
-          FontColor
+    fragment HeroBannerFragment on ComponentSectionsHeroBanner {
+        __typename
+        id
+        Image {
+            url
         }
-      }
-    }
-  }
-  OverlayBlock {
-    id
-    Text
-    Title {
-      data {
-        attributes {
-          Title
-          HeadingLevel
+        CTA {
+            id
+            Label
+            URL
+            Type
+            ButtonTheme {
+                documentId
+                BackgrondColor
+                OutlineColor
+                FontColor
+            }
         }
-      }
-    }
-    Theme {
-      data {
-        attributes {
-          color
-          bgColor
-          title
+        OverlayBlock {
+            id
+            Text
+            Title {
+                documentId
+                Title
+                HeadingLevel
+            }
+            Theme {
+                documentId
+                color
+                bgColor
+                title
+            }
         }
-      }
-    }
-  }
-}`);
+    }`);

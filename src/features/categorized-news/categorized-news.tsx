@@ -39,7 +39,7 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
   const [page, setPage] = useState(START_PAGE + 1);
 
   const client = useApolloClient();
-  const sectionInfo = data.Tabs?.data?.[0].attributes;
+  const sectionInfo = data.Tabs?.[0];
 
   const tabs = (sectionInfo?.Tabs as ComponentSharedTabs[]) ?? initialTabs;
   const firstTabId = tabs?.[0]?.id ?? "";
@@ -59,12 +59,12 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
   );
 
   const currentTab = tabsMap?.get(activeTab);
-  const currentArticles = currentTab?.Articles?.data;
+  const currentArticles = currentTab?.Articles;
   const canLoadMore = (currentArticles?.length ?? -1) % PAGE_SIZE === 0;
 
   const [getNews, { loading }] = useLazyQuery(GET_NEWS_BY_CATEGORY, {
     onCompleted: lazyData => {
-      if (lazyData?.articles?.data?.length) {
+      if (lazyData?.articles?.length) {
         const activeSharedTab = tabs.find(tab => tab.id === activeTab);
 
         if (activeSharedTab) {
@@ -72,9 +72,7 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
             id: `${activeSharedTab.__typename}:${activeSharedTab.id}`,
             fragment: articleCategoryFragment,
             data: {
-              articles: {
-                data: lazyData?.articles?.data,
-              },
+              articles: lazyData?.articles,
             },
           });
         }
@@ -111,20 +109,20 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
       <TabList.Panel className="categorized-news-tab-panel">
         <ul className="categorized-news-list">
           {currentArticles?.map(tab => {
-            const news = tab?.attributes;
+            const news = tab;
 
             return (
               <NewsCard
                 as="li"
-                key={`${tab.id}${news?.slug}`}
-                cover={news?.featuredImage?.data?.attributes?.url}
+                key={`${tab?.slug}${news?.slug}`}
+                cover={news?.featuredImage?.url}
                 title={news?.title}
                 body={news?.excerpt}
                 action={{
                   text: news?.title,
                   slug: news?.slug,
                 }}
-                theme={news?.theme?.data?.attributes}
+                theme={news?.theme}
               />
             );
           })}
@@ -132,14 +130,12 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
         {sectionInfo?.CTA && canLoadMore && (
           <LoadingButton
             className="categorized-news-action"
-            variant={sectionInfo?.CTA?.data?.attributes?.type ?? undefined}
+            variant={sectionInfo?.CTA?.type ?? undefined}
             onClick={handleClick}
             isLoading={loading}
-            theme={
-              sectionInfo?.CTA?.data?.attributes?.buttonTheme?.data?.attributes
-            }
+            theme={sectionInfo?.CTA?.buttonTheme}
           >
-            {sectionInfo?.CTA?.data?.attributes?.label}
+            {sectionInfo?.CTA?.label}
           </LoadingButton>
         )}
       </TabList.Panel>

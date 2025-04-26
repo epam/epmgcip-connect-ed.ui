@@ -31,11 +31,11 @@ export const InformationSection = ({
     <SectionBase
       className="information-section"
       contentClassName="information-section-content"
-      style={getInformationSectionTheme(theme?.data?.attributes)}
+      style={getInformationSectionTheme(theme)}
     >
       {title && (
         <SectionBaseTitle className="information-section-title">
-          {title.data?.attributes?.Title}
+          {title.Title}
         </SectionBaseTitle>
       )}
       {description && (
@@ -49,7 +49,7 @@ export const InformationSection = ({
             key={item.id}
             as="li"
             className="information-section-list-item"
-            theme={item?.Theme?.data?.attributes ?? undefined}
+            theme={item?.Theme ?? undefined}
           >
             <InformationCard data={item as ComponentSharedNoodlesCard} />
           </WavyCard>
@@ -60,7 +60,7 @@ export const InformationSection = ({
           href={action.URL ?? ""}
           className="information-section-action"
           variant={action?.Type ?? undefined}
-          theme={action?.ButtonTheme?.data?.attributes}
+          theme={action?.ButtonTheme}
         >
           {action.Label}
         </ButtonLink>

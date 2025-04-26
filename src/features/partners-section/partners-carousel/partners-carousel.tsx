@@ -21,7 +21,7 @@ export const PartnersCarousel = ({ items, speed }: PartnersCarouselProps) => {
           <li key={item.id} className="partners-carousel-item">
             <a href={item.URL ?? ""}>
               <img
-                src={item.Image?.data?.attributes?.url ?? ""}
+                src={item.Image?.url ?? ""}
                 className="partners-carousel-image"
                 alt={item.AltText ?? ""}
               />
@@ -36,7 +36,7 @@ export const PartnersCarousel = ({ items, speed }: PartnersCarouselProps) => {
           >
             <a href={item.URL ?? ""}>
               <img
-                src={item.Image?.data?.attributes?.url ?? ""}
+                src={item.Image?.url ?? ""}
                 className="partners-carousel-image"
                 alt={item.AltText ?? ""}
               />

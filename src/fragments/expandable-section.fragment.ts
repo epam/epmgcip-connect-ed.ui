@@ -1,74 +1,52 @@
 import { gql } from "@/__generated__";
 
 export const expandableSectionFragment = gql(`
-fragment ExpandableSectionFragment on ComponentSectionsAccordion {
-  id
-  heading: Title {
-    id
-    Level
-    Alignment
-    Title {
-      data {
-        attributes {
-          Title
-          HeadingLevel
-        }
-      }
-    }
-  }
-  ExpandLink {
-    data {
-      attributes {
-        title
-        url
-        theme {
-          data {
-            attributes {
-              bgColor
-              color
+    fragment ExpandableSectionFragment on ComponentSectionsAccordion {
+        id
+        heading: Title {
+            id
+            Level
+            Alignment
+            Title {
+                documentId
+                Title
+                HeadingLevel
             }
-          }
         }
-      }
-    }
-  }
-  CollapseLink {
-    data {
-      attributes {
-        title
-        url
-        theme {
-          data {
-            attributes {
-              bgColor
-              color
+        ExpandLink {
+            documentId
+            title
+            url
+            theme {
+                documentId
+                bgColor
+                color
             }
-          }
         }
-      }
-    }
-  }
-  Item {
-    id
-    Title
-    LongDescription
-    ShortDescription
-    Button {
-      data {
-        attributes {
-          label
-          type
-          buttonTheme {
-            data {
-              attributes {
-                BackgrondColor
-                FontColor
-                OutlineColor
-              }
+        CollapseLink {
+            documentId
+            title
+            url
+            theme {
+                documentId
+                bgColor
+                color
             }
-          }
         }
-      }
-    }
-  }
-}`);
+        Item {
+            id
+            Title
+            LongDescription
+            ShortDescription
+            Button {
+                label
+                type
+                buttonTheme {
+                    documentId
+                    BackgrondColor
+                    FontColor
+                    OutlineColor
+                }
+            }
+        }
+    }`);

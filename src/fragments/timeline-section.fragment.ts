@@ -1,67 +1,47 @@
 import { gql } from "@/__generated__";
 
 export const timelineSectionFragment = gql(`
-fragment TimelineSectionFragment on ComponentSectionsTimeline {
-  id
-  Heading {
-    id
-    Level
-    Alignment
-    Title {
-      data {
-        attributes {
-          Title
-          HeadingLevel
-        }
-      }
-    }
-  }
-  timelineCard: Card {
-    id
-    Text
-    Title {
-      data {
-        attributes {
-          Title
-          HeadingLevel
-        }
-      }
-    }
-    Image {
-      data {
-        attributes {
-          image {
-            data {
-              attributes {
-                alternativeText
-                caption
-                url
-              }
+    fragment TimelineSectionFragment on ComponentSectionsTimeline {
+        id
+        Heading {
+            id
+            Level
+            Alignment
+            Title {
+                documentId
+                Title
+                HeadingLevel
             }
-          }
-          altText
-          isIcon
-          url
-          newTab
         }
-      }
-    }
-    Theme {
-      data {
-        attributes {
-          color
-          bgColor
+        timelineCard: Card {
+            id
+            Text
+            Title {
+                documentId
+                Title
+                HeadingLevel
+            }
+            Image {
+                image {
+                    alternativeText
+                    caption
+                    url
+                }
+                altText
+                isIcon
+                url
+                newTab
+            }
+            Theme {
+                documentId
+                color
+                bgColor
+            }
         }
-      }
-    }
-  }
-  Theme {
-    data {
-      attributes {
-        color
-        bgColor
-      }
-    }
-  }
-  ShowWave
-}`);
+        Theme {
+            documentId
+            color
+            bgColor
+        }
+        ShowWave
+    }`);

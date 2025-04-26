@@ -11,7 +11,6 @@ import {
 import { SectionBase } from "@/components/section-base";
 import "./two-columns-section.scss";
 
-// eslint-disable-next-line complexity
 const renderColumn = (item: ColumnColumnDynamicZone) => {
   switch (item.__typename) {
     // case "article": {
@@ -27,10 +26,8 @@ const renderColumn = (item: ColumnColumnDynamicZone) => {
       return (
         <img
           className="two-columns-section-image"
-          src={item.Image?.data?.attributes?.url ?? ""}
-          alt={
-            item.AltText ?? item.Image?.data?.attributes?.alternativeText ?? ""
-          }
+          src={item.Image?.url ?? ""}
+          alt={item.AltText ?? item.Image?.alternativeText ?? ""}
         />
       );
     }
@@ -41,7 +38,7 @@ const renderColumn = (item: ColumnColumnDynamicZone) => {
           className="two-columns-section-video"
           aria-label="video"
         >
-          <source src={item.video?.data?.attributes?.url} />
+          <source src={item.video?.url} />
         </video>
       );
     }
@@ -59,8 +56,7 @@ export interface TwoColumnsSectionProps {
 }
 
 export const TwoColumnsSection = ({ data }: TwoColumnsSectionProps) => {
-  const columns =
-    data?.Column?.data?.attributes?.column?.filter(isNotNull) ?? [];
+  const columns = data?.Column?.column?.filter(isNotNull) ?? [];
   const ratio = data?.Ratio ?? "one_one";
 
   return (

@@ -10,7 +10,7 @@ const isOdd = (value: number) => value % 2 === 1;
 export const getIndexesToStretch = (items: ComponentSharedGridBlock[]) => {
   const { startIndex, indexesToStretch } = items.reduce(
     (accumulator, { Image }, index) => {
-      if (Image?.data) {
+      if (Image) {
         if (isOdd(index - 1 - accumulator.startIndex)) {
           accumulator.indexesToStretch.add(index - 1);
         }

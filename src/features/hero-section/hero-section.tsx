@@ -15,7 +15,7 @@ export const HeroSection = ({
     <div className="hero-section-banner">
       <img
         className="hero-section-banner-image"
-        src={coverImage?.data?.attributes?.url ?? ""}
+        src={coverImage?.url ?? ""}
         alt=""
         role="presentation"
       />

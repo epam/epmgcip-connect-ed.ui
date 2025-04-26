@@ -35,7 +35,7 @@ export const ProjectsSection = ({
     <SectionBase
       className="projects-section"
       contentClassName="projects-section-content"
-      style={getProjectsSectionTheme(theme?.data?.attributes)}
+      style={getProjectsSectionTheme(theme)}
     >
       <SectionBaseTitle className="projects-section-title">
         {blockHeading}

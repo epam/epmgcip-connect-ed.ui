@@ -4,9 +4,9 @@ import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { SocialRibbon } from "@/components/social-ribbon/social-ribbon.tsx";
 import { useClickOutside } from "@/hooks/use-click-outside.ts";
 import {
-  CategoryEntity,
+  Category,
   ComponentSharedButton,
-  SocialMediaEntity,
+  SocialMedia,
 } from "@/__generated__/graphql.ts";
 import "./navigation-sidebar.scss";
 
@@ -15,9 +15,9 @@ export interface NavigationSidebarProps {
   id: string;
   className?: string;
   onClose: () => void;
-  navigation?: CategoryEntity[];
+  navigation?: Category[];
   action?: Omit<ComponentSharedButton, "id">;
-  stripe?: SocialMediaEntity[];
+  stripe?: SocialMedia[];
 }
 
 export const NavigationSidebar = ({

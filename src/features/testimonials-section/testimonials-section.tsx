@@ -27,11 +27,11 @@ export const TestimonialsSection = ({ data }: TestimonialsSectionProps) => {
   return (
     <SectionBase
       className="testimonials-section"
-      style={getTestimonialsSectionTheme(data?.Theme?.data?.attributes)}
+      style={getTestimonialsSectionTheme(data?.Theme)}
       hasWave={data?.ShowWave}
     >
       <SectionBaseTitle className="testimonials-section-title">
-        {data?.Title?.data?.attributes?.Title}
+        {data?.Title?.Title}
       </SectionBaseTitle>
       <Carousel
         className="testimonials-section-carousel"

@@ -1,40 +1,28 @@
 import { gql } from "@/__generated__";
 
 export const imageBannerFragment = gql(`
-fragment ImageBannerFragment on ComponentSectionsImageBanner {
-  __typename
-  id
-  imageCard: Card {
-    id
-    Text
-    Label
-    URL
-    LinkTitle
-    Open
-    Title {
-      data {
+    fragment ImageBannerFragment on ComponentSectionsImageBanner {
+        __typename
         id
-        attributes {
-          Title
-          HeadingLevel
+        imageCard: Card {
+            id
+            Text
+            Label
+            URL
+            LinkTitle
+            Open
+            Title {
+                documentId
+                Title
+                HeadingLevel
+            }
         }
-      }
-    }
-  }
-  Image {
-    data {
-      id
-      attributes {
-        url
-      }
-    }
-  }
-  Theme {
-    data {
-      attributes {
-        color
-        bgColor
-      }
-    }
-  }
-}`);
+        Image {
+            url
+        }
+        Theme {
+            documentId
+            color
+            bgColor
+        }
+    }`);

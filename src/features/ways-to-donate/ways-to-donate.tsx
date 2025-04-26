@@ -17,49 +17,35 @@ import "./ways-to-donate.scss";
 
 const tabsMock = [
   {
-    attributes: {
-      label: "For Kazakhstanis",
-      slug: "kazakh",
-      data: {
-        attributes: {
-          title: "How your donation helps",
-          body:
-            "At the moment, we need funds to purchase equipment and administrative costs.\n" +
-            "\n" +
-            "You can make a one-time or monthly donation, the collected funds through crowdfunding will be used exceptionally to buy equipment for children. \n" +
-            "\n" +
-            "Together we can provide the children who need help the most with the gadgets and knowledge to be successful now and in the future!\n" +
-            "\n" +
-            "If you want to support us in a different format, please contact the Founder of the Organisation – Gulnaz (Ms.) by email: kordanova.gulnaz@gmail.com",
-          codeUrl: qrCode,
-        },
-      },
-    },
+    label: "For Kazakhstanis",
+    slug: "kazakh",
+    title: "How your donation helps",
+    body:
+      "At the moment, we need funds to purchase equipment and administrative costs.\n" +
+      "\n" +
+      "You can make a one-time or monthly donation, the collected funds through crowdfunding will be used exceptionally to buy equipment for children. \n" +
+      "\n" +
+      "Together we can provide the children who need help the most with the gadgets and knowledge to be successful now and in the future!\n" +
+      "\n" +
+      "If you want to support us in a different format, please contact the Founder of the Organisation – Gulnaz (Ms.) by email: kordanova.gulnaz@gmail.com",
+    codeUrl: qrCode,
   },
   {
-    attributes: {
-      label: "Kaspi and Halyk",
-      slug: "kapsi-and-halyk",
-      data: {
-        attributes: {
-          title: "How your donation helps",
-          body:
-            "At the moment, we need funds to purchase equipment and administrative costs.\n" +
-            "\n" +
-            "You can make a one-time or monthly donation, the collected funds through crowdfunding will be used exceptionally to buy equipment for children. \n" +
-            "\n" +
-            "Together we can provide the children who need help the most with the gadgets and knowledge to be successful now and in the future!\n" +
-            "\n" +
-            "If you want to support us in a different format, please contact the Founder of the Organisation – Gulnaz (Ms.) by email: kordanova.gulnaz@gmail.com",
-        },
-      },
-    },
+    label: "Kaspi and Halyk",
+    slug: "kapsi-and-halyk",
+    title: "How your donation helps",
+    body:
+      "At the moment, we need funds to purchase equipment and administrative costs.\n" +
+      "\n" +
+      "You can make a one-time or monthly donation, the collected funds through crowdfunding will be used exceptionally to buy equipment for children. \n" +
+      "\n" +
+      "Together we can provide the children who need help the most with the gadgets and knowledge to be successful now and in the future!\n" +
+      "\n" +
+      "If you want to support us in a different format, please contact the Founder of the Organisation – Gulnaz (Ms.) by email: kordanova.gulnaz@gmail.com",
   },
   {
-    attributes: {
-      label: "Everyone else",
-      slug: "everyone-else",
-    },
+    label: "Everyone else",
+    slug: "everyone-else",
   },
 ];
 

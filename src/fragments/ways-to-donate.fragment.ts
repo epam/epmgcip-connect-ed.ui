@@ -3,37 +3,27 @@ import { gql } from "@/__generated__";
 export const waysToDonateFragment = gql(`
     fragment WaysToDonateFragment on ComponentSectionsWaysToDonate {
         Card {
-          id
-          Title
-          Text
-          Link {
-            data {
-              attributes {
+            id
+            Title
+            Text
+            Link {
                 label
                 type
                 url
                 buttonTheme {
-                  data {
-                    attributes {
-                      BackgrondColor
-                      OutlineColor
-                      FontColor
-                    }
-                  }
+                    documentId
+                    BackgrondColor
+                    OutlineColor
+                    FontColor
                 }
-              }
             }
-          }
-          qrCodeLink
+            qrCodeLink
         }
         # Tabs should be added
         Theme {
-          data {
-            attributes {
-              color
-              bgColor
-            }  
-          }  
+            documentId
+            color
+            bgColor
         }
         Title
         id

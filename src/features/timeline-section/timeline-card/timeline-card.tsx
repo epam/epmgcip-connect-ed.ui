@@ -20,14 +20,14 @@ export const TimelineCard = ({
 }: TimelineCardProps) => (
   <Tag
     className={cc(["timeline-card", className])}
-    style={getTimelineCardTheme(data?.Theme?.data?.attributes)}
+    style={getTimelineCardTheme(data?.Theme)}
   >
     <article>
       <Title
-        level={data?.Title?.data?.attributes?.HeadingLevel}
+        level={data?.Title?.HeadingLevel}
         className="timeline-card-title"
       >
-        {data?.Title?.data?.attributes?.Title}
+        {data?.Title?.Title}
       </Title>
       <Typography>{data?.Text}</Typography>
     </article>
@@ -35,7 +35,7 @@ export const TimelineCard = ({
       <img
         className="timeline-card-image"
         alt=""
-        src={data?.Image?.data?.attributes?.url ?? ""}
+        src={data?.Image?.url ?? ""}
         role="presentation"
       />
     </div>

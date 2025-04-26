@@ -2,13 +2,13 @@ import { ChangeEvent } from "react";
 import cc from "classcat";
 import { useParams, useRouter } from "next/navigation";
 import { SocialLinkList } from "@/components/social-link-list/social-link-list.tsx";
-import { SocialMediaEntity } from "@/__generated__/graphql.ts";
+import { SocialMedia } from "@/__generated__/graphql.ts";
 import { localesConfig } from "../../../i18n/request.ts";
 import "./social-ribbon.scss";
 
 export interface SocialRibbonProps {
   className?: string;
-  socialLinks?: SocialMediaEntity[];
+  socialLinks?: SocialMedia[];
 }
 
 export const SocialRibbon = ({ className, socialLinks }: SocialRibbonProps) => {
