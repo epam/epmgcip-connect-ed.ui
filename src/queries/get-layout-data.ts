@@ -3,6 +3,7 @@ import { gql } from "@/__generated__";
 export const GET_LAYOUT_DATA = gql(`
     query GetLayoutData($limit: Int, $locale: I18NLocaleCode) {
         pages(pagination: { limit: $limit }, locale: $locale) {
+            documentId
             Slug
         }
         colorScheme {
@@ -63,6 +64,7 @@ export const GET_LAYOUT_DATA = gql(`
                 label
                 description
                 pages {
+                    documentId
                     Slug
                     Title
                 }

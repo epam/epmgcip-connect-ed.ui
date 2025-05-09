@@ -2,29 +2,54 @@ import { gql } from "@/__generated__";
 
 export const waysToDonateFragment = gql(`
     fragment WaysToDonateFragment on ComponentSectionsWaysToDonate {
-        Card {
+        TabTheme {
+            ActiveBgColor
+            ActiveBorderColor
+            ActiveColor
+            BgColor
+            BorderColor
+            Color
+        }
+        Title {
             id
-            Title
-            Text
-            Link {
-                label
-                type
-                url
-                buttonTheme {
-                    documentId
-                    BackgrondColor
-                    OutlineColor
-                    FontColor
+            Alignment
+            Level
+            Title {
+                HeadingLevel
+                Title
+                documentId
+            }
+        }
+        Tabs {
+            Title {
+                documentId
+                Title
+                HeadingLevel
+            }
+            Label
+            Description
+            documentId
+            content {
+                ... on ComponentSharedCard {
+                    Title
+                    Text
+                    Link {
+                        label
+                        type
+                        url
+                        buttonTheme {
+                            documentId
+                            BackgrondColor
+                            OutlineColor
+                            FontColor
+                        }
+                    }
+                    qrCodeLink
                 }
             }
-            qrCodeLink
         }
-        # Tabs should be added
         Theme {
-            documentId
             color
             bgColor
         }
-        Title
-        id
     }`);

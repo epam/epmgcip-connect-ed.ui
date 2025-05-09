@@ -6,6 +6,7 @@ export const GET_PAGES_DATA = gql(`
         $locale: I18NLocaleCode
         $page: Int!
         $pageSize: Int!
+        $limit: Int!
     ) {
         pages(filters: $filters, locale: $locale) {
             Title

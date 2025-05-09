@@ -12,7 +12,6 @@ export interface TimelineCardProps {
   data?: ComponentSharedTimelineCard;
 }
 
-// eslint-disable-next-line complexity
 export const TimelineCard = ({
   as: Tag = "div",
   className,
@@ -23,10 +22,7 @@ export const TimelineCard = ({
     style={getTimelineCardTheme(data?.Theme)}
   >
     <article>
-      <Title
-        level={data?.Title?.HeadingLevel}
-        className="timeline-card-title"
-      >
+      <Title level={data?.Title?.HeadingLevel} className="timeline-card-title">
         {data?.Title?.Title}
       </Title>
       <Typography>{data?.Text}</Typography>

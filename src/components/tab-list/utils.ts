@@ -1,9 +1,7 @@
 import { getThemeStyle } from "@/utils/get-theme-style.ts";
-import { ComponentSharedArticleCategoryTab } from "@/__generated__/graphql.ts";
+import { TabTheme } from "@/__generated__/graphql.ts";
 
-export const getTabsListTheme = (
-  theme?: ComponentSharedArticleCategoryTab | null,
-) =>
+export const getTabsListTheme = (theme?: TabTheme | null) =>
   getThemeStyle([
     ["--active-tab-background", theme?.ActiveBgColor],
     ["--active-tab-border", theme?.ActiveBorderColor],

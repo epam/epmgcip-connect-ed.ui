@@ -1,14 +1,11 @@
 import { PropsWithChildren, SyntheticEvent } from "react";
 import cc from "classcat";
 import { getTabsListTheme } from "@/components/tab-list/utils.ts";
-import {
-  ComponentSharedArticleCategoryTab,
-  Maybe,
-} from "@/__generated__/graphql.ts";
+import { Maybe, TabTheme } from "@/__generated__/graphql.ts";
 import "./tab-list.scss";
 
 export interface TabListProps<T> {
-  theme?: ComponentSharedArticleCategoryTab;
+  theme?: Maybe<TabTheme>;
   tabs: T[];
   activeTab: string;
   className?: string;

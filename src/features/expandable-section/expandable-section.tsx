@@ -14,7 +14,6 @@ export interface ExpandableSectionProps {
   data: ExpandableSectionFragmentFragment;
 }
 
-// eslint-disable-next-line complexity
 export const ExpandableSection = ({ data }: ExpandableSectionProps) => {
   const cards = data?.Item?.filter(isNotNull) as ComponentSharedAccordionItem[];
 

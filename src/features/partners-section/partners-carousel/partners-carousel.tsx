@@ -16,10 +16,21 @@ export const PartnersCarousel = ({ items, speed }: PartnersCarouselProps) => {
 
   return (
     <div className="partners-carousel" style={styles}>
-      <ul className="partners-carousel-list">
+      <ul
+        className="partners-carousel-list"
+        style={
+          {
+            ...(items.length > 5 ? {} : { animationPlayState: "paused" }),
+          } as CSSProperties
+        }
+      >
         {items.map(item => (
           <li key={item.id} className="partners-carousel-item">
-            <a href={item.URL ?? ""}>
+            <a
+              href={item.URL ?? ""}
+              target={item?.Open ? "_blank" : "_self"}
+              rel="noopener noreferrer"
+            >
               <img
                 src={item.Image?.url ?? ""}
                 className="partners-carousel-image"
@@ -34,7 +45,11 @@ export const PartnersCarousel = ({ items, speed }: PartnersCarouselProps) => {
             className="partners-carousel-item"
             aria-hidden
           >
-            <a href={item.URL ?? ""}>
+            <a
+              href={item.URL ?? ""}
+              target={item?.Open ? "_blank" : "_self"}
+              rel="noopener noreferrer"
+            >
               <img
                 src={item.Image?.url ?? ""}
                 className="partners-carousel-image"
@@ -44,6 +59,7 @@ export const PartnersCarousel = ({ items, speed }: PartnersCarouselProps) => {
           </li>
         ))}
       </ul>
+      <ul></ul>
     </div>
   );
 };

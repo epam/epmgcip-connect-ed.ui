@@ -26,7 +26,7 @@ export const partnersSectionFragment = gql(`
                 FontColor
             }
         }
-        Elements {
+        Elements(pagination: { limit: $limit }) {
             id
             Name
             Image {

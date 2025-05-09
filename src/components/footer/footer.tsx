@@ -39,12 +39,12 @@ export const Footer = ({
         )}
         <div className="contact-info">
           <div className="contact-links">
-            {navigation?.map(({ Slug, Title }) => {
+            {navigation?.map(({ Slug, Title: contactLinkTitle }) => {
               const slug = Slug ?? "";
 
               return (
                 <Link key={slug} href={slug} className="contact-link">
-                  {Title}
+                  {contactLinkTitle}
                 </Link>
               );
             })}

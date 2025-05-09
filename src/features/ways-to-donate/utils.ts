@@ -1,22 +1,20 @@
+import { WaysToDonateTab } from "@/features/ways-to-donate/types.ts";
 import { getThemeStyle } from "@/utils/get-theme-style.ts";
+import { Maybe, Theme } from "@/__generated__/graphql.ts";
 
-export const getWaysToDonateTabsMap = (tabs: unknown[]) =>
-  tabs?.reduce<Map<string, { title: string; body: string; codeUrl?: string }>>(
-    (accumulator, tab) => {
-      // @ts-expect-error // TODO: fix after integration
-      const slug = tab?.slug as string;
+export const getWaysToDonateTabsMap = (tabs: WaysToDonateTab[]) =>
+  tabs?.reduce<Map<string, WaysToDonateTab>>((accumulator, tab) => {
+    const slug = tab?.documentId as string;
 
-      if (slug) {
-        // @ts-expect-error // TODO: fix after integration
-        accumulator.set(slug, tab);
-      }
+    if (slug) {
+      accumulator.set(slug, tab);
+    }
 
-      return accumulator;
-    },
-    new Map(),
-  );
+    return accumulator;
+  }, new Map());
 
-export const getWaysToDonateTheme = () =>
+export const getWaysToDonateTheme = (theme?: Maybe<Theme>) =>
   getThemeStyle([
-    // TODO: Add theme when it's added from the BE side
+    ["--section-background", theme?.bgColor],
+    ["--section-color", theme?.color],
   ]);

@@ -4,6 +4,7 @@
   position: relative;
   overflow: hidden;
   height: 160px;
+  margin-top: 2px;
 
   --_animation-speed: var(--animation-speed, 40s);
 
@@ -34,7 +35,6 @@
       }
     }
   }
-
 
   &-item {
     scroll-snap-align: start;

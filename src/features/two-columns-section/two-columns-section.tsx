@@ -3,12 +3,13 @@
 import cc from "classcat";
 import { DataGraph } from "@/components/data-graph/data-graph.tsx";
 import { RichTextMarkdown } from "@/components/rich-text-markdown/rich-text-markdown.tsx";
+import { getTwoColumnsTheme } from "@/features/two-columns-section/utils.ts";
 import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import {
   ColumnColumnDynamicZone,
   TwoColumnsFragmentFragment,
 } from "@/__generated__/graphql.ts";
-import { SectionBase } from "@/components/section-base";
+import { SectionBase, SectionBaseTitle } from "@/components/section-base";
 import "./two-columns-section.scss";
 
 const renderColumn = (item: ColumnColumnDynamicZone) => {
@@ -60,7 +61,16 @@ export const TwoColumnsSection = ({ data }: TwoColumnsSectionProps) => {
   const ratio = data?.Ratio ?? "one_one";
 
   return (
-    <SectionBase className="two-columns-section">
+    <SectionBase
+      className="two-columns-section"
+      contentClassName="two-columns-section-content"
+      style={getTwoColumnsTheme(data?.Theme)}
+    >
+      {data?.Column?.title && (
+        <SectionBaseTitle className="two-columns-section-title">
+          {data.Column.title}
+        </SectionBaseTitle>
+      )}
       <div className="two-columns-section-content">
         <div
           className={cc([

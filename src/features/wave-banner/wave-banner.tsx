@@ -30,7 +30,7 @@ export const WaveBanner = ({ data }: WaveBannerProps) => {
   const infoClassName = IsTextBox
     ? "wave-banner-info"
     : "wave-banner-info--card";
-  const imageSource = Image?.URL ?? "";
+  const imageSource = Image?.URL ?? Image?.Image?.url ?? "";
 
   return (
     <SectionBase
