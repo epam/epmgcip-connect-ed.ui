@@ -3,46 +3,69 @@ import { gql } from "@/__generated__";
 export const categorizedNewsFragment = gql(`
     fragment CategorizedNewsFragment on ComponentSectionsColumnsWithTabs {
         __typename
-        id
+        Description
+        Label
+        MaxCardsToDisplay
+        TabTheme {
+            ActiveBgColor
+            ActiveBorderColor
+            ActiveColor
+            BgColor
+            BorderColor
+            Color
+        }
         Tabs {
-            TabTheme {
-                Color
-                #          BgColor
-                #          BorderColor
-                #          ActiveColor
-                #          ActiveBgColor
-                #          ActiveBorderColor
+            documentId
+            Title {
+                HeadingLevel
+                Title
             }
-            TabCardTheme {
-                Color
-                BgColor
-                LinkColor
-                id
-            }
-            CTA {
-                label
-                type
-                url
-                buttonTheme {
-                    documentId
-                    BackgrondColor
-                    OutlineColor
-                    FontColor
-                }
-            }
-            Tabs {
-                id
-                Label
-                Description
-                Articles(pagination: { page: $page, pageSize: $pageSize }) {
+            content {
+                ... on ComponentSharedArticleCategory {
+                    id
                     slug
-                    title
-                    excerpt
-                    featuredImage {
-                        url
+                    label
+                    description
+                    articles {
+                        content
+                        documentId
+                        excerpt
+                        featuredImage {
+                            alternativeText
+                            caption
+                            documentId
+                            url
+                        }
+                        slug
+                        theme {
+                            title
+                            documentId
+                            color
+                            bgColor
+                        }
+                        title
+                        locale
                     }
                 }
             }
+            Label
+            Description
         }
-        MaxCardsToDisplay
+        CTA {
+            id
+            Label
+            Type
+            URL
+            ButtonTheme {
+                documentId
+                BackgrondColor
+                OutlineColor
+                FontColor
+            }
+        }
+        Theme {
+            Color
+            BgColor
+        }
+        id
     }`);

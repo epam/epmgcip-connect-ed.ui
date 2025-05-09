@@ -10,6 +10,7 @@ export const twoColumnsFragment = gql(`
             bgColor
         }
         Column {
+            title
             column {
                 ...TwoColumnsChartFragment
                 ...TwoColumnsRichTextFragment

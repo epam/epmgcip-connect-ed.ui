@@ -9,7 +9,6 @@ export interface ImageBannerProps {
   data: ImageBannerFragmentFragment;
 }
 
-// eslint-disable-next-line complexity
 export const ImageBanner = ({ data }: ImageBannerProps) => {
   const card = data?.imageCard;
   return (

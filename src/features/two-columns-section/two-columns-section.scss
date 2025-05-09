@@ -4,6 +4,20 @@
 @use "sass:map";
 
 .two-columns-section {
+  --_section-background: var(--section-background, var(--white));
+  --_section-color: var(--section-color, var(--black));
+
+  background-color: var(--_section-background);
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-title {
+    color: var(--_section-color);
+  }
+
   &-row {
     padding: 32px 0;
     display: grid;

@@ -8,6 +8,7 @@ import { NewsCard } from "@/components/news-card/news-card.tsx";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
 import { TabList } from "@/components/tab-list/tab-list.tsx";
 import { TAB_PARAM_NAME } from "@/features/categorized-news/constants.ts";
+import { ComponentSharedTab } from "@/features/categorized-news/types.ts";
 import {
   getCategorizedNewsTabsMap,
   getCategorizedNewsTheme,
@@ -17,7 +18,8 @@ import { GET_NEWS_BY_CATEGORY } from "@/queries/get-news-by-category.ts";
 import { PAGE_SIZE, START_PAGE } from "@/constants/query-variables.ts";
 import {
   CategorizedNewsFragmentFragment,
-  ComponentSharedTabs,
+  ComponentSharedArticleCategory,
+  TabTheme,
 } from "@/__generated__/graphql.ts";
 import { articleCategoryFragment } from "@/fragments/article-category.fragment.ts";
 import "./categorized-news.scss";
@@ -26,10 +28,10 @@ export interface CategorizedNewsProps {
   data: CategorizedNewsFragmentFragment;
 }
 
-const initialTabs: ComponentSharedTabs[] = [];
+const initialTabs: ComponentSharedTab[] = [];
 
-const getTabData = (tab: ComponentSharedTabs) => ({
-  value: tab?.id,
+const getTabData = (tab: ComponentSharedTab) => ({
+  value: tab?.documentId,
   label: tab?.Label,
 });
 
@@ -39,10 +41,9 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
   const [page, setPage] = useState(START_PAGE + 1);
 
   const client = useApolloClient();
-  const sectionInfo = data.Tabs?.[0];
 
-  const tabs = (sectionInfo?.Tabs as ComponentSharedTabs[]) ?? initialTabs;
-  const firstTabId = tabs?.[0]?.id ?? "";
+  const tabs = (data.Tabs as ComponentSharedTab[]) ?? initialTabs;
+  const firstTabId = tabs?.[0]?.documentId ?? "";
   const { tabsMap, isTabValueInList } = useMemo(() => {
     const map = getCategorizedNewsTabsMap(tabs);
 
@@ -58,18 +59,20 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
     isTabValueInList,
   );
 
-  const currentTab = tabsMap?.get(activeTab);
-  const currentArticles = currentTab?.Articles;
+  const currentTab = tabsMap?.get(activeTab) as ComponentSharedTab;
+  const currentArticles = (
+    currentTab?.content?.[0] as ComponentSharedArticleCategory
+  )?.articles;
   const canLoadMore = (currentArticles?.length ?? -1) % PAGE_SIZE === 0;
 
   const [getNews, { loading }] = useLazyQuery(GET_NEWS_BY_CATEGORY, {
     onCompleted: lazyData => {
       if (lazyData?.articles?.length) {
-        const activeSharedTab = tabs.find(tab => tab.id === activeTab);
+        const activeSharedTab = tabs.find(tab => tab?.documentId === activeTab);
 
         if (activeSharedTab) {
           client.writeFragment({
-            id: `${activeSharedTab.__typename}:${activeSharedTab.id}`,
+            id: `${activeSharedTab.__typename}:${activeSharedTab.documentId}`,
             fragment: articleCategoryFragment,
             data: {
               articles: lazyData?.articles,
@@ -97,10 +100,10 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
     <SectionBase
       className="categorized-news"
       contentClassName="categorized-news-content"
-      style={getCategorizedNewsTheme(sectionInfo?.TabCardTheme)}
+      style={getCategorizedNewsTheme()}
     >
       <TabList
-        theme={sectionInfo?.TabTheme}
+        theme={data?.TabTheme as TabTheme}
         tabs={tabs}
         activeTab={activeTab}
         getTabData={getTabData}
@@ -127,15 +130,15 @@ export const CategorizedNews = ({ data }: CategorizedNewsProps) => {
             );
           })}
         </ul>
-        {sectionInfo?.CTA && canLoadMore && (
+        {data?.CTA && canLoadMore && (
           <LoadingButton
             className="categorized-news-action"
-            variant={sectionInfo?.CTA?.type ?? undefined}
+            variant={data?.CTA?.Type ?? undefined}
             onClick={handleClick}
             isLoading={loading}
-            theme={sectionInfo?.CTA?.buttonTheme}
+            theme={data?.CTA?.ButtonTheme}
           >
-            {sectionInfo?.CTA?.label}
+            {data?.CTA?.Label}
           </LoadingButton>
         )}
       </TabList.Panel>

@@ -16,7 +16,6 @@ export interface InformationSectionProps {
   data: InfoSectionFragmentFragment;
 }
 
-// eslint-disable-next-line complexity
 export const InformationSection = ({
   data: {
     Title: title,

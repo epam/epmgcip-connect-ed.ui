@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { notFound } from "next/navigation";
-import { ClientGraph } from "@/features/client-graph/client-graph.tsx";
 import { ContactBanner } from "@/features/contact-banner/contact-banner.tsx";
 import { ExpandableSection } from "@/features/expandable-section/expandable-section.tsx";
 import { GetInTouchSection } from "@/features/get-in-touch-section/get-in-touch-section.tsx";
@@ -17,7 +16,7 @@ import { DataGraph } from "@/components/data-graph/data-graph.tsx";
 import { getClient } from "@/utils/apollo-client";
 import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data";
-import { GET_PAGES_DATA } from "@/queries/get-pages-data.ts";
+import { GET_PAGE_DATA } from "@/queries/get-page.ts";
 import {
   LAYOUT_PAGES_VARIABLES,
   PAGE_SIZE,
@@ -142,73 +141,27 @@ export default async function Home({
     variables: LAYOUT_PAGES_VARIABLES,
   });
 
+  const targetPage = page?.pages?.find(
+    currentPage => currentPage?.Slug === slug,
+  );
+
+  if (!targetPage) {
+    notFound();
+  }
+
   const { data } = await client.query({
-    query: GET_PAGES_DATA,
+    query: GET_PAGE_DATA,
     variables: {
-      Slug: { startsWith: slug },
+      id: targetPage.documentId,
+      limit: -1,
       page: START_PAGE,
       pageSize: PAGE_SIZE,
       locale,
     },
   });
 
-  if (!page.pages?.some(value => value?.Slug === slug)) {
-    notFound();
-  }
-
-  const sections = (data.pages?.filter(isNotNull) ??
+  const sections = (data?.page?.PageSections?.filter(isNotNull) ??
     []) as PagePageSectionsDynamicZone[];
-
-  // const mockContactBannerFragment: ContactBannerFragmentFragment = {
-  //   __typename: "ComponentSectionsContactBanner",
-  //   id: "1",
-  //   theme: {
-  //     data: {
-  //       attributes: {
-  //         color: "#000000",
-  //         bgColor: "#ffffff",
-  //       },
-  //     },
-  //   },
-  //   columns: [
-  //     {
-  //       id: "1",
-  //       title: "Contact Us",
-  //       text: "Feel free to reach out to us for any inquiries.",
-  //       label: "Email us at contact@example.com",
-  //       showWave: true,
-  //     },
-  //     {
-  //       id: "2",
-  //       title: "Support",
-  //       text: "Our support team is here to help you 24/7.",
-  //       label: "Call us at +123456789",
-  //       showWave: false,
-  //     },
-  //   ],
-  // };
-  //
-  // return (
-  //   <ContactBanner data={mockContactBannerFragment} />
-  // )
-
-  // const mockGetInTouchFragment: GetInTouchFragmentFragment = {
-  //   __typename: "ComponentSectionsGetInTouchForm",
-  //   id: "1",
-  //   Title: {
-  //     data: {
-  //       attributes: {
-  //         Title: "Get in Touch",
-  //         HeadingLevel: "h3",
-  //       },
-  //     },
-  //   },
-  //   Text: "We would love to hear from you. Please fill out the form below to get in touch with us.",
-  //   ShowWave: true,
-  //   FormId: "contact-form-123",
-  // };
-
-  // return <ClientGraph />;
 
   return sections?.map(section => (
     // @ts-expect-error temp fix

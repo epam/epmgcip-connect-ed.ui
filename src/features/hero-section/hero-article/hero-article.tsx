@@ -13,16 +13,9 @@ export interface HeroArticleProps {
   action?: ComponentSharedButton | null;
 }
 
-// eslint-disable-next-line complexity
 export const HeroArticle = ({ card, action }: HeroArticleProps) => (
-  <article
-    className="hero-article"
-    style={getHeroArticleTheme(card?.Theme)}
-  >
-    <Title
-      level={card?.Title?.HeadingLevel}
-      className="hero-article-title"
-    >
+  <article className="hero-article" style={getHeroArticleTheme(card?.Theme)}>
+    <Title level={card?.Title?.HeadingLevel} className="hero-article-title">
       {card?.Title?.Title}
     </Title>
     <Typography className="hero-article-body">{card?.Text}</Typography>

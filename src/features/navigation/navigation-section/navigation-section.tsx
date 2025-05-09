@@ -13,21 +13,23 @@ export const NavigationSection = ({
   name,
   items,
   className,
-}: NavigationSectionProps) => (
-  <div className={cc(["navigation-section", className])}>
-    <span className="navigation-section-title">{name}</span>
-    <ul className="navigation-section-list">
-      {items.map(({ Slug, Title }) => {
-        const slug = Slug ?? "";
+}: NavigationSectionProps) => {
+  return (
+    <div className={cc(["navigation-section", className])}>
+      <span className="navigation-section-title">{name}</span>
+      <ul className="navigation-section-list">
+        {items.map(({ Slug, Title, documentId }) => {
+          const slug = Slug ?? "";
 
-        return (
-          <li key={slug} className="navigation-section-list-item">
-            <NavLink href={slug} className="navigation-section-link">
-              {Title}
-            </NavLink>
-          </li>
-        );
-      })}
-    </ul>
-  </div>
-);
+          return (
+            <li key={documentId} className="navigation-section-list-item">
+              <NavLink href={slug} className="navigation-section-link">
+                {Title}
+              </NavLink>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};

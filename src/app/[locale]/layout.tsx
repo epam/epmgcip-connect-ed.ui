@@ -4,8 +4,10 @@ import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data";
 import { LAYOUT_PAGES_VARIABLES } from "@/constants/query-variables";
 import {
+  Category,
   ComponentSharedImage,
   GetLayoutDataQuery,
+  Page,
 } from "@/__generated__/graphql";
 import { Footer } from "@/components/footer/footer";
 import { Palette } from "@/components/palette/palette";
@@ -38,7 +40,7 @@ export default async function LocaleLayout({
       <Palette palette={palette ?? undefined} />
       <div className="page">
         <Navigation
-          navigation={header?.navigations}
+          navigation={header?.navigations as Category[]}
           action={header?.cta ?? undefined}
           logo={header?.logo as ComponentSharedImage}
           stripe={header?.stripe?.SocialMedia ?? undefined}
@@ -46,7 +48,7 @@ export default async function LocaleLayout({
         <main className="main-content">{children}</main>
         <Footer
           socialLinks={footer?.socialMedias.filter(isNotNull)}
-          navigation={footer?.navigation.filter(isNotNull)}
+          navigation={footer?.navigation.filter(isNotNull) as Page[]}
           heading={footer?.heading ?? ""}
           tradeMark={footer?.tradeMark ?? ""}
           rights={footer?.rights ?? ""}

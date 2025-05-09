@@ -10,6 +10,10 @@ export const waveBannerFragment = gql(`
             IsIcon
             URL
             Open
+            Image {
+                url
+                alternativeText
+            }
         }
         IsLargeImage
         Heading: Title {

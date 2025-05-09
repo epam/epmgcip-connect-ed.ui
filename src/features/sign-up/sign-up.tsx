@@ -13,10 +13,7 @@ export const SignUp = ({ data }: SignUpProps) => {
   return (
     <SectionBase className="sign-up">
       <div className="sign-up-content">
-        <Title
-          level={data?.Title?.HeadingLevel}
-          className="sign-up-title"
-        >
+        <Title level={data?.Title?.HeadingLevel} className="sign-up-title">
           {data?.Title?.Title}
         </Title>
         <div className="sign-up-layout">

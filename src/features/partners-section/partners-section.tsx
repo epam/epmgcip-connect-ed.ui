@@ -14,7 +14,6 @@ export interface PartnersSectionProps {
   data: PartnersSectionFragmentFragment;
 }
 
-// eslint-disable-next-line complexity
 export const PartnersSection = ({ data }: PartnersSectionProps) => {
   return (
     <SectionBase

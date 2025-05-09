@@ -10,48 +10,17 @@ import {
   getWaysToDonateTheme,
 } from "@/features/ways-to-donate/utils.ts";
 import { useTabsParams } from "@/hooks/use-tabs-params.ts";
-import qrCode from "@/assets/images/qr-code.png";
-import { WaysToDonateFragmentFragment } from "@/__generated__/graphql.ts";
+import {
+  WaysToDonateFragmentFragment,
+  ComponentSharedCard,
+  TabTheme,
+  Theme,
+} from "@/__generated__/graphql.ts";
 import { SectionBaseTitle } from "@/components/section-base";
 import "./ways-to-donate.scss";
 
-const tabsMock = [
-  {
-    label: "For Kazakhstanis",
-    slug: "kazakh",
-    title: "How your donation helps",
-    body:
-      "At the moment, we need funds to purchase equipment and administrative costs.\n" +
-      "\n" +
-      "You can make a one-time or monthly donation, the collected funds through crowdfunding will be used exceptionally to buy equipment for children. \n" +
-      "\n" +
-      "Together we can provide the children who need help the most with the gadgets and knowledge to be successful now and in the future!\n" +
-      "\n" +
-      "If you want to support us in a different format, please contact the Founder of the Organisation – Gulnaz (Ms.) by email: kordanova.gulnaz@gmail.com",
-    codeUrl: qrCode,
-  },
-  {
-    label: "Kaspi and Halyk",
-    slug: "kapsi-and-halyk",
-    title: "How your donation helps",
-    body:
-      "At the moment, we need funds to purchase equipment and administrative costs.\n" +
-      "\n" +
-      "You can make a one-time or monthly donation, the collected funds through crowdfunding will be used exceptionally to buy equipment for children. \n" +
-      "\n" +
-      "Together we can provide the children who need help the most with the gadgets and knowledge to be successful now and in the future!\n" +
-      "\n" +
-      "If you want to support us in a different format, please contact the Founder of the Organisation – Gulnaz (Ms.) by email: kordanova.gulnaz@gmail.com",
-  },
-  {
-    label: "Everyone else",
-    slug: "everyone-else",
-  },
-];
-
 export interface WaysToDonateProps {
   data?: WaysToDonateFragmentFragment;
-  tabs?: typeof tabsMock; // TODO: change type after integration
 }
 
 // @ts-expect-error // TODO: add type during integration
@@ -64,7 +33,12 @@ const getTabData = tab => {
   };
 };
 
-export const WaysToDonate = ({ tabs = tabsMock, data }: WaysToDonateProps) => {
+const initialTabs: WaysToDonateFragmentFragment["Tabs"] = [];
+
+// eslint-disable-next-line complexity
+export const WaysToDonate = ({ data }: WaysToDonateProps) => {
+  const tabs = data?.Tabs ?? initialTabs;
+
   const { tabsMap, isTabValueInList } = useMemo(() => {
     const map = getWaysToDonateTabsMap(tabs);
 
@@ -73,7 +47,8 @@ export const WaysToDonate = ({ tabs = tabsMock, data }: WaysToDonateProps) => {
       isTabValueInList: (tabValue: string) => !!map?.has(tabValue),
     };
   }, [tabs]);
-  const firstSlug = tabs?.[0]?.attributes.slug ?? "";
+
+  const firstSlug = tabs?.[0]?.documentId ?? "";
 
   const [currentTab, handleChange] = useTabsParams(
     DONATE_TAB_PARAM,
@@ -82,16 +57,23 @@ export const WaysToDonate = ({ tabs = tabsMock, data }: WaysToDonateProps) => {
   );
   const currentDonateMechanism = tabsMap?.get(currentTab);
 
+  const content = currentDonateMechanism?.content?.[0] as ComponentSharedCard;
+
   return (
     <SectionBase
       className="ways-to-donate"
       contentClassName="ways-to-donate-content"
-      style={getWaysToDonateTheme()}
+      style={getWaysToDonateTheme(data?.Theme as Theme)}
     >
-      <SectionBaseTitle>Ways to donate</SectionBaseTitle>
+      <SectionBaseTitle
+        level={data?.Title?.Level}
+        align={data?.Title?.Alignment}
+      >
+        {data?.Title?.Title?.Title}
+      </SectionBaseTitle>
       <TabList
         tabs={tabs}
-        theme={{}} // TODO: add when integration is ready
+        theme={data?.TabTheme as TabTheme}
         activeTab={currentTab}
         className="ways-to-donate-tabs"
         getTabData={getTabData}
@@ -99,19 +81,30 @@ export const WaysToDonate = ({ tabs = tabsMock, data }: WaysToDonateProps) => {
       />
       <TabList.Panel className="ways-to-donate-panel">
         <div className="ways-to-donate-info">
-          <Title>{currentDonateMechanism?.title}</Title>
-          <Typography>{currentDonateMechanism?.body}</Typography>
+          <Title>{content?.Title}</Title>
+          <Typography>{content?.Text}</Typography>
         </div>
         <div className="ways-to-donate-links">
-          {currentDonateMechanism?.codeUrl && (
+          {content?.qrCodeLink && (
             <div className="ways-to-donate-image-wrapper">
-              {/* @ts-expect-error will be fixed after the integration */}
-              <img src={qrCode} width="200" height="200" alt="" />
+              <img
+                src={content.qrCodeLink ?? ""}
+                width="200"
+                height="200"
+                alt=""
+              />
             </div>
           )}
-          <ButtonLink href="/" target="_blank">
-            Donate now
-          </ButtonLink>
+          {content?.Link && (
+            <ButtonLink
+              href={content.Link?.url ?? ""}
+              target="_blank"
+              theme={content.Link.buttonTheme}
+              className="ways-to-donate-link"
+            >
+              {content?.Link.label}
+            </ButtonLink>
+          )}
         </div>
       </TabList.Panel>
     </SectionBase>
