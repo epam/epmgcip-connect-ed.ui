@@ -103,7 +103,12 @@ jobs:
           # NOTE: If required, update to the appropriate source folder
           source: ${{ env.SOURCE_DIR }}
           build_env_vars: |
-            REACT_APP_BACKEND_URL=${{ vars.REACT_APP_BACKEND_URL }}
+            NEXT_PUBLIC_BACKEND_URL=${{ vars.REACT_APP_BACKEND_URL }}
+          env_vars: |
+            GOOGLE_SPREADSHEET_CREDENTIALS_JSON='${{ secrets.GOOGLE_SPREADSHEET_CREDENTIALS_JSON }}'
+            GOOGLE_SPREADSHEET_ID='${{ secrets.GOOGLE_SPREADSHEET_ID }}'
+            GOOGLE_SPREADSHEET_TAB_NAME='${{ secrets.GOOGLE_SPREADSHEET_TAB_NAME }}'
+            GOOGLE_SPREADSHEET_SCOPES='${{ secrets.GOOGLE_SPREADSHEET_SCOPES }}'
 
       # If required, use the Cloud Run url output in later steps
       - name: Show Output

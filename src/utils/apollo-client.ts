@@ -37,7 +37,7 @@ export const { getClient } = registerApolloClient(
         },
       }),
       link: new HttpLink({
-        uri: `${process.env.REACT_APP_BACKEND_URL}/graphql`,
+        uri: `${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`,
       }),
     }),
 );
