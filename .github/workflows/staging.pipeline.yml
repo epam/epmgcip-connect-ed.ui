@@ -46,8 +46,8 @@ jobs:
 
       - name: Set Backend URL
         run: |
-          echo "::add-mask::${{ var.REACT_APP_BACKEND_URL }}"
-          echo "NEXT_PUBLIC_BACKEND_URL='${{ var.REACT_APP_BACKEND_URL }}'" >> $GITHUB_ENV
+          echo "::add-mask::${{ vars.REACT_APP_BACKEND_URL }}"
+          echo "NEXT_PUBLIC_BACKEND_URL='${{ vars.REACT_APP_BACKEND_URL }}'" >> $GITHUB_ENV
 
       - name: Checkout code
         uses: actions/checkout@v4
