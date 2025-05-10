@@ -10,7 +10,7 @@ export const waysToDonateFragment = gql(`
             BorderColor
             Color
         }
-        Title {
+        heading: Title {
             id
             Alignment
             Level

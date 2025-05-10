@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo } from "react";
 import { ButtonLink } from "@/components/button-link/button-link.tsx";
 import { SectionBase } from "@/components/section-base/section-base.tsx";
@@ -66,10 +68,10 @@ export const WaysToDonate = ({ data }: WaysToDonateProps) => {
       style={getWaysToDonateTheme(data?.Theme as Theme)}
     >
       <SectionBaseTitle
-        level={data?.Title?.Level}
-        align={data?.Title?.Alignment}
+        level={data?.heading?.Level}
+        align={data?.heading?.Alignment}
       >
-        {data?.Title?.Title?.Title}
+        {data?.heading?.Title?.Title}
       </SectionBaseTitle>
       <TabList
         tabs={tabs}

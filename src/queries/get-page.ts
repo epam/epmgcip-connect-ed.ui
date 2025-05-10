@@ -1,7 +1,7 @@
 import { gql } from "@/__generated__";
 
 export const GET_PAGE_DATA = gql(`
-    query GetPageData($id: ID!, $page: Int!, $pageSize: Int!, $locale: I18NLocaleCode, $limit: Int!) {
+    query GetPageData($id: ID!, $locale: I18NLocaleCode, $limit: Int) {
         page(documentId: $id, locale: $locale) {
             Slug
             Title
@@ -25,6 +25,7 @@ export const GET_PAGE_DATA = gql(`
                 ...ContactBannerFragment
                 ...SubscriptionFormFragment
                 ...GetInTouchFragment
+                ...WaysToDonateFragment
                 ...CategorizedNewsFragment
             }
         }

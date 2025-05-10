@@ -7,7 +7,10 @@ interface PartnersCarouselProps {
   speed?: string;
 }
 
-export const PartnersCarousel = ({ items, speed }: PartnersCarouselProps) => {
+export const PartnersCarousel = ({
+  items = [],
+  speed,
+}: PartnersCarouselProps) => {
   const styles = speed
     ? ({
         "--animation-speed": `${speed}s`,

@@ -17,11 +17,7 @@ import { getClient } from "@/utils/apollo-client";
 import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data";
 import { GET_PAGE_DATA } from "@/queries/get-page.ts";
-import {
-  LAYOUT_PAGES_VARIABLES,
-  PAGE_SIZE,
-  START_PAGE,
-} from "@/constants/query-variables";
+import { LAYOUT_PAGES_VARIABLES } from "@/constants/query-variables";
 import {
   CategorizedNewsFragmentFragment,
   ContactBannerFragmentFragment,
@@ -127,6 +123,26 @@ const renderSection = (section?: PagePageSectionsDynamicZone | null) => {
   }
 };
 
+export const revalidate = 60;
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const generateStaticParams = async ({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) => {
+  const client = getClient();
+  // get cached value
+  const { data: page } = await client.query<GetLayoutDataQuery>({
+    query: GET_LAYOUT_DATA,
+    variables: { ...LAYOUT_PAGES_VARIABLES, locale },
+  });
+
+  return (page.pages ?? [])
+    .filter(isNotNull)
+    .map(({ Slug }) => ({ slug: Slug, locale }));
+};
+
 // eslint-disable-next-line import/no-default-export
 export default async function Home({
   params,
@@ -138,11 +154,13 @@ export default async function Home({
   // get cached value
   const { data: page } = await client.query<GetLayoutDataQuery>({
     query: GET_LAYOUT_DATA,
-    variables: LAYOUT_PAGES_VARIABLES,
+    variables: { ...LAYOUT_PAGES_VARIABLES, locale },
   });
 
   const targetPage = page?.pages?.find(
-    currentPage => currentPage?.Slug === slug,
+    currentPage =>
+      currentPage?.Slug === slug ||
+      (currentPage?.Slug && slug.endsWith(currentPage.Slug)),
   );
 
   if (!targetPage) {
@@ -154,8 +172,6 @@ export default async function Home({
     variables: {
       id: targetPage.documentId,
       limit: -1,
-      page: START_PAGE,
-      pageSize: PAGE_SIZE,
       locale,
     },
   });

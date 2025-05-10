@@ -13,7 +13,14 @@ import { Footer } from "@/components/footer/footer";
 import { Palette } from "@/components/palette/palette";
 import { HtmlLang } from "@/features/html-lang/html-lang";
 import { Navigation } from "@/features/navigation/navigation";
+import { locales } from "../../../i18n/request.ts";
 import "./layout.scss";
+
+export const revalidate = 60;
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const generateStaticParams = async () =>
+  locales.map(locale => ({ locale }));
 
 // eslint-disable-next-line import/no-default-export,react/function-component-definition,complexity
 export default async function LocaleLayout({
