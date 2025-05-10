@@ -25,9 +25,7 @@ jobs:
       - name: Set Google Spreadsheet Credentials
         run: |
           echo "::add-mask::${{ secrets.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}"
-          echo "GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON<<EOF" >> $GITHUB_ENV
-          echo "${{ GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          echo "GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON='${{ secrets.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}'" >> $GITHUB_ENV
 
       - name: Set Google Spreadsheet id
         run: |
