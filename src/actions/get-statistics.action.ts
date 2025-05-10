@@ -128,15 +128,16 @@ async function readGoogleSheet(
 }
 
 const getSpreadsheetConfig = () => {
-  const credentialsJSON = process.env.GOOGLE_SPREADSHEET_CREDENTIALS_JSON;
+  const base64CredentialsJSON =
+    process.env.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON;
   const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID;
   const tabName = process.env.GOOGLE_SPREADSHEET_TAB_NAME;
   const scopes = process.env.GOOGLE_SPREADSHEET_SCOPES;
 
   let errorProperties: string[] = [];
 
-  if (!credentialsJSON) {
-    errorProperties.push("GOOGLE_SPREADSHEET_CREDENTIALS_JSON");
+  if (!base64CredentialsJSON) {
+    errorProperties.push("GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON");
   }
 
   if (!spreadsheetId) {
@@ -157,7 +158,9 @@ const getSpreadsheetConfig = () => {
     );
   }
 
-  const credentials = JSON.parse(credentialsJSON ?? "");
+  const credentials = JSON.parse(
+    Buffer.from(base64CredentialsJSON ?? "", "base64").toString("utf-8"),
+  );
 
   return {
     scopes: scopes ?? "",

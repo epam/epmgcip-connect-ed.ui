@@ -24,9 +24,9 @@ jobs:
     steps:
       - name: Set Google Spreadsheet Credentials
         run: |
-          echo "::add-mask::${{ secrets.GOOGLE_SPREADSHEET_CREDENTIALS_JSON }}"
-          echo "GOOGLE_SPREADSHEET_CREDENTIALS_JSON<<EOF" >> $GITHUB_ENV
-          echo "${{ secrets.GOOGLE_SPREADSHEET_CREDENTIALS_JSON }}" >> $GITHUB_ENV
+          echo "::add-mask::${{ secrets.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}"
+          echo "GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON<<EOF" >> $GITHUB_ENV
+          echo "${{ GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
       - name: Set Google Spreadsheet id
@@ -81,7 +81,7 @@ jobs:
         env:
           # Get the value from GitHub Variable/Secret and provide it to this specific run command
           NEXT_PUBLIC_BACKEND_URL: ${{ vars.REACT_APP_BACKEND_URL }}
-          GOOGLE_SPREADSHEET_CREDENTIALS_JSON: ${{ secrets.GOOGLE_SPREADSHEET_CREDENTIALS_JSON }}
+          GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON: ${{ secrets.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}
           GOOGLE_SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
           GOOGLE_SPREADSHEET_TAB_NAME: ${{ secrets.GOOGLE_SPREADSHEET_TAB_NAME }}
           GOOGLE_SPREADSHEET_SCOPES: ${{ secrets.GOOGLE_SPREADSHEET_SCOPES }}
@@ -114,7 +114,7 @@ jobs:
           region: ${{ env.REGION }}
           source: ${{ env.SOURCE_DIR }}
           env_vars: |-
-            GOOGLE_SPREADSHEET_CREDENTIALS_JSON='${{ secrets.GOOGLE_SPREADSHEET_CREDENTIALS_JSON }}'
+            GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON=${{ secrets.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}
             GOOGLE_SPREADSHEET_ID=${{ secrets.GOOGLE_SPREADSHEET_ID }}
             GOOGLE_SPREADSHEET_TAB_NAME=${{ secrets.GOOGLE_SPREADSHEET_TAB_NAME }}
             GOOGLE_SPREADSHEET_SCOPES=${{ secrets.GOOGLE_SPREADSHEET_SCOPES }}
