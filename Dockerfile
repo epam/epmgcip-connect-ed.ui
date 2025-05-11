@@ -2,12 +2,7 @@ FROM node:22-alpine AS base
 
 ARG NEXT_PUBLIC_BACKEND_URL
 
-RUN echo "DEBUG_VAR_CHECK: Value before of NEXT_PUBLIC_BACKEND_URL during build is: ${NEXT_PUBLIC_BACKEND_URL}"
-
-ENV NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
-
-RUN echo "DEBUG_VAR_CHECK: Value after of NEXT_PUBLIC_BACKEND_URL during build is: ${NEXT_PUBLIC_BACKEND_URL}"
-
+ENV NEXT_PUBLIC_BACKEND_URL=$NEXT_PUBLIC_BACKEND_URL
 # Install dependencies only when needed
 FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
