@@ -97,6 +97,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: DEBUG - Check Backend URL Variable Content
+        run: |
+          URL_VALUE="${{ vars.REACT_APP_BACKEND_URL }}"
+          echo "Attempting to use REACT_APP_BACKEND_URL from GitHub vars."
+          echo "Value of vars.REACT_APP_BACKEND_URL is: '$URL_VALUE'"
+          if [ -z "$URL_VALUE" ]; then
+            echo "CRITICAL: vars.REACT_APP_BACKEND_URL is empty or not set in this context!"
+          else
+            echo "SUCCESS: vars.REACT_APP_BACKEND_URL has a value."
+          fi
+            echo "---"  
+
       # Add your deployment steps here
       - name: Google Auth
         id: auth
