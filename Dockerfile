@@ -2,7 +2,11 @@ FROM node:22-alpine AS base
 
 ARG NEXT_PUBLIC_BACKEND_URL
 
+RUN echo "DEBUG_VAR_CHECK: Value before of NEXT_PUBLIC_BACKEND_URL during build is: ${NEXT_PUBLIC_BACKEND_URL}"
+
 ENV NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
+
+RUN echo "DEBUG_VAR_CHECK: Value after of NEXT_PUBLIC_BACKEND_URL during build is: ${NEXT_PUBLIC_BACKEND_URL}"
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -31,7 +35,7 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN echo "DEBUG_VAR_CHECK: Value of NEXT_PUBLIC_BACKEND_URL during build is: ${NEXT_PUBLIC_BACKEND_URL}"
+RUN echo "DEBUG_VAR_CHECK: Value before build of NEXT_PUBLIC_BACKEND_URL during build is: ${NEXT_PUBLIC_BACKEND_URL}"
 
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
