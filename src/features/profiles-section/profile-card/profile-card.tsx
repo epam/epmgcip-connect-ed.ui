@@ -29,7 +29,7 @@ export const ProfileCard = ({
         <img
           className="profile-card-image"
           alt={image?.altText ?? ""}
-          src={image?.url ?? ""}
+          src={image?.image?.url ?? image?.url ?? ""}
           role="presentation"
         />
       </div>

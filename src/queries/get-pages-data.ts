@@ -30,6 +30,7 @@ export const GET_PAGES_DATA = gql(`
                 ...ContactBannerFragment
                 ...SubscriptionFormFragment
                 ...GetInTouchFragment
+                ...WaysToDonateFragment
                 ...CategorizedNewsFragment
             }
         }

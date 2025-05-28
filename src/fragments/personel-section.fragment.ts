@@ -26,6 +26,7 @@ export const personelSectionFragment = gql(`
                     caption
                     url
                 }
+                url
                 isIcon
                 newTab
             }

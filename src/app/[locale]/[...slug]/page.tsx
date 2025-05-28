@@ -14,6 +14,7 @@ import { WaveBanner } from "@/features/wave-banner/wave-banner.tsx";
 import { WaysToDonate } from "@/features/ways-to-donate/ways-to-donate.tsx";
 import { DataGraph } from "@/components/data-graph/data-graph.tsx";
 import { getClient } from "@/utils/apollo-client";
+import { hasSlug } from "@/utils/has-slug.ts";
 import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
 import { GET_LAYOUT_DATA } from "@/queries/get-layout-data";
 import { GET_PAGE_DATA } from "@/queries/get-page.ts";
@@ -139,17 +140,19 @@ export const generateStaticParams = async ({
   });
 
   return (page.pages ?? [])
-    .filter(isNotNull)
-    .map(({ Slug }) => ({ slug: Slug, locale }));
+    .filter(hasSlug)
+    .map(({ Slug }) => ({ slug: Slug.replace(/^\//, "").split("/"), locale }));
 };
 
 // eslint-disable-next-line import/no-default-export
 export default async function Home({
   params,
 }: {
-  params: Promise<{ slug: string; locale: string }>;
+  params: Promise<{ slug: string[]; locale: string }>;
 }) {
   const { slug, locale } = await params;
+  const pageSlug = slug.join("/");
+
   const client = getClient();
   // get cached value
   const { data: page } = await client.query<GetLayoutDataQuery>({
@@ -159,8 +162,8 @@ export default async function Home({
 
   const targetPage = page?.pages?.find(
     currentPage =>
-      currentPage?.Slug === slug ||
-      (currentPage?.Slug && slug.endsWith(currentPage.Slug)),
+      currentPage?.Slug === pageSlug ||
+      (currentPage?.Slug && pageSlug.endsWith(currentPage.Slug)),
   );
 
   if (!targetPage) {

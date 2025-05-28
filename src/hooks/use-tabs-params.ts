@@ -1,14 +1,13 @@
 "use client";
 
 import { useCallback, useEffect } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 
 export const useTabsParams = (
   tabParamName: string,
   initialTab: string,
   isTabValueInList: (tabValue: string) => boolean,
 ) => {
-  const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
 
@@ -21,9 +20,13 @@ export const useTabsParams = (
     (value: string) => {
       const newParams = new URLSearchParams(params);
       newParams.set(tabParamName, value);
-      router.replace(`${pathname}?${newParams.toString()}`, { scroll: false });
+      window.history.replaceState(
+        null,
+        "",
+        `${pathname}?${newParams.toString()}`,
+      );
     },
-    [tabParamName, router, pathname, params],
+    [tabParamName, pathname, params],
   );
 
   useEffect(() => {

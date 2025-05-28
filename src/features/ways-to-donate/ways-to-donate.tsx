@@ -25,13 +25,10 @@ export interface WaysToDonateProps {
   data?: WaysToDonateFragmentFragment;
 }
 
-// @ts-expect-error // TODO: add type during integration
-const getTabData = tab => {
-  const tabData = tab?.attributes;
-
+const getTabData = (tab: WaysToDonateFragmentFragment["Tabs"][number]) => {
   return {
-    value: tabData.slug,
-    label: tabData.label,
+    value: tab?.documentId,
+    label: tab?.Label,
   };
 };
 
