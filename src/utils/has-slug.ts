@@ -9,5 +9,5 @@ export const hasSlug = (
   documentId: string;
   Slug: string;
 } => {
-  return page !== null && typeof page.Slug === "string";
+  return !!page && typeof page.Slug === "string" && page.Slug !== "";
 };
