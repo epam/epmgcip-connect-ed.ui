@@ -6,6 +6,12 @@
   flex-direction: column;
   gap: 24px;
 
+  &-image-wrapper {
+    max-height: 240px;
+    aspect-ratio: 1/1;
+    width: 100%;
+  }
+
   &-image {
     object-fit: contain;
     aspect-ratio: 1/1;

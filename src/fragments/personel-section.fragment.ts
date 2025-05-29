@@ -14,7 +14,7 @@ export const personelSectionFragment = gql(`
             }
         }
         ShowWave
-        personelCard: Card {
+        personelCard: Card(pagination: { limit: $limit }) {
             id
             Title
             Text
