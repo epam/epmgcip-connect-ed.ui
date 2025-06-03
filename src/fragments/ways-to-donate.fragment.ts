@@ -20,12 +20,12 @@ export const waysToDonateFragment = gql(`
                 documentId
             }
         }
-        Tabs {
-#            Title {
-#                documentId
-#                Title
-#                HeadingLevel
-#            }
+        Tabs(pagination: { limit: 5 }) {
+            Title {
+                documentId
+                Title
+                HeadingLevel
+            }
             Label
             Description
             documentId
@@ -37,12 +37,12 @@ export const waysToDonateFragment = gql(`
                         label
                         type
                         url
-#                        buttonTheme {
-#                            documentId
-#                            BackgrondColor
-#                            OutlineColor
-#                            FontColor
-#                        }
+                        buttonTheme {
+                            documentId
+                            BackgrondColor
+                            OutlineColor
+                            FontColor
+                        }
                     }
                     qrCodeLink
                 }

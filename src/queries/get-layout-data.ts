@@ -46,6 +46,15 @@ export const GET_LAYOUT_DATA = gql(`
                     text
                     type
                     url
+                    image {
+                        documentId
+                        url
+                        altText
+                        image {
+                            url
+                            alternativeText
+                        }
+                    }
                     theme {
                         documentId
                         color
@@ -81,6 +90,16 @@ export const GET_LAYOUT_DATA = gql(`
                 title
                 type
                 url
+                image {
+                    documentId
+                    url
+                    altText
+                    image {
+                        documentId
+                        url
+                        alternativeText
+                    }
+                }
                 theme {
                     documentId
                     color

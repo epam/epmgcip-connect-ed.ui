@@ -18,6 +18,7 @@ export const SocialLinkList = ({
 
   return (
     <div className={cc(["social-link-list", className])}>
+      {/* eslint-disable-next-line complexity */}
       {items?.map(item => {
         return (
           <Link
@@ -30,8 +31,10 @@ export const SocialLinkList = ({
           >
             <img
               className={linkIconClassName}
-              alt={item?.text ?? ""}
-              src={item?.url ?? ""}
+              alt={
+                item?.image?.image?.alternativeText ?? item.image?.altText ?? ""
+              }
+              src={item.image?.image?.url ?? item?.image?.url ?? ""}
               role="presentation"
             />
           </Link>

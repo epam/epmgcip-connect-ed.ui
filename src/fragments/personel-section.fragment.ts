@@ -35,5 +35,20 @@ export const personelSectionFragment = gql(`
                 color
                 bgColor
             }
+            SocialMedias {
+                documentId
+                text
+                type
+                url
+                image {
+                    altText
+                    isIcon
+                    image {
+                        url
+                        alternativeText
+                    }
+                    url
+                }
+            }
         }
     }`);

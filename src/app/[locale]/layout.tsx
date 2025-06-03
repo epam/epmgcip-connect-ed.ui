@@ -8,6 +8,7 @@ import {
   ComponentSharedImage,
   GetLayoutDataQuery,
   Page,
+  SocialMedia,
 } from "@/__generated__/graphql";
 import { Footer } from "@/components/footer/footer";
 import { Palette } from "@/components/palette/palette";
@@ -50,11 +51,11 @@ export default async function LocaleLayout({
           navigation={header?.navigations as Category[]}
           action={header?.cta ?? undefined}
           logo={header?.logo as ComponentSharedImage}
-          stripe={header?.stripe?.SocialMedia ?? undefined}
+          stripe={(header?.stripe?.SocialMedia ?? undefined) as SocialMedia[]}
         />
         <main className="main-content">{children}</main>
         <Footer
-          socialLinks={footer?.socialMedias.filter(isNotNull)}
+          socialLinks={footer?.socialMedias.filter(isNotNull) as SocialMedia[]}
           navigation={footer?.navigation.filter(isNotNull) as Page[]}
           heading={footer?.heading ?? ""}
           tradeMark={footer?.tradeMark ?? ""}
