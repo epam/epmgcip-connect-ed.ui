@@ -1,0 +1,64 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/layout";
+@use "@/styles/mixins";
+@use "sass:map";
+
+.ways-to-donate {
+  &-tabs {
+    margin: 24px 0;
+  }
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &-panel {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  &-links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: auto;
+  }
+
+  &-image-wrapper {
+    max-width: 200px;
+    max-height: 200px;
+    margin: auto;
+  }
+
+  @include responsive-mixins.md {
+    &-tabs {
+      margin: 24px 0 60px;
+
+      & > [role="tab"] {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  @include responsive-mixins.lg {
+    &-content{
+      gap: 24px;
+      width: map.get(layout.$columns, "col-10");
+    }
+
+    &-tabs {
+      margin: 60px 0;
+    }
+
+    &:has(&-image-wrapper) {
+      .ways-to-donate-panel {
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+      }
+    }
+  }
+}

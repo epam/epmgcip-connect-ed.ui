@@ -1,0 +1,67 @@
+import { PropsWithChildren } from "react";
+import { getClient } from "@/utils/apollo-client";
+import { isNotNull } from "@/utils/type-guards/is-not-null.ts";
+import { GET_LAYOUT_DATA } from "@/queries/get-layout-data";
+import { LAYOUT_PAGES_VARIABLES } from "@/constants/query-variables";
+import {
+  Category,
+  ComponentSharedImage,
+  GetLayoutDataQuery,
+  Page,
+  SocialMedia,
+} from "@/__generated__/graphql";
+import { Footer } from "@/components/footer/footer";
+import { Palette } from "@/components/palette/palette";
+import { HtmlLang } from "@/features/html-lang/html-lang";
+import { Navigation } from "@/features/navigation/navigation";
+import { locales } from "../../../i18n/request.ts";
+import "./layout.scss";
+
+export const revalidate = 60;
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const generateStaticParams = async () =>
+  locales.map(locale => ({ locale }));
+
+// eslint-disable-next-line import/no-default-export,react/function-component-definition,complexity
+export default async function LocaleLayout({
+  params,
+  children,
+}: PropsWithChildren<{
+  params: Promise<{ locale: string }>;
+}>) {
+  const { locale } = await params;
+  const client = getClient();
+
+  const { data } = await client.query<GetLayoutDataQuery>({
+    query: GET_LAYOUT_DATA,
+    variables: { ...LAYOUT_PAGES_VARIABLES, locale },
+  });
+
+  const footer = data?.footer;
+  const header = data?.header;
+  const palette = data?.colorScheme;
+
+  return (
+    <>
+      <HtmlLang lang={locale} />
+      <Palette palette={palette ?? undefined} />
+      <div className="page">
+        <Navigation
+          navigation={header?.navigations as Category[]}
+          action={header?.cta ?? undefined}
+          logo={header?.logo as ComponentSharedImage}
+          stripe={(header?.stripe?.SocialMedia ?? undefined) as SocialMedia[]}
+        />
+        <main className="main-content">{children}</main>
+        <Footer
+          socialLinks={footer?.socialMedias.filter(isNotNull) as SocialMedia[]}
+          navigation={footer?.navigation.filter(isNotNull) as Page[]}
+          heading={footer?.heading ?? ""}
+          tradeMark={footer?.tradeMark ?? ""}
+          rights={footer?.rights ?? ""}
+        />
+      </div>
+    </>
+  );
+}

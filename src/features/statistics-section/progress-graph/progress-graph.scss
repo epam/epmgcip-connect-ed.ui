@@ -1,0 +1,22 @@
+@use "@/styles/mixins/typography.mixin";
+
+.progress-graph {
+  --_graph-color: var(--grpah-color, var(--primary));
+  --_text-color: var(--text-color, var(--primary));
+
+  color: var(--_graph-color);
+  position: relative;
+  width: 68px;
+  height: 68px;
+
+  &:before {
+    content: attr(data-value);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--_text-color);
+
+    @include typography.h4;
+  }
+}

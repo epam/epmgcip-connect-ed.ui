@@ -1,0 +1,14 @@
+/* stylelint-disable-next-line  scss/load-no-partial-leading-underscore */
+@use '_breakpoints';
+
+@mixin md {
+  @media (min-width: #{breakpoints.$screen-sm-min}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{breakpoints.$screen-md-min}) {
+    @content;
+  }
+}

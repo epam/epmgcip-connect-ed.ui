@@ -1,0 +1,15 @@
+@use "@/styles/mixins";
+
+.title {
+  &-center {
+    text-align: center;
+  }
+
+  &[data-theme="white"] {
+    color: var(--white);
+  }
+
+  &[data-theme="black"] {
+    color: var(--black);
+  }
+}

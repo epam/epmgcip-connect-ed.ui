@@ -1,0 +1,13 @@
+@mixin horizontal-image-mask($url) {
+  mask-repeat: repeat-x;
+  mask-position: center;
+  mask-size: contain;
+  mask-image: url($url);
+}
+
+@mixin vertical-image-mask($url) {
+  mask-repeat: repeat-y;
+  mask-position: top;
+  mask-size: contain;
+  mask-image: url($url);
+}

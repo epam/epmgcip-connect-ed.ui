@@ -1,0 +1,8 @@
+export const CIRCLE_DIAMETER = 260;
+const RADIUS = CIRCLE_DIAMETER / 2;
+export const CIRCLE_BAR_WIDTH = 28;
+export const CIRCUMFERENCE =
+  2 * Math.PI * ((CIRCLE_DIAMETER - CIRCLE_BAR_WIDTH) / 2);
+export const TIME_BAR_RADIUS_STYLE = RADIUS - CIRCLE_BAR_WIDTH / 2;
+export const VIEW_BOX = `0 0 ${CIRCLE_DIAMETER} ${CIRCLE_DIAMETER}`;
+export const CIRCLE_TRANSFORM = `rotate(-90 ${RADIUS} ${RADIUS})`;

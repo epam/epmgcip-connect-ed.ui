@@ -1,0 +1,50 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/layout";
+@use "@/styles/mixins";
+@use "sass:map";
+
+.categorized-news {
+  &-content,
+  &-tab-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  @include responsive-mixins.md {
+    &-content,
+    &-tab-panel {
+      gap: 24px;
+    }
+
+    &-list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    &-action {
+      margin: auto;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    &-content{
+      gap: 24px;
+      width: map.get(layout.$columns, "col-10");
+    }
+
+    &-tab-panel {
+      gap: 24px;
+    }
+
+    &-list {
+      gap: 24px;
+    }
+  }
+}

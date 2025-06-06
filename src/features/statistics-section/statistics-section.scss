@@ -1,0 +1,83 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins/typography.mixin";
+@use "@/styles/layout";
+@use "sass:map";
+
+.statistics-section {
+  --_section-background: var(--section-background, var(--white));
+  --_section-color: var(--section-color, var(--black));
+
+  background-color: var(--_section-background);
+  color: var(--_section-color);
+
+  &-content {
+    display: grid;
+    gap: 16px;
+  }
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &-description {
+    @include typography.paragraph;
+  }
+
+  &-stats {
+    display: grid;
+    gap: 16px;
+  }
+
+  @include responsive-mixins.md {
+    &-content {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr auto;
+      gap: 24px;
+    }
+
+    &-info {
+      grid-column: 1/-1;
+      gap: 24px;
+    }
+
+    &-stats {
+      grid-column: 1/-1;
+      grid-template-columns: repeat(4, 1fr);
+
+      .stat-item {
+        grid-column: span 2;
+      }
+
+      .stat-item:last-child:nth-last-child(odd) {
+        grid-column: 2/4;
+      }
+    }
+  }
+
+  @include responsive-mixins.lg {
+    &-content {
+      width: map.get(layout.$columns, "col-10");
+      margin: auto;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1fr;
+      gap: 32px
+    }
+
+    &-info {
+      grid-column: span 2;
+      gap: 32px;
+    }
+
+    &-stats {
+      grid-column: unset;
+      grid-template-columns: 1fr;
+
+      .stat-item,
+      .stat-item:last-child:nth-last-child(odd) {
+        grid-column: unset;
+      }
+    }
+  }
+}

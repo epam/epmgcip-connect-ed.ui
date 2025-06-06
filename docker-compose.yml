@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_BACKEND_URL
+        - GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON
+        - GOOGLE_SPREADSHEET_ID
+        - GOOGLE_SPREADSHEET_TAB_NAME
+        - GOOGLE_SPREADSHEET_SCOPES
+    image: epmgcip-connect-ed-ui:latest
+    ports:
+      - '3000:3000'

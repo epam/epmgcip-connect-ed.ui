@@ -1,0 +1,36 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+@use "@/styles/layout";
+@use "@/styles/constants";
+@use "sass:map";
+
+.section-base {
+  padding: 56px 16px;
+
+  &-wave:not(:first-child) {
+    margin-top: -#{map.get(constants.$wave-polygon-md, "height")};
+    clip-path: map.get(constants.$wave-polygon-md, "value");
+  }
+
+  @include responsive-mixins.md {
+    padding: 56px 24px;
+  }
+
+  @include responsive-mixins.lg {
+    padding: 64px 0;
+
+    &-wave:not(:first-child)  {
+      margin-top: -#{map.get(constants.$wave-polygon-lg, "height")};
+      clip-path: map.get(constants.$wave-polygon-lg, "value");
+    }
+
+    &-content {
+      max-width: layout.$max-content-width;;
+      margin: 0 auto;
+    }
+
+    &-title {
+      @include mixins.h2;
+    }
+  }
+}

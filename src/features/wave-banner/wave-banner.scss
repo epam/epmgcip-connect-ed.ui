@@ -1,0 +1,113 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+@use "@/styles/layout";
+@use "sass:map";
+
+.wave-banner {
+@include mixins.wavy-background;
+
+  --_background-color: var(--background-color, var(--primary));
+  --_color: var(--color, var(--white));
+  --_decoration-color: var(--decoration-color, var(--white));
+
+  position: relative;
+  isolation: isolate;
+  padding: 56px 16px;
+  color: var(--_color);
+  background-color: var(--_background-color);
+
+
+  &-image {
+    aspect-ratio: 1/1;
+    display: none;
+
+    &--large {
+      aspect-ratio: 1/1;
+      display: none;
+    }
+  }
+
+  &-info {
+    padding: 24px;
+    width: 100%;
+
+    &--card {
+      width: 100%;
+      padding: 16px;
+      border-radius: 8px 8px 20px;
+      color: var(--_color);
+      background-color: var(--_decoration-color);
+    }
+  }
+
+  &-title {
+    @include mixins.h4;
+  }
+
+  &-body {
+    margin-top: 12px;
+  }
+
+  &-action {
+    margin-top: 24px;
+  }
+
+  @include responsive-mixins.md {
+    padding: 64px 24px;
+
+    &-action {
+      width: auto;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    padding: 136px 0;
+
+    &-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 48px;
+      margin: auto;
+      width: map.get(layout.$columns, "col-8");
+
+      &:has(.wave-banner-image--large) {
+        padding: 0 24px;
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    &-title {
+      @include mixins.h2;
+    }
+
+    &-image {
+      display: block;
+      flex-shrink: 0;
+      width: 330px;
+      height: 330px;
+      color: var(--_decoration-color);
+
+      &--large {
+        width: 448px;
+        height: 448px;
+        display: block;
+        flex-shrink: 0;
+        color: var(--_decoration-color);
+      }
+    }
+
+    &-info {
+      padding: 32px 0 32px 32px;
+      flex-grow: 1;
+
+      &--card {
+        padding: 24px;
+        border-radius: 8px 8px 20px;
+        margin: auto 0;
+        color: var(--_color);
+        background-color: var(--_decoration-color);
+      }
+    }
+  }
+}

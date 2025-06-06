@@ -1,0 +1,16 @@
+.loading-button {
+  position: relative;
+
+  &-spinner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 6px;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-spinner + span {
+    color: transparent;
+  }
+}

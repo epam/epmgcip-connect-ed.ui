@@ -1,0 +1,42 @@
+@use "@/styles/mixins";
+
+.rich-text-blocks {
+  &-title {
+    margin-bottom: 16px;
+    @include mixins.partial-underline;
+  }
+
+  h1 {
+    @include mixins.h1;
+  }
+
+  h2 {
+    @include mixins.h2;
+  }
+
+  h3 {
+    @include mixins.h3;
+  }
+
+  h4 {
+    @include mixins.h4;
+  }
+
+  h5 {
+    @include mixins.h5;
+  }
+
+  ul, ol {
+    list-style: revert;
+    padding: revert;
+  }
+
+  img {
+    margin: 8px 0;
+    border-radius: 8px;
+  }
+
+  a {
+    color: var(--primary);
+  }
+}

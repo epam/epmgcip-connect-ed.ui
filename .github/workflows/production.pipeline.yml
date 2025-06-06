@@ -1,0 +1,131 @@
+name: PR Build and Deploy for staging
+
+on:
+  pull_request:
+    branches:
+      - main # Or your desired target branch
+
+  push:
+    branches:
+      - main # Or your desired target branch
+
+  workflow_dispatch: # Manual trigger
+
+env:
+  PROJECT_ID: cdkz-frontend # TODO: update Google Cloud project id
+  SERVICE: epmgcip-connect-ed-ui # TODO: update Cloud Run service name
+  REGION: us-central1 # TODO: update Cloud Run service region
+  SOURCE_DIR: ./
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Set Google Spreadsheet Credentials
+        run: |
+          echo "::add-mask::${{ secrets.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}"
+          echo "GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON='${{ secrets.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}'" >> $GITHUB_ENV
+
+      - name: Set Google Spreadsheet id
+        run: |
+          echo "::add-mask::${{ secrets.GOOGLE_SPREADSHEET_ID }}"
+          echo "GOOGLE_SPREADSHEET_ID='${{ secrets.GOOGLE_SPREADSHEET_ID }}'" >> $GITHUB_ENV
+
+      - name: Set Google Spreadsheet tab name
+        run: |
+          echo "::add-mask::${{ secrets.GOOGLE_SPREADSHEET_TAB_NAME }}"
+          echo "GOOGLE_SPREADSHEET_TAB_NAME='${{ secrets.GOOGLE_SPREADSHEET_TAB_NAME }}'" >> $GITHUB_ENV
+
+      - name: Set Google Spreadsheet scope
+        run: |
+          echo "::add-mask::${{ secrets.GOOGLE_SPREADSHEET_SCOPES }}"
+          echo "GOOGLE_SPREADSHEET_SCOPES='${{ secrets.GOOGLE_SPREADSHEET_SCOPES }}'" >> $GITHUB_ENV
+
+      - name: Set Backend URL
+        run: |
+          echo "::add-mask::${{ vars.REACT_APP_BACKEND_URL }}"
+          echo "NEXT_PUBLIC_BACKEND_URL='${{ vars.REACT_APP_BACKEND_URL }}'" >> $GITHUB_ENV
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Add your build steps here
+      - name: Install dependencies
+        run: npm install # Or your package manager
+
+      # Add checks here
+      - name: Run checks
+        run: |
+          npm run lint:types &
+          TSC_PID=$!
+          
+          npm run lint &
+          NEXT_LINT_PID=$!
+          
+          wait $TSC_PID
+          TSC_EXIT_CODE=$?
+          
+          wait $NEXT_LINT_PID
+          NEXT_LINT_EXIT_CODE=$?
+          
+          if [ $NEXT_LINT_EXIT_CODE -ne 0 ] || [ $TSC_EXIT_CODE -ne 0 ]; then
+            echo "Linting or Type checking failed"
+            exit 1
+          fi
+
+      - name: Run build
+        run: npm run build # Or your build command
+        env:
+          # Get the value from GitHub Variable/Secret and provide it to this specific run command
+          NEXT_PUBLIC_BACKEND_URL: ${{ vars.REACT_APP_BACKEND_URL }}
+          GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON: ${{ secrets.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}
+          GOOGLE_SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
+          GOOGLE_SPREADSHEET_TAB_NAME: ${{ secrets.GOOGLE_SPREADSHEET_TAB_NAME }}
+          GOOGLE_SPREADSHEET_SCOPES: ${{ secrets.GOOGLE_SPREADSHEET_SCOPES }}
+
+  deploy:
+    needs: build # Only run deploy if build succeeds
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch' # Only deploy on merge to development
+    runs-on: ubuntu-latest
+    environment: production # Or your target environment
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Add your deployment steps here
+      - name: Google Auth
+        id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ env.SERVICE }}
+          region: ${{ env.REGION }}
+          # NOTE: If required, update to the appropriate source folder
+          source: ${{ env.SOURCE_DIR }}
+          env_vars: |-
+            GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON=${{ secrets.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}
+            GOOGLE_SPREADSHEET_ID=${{ secrets.GOOGLE_SPREADSHEET_ID }}
+            GOOGLE_SPREADSHEET_TAB_NAME=${{ secrets.GOOGLE_SPREADSHEET_TAB_NAME }}
+            GOOGLE_SPREADSHEET_SCOPES=${{ secrets.GOOGLE_SPREADSHEET_SCOPES }}
+            NEXT_PUBLIC_BACKEND_URL=${{ vars.REACT_APP_BACKEND_URL }}
+          flags: |-
+            --update-env-vars=NEXT_PUBLIC_BACKEND_URL=${{ vars.REACT_APP_BACKEND_URL }}
+            --set-build-env-vars=NEXT_PUBLIC_BACKEND_URL=${{ vars.REACT_APP_BACKEND_URL }}
+
+      # If required, use the Cloud Run url output in later steps
+      - name: Show Output
+        run: echo ${{ steps.deploy.outputs.url }}
+
+      - name: Deployment Failed
+        if: ${{ failure() }}
+        run: echo "Cloud Run staging deployment failed!"

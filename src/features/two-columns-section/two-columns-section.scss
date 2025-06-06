@@ -1,0 +1,88 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/mixins";
+@use "@/styles/layout";
+@use "sass:map";
+
+.two-columns-section {
+  --_section-background: var(--section-background, var(--white));
+  --_section-color: var(--section-color, var(--black));
+
+  background-color: var(--_section-background);
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-title {
+    color: var(--_section-color);
+  }
+
+  &-row {
+    padding: 32px 0;
+    display: grid;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  &-column:empty,
+  &-column:has(&-image){
+    display: none;
+  }
+
+  &-image {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    object-fit: contain;
+  }
+
+  &-video {
+    width: 100%;
+    margin: auto;
+  }
+
+  @include responsive-mixins.md {
+    &-row {
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+  }
+
+  @include responsive-mixins.lg {
+    padding-left: 24px;
+    padding-right: 24px;
+
+    &-content {
+      width: map.get(layout.$columns, "col-10");
+      margin: auto;
+    }
+
+    &-column:has(&-image){
+      display: flex;
+    }
+
+    &-row {
+      padding: 64px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+
+      &-large-left {
+        grid-template-columns: 2fr 1fr;
+      }
+
+      &-large-right {
+        grid-template-columns: 1fr 2fr;
+      }
+    }
+
+    &-column:has(+ &-column:empty),
+    &-column:empty + &-column,
+    &-column:only-child {
+      grid-column: 1/-1;
+    }
+  }
+}

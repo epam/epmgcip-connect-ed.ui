@@ -1,0 +1,153 @@
+name: PR Build and Deploy for staging
+
+on:
+  pull_request:
+    branches:
+      - development # Or your desired target branch
+
+  push:
+    branches:
+      - development # Or your desired target branch
+
+  workflow_dispatch: # Manual trigger
+
+env:
+  PROJECT_ID: cdkz-frontend # TODO: update Google Cloud project id
+  SERVICE: epmgcip-connect-ed-ui # TODO: update Cloud Run service name
+  REGION: us-central1 # TODO: update Cloud Run service region
+  AR_REPOSITORY: cloud-run-source-deploy
+  SOURCE_DIR: ./
+
+jobs:
+  build-and-push: # Renamed job for clarity
+    runs-on: ubuntu-latest
+    environment: staging
+    permissions:
+      contents: 'read'
+      id-token: 'write' # Required for google-github-actions/auth using WIF
+
+    # Output the full image name (including tag) for the deploy job
+    outputs:
+      image_name: ${{ steps.define_image_name.outputs.image_name }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Authenticate to Google Cloud. WIF is recommended.
+      - name: Google Auth
+        id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          # Replace with your WIF provider if using WIF (recommended)
+          # workload_identity_provider: 'projects/YOUR_PROJECT_NUMBER/locations/global/workloadIdentityPools/YOUR_POOL_ID/providers/YOUR_PROVIDER_ID'
+          # service_account: 'your-service-account-email@${{ env.PROJECT_ID }}.iam.gserviceaccount.com'
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}' # Fallback if not using WIF
+
+      # Configure Docker to use gcloud credential helper for Artifact Registry
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+
+      # Define the full image name including the tag (using commit SHA for uniqueness)
+      - name: Define Image Name and Tag
+        id: define_image_name
+        run: |
+          IMAGE_TAG=${{ github.sha }}
+          FULL_IMAGE_NAME="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.AR_REPOSITORY }}/${{ env.SERVICE }}:${IMAGE_TAG}"
+          echo "IMAGE_NAME=${FULL_IMAGE_NAME}" >> $GITHUB_ENV # For use in subsequent steps of this job
+          echo "image_name=${FULL_IMAGE_NAME}" >> $GITHUB_OUTPUT # To pass to other jobs
+
+      - name: Set Build-time Environment Variables (for Docker build)
+        id: build_vars
+        run: |
+          echo "NEXT_PUBLIC_BACKEND_URL_VAL=${{ vars.REACT_APP_BACKEND_URL }}" >> $GITHUB_ENV
+          echo "GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON_VAL=${{ secrets.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}" >> $GITHUB_ENV
+          echo "GOOGLE_SPREADSHEET_ID_VAL=${{ secrets.GOOGLE_SPREADSHEET_ID }}" >> $GITHUB_ENV
+          echo "GOOGLE_SPREADSHEET_TAB_NAME_VAL=${{ secrets.GOOGLE_SPREADSHEET_TAB_NAME }}" >> $GITHUB_ENV
+          echo "GOOGLE_SPREADSHEET_SCOPES_VAL=${{ secrets.GOOGLE_SPREADSHEET_SCOPES }}" >> $GITHUB_ENV
+
+      - name: Build Docker Image
+        run: |
+          docker build ${{ env.SOURCE_DIR }} \
+            --tag ${{ env.IMAGE_NAME }} \
+            --build-arg NEXT_PUBLIC_BACKEND_URL="${{ env.NEXT_PUBLIC_BACKEND_URL_VAL }}" \
+            --build-arg GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON="${{ env.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON_VAL }}" \
+            --build-arg GOOGLE_SPREADSHEET_ID="${{ env.GOOGLE_SPREADSHEET_ID_VAL }}" \
+            --build-arg GOOGLE_SPREADSHEET_TAB_NAME="${{ env.GOOGLE_SPREADSHEET_TAB_NAME_VAL }}" \
+            --build-arg GOOGLE_SPREADSHEET_SCOPES="${{ env.GOOGLE_SPREADSHEET_SCOPES_VAL }}"
+        # Note: Ensure your Dockerfile has ARG declarations for these build-args
+
+      - name: Push Docker Image to Artifact Registry
+        run: docker push ${{ env.IMAGE_NAME }}
+
+      - name: Install dependencies (for local checks)
+        run: npm install
+
+      - name: Run checks (lint, types)
+        run: |
+          npm run lint:types &
+          TSC_PID=$!
+
+          npm run lint &
+          NEXT_LINT_PID=$!
+
+          wait $TSC_PID
+          TSC_EXIT_CODE=$?
+
+          wait $NEXT_LINT_PID
+          NEXT_LINT_EXIT_CODE=$?
+
+          if [ $NEXT_LINT_EXIT_CODE -ne 0 ] || [ $TSC_EXIT_CODE -ne 0 ]; then
+            echo "Linting or Type checking failed"
+            exit 1
+          fi
+
+      - name: Run build
+        run: npm run build # Or your build command
+        env:
+          # Get the value from GitHub Variable/Secret and provide it to this specific run command
+          NEXT_PUBLIC_BACKEND_URL: ${{ vars.REACT_APP_BACKEND_URL }}
+          GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON: ${{ secrets.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}
+          GOOGLE_SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
+          GOOGLE_SPREADSHEET_TAB_NAME: ${{ secrets.GOOGLE_SPREADSHEET_TAB_NAME }}
+          GOOGLE_SPREADSHEET_SCOPES: ${{ secrets.GOOGLE_SPREADSHEET_SCOPES }}
+
+  deploy:
+    needs: build-and-push
+    if: github.event_name == 'push' && github.ref == 'refs/heads/development' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment: staging
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: Google Auth
+        id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+      - name: Deploy Pre-built Image to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ env.SERVICE }}
+          region: ${{ env.REGION }}
+          # CRITICAL: Use the image built and pushed in the previous job
+          image: ${{ needs.build-and-push.outputs.image_name }}
+          # Runtime Environment Variables for the Cloud Run service
+          env_vars: |-
+            NEXT_PUBLIC_BACKEND_URL=${{ vars.REACT_APP_BACKEND_URL }}
+            GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON=${{ secrets.GOOGLE_SPREADSHEET_BASE_64_CREDENTIALS_JSON }}
+            GOOGLE_SPREADSHEET_ID=${{ secrets.GOOGLE_SPREADSHEET_ID }}
+            GOOGLE_SPREADSHEET_TAB_NAME=${{ secrets.GOOGLE_SPREADSHEET_TAB_NAME }}
+            GOOGLE_SPREADSHEET_SCOPES=${{ secrets.GOOGLE_SPREADSHEET_SCOPES }}
+        # No 'source' or 'flags' for build-env-vars needed here, as we're deploying a pre-built image.
+
+      - name: Show Output
+        run: echo ${{ steps.deploy.outputs.url }}
+
+      - name: Deployment Failed
+        if: ${{ failure() }}
+        run: echo "Cloud Run staging deployment failed!"

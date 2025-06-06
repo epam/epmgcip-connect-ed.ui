@@ -1,0 +1,54 @@
+import { gql } from "@/__generated__";
+
+export const personelSectionFragment = gql(`
+    fragment PersonelSectionFragment on ComponentSectionsPersonellCards {
+        id
+        heading: Title {
+            id
+            Level
+            Alignment
+            Title {
+                documentId
+                Title
+                HeadingLevel
+            }
+        }
+        ShowWave
+        personelCard: Card(pagination: { limit: $limit }) {
+            id
+            Title
+            Text
+            Image {
+                altText
+                image {
+                    alternativeText
+                    name
+                    caption
+                    url
+                }
+                url
+                isIcon
+                newTab
+            }
+            Theme {
+                documentId
+                color
+                bgColor
+            }
+            SocialMedias {
+                documentId
+                text
+                type
+                url
+                image {
+                    altText
+                    isIcon
+                    image {
+                        url
+                        alternativeText
+                    }
+                    url
+                }
+            }
+        }
+    }`);

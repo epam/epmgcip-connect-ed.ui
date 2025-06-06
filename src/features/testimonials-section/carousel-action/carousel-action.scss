@@ -1,0 +1,33 @@
+.testimonial-carousel-action {
+  $icon-size: 36px;
+  $half-of-the-gap: 8px;
+
+  &.slick-arrow {
+    position: absolute;
+    padding: 0;
+    bottom: 0;
+    width: #{$icon-size};
+    height: #{$icon-size};
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: currentColor;
+
+    .testimonial-carousel-arrow {
+      width: #{$icon-size};
+      height: #{$icon-size};
+    }
+  }
+
+  &.slick-next {
+    right: calc(50% - ($icon-size + $half-of-the-gap));
+  }
+
+  &.slick-prev {
+    left: calc(50% - ($icon-size + $half-of-the-gap));
+
+    .testimonial-carousel-arrow {
+      transform: rotate(-180deg);
+    }
+  }
+}

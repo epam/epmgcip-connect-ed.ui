@@ -1,0 +1,47 @@
+@use "@/styles/responsive-mixins";
+@use "@/styles/layout";
+@use "@/styles/mixins";
+@use "sass:map";
+
+.client-graph {
+  --label-color: var(--black);
+  --label-value: var(--tertiary);
+
+  width: map.get(layout.$columns, "col-10");
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 24px;
+
+  @include responsive-mixins.lg {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+  }
+
+  &-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 32px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px 0 var(--black-transparent-10);
+
+    &-label {
+      @include mixins.h3;
+
+      color: var(--label-color);
+    }
+
+    &-value {
+      @include mixins.h3;
+
+      font-weight: 800;
+      color: var(--label-value);
+    }
+  }
+}
+
+
+
