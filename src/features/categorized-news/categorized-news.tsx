@@ -32,7 +32,10 @@ const initialTabs: ComponentSharedTab[] = [];
 
 const getTabData = (tab: ComponentSharedTab) => ({
   value: tab?.documentId,
-  label: tab?.Label,
+  label:
+    tab?.Label ??
+    (tab?.content?.[0] as ComponentSharedArticleCategory)?.label ??
+    "",
 });
 
 // eslint-disable-next-line complexity

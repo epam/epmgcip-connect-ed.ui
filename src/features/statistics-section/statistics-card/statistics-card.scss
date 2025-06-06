@@ -1,0 +1,34 @@
+@use "@/styles/mixins/typography.mixin";
+
+.statistics-card {
+  display: flex;
+  gap: 16px;
+  background-color: var(--light);
+  box-shadow: 0 2px 6px 0 var(--black-transparent-10);
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: var(--black);
+
+  &-info {
+    flex-grow: 1;
+    align-items: center;
+    margin: auto;
+  }
+
+  &-title {
+    @include typography.h3;
+
+    word-break: break-word;
+  }
+
+  &-description {
+    @include typography.paragraph;
+
+    word-break: break-word;
+  }
+
+  &-graph {
+    flex-shrink: 0;
+    margin: auto;
+  }
+}

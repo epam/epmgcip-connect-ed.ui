@@ -8,6 +8,7 @@ import { ProfilesSection } from "@/features/profiles-section/profiles-section.ts
 import { RichTextSection } from "@/features/rich-text-section/rich-text-section.tsx";
 import { SecondarySection } from "@/features/secondary-section/secondary-section.tsx";
 import { SignUp } from "@/features/sign-up/sign-up.tsx";
+import { StatisticsSection } from "@/features/statistics-section/statistics-section.tsx";
 import { TestimonialsSection } from "@/features/testimonials-section/testimonials-section.tsx";
 import { TimelineSection } from "@/features/timeline-section/timeline-section.tsx";
 import { WaveBanner } from "@/features/wave-banner/wave-banner.tsx";
@@ -32,6 +33,7 @@ import {
   ProjectsSectionFragmentFragment,
   RichTextFragmentFragment,
   SecondaryBannerFragmentFragment,
+  StatisticsSectionFragment,
   WaveBannerFragmentFragment,
   WaysToDonateFragmentFragment,
 } from "@/__generated__/graphql";
@@ -117,6 +119,9 @@ const renderSection = (section?: PagePageSectionsDynamicZone | null) => {
     }
     case "ComponentSectionsWaysToDonate": {
       return <WaysToDonate data={section as WaysToDonateFragmentFragment} />;
+    }
+    case "ComponentSectionsStatistics": {
+      return <StatisticsSection data={section as StatisticsSectionFragment} />;
     }
     default: {
       return null;

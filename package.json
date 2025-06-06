@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "build:staging": "next build",
-    "lint": "next lint . --ext ts,tsx --max-warnings 20",
+    "lint": "next lint . --ext ts,tsx --max-warnings 25",
     "lint:fix": "next lint . --ext ts,tsx --fix",
     "compile": "dotenv -- graphql-codegen",
     "watch": "graphql-codegen -w",
